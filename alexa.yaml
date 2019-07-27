@@ -1,0 +1,19 @@
+smart_home:
+  filter:
+    include_entities:
+
+
+    exclude_domains:
+      - automation
+      - script
+      - alert
+      - fan
+      - group
+      - light
+      - scene
+      - sensor
+      - switch
+      - cover
+
+  entity_config:
+    

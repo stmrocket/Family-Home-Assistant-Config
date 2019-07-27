@@ -1,0 +1,44 @@
+#Components needed for GitHub repository and Travis CI monitoring.
+sensor:
+  - platform: github
+    access_token: !secret github_access_token
+    repositories:
+      - path: 'stmrocket/home-assistant-config'
+  
+input_text:
+
+  prev_git_version:
+    name: Previous Git Version
+
+binary_sensor:
+
+  - platform: template
+    sensors:
+
+      git_update_ready:
+        friendly_name: "Update Ready"
+        value_template: "{{ not states.input_text.prev_git_version.state == states.sensor.home_assistant_config.state }}"
+
+shell_command:
+
+  get_latest_config: bash /config/bin/update_config_from_github.sh
+
+script:
+
+  update_config_restart:
+    sequence:
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.prev_git_version
+          value: "{{ states.sensor.home_assistant_config.state | string }}"
+      - service: shell_command.get_latest_config
+      - service: homeassistant.restart
+
+  update_config_reload_automations:
+    sequence:
+      - service: input_text.set_value
+        data_template:
+          entity_id: input_text.prev_git_version
+          value: "{{ states.sensor.home_assistant_config.state | string }}"
+      - service: shell_command.get_latest_config
+      - service: automation.reload

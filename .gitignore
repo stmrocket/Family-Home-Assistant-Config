@@ -29,3 +29,5 @@ google_calendars.yaml
 tts/
 __pycache__/
 www/icons/
+custom_components/
+www/community/

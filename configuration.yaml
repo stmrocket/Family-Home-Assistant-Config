@@ -1,15 +1,354 @@
-
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+  # Customization file
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+# Enable Lovelace yaml mode
+lovelace:
+  mode: yaml
+
+# Discover some devices automatically
+discovery:
+
+# Sensors
+sensor:
+  
+#Sonoff Washer Monitor
+  - platform: mqtt
+    name: "Washer State"
+    state_topic: "hass/state/washer"
+    icon: mdi:washing-machine
+  - platform: mqtt
+    name: "Washer Watts"
+    state_topic: "tele/SNF-Washer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Power }}"
+    qos: 2
+    unit_of_measurement : "W"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Washer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Washer Voltage"
+    state_topic: "tele/SNF-Washer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Voltage }}"
+    qos: 2
+    unit_of_measurement : "V"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Washer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Washer Amps"
+    state_topic: "tele/SNF-Washer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Current }}"
+    qos: 2
+    unit_of_measurement : "A"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Washer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Washer Energy Today"
+    state_topic: "tele/SNF-Washer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Today }}"
+    qos: 2
+    unit_of_measurement : "kWh"
+    availability_topic: "tele/SNF-Washer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Washer Energy Yesterday"
+    state_topic: "tele/SNF-Washer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Yesterday }}"
+    qos: 2
+    unit_of_measurement : "kWh"
+    availability_topic: "tele/SNF-Washer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+  - platform: mqtt
+    state_topic: "tele/SNF-Washer/STATE"
+    name: "Washer Signal"
+    unit_of_measurement: "%"
+    value_template: "{{value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/SNF-Washer/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+#Sonoff Dryer Monitor
+  - platform: mqtt
+    name: "Dryer State"
+    state_topic: "hass/state/dryer"
+    icon: mdi:tumble-dryer
+  - platform: mqtt
+    name: "Dryer Watts"
+    state_topic: "tele/SNF-Dryer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Power }}"
+    qos: 2
+    unit_of_measurement : "W"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Dryer Voltage"
+    state_topic: "tele/SNF-Dryer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Voltage }}"
+    qos: 2
+    unit_of_measurement : "V"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Dryer Amps"
+    state_topic: "tele/SNF-Dryer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Current }}"
+    qos: 2
+    unit_of_measurement : "A"
+    icon: mdi:flash-circle
+    availability_topic: "tele/SNF-Dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Dryer Energy Today"
+    state_topic: "tele/SNF-Dryer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Today }}"
+    qos: 2
+    unit_of_measurement : "kWh"
+    availability_topic: "tele/SNF-Dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    name: "Dryer Energy Yesterday"
+    state_topic: "tele/SNF-Dryer/SENSOR"
+    value_template: "{{value_json['ENERGY'].Yesterday }}"
+    qos: 2
+    unit_of_measurement : "kWh"
+    availability_topic: "tele/SNF-Dryer/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+  - platform: mqtt
+    state_topic: "tele/SNF-Dryer/STATE"
+    name: "Dryer Signal"
+    unit_of_measurement: "%"
+    value_template: "{{value_json['Wifi'].RSSI }}"
+    availability_topic: "tele/SNF-Dryer/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+# Darksky
+  - platform: darksky
+    api_key: !secret ds_key
+    forecast:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - icon
+      - summary
+      - nearest_storm_distance
+      - nearest_storm_bearing
+      - humidity
+      - temperature
+      - temperature_high
+      - temperature_low
+      - apparent_temperature
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - wind_speed
+      - wind_bearing
+      - precip_type
+      - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
+      - pressure
+      - visibility
+
+  - platform: rpi_power
+    text_state: true
+
+#Input Booleans
+
+input_boolean:
+
+  washer_end:
+    name: Washer Finished
+    initial: off
+    icon: mdi:stop-circle
+
+  dryer_end:
+    name: Dryer Finished
+    initial: off
+    icon: mdi:stop-circle
+
+  guest_mode:
+    name: Guest Mode
+    icon: mdi:timer
+
+  timer_lights:
+    name: Timer Lights
+    icon: mdi:lightbulb
+
+  goodnight_trigger:
+    name: Alexa Good Night Trigger
+    initial: off
+    icon: mdi:amazon-alexa
+
+  bedtime_trigger:
+    name: Alexa Bedtime Trigger
+    initial: off
+    icon: mdi:amazon-alexa
+    
+  outside_timer_lights:
+    name: Outside Timer Lights
+    icon: mdi:timer
+  
+# Timers
+timer:
+  washer_alert:
+    name: Washer Announcement Timer
+    duration: '00:05:00'
+  dryer_alert:
+    name: Dryer Announcement Timer
+    duration: '00:05:00'
 
 # Text to speech
 tts:
   - platform: google_translate
+    service_name: google_say
 
 group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
+automation: !include_dir_merge_list automation
+script: !include_dir_merge_list scripts
+zone: !include zones.yaml
+
+# ISY 994 Integration 
+isy994:
+  host: !secret isy_host
+  username: !secret isy_user
+  password: !secret isy_pass
+  enable_climate: false
+
+#Elk M1 Integration
+elkm1:
+  host: !secret elk_host
+  username: !secret elk_user
+  password: !secret elk_pass
+  area:
+    exclude: [2-8]
+  counter:
+    enabled: false
+  keypad:
+    exclude: [4-16]
+  output:
+    include: [3, 64, 177-180]
+  task:
+    enabled: false
+  thermostat:
+    enabled: false
+  plc:
+    enabled: false
+  zone:
+    1nclude: [1-15, 17-26, 49-53]
+
+#Alexa
+api:
+alexa: !include alexa.yaml
+
+# Zoneminder
+zoneminder:
+  host: !secret zm_host
+  ssl: true
+  verify_ssl: false
+  username: !secret zm_user
+  password: !secret zm_pass
+
+# IP Cameras
+camera:
+  - platform: zoneminder
+
+#Device Tracking
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_host
+    port: !secret unifi_port
+    verify_ssl: false
+    username: !secret ubnt_user
+    password: !secret ubnt_pass
+    consider_home: 60
+
+#Notification Services
+notify:
+
+  - name: den_kodi
+    platform: kodi
+    host: !secret den_kodi_host
+
+  - name: guest_kodi
+    platform: kodi
+    host: !secret guest_kodi_host
+
+  - platform: html5
+    name: browser
+    vapid_pub_key: !secret vapid_public
+    vapid_prv_key: !secret vapid_private
+    vapid_email: !secret vapid_email
+
+#Counters
+counter:
+  dryer_alert:
+    initial: 0
+    step: 1
+  washer_alert:
+    initial: 0
+    step: 1
+
+# Kodi Media Player
+media_player:
+  - name: den_kodi
+    platform: kodi
+    host: !secret den_kodi_host
+  - name: guest_kodi
+    platform: kodi
+    host: !secret master_kodi_host
+      
+#HACS
+hacs:
+  token: !secret hacs_git
+  appdaemon: true
+  python_script: true
+  theme: true
+
+#Breaking Changes
+breaking_changes:
+
+#Alexa Media Player
+alexa_media:
+  accounts:
+    - email: !secret amazon_user
+      password: !secret amazon_password
+      url: amazon.com
