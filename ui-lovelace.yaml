@@ -195,7 +195,7 @@ views:
                 - entity: script.update_config_restart
                   icon: 'mdi:github-circle'
                   name: Pull/Restart
-                - entity: script.update_config_resload_automations
+                - entity: script.update_config_reload_automations
                   icon: 'mdi:github-circle'
                   name: Pull/Reload
 #################################################################
