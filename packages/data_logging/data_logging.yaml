@@ -14,10 +14,6 @@ recorder:
   db_url: !secret db_url
   include:
     entities:
-    - sensor.roomba_battery
-    - sensor.wan_in_mbps
-    - sensor.wan_out_mbps
-    - sensor.wan_ping
     - sensor.aquara_outside_humidity
     - sensor.aquara_outside_pressure
     - sensor.aquara_outside_temperature

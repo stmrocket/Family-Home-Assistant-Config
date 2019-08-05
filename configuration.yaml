@@ -272,11 +272,11 @@ elkm1:
   plc:
     enabled: false
   zone:
-    1nclude: [1-15, 17-26, 49-53]
+    include: [1-15, 17-26, 49-53]
 
 #Alexa
-api:
-alexa: !include alexa.yaml
+#api:
+#alexa: !include alexa.yaml
 
 # Zoneminder
 zoneminder:
@@ -334,7 +334,7 @@ media_player:
     host: !secret den_kodi_host
   - name: guest_kodi
     platform: kodi
-    host: !secret master_kodi_host
+    host: !secret guest_kodi_host
       
 #HACS
 hacs:
