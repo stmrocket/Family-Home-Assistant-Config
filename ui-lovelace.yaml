@@ -247,7 +247,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.driveway
                   color_type: icon
-                  color: rgb(255, 200, 0)
+                  color: rgb(255, 255, 0)
                   icon: mdi:road
                   name: Driveway
                   hold_action: 
@@ -255,7 +255,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.front_porch_1
                   color_type: icon
-                  color: rgb(255, 200, 0)
+                  color: rgb(255, 255, 0)
                   icon: mdi:door
                   name: Front Porch
                   hold_action: 
