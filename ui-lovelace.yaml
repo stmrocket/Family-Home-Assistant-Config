@@ -181,23 +181,7 @@ views:
                   - entity: camera.back_porch
                   - entity: camera.den
                   - entity: camera.kitchen
-# #################################################################
-# #                                                               #
-# #                      Home - GitHub                            #
-# #                                                               #
-# ################################################################# 
-#             - type: glance
-#               columns: 3
-#               show_name: true
-#               show_state: false
-#               entities:
-#                 - entity: binary_sensor.git_update_ready
-#                 - entity: script.update_config_restart
-#                   icon: 'mdi:github-circle'
-#                   name: Pull/Restart
-#                 - entity: script.update_config_reload_automations
-#                   icon: 'mdi:github-circle'
-#                   name: Pull/Reload
+
 #################################################################
 #                                                               #
 #                          Home - Roomba                        #
@@ -268,6 +252,21 @@ views:
                           border-radius: 5px
                         max: 24
 
+#################################################################
+#                                                               #
+#                       Home - Cameras                          #
+#                                                               #
+################################################################# 
+            - type: glance
+              columns: 4
+              show_name: true
+              show_state: false
+              entities:
+                  - entity: camera.front_porch
+                  - entity: camera.back_porch
+                  - entity: camera.den
+                  - entity: camera.kitchen
+
 ################################################################
 #                                                               #
 #                          Home - Laundry                       #
@@ -275,14 +274,12 @@ views:
 ################################################################# 
         - type: vertical-stack
           cards: 
-            - type: horizontal-stack
-              cards: 
-              - type: entities
-                show_header_toggle: false
-                title: Laundry Status
-                entities:
-                    - entity: sensor.washer_state
-                    - entity: sensor.dryer_state
+            - type: entities
+              show_header_toggle: false
+              title: Laundry Status
+              entities:
+                  - entity: sensor.washer_state
+                  - entity: sensor.dryer_state
 
 #################################################################
 #                                                               #
