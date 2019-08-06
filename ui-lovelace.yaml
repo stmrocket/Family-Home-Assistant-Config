@@ -152,21 +152,6 @@ views:
               entity_daytime_high: sensor.dark_sky_daytime_high_temperature_0d
               entity_pop: sensor.dark_sky_precip_probability_0d
 
-# #################################################################
-# #                                                               #
-# #                          Home - Roomba                        #
-# #                                                               #
-# ################################################################# 
-#         # - type: vertical-stack
-#         #   cards:  
-#             - type: entities
-#               show_header_toggle: false
-#               title: Roomba
-#               entities:
-#                   - entity: switch.roomba
-#                   - entity: sensor.roomba_battery
-#                   - entity: sensor.roomba_status
-#                   - entity: input_boolean.roomba_auto
 #################################################################
 #                                                               #
 #                       Home - Cameras                          #
@@ -184,7 +169,7 @@ views:
 
 #################################################################
 #                                                               #
-#                          Home - Roomba                        #
+#                          Home - HVAC                          #
 #                                                               #
 ################################################################# 
         - type: vertical-stack
@@ -254,19 +239,100 @@ views:
 
 #################################################################
 #                                                               #
-#                       Home - Cameras                          #
+#                       Home - Buttons                          #
 #                                                               #
 ################################################################# 
-            - type: glance
-              columns: 4
-              show_name: true
-              show_state: false
-              entities:
-                  - entity: camera.front_porch
-                  - entity: camera.back_porch
-                  - entity: camera.den
-                  - entity: camera.kitchen
-
+            - type: horizontal-stack
+              cards:
+                - type: "custom:button-card"
+                  entity: switch.driveway
+                  color_type: icon
+                  color: rgb(255, 200, 0)
+                  icon: mdi:road
+                  name: Driveway
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: light.front_porch_1
+                  color_type: icon
+                  color: rgb(255, 200, 0)
+                  icon: mdi:door
+                  name: Front Porch
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: light.entry
+                  color_type: card
+                  color: rgb(255,255,0)
+                  icon: mdi:ceiling-light
+                  name: Entry
+                  hold_action: 
+                    action: more-info
+            - type: horizontal-stack
+              cards:
+                - type: "custom:button-card"
+                  entity: switch.right_back_porch
+                  color_type: icon
+                  color: rgb(255, 255,0)
+                  icon: mdi:lightbulb-outline
+                  name: Flood Light
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: switch.back_porch_1
+                  color_type: icon
+                  color: rgb(255, 255,0)
+                  icon: mdi:door
+                  name: Back Porch
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: switch.left_back_porch
+                  color_type: icon
+                  color: rgb(255, 255, 0)
+                  icon: mdi:spotlight
+                  name: Flood Light
+                  hold_action: 
+                    action: more-info
+            - type: "custom:button-card"
+              color_type: label-card
+              #color: rgb(44, 109, 214)
+              name: Lamps
+            - type: horizontal-stack
+              cards:
+                - type: "custom:button-card"
+                  entity: switch.den_lamp
+                  color_type: icon
+                  color: rgb(255, 255,0)
+                  icon: mdi:lightbulb-outline
+                  name: Den
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: light.master_lamp
+                  color_type: icon
+                  color: rgb(255, 255,0)
+                  icon: mdi:door
+                  name: Master
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: light.guest_lamp
+                  color_type: icon
+                  color: rgb(255, 255, 0)
+                  icon: mdi:spotlight
+                  name: Guest
+                  hold_action: 
+                    action: more-info
+                - type: "custom:button-card"
+                  entity: light.craft_room_lamp
+                  color_type: icon
+                  color: rgb(255, 255, 0)
+                  icon: mdi:spotlight
+                  name: Craft
+                  hold_action: 
+                    action: more-info
+                    
 ################################################################
 #                                                               #
 #                          Home - Laundry                       #
