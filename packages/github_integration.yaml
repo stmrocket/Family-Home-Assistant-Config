@@ -17,7 +17,7 @@ binary_sensor:
 
       git_update_ready:
         friendly_name: "Update Ready"
-        value_template: "{{ not states.input_text.prev_git_version.state == states.sensor.home_assistant_config.state }}"
+        value_template: "{{ not states.input_text.prev_git_version.state == states.sensor.family_home_assistant_config.state }}"
 
 shell_command:
 
