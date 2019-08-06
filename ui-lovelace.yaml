@@ -262,7 +262,7 @@ views:
                     action: more-info
                 - type: "custom:button-card"
                   entity: light.entry
-                  color_type: card
+                  color_type: icon
                   color: rgb(255,255,0)
                   icon: mdi:ceiling-light
                   name: Entry
@@ -357,88 +357,6 @@ views:
                 - arm_away
                 - arm_night
               entity: alarm_control_panel.area_001
-
-#############################################################################################################################################
-#                                                                                                                                           # 
-#                                                                 VIEW 1 - HVAC                                                             #
-#                                                                                                                                           #
-############################################################################################################################################# 
-
-  - id: 1
-    icon: mdi:thermostat
-    name: HVAC
-    cards:
-
-#################################################################
-#                                                               #
-#                       HVAC - System                           #
-#                                                               #
-################################################################# 
-
-      - type: vertical-stack
-        cards:
-         - type: custom:vertical-stack-in-card
-           cards:
-              - type: custom:simple-thermostat
-                entity: climate.home
-                step_size: 1
-                sensors:
-                - attribute: current_humidity
-                  name: Humidity
-                  unit: "%"
-                - entity: sensor.hvac_system_state
-                  name: state
-                hide:
-                  state: true
-                
-
-              - type: horizontal-stack
-                cards:    
-
-                  - type: custom:bar-card
-                    title: 'Heat:'
-                    entity: sensor.hvac_system_heat_runtime
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 24
-                    color: red
-                    
-                  - type: custom:bar-card
-                    title: 'Cool:'
-                    entity: sensor.hvac_system_cool_runtime
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 24
-                    color: blue
-              - type: horizontal-stack
-                cards:      
-
-                  - type: custom:bar-card
-                    title: 'Fan:'
-                    entity: sensor.hvac_system_fan_runtime
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 24
-                    color: green
-                    
-                  - type: custom:bar-card
-                    title: 'Total:'
-                    entity: sensor.hvac_system_runtime
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: 24
 
 #############################################################################################################################################
 #                                                                                                                                           # 
