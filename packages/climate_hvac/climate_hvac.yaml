@@ -27,3 +27,100 @@ input_boolean:
   hvac_geofence:
     name: In HVAC Geofence
     icon: mdi:crosshairs-gps
+
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+#################################################################
+
+binary_sensor:
+
+####################################################
+#                                                  #
+#            Binary Sensor - Template              #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+
+      hvac_system_fan:
+        friendly_name: "HVAC System Fan Call"
+        value_template: '{{states.climate.home.attributes.fan_action | string == "running" and states.climate.home.attributes.hvac_action | string == "idle" }}'
+
+      hvac_system_heat:
+        friendly_name: "HVAC System Heat Call"
+        value_template: '{{states.climate.home.attributes.hvac_action | string == "heating" }}'
+
+      hvac_system_cool:
+        friendly_name: "HVAC System Cool Call"
+        value_template: '{{states.climate.home.attributes.hvac_action | string == "cooling" }}'    
+
+#################################################################
+#                                                               #
+#                            Sensors                            #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensor - Template                 #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+
+      hvac_system_state:
+        friendly_name: "HVAC System Current State"
+        value_template: >-
+          {% if is_state("binary_sensor.hvac_system_cool", 'on') -%}
+            Cool
+          {% elif is_state("binary_sensor.hvac_system_heat", 'on') -%}
+            Heat
+          {% elif is_state("binary_sensor.hvac_system_fan", 'on') -%}
+            Fan
+          {%- else -%}
+            Idle
+          {%- endif %}
+      
+      hvac_system_runtime:
+        friendly_name: "HVAC Total System Runtime"
+        unit_of_measurement: 'h'
+        value_template: >-
+          {{ ((states.sensor.hvac_system_fan_runtime.state | float) +
+          (states.sensor.hvac_system_heat_runtime.state | float) +
+          (states.sensor.hvac_system_cool_runtime.state | float)) | round(2) }}
+      
+####################################################
+#                                                  #
+#                Sensor - History                  #
+#                                                  #
+####################################################
+
+  - platform: history_stats
+    name: HVAC System Fan Runtime
+    entity_id: binary_sensor.hvac_system_fan
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: HVAC System Heat Runtime
+    entity_id: binary_sensor.hvac_system_heat
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: HVAC System Cool Runtime
+    entity_id: binary_sensor.hvac_system_cool
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'

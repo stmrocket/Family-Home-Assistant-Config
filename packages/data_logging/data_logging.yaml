@@ -17,4 +17,13 @@ recorder:
     - sensor.aquara_outside_humidity
     - sensor.aquara_outside_pressure
     - sensor.aquara_outside_temperature
+    - sensor.wan_in_mbps
+    - sensor.wan_out_mbps
+    - sensor.wan_ping
+    - binary_sensor.hvac_system_fan
+    - binary_sensor.hvac_system_heat
+    - binary_sensor.hvac_system_cool
+    - sensor.hvac_system_fan_runtime
+    - sensor.hvac_system_heat_runtime
+    - sensor.hvac_system_cool_runtime
 

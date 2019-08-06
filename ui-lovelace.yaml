@@ -273,8 +273,8 @@ views:
 
       - type: vertical-stack
         cards:
-          # - type: custom:vertical-stack-in-card
-          #   cards:
+         - type: custom:vertical-stack-in-card
+           cards:
               - type: custom:simple-thermostat
                 entity: climate.home
                 step_size: 1
@@ -282,63 +282,59 @@ views:
                 - attribute: current_humidity
                   name: Humidity
                   unit: "%"
-                # - entity: sensor.hvac_zone_2_state
-                #   name: state
+                - entity: sensor.hvac_system_state
+                  name: state
                 hide:
                   state: true
                 
 
-              # - type: horizontal-stack
-              #   cards:    
+              - type: horizontal-stack
+                cards:    
 
-              #     - type: custom:bar-card
-              #       title: 'Heat:'
-              #       entity: sensor.hvac_zone_2_heat_runtime
-              #       title_position: inside
-              #       align: center
-              #       padding: 4px
-              #       card_style: 
-              #         border-radius: 5px
-              #       max: 24
-              #       color: red
+                  - type: custom:bar-card
+                    title: 'Heat:'
+                    entity: sensor.hvac_system_heat_runtime
+                    title_position: inside
+                    align: center
+                    padding: 4px
+                    card_style: 
+                      border-radius: 5px
+                    max: 24
+                    color: red
                     
-              #     - type: custom:bar-card
-              #       title: 'Cool:'
-              #       entity: sensor.hvac_zone_2_cool_runtime
-              #       title_position: inside
-              #       align: center
-              #       padding: 4px
-              #       card_style: 
-              #         border-radius: 5px
-              #       max: 24
-              #       color: blue
-              # - type: horizontal-stack
-              #   cards:      
+                  - type: custom:bar-card
+                    title: 'Cool:'
+                    entity: sensor.hvac_system_cool_runtime
+                    title_position: inside
+                    align: center
+                    padding: 4px
+                    card_style: 
+                      border-radius: 5px
+                    max: 24
+                    color: blue
+              - type: horizontal-stack
+                cards:      
 
-              #     - type: custom:bar-card
-              #       title: 'Fan:'
-              #       entity: sensor.hvac_zone_2_fan_runtime
-              #       title_position: inside
-              #       align: center
-              #       padding: 4px
-              #       card_style: 
-              #         border-radius: 5px
-              #       max: 24
-              #       color: green
+                  - type: custom:bar-card
+                    title: 'Fan:'
+                    entity: sensor.hvac_system_fan_runtime
+                    title_position: inside
+                    align: center
+                    padding: 4px
+                    card_style: 
+                      border-radius: 5px
+                    max: 24
+                    color: green
                     
-              #     - type: custom:bar-card
-              #       title: 'Total:'
-              #       entity: sensor.hvac_zone_2_runtime
-              #       title_position: inside
-              #       align: center
-              #       padding: 4px
-              #       card_style: 
-              #         border-radius: 5px
-              #       max: 24
-
-
-
-
+                  - type: custom:bar-card
+                    title: 'Total:'
+                    entity: sensor.hvac_system_runtime
+                    title_position: inside
+                    align: center
+                    padding: 4px
+                    card_style: 
+                      border-radius: 5px
+                    max: 24
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -350,26 +346,6 @@ views:
     icon: mdi:washing-machine
     name: Laundry
     cards:
-
-#################################################################
-#                                                               #
-#                     Laundry - Room Status                     #
-#                                                               #
-#################################################################
-        
-      - type: vertical-stack
-        cards:
-          - type: entities
-            show_header_toggle: false
-            title: Laundry Room
-            entities:
-            - entity: light.utility_room_light
-            - entity: switch.utility_room_vent_fan
-            - entity: lock.garage_entry
-            - entity: binary_sensor.utility_leak_dry
-              name: Leak Detector
-            - entity: sensor.emoncms_dryer_vent_temperature
-              name: Vent Temperature
 
 #################################################################
 #                                                               #
