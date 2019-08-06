@@ -275,7 +275,7 @@ views:
                   entity: switch.right_back_porch
                   color_type: icon
                   color: rgb(255, 255,0)
-                  icon: mdi:lightbulb-outline
+                  icon: mdi:spotlight
                   name: L Flood
                   hold_action: 
                     action: more-info
