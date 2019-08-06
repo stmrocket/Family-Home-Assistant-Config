@@ -152,21 +152,21 @@ views:
               entity_daytime_high: sensor.dark_sky_daytime_high_temperature_0d
               entity_pop: sensor.dark_sky_precip_probability_0d
 
-#################################################################
-#                                                               #
-#                          Home - Roomba                        #
-#                                                               #
-################################################################# 
-        # - type: vertical-stack
-        #   cards:  
-            - type: entities
-              show_header_toggle: false
-              title: Roomba
-              entities:
-                  - entity: switch.roomba
-                  - entity: sensor.roomba_battery
-                  - entity: sensor.roomba_status
-                  - entity: input_boolean.roomba_auto
+# #################################################################
+# #                                                               #
+# #                          Home - Roomba                        #
+# #                                                               #
+# ################################################################# 
+#         # - type: vertical-stack
+#         #   cards:  
+#             - type: entities
+#               show_header_toggle: false
+#               title: Roomba
+#               entities:
+#                   - entity: switch.roomba
+#                   - entity: sensor.roomba_battery
+#                   - entity: sensor.roomba_status
+#                   - entity: input_boolean.roomba_auto
 #################################################################
 #                                                               #
 #                       Home - Cameras                          #
@@ -181,52 +181,93 @@ views:
                   - entity: camera.back_porch
                   - entity: camera.den
                   - entity: camera.kitchen
+# #################################################################
+# #                                                               #
+# #                      Home - GitHub                            #
+# #                                                               #
+# ################################################################# 
+#             - type: glance
+#               columns: 3
+#               show_name: true
+#               show_state: false
+#               entities:
+#                 - entity: binary_sensor.git_update_ready
+#                 - entity: script.update_config_restart
+#                   icon: 'mdi:github-circle'
+#                   name: Pull/Restart
+#                 - entity: script.update_config_reload_automations
+#                   icon: 'mdi:github-circle'
+#                   name: Pull/Reload
 #################################################################
 #                                                               #
-#                      Home - GitHub                            #
+#                       HVAC - System                           #
 #                                                               #
 ################################################################# 
-            - type: glance
-              columns: 3
-              show_name: true
-              show_state: false
-              entities:
-                - entity: binary_sensor.git_update_ready
-                - entity: script.update_config_restart
-                  icon: 'mdi:github-circle'
-                  name: Pull/Restart
-                - entity: script.update_config_reload_automations
-                  icon: 'mdi:github-circle'
-                  name: Pull/Reload
-#################################################################
-#                                                               #
-#                          Home - Laundry                       #
-#                                                               #
-################################################################# 
+
         - type: vertical-stack
-          cards: 
-            - type: entities
-              show_header_toggle: false
-              title: Roomba
-              entities:
-                  - entity: switch.roomba
-                  - entity: sensor.roomba_battery
-                  - entity: sensor.roomba_status
-                  - entity: input_boolean.roomba_auto
-#################################################################
-#                                                               #
-#                       Home - Cameras                          #
-#                                                               #
-################################################################# 
-            - type: glance
-              columns: 4
-              show_name: true
-              show_state: false
-              entities:
-                  - entity: camera.front_porch
-                  - entity: camera.back_porch
-                  - entity: camera.den
-                  - entity: camera.kitchen
+          cards:
+          - type: custom:vertical-stack-in-card
+            cards:
+                - type: custom:simple-thermostat
+                  entity: climate.home
+                  step_size: 1
+                  sensors:
+                  - attribute: current_humidity
+                    name: Humidity
+                    unit: "%"
+                  - entity: sensor.hvac_system_state
+                    name: state
+                  hide:
+                    state: true
+                  
+
+                - type: horizontal-stack
+                  cards:    
+
+                    - type: custom:bar-card
+                      title: 'Heat:'
+                      entity: sensor.hvac_system_heat_runtime
+                      title_position: inside
+                      align: center
+                      padding: 4px
+                      card_style: 
+                        border-radius: 5px
+                      max: 24
+                      color: red
+                      
+                    - type: custom:bar-card
+                      title: 'Cool:'
+                      entity: sensor.hvac_system_cool_runtime
+                      title_position: inside
+                      align: center
+                      padding: 4px
+                      card_style: 
+                        border-radius: 5px
+                      max: 24
+                      color: blue
+                - type: horizontal-stack
+                  cards:      
+
+                    - type: custom:bar-card
+                      title: 'Fan:'
+                      entity: sensor.hvac_system_fan_runtime
+                      title_position: inside
+                      align: center
+                      padding: 4px
+                      card_style: 
+                        border-radius: 5px
+                      max: 24
+                      color: green
+                      
+                    - type: custom:bar-card
+                      title: 'Total:'
+                      entity: sensor.hvac_system_runtime
+                      title_position: inside
+                      align: center
+                      padding: 4px
+                      card_style: 
+                        border-radius: 5px
+                      max: 24
 
 #################################################################
 #                                                               #
