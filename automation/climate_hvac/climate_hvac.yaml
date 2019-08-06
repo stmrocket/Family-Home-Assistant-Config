@@ -9,9 +9,9 @@
     from: armed_home
     to: armed_night
   action:
-  - service: climate.home
+  - service: climate.set_temperature
     data:
-      entity_id: climate.master_suite
+      entity_id: climate.home
       target_temp_high: 76
       target_temp_low: 62
 
@@ -34,9 +34,9 @@
     from: pending
     to: disarmed
   action:
-  - service: climate.home
+  - service: climate.set_temperature
     data:
-      entity_id: climate.master_suite
+      entity_id: climate.home
       target_temp_high: 79
       target_temp_low: 69
 
@@ -46,8 +46,8 @@
     entity_id: alarm_control_panel.area_001
     to: armed_away
   action:
-  - service: climate.home
+  - service: climate.set_temperature
     data:
-      entity_id: climate.master_suite
+      entity_id: climate.home
       target_temp_high: 82
       target_temp_low: 62
