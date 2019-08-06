@@ -268,6 +268,7 @@ views:
                   name: Entry
                   hold_action: 
                     action: more-info
+
             - type: horizontal-stack
               cards:
                 - type: "custom:button-card"
@@ -275,7 +276,7 @@ views:
                   color_type: icon
                   color: rgb(255, 255,0)
                   icon: mdi:lightbulb-outline
-                  name: Flood Light
+                  name: L Flood
                   hold_action: 
                     action: more-info
                 - type: "custom:button-card"
@@ -291,20 +292,17 @@ views:
                   color_type: icon
                   color: rgb(255, 255, 0)
                   icon: mdi:spotlight
-                  name: Flood Light
+                  name: R Flood
                   hold_action: 
                     action: more-info
-            - type: "custom:button-card"
-              color_type: label-card
-              #color: rgb(44, 109, 214)
-              name: Lamps
+            
             - type: horizontal-stack
               cards:
                 - type: "custom:button-card"
                   entity: switch.den_lamp
                   color_type: icon
                   color: rgb(255, 255,0)
-                  icon: mdi:lightbulb-outline
+                  icon: mdi:lamp
                   name: Den
                   hold_action: 
                     action: more-info
@@ -312,7 +310,7 @@ views:
                   entity: light.master_lamp
                   color_type: icon
                   color: rgb(255, 255,0)
-                  icon: mdi:door
+                  icon: mdi:lamp
                   name: Master
                   hold_action: 
                     action: more-info
@@ -320,7 +318,7 @@ views:
                   entity: light.guest_lamp
                   color_type: icon
                   color: rgb(255, 255, 0)
-                  icon: mdi:spotlight
+                  icon: mdi:lamp
                   name: Guest
                   hold_action: 
                     action: more-info
@@ -328,11 +326,11 @@ views:
                   entity: light.craft_room_lamp
                   color_type: icon
                   color: rgb(255, 255, 0)
-                  icon: mdi:spotlight
+                  icon: mdi:lamp
                   name: Craft
                   hold_action: 
                     action: more-info
-                    
+
 ################################################################
 #                                                               #
 #                          Home - Laundry                       #
