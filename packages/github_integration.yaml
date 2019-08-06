@@ -3,7 +3,7 @@ sensor:
   - platform: github
     access_token: !secret github_access_token
     repositories:
-      - path: 'stmrocket/home-assistant-config'
+      - path: 'stmrocket/family-home-assistant-config'
   
 input_text:
 
