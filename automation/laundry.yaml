@@ -121,8 +121,8 @@
         entity_id: alarm_control_panel.area_001
         state: 'armed_home'
   action:
-    - service: mqtt.publish
-      data:
+    # - service: mqtt.publish
+    #   data:
     #     topic: parrot/command/set/play
     #     payload: 3,1
     # - service: timer.start
