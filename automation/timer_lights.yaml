@@ -1,0 +1,152 @@
+- alias: Timer Lights On Main Weekday AM
+  trigger:
+  - platform: time
+    at: '07:00:00'
+  condition:
+  - condition: and 
+    conditions:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: state  # from sunset until sunrise
+      entity_id: sun.sun
+      state: 'below_horizon'
+  action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_on
+    data:
+      entity_id: light.guest_lamp
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.timer_lights
+
+- alias: Timer Lights On Main Evenings
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-00:30:00'   
+  action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_on
+    data:
+      entity_id: light.master_lamp
+  - service: light.turn_on
+    data:
+      entity_id: light.guest_lamp
+  - service: light.turn_on
+    data:
+      entity_id: light.craft_room_lamp
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.timer_lights
+
+
+- alias: Timer Lights Off Main Night Away
+  trigger:
+  - platform: time
+    at: '23:30:00'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.area_001
+    state: armed_away
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.master_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.guest_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.craft_room_lamp
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.timer_lights
+
+- alias: Timer Lights Off Main Mornings
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '+00:30:00'
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.guest_lamp
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.timer_lights
+
+- alias: Timer Lights Off Main Night Mode
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.area_001
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.area_001
+    state: armed_night
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.guest_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.craft_room_lamp
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.timer_lights
+
+
+- alias: Timer Lights On Outside
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '-00:30:00'
+  action:
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.outside_timer_lights
+  - service: switch.turn_on
+    data:
+      entity_id: switch.driveway
+  - service: switch.turn_on
+    data:
+      entity_id: switch.back_porch_1
+  - service: light.turn_on
+    data:
+      entity_id: light.front_porch_1
+
+- alias: Timer Lights Off Outside
+  trigger:
+  - platform: sun
+    event: sunrise
+    offset: '+00:30:00'
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.outside_timer_lights
+  - service: switch.turn_off
+    data:
+      entity_id: switch.driveway
+  - service: switch.turn_off
+    data:
+      entity_id: switch.back_porch_1
+  - service: light.turn_off
+    data:
+      entity_id: light.front_porch_1
