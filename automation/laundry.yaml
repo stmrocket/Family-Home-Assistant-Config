@@ -123,49 +123,52 @@
   action:
     - service: mqtt.publish
       data:
-        topic: parrot/command/set/play
-        payload: 3,1
-    - service: timer.start
-      entity_id: timer.dryer_alert
+    #     topic: parrot/command/set/play
+    #     payload: 3,1
+    # - service: timer.start
+    #   entity_id: timer.dryer_alert
     - service: notify.browser
       data:
         message: The dryer has stopped.
         title: Laundry Update
-    - service: notify.den_kodi
+    - service: notify.alexa_media
       data:
-        title: "Laundry Update"
         message: "The dryer has stopped."
         data:
-          displaytime: 20000
-          icon: "info"
+          type: announce
+          method: all
+        target:
+          - media_player.alexa_craft
+          - media_player.alexa_master
+        
       
-- alias: 'Repeat Announce Dryer Finished'
-  trigger:
-  - event_data:
-      entity_id: timer.dryer_alert
-    event_type: timer.finished
-    platform: event
-  condition:
-  - condition: numeric_state
-    entity_id: counter.dryer_alert
-    below: 7
-  - condition: or
-    conditions:
-      - condition: state
-        entity_id: alarm_control_panel.area_001
-        state: 'disarmed'
-      - condition: state
-        entity_id: alarm_control_panel.area_001
-        state: 'armed_home'
-  action:
-    - service: mqtt.publish
-      data:
-        topic: parrot/command/set/play
-        payload: 3,1
-    - service: timer.start
-      entity_id: timer.dryer_alert
-    - service: counter.increment
-      entity_id: counter.dryer_alert
+# - alias: 'Repeat Announce Dryer Finished'
+#   trigger:
+#   - event_data:
+#       entity_id: timer.dryer_alert
+#     event_type: timer.finished
+#     platform: event
+#   condition:
+#   - condition: numeric_state
+#     entity_id: counter.dryer_alert
+#     below: 7
+#   - condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: alarm_control_panel.area_001
+#         state: 'disarmed'
+#       - condition: state
+#         entity_id: alarm_control_panel.area_001
+#         state: 'armed_home'
+#   action:
+#     - service: mqtt.publish
+#       data:
+#         topic: parrot/command/set/play
+#         payload: 3,1
+#     - service: timer.start
+#       entity_id: timer.dryer_alert
+#     - service: counter.increment
+#       entity_id: counter.dryer_alert
 
 - alias: 'Announce Washer Finished'
   trigger:
@@ -182,97 +185,99 @@
         entity_id: alarm_control_panel.area_001
         state: 'armed_home'
   action:
-    - service: mqtt.publish
-      data:
-        topic: parrot/command/set/play
-        payload: 3,3
-    - service: timer.start
-      entity_id: timer.washer_alert
+    # - service: mqtt.publish
+    #   data:
+    #     topic: parrot/command/set/play
+    #     payload: 3,3
+    # - service: timer.start
+    #   entity_id: timer.washer_alert
     - service: notify.browser
       data:
         message: The washer has stopped.
         title: Laundry Update
-    - service: notify.den_kodi
+    - service: notify.alexa_media
       data:
-        title: "Laundry Update"
-        message: "The washer has stopped."
+        message: "The Washer has stopped."
         data:
-          displaytime: 20000
-          icon: "info"
-- alias: 'Repeat Announce Washer Finished'
-  trigger:
-  - event_data:
-      entity_id: timer.washer_alert
-    event_type: timer.finished
-    platform: event
-  condition:
-  - condition: numeric_state
-    entity_id: counter.washer_alert
-    below: 7
-  - condition: or
-    conditions:
-      - condition: state
-        entity_id: alarm_control_panel.area_001
-        state: 'disarmed'
-      - condition: state
-        entity_id: alarm_control_panel.area_001
-        state: 'armed_home'
-  action:
-    - service: mqtt.publish
-      data:
-        topic: parrot/command/set/play
-        payload: 3,3
-    - service: timer.start
-      entity_id: timer.washer_alert
-    - service: counter.increment
-      entity_id: counter.dryer_alert
-#Reset all timers when Laundry Room entered
-- alias: 'Reset Laundry Timers on Motion'
-  trigger:
-  - entity_id: sensor.zone_026
-    platform: state
-    to: Violated
-  action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.dryer_end
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.washer_end
-  - service: timer.cancel
-    entity_id: timer.dryer_alert
-  - service: timer.cancel
-    entity_id: timer.washer_alert
-  - service: counter.reset
-    entity_id: counter.dryer_alert
-  - service: counter.reset
-    entity_id: counter.washer_alert
-#Reset all timers when Not Awake or Home
-- alias: 'Reset Laundry Timers on Alarm Status'
-  trigger:
-  - entity_id: input_boolean.dryer_end
-    platform: state
-    to: 'on'
-  - entity_id: input_boolean.washer_end
-    platform: state
-    to: 'on'
-  condition:
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: alarm_control_panel.area_001
-      state: 'armed_away'
-    - condition: state
-      entity_id: alarm_control_panel.area_001
-      state: 'armed_night'
-  action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.dryer_end
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.washer_end
-  - service: timer.cancel
-    entity_id: timer.dryer_alert
-  - service: timer.cancel
-    entity_id: timer.washer_alert
-  - service: counter.reset
-    entity_id: counter.dryer_alert
-  - service: counter.reset
-    entity_id: counter.washer_alert
+          type: announce
+          method: all
+        target:
+          - media_player.alexa_craft
+          - media_player.alexa_master
+# - alias: 'Repeat Announce Washer Finished'
+#   trigger:
+#   - event_data:
+#       entity_id: timer.washer_alert
+#     event_type: timer.finished
+#     platform: event
+#   condition:
+#   - condition: numeric_state
+#     entity_id: counter.washer_alert
+#     below: 7
+#   - condition: or
+#     conditions:
+#       - condition: state
+#         entity_id: alarm_control_panel.area_001
+#         state: 'disarmed'
+#       - condition: state
+#         entity_id: alarm_control_panel.area_001
+#         state: 'armed_home'
+#   action:
+#     - service: mqtt.publish
+#       data:
+#         topic: parrot/command/set/play
+#         payload: 3,3
+#     - service: timer.start
+#       entity_id: timer.washer_alert
+#     - service: counter.increment
+#       entity_id: counter.dryer_alert
+# #Reset all timers when Laundry Room entered
+# - alias: 'Reset Laundry Timers on Motion'
+#   trigger:
+#   - entity_id: sensor.zone_026
+#     platform: state
+#     to: Violated
+#   action:
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.dryer_end
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.washer_end
+#   - service: timer.cancel
+#     entity_id: timer.dryer_alert
+#   - service: timer.cancel
+#     entity_id: timer.washer_alert
+#   - service: counter.reset
+#     entity_id: counter.dryer_alert
+#   - service: counter.reset
+#     entity_id: counter.washer_alert
+# #Reset all timers when Not Awake or Home
+# - alias: 'Reset Laundry Timers on Alarm Status'
+#   trigger:
+#   - entity_id: input_boolean.dryer_end
+#     platform: state
+#     to: 'on'
+#   - entity_id: input_boolean.washer_end
+#     platform: state
+#     to: 'on'
+#   condition:
+#   - condition: or
+#     conditions:
+#     - condition: state
+#       entity_id: alarm_control_panel.area_001
+#       state: 'armed_away'
+#     - condition: state
+#       entity_id: alarm_control_panel.area_001
+#       state: 'armed_night'
+#   action:
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.dryer_end
+#   - service: input_boolean.turn_off
+#     entity_id: input_boolean.washer_end
+#   - service: timer.cancel
+#     entity_id: timer.dryer_alert
+#   - service: timer.cancel
+#     entity_id: timer.washer_alert
+#   - service: counter.reset
+#     entity_id: counter.dryer_alert
+#   - service: counter.reset
+#     entity_id: counter.washer_alert
