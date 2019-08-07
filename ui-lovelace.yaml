@@ -184,7 +184,7 @@ views:
                       name: Humidity
                       unit: "%"
                     - entity: sensor.hvac_system_state
-                      name: state
+                      name: State
                     hide:
                       state: true
                     
@@ -589,7 +589,7 @@ views:
                   show_header_toggle: off
                   entities:
                     - type: section
-                      label: NAS - GRIPHOOK
+                      label: NAS - JINX
                     - type: custom:bar-card
                       title_position: inside
                       #show_icon: true
@@ -626,7 +626,7 @@ views:
                       cards:
                       - type: custom:bar-card
                         title_position: top
-                        title: Recordings
+                        title: Files
                         show_icon: true
                         align: center
                         padding: 1.5px
@@ -677,7 +677,7 @@ views:
                       cards:
                       - type: custom:bar-card
                         title_position: top
-                        title: Files
+                        title: Recordings
                         show_icon: true
                         align: center
                         padding: 1.5px
