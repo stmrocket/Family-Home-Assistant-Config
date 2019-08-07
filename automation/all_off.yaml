@@ -1,0 +1,67 @@
+
+- alias: All Off Main
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.area_001
+    from: arming
+    to: armed_away
+  - platform: state
+    entity_id: alarm_control_panel.area_001
+    from: armed_home
+    to: armed_night
+  - platform: state
+    entity_id: alarm_control_panel.area_001
+    from: disarmed
+    to: armed_night
+  action:
+  - service: swtich.turn_off
+    data:
+      entity_id: switch.left_back_porch
+  - service: switch.turn_off
+    data:
+      entity_id: switch.right_back_porch
+
+- alias: All Off Timer Lights
+  trigger:
+  - platform: event
+    event_type: automation_triggered
+    event_data:
+      entity_id: automation.all_off_main
+  condition:
+  - condition: state
+    entity_id: input_boolean.timer_lights
+    state: 'off'
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.den_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.master_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.guest_lamp
+  - service: light.turn_off
+    data:
+      entity_id: light.craft_room_lamp
+
+- alias: All Off Outside Lights
+  trigger:
+  - platform: event
+    event_type: automation_triggered
+    event_data:
+      entity_id: automation.all_off_main
+  condition:
+  - condition: state
+    entity_id: input_boolean.outside_timer_lights
+    state: 'off'
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.driveway
+  - service: switch.turn_off
+    data:
+      entity_id: switch.back_porch_1
+  - service: light.turn_off
+    data:
+      entity_id: light.front_porch_1
