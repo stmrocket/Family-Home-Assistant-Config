@@ -140,6 +140,7 @@
         target:
           - media_player.alexa_craft
           - media_player.alexa_master
+          - media_player.alexa_kitchen
         
       
 # - alias: 'Repeat Announce Dryer Finished'
@@ -204,6 +205,7 @@
         target:
           - media_player.alexa_craft
           - media_player.alexa_master
+          - media_player.alexa_kitchen
 # - alias: 'Repeat Announce Washer Finished'
 #   trigger:
 #   - event_data:
