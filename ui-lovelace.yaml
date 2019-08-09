@@ -422,7 +422,7 @@ views:
 ############################################################################################################################################# 
 
   - id: 2
-    icon: mdi-water
+    icon: mdi:water
     name: Laundry
     cards:
 
@@ -455,7 +455,7 @@ views:
                         hold_action: 
                           action: more-info
                       - type: "custom:button-card"
-                        entity: switch.am_6_x_5_minute_cycles
+                        entity: switch.irrigation_run_program
                         color_type: icon
                         color: rgb(0, 145, 255)
                         icon: mdi:weather-pouring

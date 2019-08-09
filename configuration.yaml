@@ -368,3 +368,15 @@ switch:
           service: rainmachine.disable_program
           data:
             program_id: 1
+
+      irrigation_run_program:
+        friendly_name: "Run Irrigation Program"
+        value_template: '{{ states.switch.am_6_x_5_minute_cycles.state | string == "on" }}'
+        turn_on:
+          service: rainmachine.start_program
+          data:
+            program_id: 1
+        turn_off:
+          service: rainmachine.stop_program
+          data:
+            program_id: 1
