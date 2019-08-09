@@ -352,3 +352,19 @@ alexa_media:
     - email: !secret amazon_user
       password: !secret amazon_password
       url: amazon.com
+
+#Switch
+switch:
+  - platform: template
+    switches:
+      irrigation_program:
+        friendly_name: "Irrigation Program Enabled"
+        value_template: '{{ states.switch.am_6_x_5_minute_cycles.state | string != "unavailable" }}'
+        turn_on:
+          service: rainmachine.enable_program
+          data:
+            program_id: 1
+        turn_off:
+          service: rainmachine.disable_program
+          data:
+            program_id: 1
