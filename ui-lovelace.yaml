@@ -486,7 +486,7 @@ views:
                         color_type: icon
                         color: rgb(0, 145, 255)
                         icon: mdi:numeric-3-box
-                        name: FLowerbed
+                        name: Flowerbed
                         hold_action: 
                           action: more-info
                       - type: "custom:button-card"
