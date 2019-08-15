@@ -279,16 +279,23 @@ elkm1:
 #alexa: !include alexa.yaml
 
 # Zoneminder
-zoneminder:
-  host: !secret zm_host
-  ssl: true
-  verify_ssl: false
-  username: !secret zm_user
-  password: !secret zm_pass
+# zoneminder:
+#   host: !secret zm_host
+#   ssl: true
+#   verify_ssl: false
+#   username: !secret zm_user
+#   password: !secret zm_pass
 
 # IP Cameras
 camera:
-  - platform: zoneminder
+  # - platform: zoneminder
+    - platform: generic
+      name: Kitchen
+      still_image_url: !secret kitchen_camera_still
+      stream_source: !secret kitchen_camera_stream
+      authentication: digest
+      username: !secret kitchen_camera_user
+      password: !secret kitchen_camera_password
 
 #Device Tracking
 
