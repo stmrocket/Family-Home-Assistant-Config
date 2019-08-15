@@ -286,6 +286,8 @@ elkm1:
 #   username: !secret zm_user
 #   password: !secret zm_pass
 
+ffmpeg:
+
 # IP Cameras
 camera:
   # - platform: zoneminder
