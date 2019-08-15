@@ -289,11 +289,11 @@ elkm1:
 # IP Cameras
 camera:
   # - platform: zoneminder
-    - platform: generic
+    - platform: mjpeg
       name: Kitchen
       still_image_url: !secret kitchen_camera_still
       stream_source: !secret kitchen_camera_stream
-      authentication: digest
+      authentication: basic
       username: !secret kitchen_camera_user
       password: !secret kitchen_camera_password
 
