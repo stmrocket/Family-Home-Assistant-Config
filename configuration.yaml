@@ -196,12 +196,10 @@ input_boolean:
 
   washer_end:
     name: Washer Finished
-    initial: off
     icon: mdi:stop-circle
 
   dryer_end:
     name: Dryer Finished
-    initial: off
     icon: mdi:stop-circle
 
   guest_mode:

@@ -25,9 +25,6 @@
         topic: hass/state/dryer
         payload: 'Drying'
         retain: 'true'
-    - service: switch.turn_on
-      data:
-        entity_id: switch.utility_room_vent_fan
 - alias: 'Dryer State - Idle'
   trigger:
     platform: numeric_state
@@ -41,9 +38,6 @@
         topic: hass/state/dryer
         payload: 'Idle'
         retain: 'true'
-    - service: switch.turn_off
-      data:
-        entity_id: switch.utility_room_vent_fan
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #  Washing Machine Start/Finish
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -141,6 +135,8 @@
           - media_player.alexa_craft
           - media_player.alexa_master
           - media_player.alexa_kitchen
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.dryer_end
         
       
 # - alias: 'Repeat Announce Dryer Finished'
@@ -206,6 +202,8 @@
           - media_player.alexa_craft
           - media_player.alexa_master
           - media_player.alexa_kitchen
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.washer_end
 # - alias: 'Repeat Announce Washer Finished'
 #   trigger:
 #   - event_data:
