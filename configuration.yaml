@@ -300,7 +300,7 @@ camera:
     - platform: generic
       name: Den
       still_image_url: !secret den_camera_still
-      mjpeg_url: !secret den_camera_stream
+      stream_source: !secret den_camera_stream
       authentication: basic
       username: !secret den_camera_user
       password: !secret den_camera_password
