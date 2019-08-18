@@ -297,7 +297,7 @@ camera:
       username: !secret kitchen_camera_user
       password: !secret kitchen_camera_password
 
-    - platform: mjpeg
+    - platform: generic
       name: Den
       still_image_url: !secret den_camera_still
       mjpeg_url: !secret den_camera_stream
@@ -309,7 +309,7 @@ camera:
       name: Front Porch
       still_image_url: !secret front_camera_still
       mjpeg_url: !secret front_camera_stream
-      authentication: basic
+      authentication: digest
       username: !secret front_camera_user
       password: !secret front_camera_password
 
