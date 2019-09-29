@@ -1264,11 +1264,11 @@ views:
 #                       Config - Zigbee2MQTT                    #
 #                                                               #
 #################################################################
-
-            - type: entities
-              show_header_toggle: false
-              title: Zigbee2MQTT
-              entities:
-              - entity: input_boolean.zigbee_permit_join
-              - entity: timer.zigbee_permit_join
-              - entity: sensor.bridge_state         
+        
+          - type: entities
+            show_header_toggle: false
+            title: Zigbee2MQTT
+            entities:
+            - entity: input_boolean.zigbee_permit_join
+            - entity: timer.zigbee_permit_join
+            - entity: sensor.bridge_state          
