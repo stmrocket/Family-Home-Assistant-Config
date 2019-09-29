@@ -48,4 +48,4 @@ script:
       - service: input_text.set_value
         data_template:
           entity_id: input_text.prev_git_version
-          value: "{{ states.sensor.home_assistant_config.state | string }}"
+          value: "{{ states.sensor.family_home_assistant_config.state | string }}"
