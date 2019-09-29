@@ -190,6 +190,15 @@ sensor:
   - platform: rpi_power
     text_state: true
 
+  #Template Sensors
+  - platform: template
+    sensors:
+      
+      #Blank
+      blank:
+        value_template: ''
+        friendly_name: ''
+        
 #Input Booleans
 
 input_boolean:
