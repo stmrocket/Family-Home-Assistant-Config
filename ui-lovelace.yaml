@@ -251,7 +251,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.driveway
                   color_type: icon
-                  color: rgb(255, 255, 0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:road
                   name: Driveway
                   hold_action: 
@@ -259,7 +259,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.front_porch_1
                   color_type: icon
-                  color: rgb(255, 255, 0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:door
                   name: Front Porch
                   hold_action: 
@@ -267,7 +267,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.entry
                   color_type: icon
-                  color: rgb(255,255,0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:ceiling-light
                   name: Entry
                   hold_action: 
@@ -278,7 +278,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.right_back_porch
                   color_type: icon
-                  color: rgb(255, 255,0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:spotlight
                   name: L Flood
                   hold_action: 
@@ -286,7 +286,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.back_porch_1
                   color_type: icon
-                  color: rgb(255, 255,0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:door
                   name: Back Porch
                   hold_action: 
@@ -294,7 +294,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.left_back_porch
                   color_type: icon
-                  color: rgb(255, 255, 0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:spotlight
                   name: R Flood
                   hold_action: 
@@ -305,7 +305,7 @@ views:
                 - type: "custom:button-card"
                   entity: switch.den_lamp
                   color_type: icon
-                  color: rgb(255, 255,0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:lamp
                   name: Den
                   hold_action: 
@@ -313,7 +313,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.master_lamp
                   color_type: icon
-                  color: rgb(255, 255,0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:lamp
                   name: Master
                   hold_action: 
@@ -321,7 +321,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.guest_lamp
                   color_type: icon
-                  color: rgb(255, 255, 0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:lamp
                   name: Guest
                   hold_action: 
@@ -329,7 +329,7 @@ views:
                 - type: "custom:button-card"
                   entity: light.craft_room_lamp
                   color_type: icon
-                  color: rgb(255, 255, 0)
+                  color: rgb(228, 94, 101)
                   icon: mdi:lamp
                   name: Craft
                   hold_action: 
@@ -1276,3 +1276,71 @@ views:
             - entity: input_boolean.zigbee_permit_join
             - entity: timer.zigbee_permit_join
             - entity: sensor.bridge_state          
+
+#################################################################
+#                                                               #
+#                       Den Harmony Control                     #
+#                                                               #
+#################################################################
+        
+          - type: horizontal-stack
+            cards:                  
+
+              - type: "custom:button-card"
+                entity: remote.harmony_hub
+                color_type: icon
+                color: rgb(255, 255, 255)
+                icon: mdi:remote-tv-off
+                #name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.turn_off
+                  service_data:
+                    entity_id: remote.harmony_hub
+              
+              - type: "custom:button-card"
+                entity: remote.harmony_hub
+                color_type: icon
+                color: rgb(255, 255, 255)
+                icon: mdi:volume-minus
+                #name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    command:
+                      - VolumeDown
+                    device: 35324836
+
+              - type: "custom:button-card"
+                entity: remote.harmony_hub
+                color_type: icon
+                color: rgb(255, 255, 255)
+                icon: mdi:volume-mute
+                #name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    command:
+                      - Mute
+                    device: 35324836      
+
+              - type: "custom:button-card"
+                entity: remote.harmony_hub
+                color_type: icon
+                color: rgb(255, 255, 255)
+                icon: mdi:volume-plus
+                #name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.send_command
+                  service_data:
+                    entity_id: remote.harmony_hub
+                    command:
+                      - VolumeUp
+                    device: 35324836        
+
+              
