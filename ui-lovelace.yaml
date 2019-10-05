@@ -1291,7 +1291,7 @@ views:
                 color_type: icon
                 color: rgb(255, 255, 255)
                 icon: mdi:remote-tv-off
-                #name: "Off"
+                name: "Off"
                 tap_action:
                   action: call-service
                   service: remote.turn_off
@@ -1303,7 +1303,7 @@ views:
                 color_type: icon
                 color: rgb(255, 255, 255)
                 icon: mdi:volume-minus
-                #name: "Off"
+                name: "Down"
                 tap_action:
                   action: call-service
                   service: remote.send_command
@@ -1318,7 +1318,7 @@ views:
                 color_type: icon
                 color: rgb(255, 255, 255)
                 icon: mdi:volume-mute
-                #name: "Off"
+                name: "Mute"
                 tap_action:
                   action: call-service
                   service: remote.send_command
@@ -1333,7 +1333,7 @@ views:
                 color_type: icon
                 color: rgb(255, 255, 255)
                 icon: mdi:volume-plus
-                #name: "Off"
+                name: "Up"
                 tap_action:
                   action: call-service
                   service: remote.send_command
