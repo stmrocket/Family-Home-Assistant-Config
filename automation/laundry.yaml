@@ -12,6 +12,7 @@
         topic: hass/state/dryer
         payload: 'Door Open'
         retain: 'true'
+
 - alias: 'Dryer State - Drying'
   trigger:
     platform: numeric_state
@@ -25,6 +26,9 @@
         topic: hass/state/dryer
         payload: 'Drying'
         retain: 'true'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.dryer_end
+
 - alias: 'Dryer State - Idle'
   trigger:
     platform: numeric_state
@@ -38,6 +42,7 @@
         topic: hass/state/dryer
         payload: 'Idle'
         retain: 'true'
+
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #  Washing Machine Start/Finish
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -58,6 +63,9 @@
         topic: hass/state/washer
         payload: 'Washing'
         retain: 'true'
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.washer_end
+
 - alias: 'Washer State - Idle'
   trigger:
     platform: numeric_state
@@ -71,6 +79,7 @@
         topic: hass/state/washer
         payload: 'Idle'
         retain: 'true'
+
 - alias: 'Dryer Finished'
   trigger:
     platform: state
@@ -81,6 +90,7 @@
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.dryer_end
+
 - alias: 'Washer Finished'
   trigger:
     platform: state
@@ -94,6 +104,7 @@
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.washer_end
+
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #  Announcements
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -103,9 +114,6 @@
     entity_id: input_boolean.dryer_end
     to: 'on'
   condition:
-  #- condition: state
-  #  entity_id: sensor.fpp_status
-  #  state: 'idle'
   - condition: or
     conditions:
       - condition: state
@@ -115,12 +123,6 @@
         entity_id: alarm_control_panel.area_001
         state: 'armed_home'
   action:
-    # - service: mqtt.publish
-    #   data:
-    #     topic: parrot/command/set/play
-    #     payload: 3,1
-    # - service: timer.start
-    #   entity_id: timer.dryer_alert
     - service: notify.browser
       data:
         message: The dryer has stopped.
@@ -137,35 +139,6 @@
           - media_player.alexa_kitchen
     - service: input_boolean.turn_off
       entity_id: input_boolean.dryer_end
-        
-      
-# - alias: 'Repeat Announce Dryer Finished'
-#   trigger:
-#   - event_data:
-#       entity_id: timer.dryer_alert
-#     event_type: timer.finished
-#     platform: event
-#   condition:
-#   - condition: numeric_state
-#     entity_id: counter.dryer_alert
-#     below: 7
-#   - condition: or
-#     conditions:
-#       - condition: state
-#         entity_id: alarm_control_panel.area_001
-#         state: 'disarmed'
-#       - condition: state
-#         entity_id: alarm_control_panel.area_001
-#         state: 'armed_home'
-#   action:
-#     - service: mqtt.publish
-#       data:
-#         topic: parrot/command/set/play
-#         payload: 3,1
-#     - service: timer.start
-#       entity_id: timer.dryer_alert
-#     - service: counter.increment
-#       entity_id: counter.dryer_alert
 
 - alias: 'Announce Washer Finished'
   trigger:
@@ -182,12 +155,6 @@
         entity_id: alarm_control_panel.area_001
         state: 'armed_home'
   action:
-    # - service: mqtt.publish
-    #   data:
-    #     topic: parrot/command/set/play
-    #     payload: 3,3
-    # - service: timer.start
-    #   entity_id: timer.washer_alert
     - service: notify.browser
       data:
         message: The washer has stopped.
@@ -204,80 +171,3 @@
           - media_player.alexa_kitchen
     - service: input_boolean.turn_off
       entity_id: input_boolean.washer_end
-# - alias: 'Repeat Announce Washer Finished'
-#   trigger:
-#   - event_data:
-#       entity_id: timer.washer_alert
-#     event_type: timer.finished
-#     platform: event
-#   condition:
-#   - condition: numeric_state
-#     entity_id: counter.washer_alert
-#     below: 7
-#   - condition: or
-#     conditions:
-#       - condition: state
-#         entity_id: alarm_control_panel.area_001
-#         state: 'disarmed'
-#       - condition: state
-#         entity_id: alarm_control_panel.area_001
-#         state: 'armed_home'
-#   action:
-#     - service: mqtt.publish
-#       data:
-#         topic: parrot/command/set/play
-#         payload: 3,3
-#     - service: timer.start
-#       entity_id: timer.washer_alert
-#     - service: counter.increment
-#       entity_id: counter.dryer_alert
-# #Reset all timers when Laundry Room entered
-# - alias: 'Reset Laundry Timers on Motion'
-#   trigger:
-#   - entity_id: sensor.zone_026
-#     platform: state
-#     to: Violated
-#   action:
-#   - service: input_boolean.turn_off
-#     entity_id: input_boolean.dryer_end
-#   - service: input_boolean.turn_off
-#     entity_id: input_boolean.washer_end
-#   - service: timer.cancel
-#     entity_id: timer.dryer_alert
-#   - service: timer.cancel
-#     entity_id: timer.washer_alert
-#   - service: counter.reset
-#     entity_id: counter.dryer_alert
-#   - service: counter.reset
-#     entity_id: counter.washer_alert
-# #Reset all timers when Not Awake or Home
-# - alias: 'Reset Laundry Timers on Alarm Status'
-#   trigger:
-#   - entity_id: input_boolean.dryer_end
-#     platform: state
-#     to: 'on'
-#   - entity_id: input_boolean.washer_end
-#     platform: state
-#     to: 'on'
-#   condition:
-#   - condition: or
-#     conditions:
-#     - condition: state
-#       entity_id: alarm_control_panel.area_001
-#       state: 'armed_away'
-#     - condition: state
-#       entity_id: alarm_control_panel.area_001
-#       state: 'armed_night'
-#   action:
-#   - service: input_boolean.turn_off
-#     entity_id: input_boolean.dryer_end
-#   - service: input_boolean.turn_off
-#     entity_id: input_boolean.washer_end
-#   - service: timer.cancel
-#     entity_id: timer.dryer_alert
-#   - service: timer.cancel
-#     entity_id: timer.washer_alert
-#   - service: counter.reset
-#     entity_id: counter.dryer_alert
-#   - service: counter.reset
-#     entity_id: counter.washer_alert
