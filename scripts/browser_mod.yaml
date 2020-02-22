@@ -184,3 +184,43 @@ popup_hacs:
             - {field: name, title: 'Name'}
             - {field: installed version, title: 'Installed'}
             - {field: available version, title: 'Latest'}              
+
+popup_washer:
+  sequence:
+    - service: browser_mod.popup
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
+        title: Washer
+        card:
+          type: entities
+          entities:
+            - entity: sensor.washer_state
+            - entity: sensor.washer_voltage
+            - entity: sensor.washer_watts
+            - entity: sensor.washer_amps
+            - entity: sensor.washer_energy_today
+              icon: 'mdi:gauge'
+            - entity: sensor.washer_energy_yesterday
+              icon: 'mdi:gauge'
+            - entity: sensor.washer_signal
+              icon: 'mdi:wifi'               
+
+popup_dryer:
+  sequence:
+    - service: browser_mod.popup
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
+        title: Dryer
+        card:
+          type: entities
+          entities:
+            - entity: sensor.dryer_state
+            - entity: sensor.dryer_voltage
+            - entity: sensor.dryer_watts
+            - entity: sensor.dryer_amps
+            - entity: sensor.dryer_energy_today
+              icon: 'mdi:gauge'
+            - entity: sensor.dryer_energy_yesterday
+              icon: 'mdi:gauge'
+            - entity: sensor.dryer_signal
+              icon: 'mdi:wifi'                        
