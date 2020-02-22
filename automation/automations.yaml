@@ -14,3 +14,21 @@
       - sensor.media_player_count
       - sensor.script_count
       - sensor.sensor_count
+
+- alias: Doorbell Announcement
+  trigger:
+    - platform: state
+      entity_id: sensor.doorbell
+      from: 'Normal'
+      to: 'Violated'
+  action:
+    - service: notify.alexa_media
+      data:
+        message: "Someone is at the front door."
+        data:
+          type: announce
+          method: all
+        target:
+          - media_player.alexa_craft
+          - media_player.alexa_master
+          - media_player.alexa_kitchen
