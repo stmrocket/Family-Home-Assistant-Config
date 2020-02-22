@@ -378,6 +378,7 @@ views:
                     service_data:
                       deviceID: 
                         - this
+                - type: "custom:gap-card"
 
 #################################################################
 #                                                               #
