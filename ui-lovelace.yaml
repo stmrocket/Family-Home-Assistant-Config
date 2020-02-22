@@ -1,11 +1,7 @@
 title: The Geek House
 
 resources:
-  - url: /local/community/aftership-card/aftership-card.js
-    type: module
   - url: /local/community/bar-card/bar-card.js
-    type: js
-  - url: /local/community/bignumber-card/bignumber-card.js
     type: js
   - url: /local/community/button-card/button-card.js
     type: module
@@ -15,11 +11,7 @@ resources:
     type: js
   - url: /local/community/circle-sensor-card/circle-sensor-card.js
     type: module
-  - url: /local/custom_ui/clock-card.js
-    type: js
-  - url: /local/community/fan-control-entity-row/fan-control-entity-row.js
-    type: js
-  - url: /local/community/compact-custom-header/compact-custom-header.js
+  - url: /local/community/custom-header/custom-header.js
     type: module
   - url: /local/community/dark-sky-weather-card/dark-sky-weather-card.js
     type: module
@@ -27,36 +19,20 @@ resources:
     type: js
   - url: /local/community/lovelace-gap-card/gap-card.js
     type: js
-  - url: /local/community/mini-graph-card/mini-graph-card.js
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
     type: module
-  - url: /local/community/mini-media-player/mini-media-player.js
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
     type: module
   - url: /local/custom_ui/moment.js
     type: js
-  - url: /local/community/monster-card/monster-card.js
-    type: js
-  - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
-    type: js
-  - url: /local/community/surveillance-card/surveillance-card.js
-    type: module
   - url: /local/community/text-divider-row/text-divider-row.js
     type: module
-  - url: /local/custom_ui/tracker-card.js
-    type: js
-  - url: /local/community/upcoming-media-card/upcoming-media-card.js
-    type: js
   - url: /local/community/vertical-stack-in-card/vertical-stack-in-card.js
-    type: js
-  - url: /local/community/waze-card/waze-card.js
     type: js
   - url: /local/community/config-template-card/config-template-card.js
     type: module 
-  - url: /local/custom_ui/thermostat-card/thermostat-card.js?v=1
-    type: module
   - url: /local/community/simple-thermostat/simple-thermostat.js
     type: module
-  - url: /local/community/lovelace-popup-card/popup-card.js
-    type: js
   - url: /local/community/list-card/list-card.js
     type: js
   - url: /local/community/text-element/text-element.js
@@ -68,25 +44,15 @@ resources:
 #                                                               #
 ################################################################# 
 
-cch:
-  main_config: true
+custom_header:
   background: 'rgba(150, 150, 150, 0.2)'
-  menu: show
-  options: show
-  voice: show
-  notifications: clock
-  clock_format: '24'
-  clock_date: true
-  date_locale: en-us
-  disable: false
-  hide_tabs: 7,8
-  default_tap: 0
-  exceptions:
-    - conditions:
-        user_agent: fully-kitchen
-      config:
-        hide_tabs: 0 to 6
-        default_tab: 7
+  compact_mode: true
+  hide_config: true
+  hide_unused: true
+  hide_help: true
+  button_text:
+    options: '{{ time }}<br>{{ date }}'
+  default_tab: '0'
 
 #############################################################################################################################################
 #                                                                                                                                           # 
