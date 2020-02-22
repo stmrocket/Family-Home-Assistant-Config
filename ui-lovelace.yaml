@@ -1234,29 +1234,29 @@ views:
                   service_data:
                     deviceID: 
                       - this
-                - type: "custom:button-card"
-                  entity: sensor.hacs
-                  color_type: icon
-                  icon: mdi:package
-                  state:
-                    - value: 0
-                      operator: '>'
-                      color: rgb(228, 94, 101)
-                    - value: 0
-                      color: rgb(255, 255, 255)
-                  name: HACS
-                  tap_action:
-                    action: call-service
-                    service: script.popup_hacs
-                    service_data:
-                      deviceID: 
-                        - this
-                  hold_action: 
-                    action: call-service
-                    service: script.popup_hacs
-                    service_data:
-                      deviceID: 
-                        - this
+              - type: "custom:button-card"
+                entity: sensor.hacs
+                color_type: icon
+                icon: mdi:package
+                state:
+                  - value: 0
+                    operator: '>'
+                    color: rgb(228, 94, 101)
+                  - value: 0
+                    color: rgb(255, 255, 255)
+                name: HACS
+                tap_action:
+                  action: call-service
+                  service: script.popup_hacs
+                  service_data:
+                    deviceID: 
+                      - this
+                hold_action: 
+                  action: call-service
+                  service: script.popup_hacs
+                  service_data:
+                    deviceID: 
+                      - this
               - type: "custom:button-card"
                 entity: binary_sensor.updater
                 color_type: icon
