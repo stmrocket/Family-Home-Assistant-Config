@@ -420,3 +420,5 @@ switch:
           service: rainmachine.stop_program
           data:
             program_id: 1
+
+browser_mod:
