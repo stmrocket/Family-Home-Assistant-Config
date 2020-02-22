@@ -323,59 +323,61 @@ views:
 #                          Home - Laundry                       #
 #                                                               #
 ################################################################# 
-        - type: horizontal-stack
+        - type: vertical-stack
           cards: 
-            - type: "custom:gap-card"
-            - type: "custom:button-card"
-              entity: sensor.washer_state
-              color_type: icon
-              icon: mdi:washing-machine
-              state:
-                - value: "Washing"
-                  color: rgb(228, 94, 101)
-                  name: Washing
-                - value: "Idle"
-                  color: rgb(255, 255, 255)
-                  name: Idle   
-              tap_action:
-                action: call-service
-                service: script.popup_washer
-                service_data:
-                  deviceID: 
-                    - this                
-              hold_action: 
-                action: call-service
-                service: script.popup_washer
-                service_data:
-                  deviceID: 
-                    - this
+            - type: horizontal-stack
+              cards:
+                - type: "custom:gap-card"
+                - type: "custom:button-card"
+                  entity: sensor.washer_state
+                  color_type: icon
+                  icon: mdi:washing-machine
+                  state:
+                    - value: "Washing"
+                      color: rgb(228, 94, 101)
+                      name: Washing
+                    - value: "Idle"
+                      color: rgb(255, 255, 255)
+                      name: Idle   
+                  tap_action:
+                    action: call-service
+                    service: script.popup_washer
+                    service_data:
+                      deviceID: 
+                        - this                
+                  hold_action: 
+                    action: call-service
+                    service: script.popup_washer
+                    service_data:
+                      deviceID: 
+                        - this
 
-            - type: "custom:button-card"
-              entity: sensor.dryer_state
-              color_type: icon
-              icon: mdi:tumble-dryer
-              state:
-                - value: "Drying"
-                  color: rgb(228, 94, 101)
-                  name: Drying
-                - value: "Idle"
-                  color: rgb(255, 255, 255)
-                  name: Idle
-                - value: "Door Open"
-                  color: rgb(255, 200, 0)
-                  name: Door                    
-              tap_action:
-                action: call-service
-                service: script.popup_dryer
-                service_data:
-                  deviceID: 
-                    - this              
-              hold_action: 
-                action: call-service
-                service: script.popup_dryer
-                service_data:
-                  deviceID: 
-                    - this
+                - type: "custom:button-card"
+                  entity: sensor.dryer_state
+                  color_type: icon
+                  icon: mdi:tumble-dryer
+                  state:
+                    - value: "Drying"
+                      color: rgb(228, 94, 101)
+                      name: Drying
+                    - value: "Idle"
+                      color: rgb(255, 255, 255)
+                      name: Idle
+                    - value: "Door Open"
+                      color: rgb(255, 200, 0)
+                      name: Door                    
+                  tap_action:
+                    action: call-service
+                    service: script.popup_dryer
+                    service_data:
+                      deviceID: 
+                        - this              
+                  hold_action: 
+                    action: call-service
+                    service: script.popup_dryer
+                    service_data:
+                      deviceID: 
+                        - this
 
 #################################################################
 #                                                               #
