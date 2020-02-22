@@ -1018,180 +1018,290 @@ views:
               - type: "custom:gap-card"
                 height: 10
             - type: horizontal-stack
-              cards:          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Automations
-                    entity: sensor.automation_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.automation_count
-                    severity:
-                      - value: ${states['sensor.automation_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.automation_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.automation_count_high'].state}
-                        color: '#bf9540'
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Binary Sensors
-                    entity: sensor.binary_sensor_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.binary_sensor_count
-                    severity:
-                    - value: ${states['sensor.binary_sensor_count_low'].state}
-                      color: '#bf4040'
-                    - value: ${states['input_number.binary_sensor_count_expected'].state}
-                      color: '#1db954'
-                    - value: ${states['sensor.binary_sensor_count_high'].state}
-                      color: '#bf9540'
-          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Switches
-                    entity: sensor.switch_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.switch_count
-                    severity:
-                      - value: ${states['sensor.switch_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.switch_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.switch_count_high'].state}
-                        color: '#bf9540'
-          
-            - type: horizontal-stack
-              cards:          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Fans
-                    entity: sensor.fan_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.fan_count
-                    severity:
-                      - value: ${states['sensor.fan_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.fan_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.fan_count_high'].state}
-                        color: '#bf9540'
-              
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Lights
-                    entity: sensor.lights_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.lights_count
-                    severity:
-                      - value: ${states['sensor.light_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.light_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.light_count_high'].state}
-                        color: '#bf9540'
-          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Tracked Devices
-                    entity: sensor.tracker_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.tracker_count
-                    severity:
-                      - value: ${states['sensor.tracked_device_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.tracked_device_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.tracked_device_count_high'].state}
-                        color: '#bf9540'
-            
-            - type: horizontal-stack
-              cards:          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Media Players
-                    entity: sensor.media_player_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.media_player_count
-                    severity:
-                      - value: ${states['sensor.media_player_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.media_player_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.media_player_count_high'].state}
-                        color: '#bf9540'
-          
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Scripts
-                    entity: sensor.script_count
-                    title_position: inside
-                    align: center 
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.script_count
-                    severity:
-                      - value: ${states['sensor.script_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.script_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.script_count_high'].state}
-                        color: '#bf9540'
+          cards:          
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.automation_count
+                - sensor.automation_count_low
+                - sensor.automation_count_high
+                - input_number.automation_count_expected
+              card:
+                type: custom:bar-card
+                title: Automations
+                entity: sensor.automation_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.automation_count
+                severity:
+                  - value: ${states['sensor.automation_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.automation_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.automation_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_automation_count
+                  data:
+                    deviceID: 
+                      - this
+
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.binary_sensor_count
+                - sensor.binary_sensor_count_high
+                - sensor.binary_sensor_count_low
+                - input_number.binary_sensor_count_expected
+              card:
+                type: custom:bar-card
+                title: Binary Sensors
+                entity: sensor.binary_sensor_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.binary_sensor_count
+                severity:
+                - value: ${states['sensor.binary_sensor_count_low'].state}
+                  color: '#bf4040'
+                - value: ${states['input_number.binary_sensor_count_expected'].state}
+                  color: '#1db954'
+                - value: ${states['sensor.binary_sensor_count_high'].state}
+                  color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_binary_sensor_count
+                  data:
+                    deviceID: 
+                      - this
                 
-                - type: 'custom:config-template-card'
-                  card:
-                    type: custom:bar-card
-                    title: Sensors
-                    entity: sensor.sensor_count
-                    title_position: inside
-                    align: center
-                    padding: 4px
-                    card_style: 
-                      border-radius: 5px
-                    max: sensor.sensor_count
-                    severity:
-                      - value: ${states['sensor.sensor_count_low'].state}
-                        color: '#bf4040'
-                      - value: ${states['input_number.sensor_count_expected'].state}
-                        color: '#1db954'
-                      - value: ${states['sensor.sensor_count_high'].state}
-                        color: '#bf9540'
+      
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.switch_count
+                - sensor.switch_count_high
+                - sensor.switch_count_low
+                - input_number.switch_count_expected
+              card:
+                type: custom:bar-card
+                title: Switches
+                entity: sensor.switch_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.switch_count
+                severity:
+                  - value: ${states['sensor.switch_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.switch_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.switch_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_switch_count
+                  data:
+                    deviceID: 
+                      - this
+      
+        - type: horizontal-stack
+          cards:          
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.fan_count
+                - sensor.fan_count_high
+                - sensor.fan_count_low
+                - input_number.fan_count_expected
+              card:
+                type: custom:bar-card
+                title: Fans
+                entity: sensor.fan_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.fan_count
+                severity:
+                  - value: ${states['sensor.fan_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.fan_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.fan_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_fan_count
+                  data:
+                    deviceID: 
+                      - this
+          
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.lights_count
+                - sensor.light_count_high
+                - sensor.light_count_low
+                - input_number.light_count_expected
+              card:
+                type: custom:bar-card
+                title: Lights
+                entity: sensor.lights_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.lights_count
+                severity:
+                  - value: ${states['sensor.light_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.light_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.light_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_lights_count
+                  data:
+                    deviceID: 
+                      - this
+      
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.tracker_count
+                - sensor.tracked_device_count_high
+                - sensor.tracked_device_count_low
+                - input_number.tracked_device_count_expected
+              card:
+                type: custom:bar-card
+                title: Tracked Devices
+                entity: sensor.tracker_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.tracker_count
+                severity:
+                  - value: ${states['sensor.tracked_device_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.tracked_device_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.tracked_device_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_tracker_count
+                  data:
+                    deviceID: 
+                      - this
+        
+        - type: horizontal-stack
+          cards:          
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.media_player_count
+                - sensor.media_player_count_high
+                - sensor.media_player_count_low
+                - input_number.media_player_count_expected
+              card:
+                type: custom:bar-card
+                title: Media Players
+                entity: sensor.media_player_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.media_player_count
+                severity:
+                  - value: ${states['sensor.media_player_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.media_player_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.media_player_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_media_player_count
+                  data:
+                    deviceID: 
+                      - this
+      
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.script_count
+                - sensor.script_count_high
+                - sensor.script_count_low
+                - input_number.script_count_expected
+              card:
+                type: custom:bar-card
+                title: Scripts
+                entity: sensor.script_count
+                title_position: inside
+                align: center 
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.script_count
+                severity:
+                  - value: ${states['sensor.script_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.script_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.script_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_script_count
+                  data:
+                    deviceID: 
+                      - this
+            
+            - type: 'custom:config-template-card'
+              entities:
+                - sensor.sensor_count
+                - sensor.sensor_count_high
+                - sensor.sensor_count_low
+                - input_number.sensor_count_expected
+              card:
+                type: custom:bar-card
+                title: Sensors
+                entity: sensor.sensor_count
+                title_position: inside
+                align: center
+                padding: 4px
+                card_style: 
+                  border-radius: 5px
+                max: sensor.sensor_count
+                severity:
+                  - value: ${states['sensor.sensor_count_low'].state}
+                    color: '#bf4040'
+                  - value: ${states['input_number.sensor_count_expected'].state}
+                    color: '#1db954'
+                  - value: ${states['sensor.sensor_count_high'].state}
+                    color: '#bf9540'
+                tap_action: service
+                service_options:
+                  domain: script
+                  service: popup_sensor_count
+                  data:
+                    deviceID: 
+                      - this
 
 #################################################################
 #                                                               #
