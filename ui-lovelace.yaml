@@ -148,7 +148,9 @@ views:
               cards:
                   - type: custom:simple-thermostat
                     entity: climate.home
+                    icon: mdi:thermostat-box
                     step_size: 1
+                    decimals: 0
                     sensors:
                     - attribute: current_humidity
                       name: Humidity
@@ -157,6 +159,9 @@ views:
                       name: State
                     hide:
                       state: true
+                    control:
+                      - hvac:
+                          mode: none
                     
 
                   - type: horizontal-stack
@@ -300,19 +305,19 @@ views:
                   name: Craft
                   hold_action: 
                     action: more-info
-            - type: horizontal-stack
-              cards:                    
-                - type: "custom:gap-card"
-                - type: "custom:gap-card"
-                - type: "custom:gap-card"
-                - type: "custom:button-card"
-                  entity: switch.christmas_tree
-                  color_type: icon
-                  color: rgb(228, 94, 101)
-                  icon: mdi:pine-tree
-                  name: Tree
-                  hold_action: 
-                    action: more-info
+            # - type: horizontal-stack
+            #   cards:                    
+            #     - type: "custom:gap-card"
+            #     - type: "custom:gap-card"
+            #     - type: "custom:gap-card"
+            #     - type: "custom:button-card"
+            #       entity: switch.christmas_tree
+            #       color_type: icon
+            #       color: rgb(228, 94, 101)
+            #       icon: mdi:pine-tree
+            #       name: Tree
+            #       hold_action: 
+            #         action: more-info
 ################################################################
 #                                                               #
 #                          Home - Laundry                       #
