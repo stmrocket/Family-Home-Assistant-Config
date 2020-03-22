@@ -427,152 +427,11 @@ views:
 
 #############################################################################################################################################
 #                                                                                                                                           # 
-#                                                                VIEW 2 - Laundry                                                           #
-#                                                                                                                                           #
-############################################################################################################################################# 
-
-  - id: 1
-    icon: mdi:washing-machine
-    name: Laundry
-    cards:
-
-#################################################################
-#                                                               #
-#                        Laundry - Washer                       #
-#                                                               #
-#################################################################
-        
-      - type: vertical-stack
-        cards:
-          - type: entities
-            show_header_toggle: false
-            title: Washer Status
-            entities:
-            - entity: sensor.washer_state
-            - entity: sensor.washer_voltage
-            - entity: sensor.washer_watts
-            - entity: sensor.washer_amps
-            - entity: sensor.washer_energy_today
-              icon: 'mdi:gauge'
-            - entity: sensor.washer_energy_yesterday
-              icon: 'mdi:gauge'
-            - entity: sensor.washer_signal
-              icon: 'mdi:wifi'
-
-#################################################################
-#                                                               #
-#                        Laundry - Washer                       #
-#                                                               #
-#################################################################
-        
-      - type: vertical-stack
-        cards:
-          - type: entities
-            show_header_toggle: false
-            title: Dryer Status
-            entities:
-            - entity: sensor.dryer_state
-            - entity: sensor.dryer_voltage
-            - entity: sensor.dryer_watts
-            - entity: sensor.dryer_amps
-            - entity: sensor.dryer_energy_today
-              icon: 'mdi:gauge'
-            - entity: sensor.dryer_energy_yesterday
-              icon: 'mdi:gauge'
-            - entity: sensor.dryer_signal
-              icon: 'mdi:wifi'
-
-#############################################################################################################################################
-#                                                                                                                                           # 
-#                                                                VIEW 3 - Irrigatio   n                                                     #
-#                                                                                                                                           #
-############################################################################################################################################# 
-
-  - id: 2
-    icon: mdi:water
-    name: Laundry
-    cards:
-
-#################################################################
-#                                                               #
-#                        Irrigation                             #
-#                                                               #
-#################################################################
-        
-      - type: vertical-stack
-        cards:
-          - type: entities
-            show_header_toggle: off
-            entities:
-              - type: section
-                label: RainMachine Irrigation Controller
-              - type: custom:vertical-stack-in-card
-                cards:
-                  #- type: 'custom:text-divider-row'
-                  #  text: Statistics
-               
-                  - type: horizontal-stack
-                    cards:
-                      - type: "custom:button-card"
-                        entity: switch.irrigation_program
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:alarm-check
-                        name: Program Enable
-                        hold_action: 
-                          action: more-info
-                      - type: "custom:button-card"
-                        entity: switch.irrigation_run_program
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:weather-pouring
-                        name: Run Program
-                        hold_action: 
-                          action: more-info
-            
-                  - type: horizontal-stack
-                    cards:
-                      - type: "custom:button-card"
-                        entity: switch.front_yard_right
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:numeric-1-box
-                        name: R Front
-                        hold_action: 
-                          action: more-info
-                      - type: "custom:button-card"
-                        entity: switch.front_yard_left
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:numeric-2-box
-                        name: L Front
-                        hold_action: 
-                          action: more-info
-                      - type: "custom:button-card"
-                        entity: switch.front_flower_bed
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:numeric-3-box
-                        name: Flowerbed
-                        hold_action: 
-                          action: more-info
-                      - type: "custom:button-card"
-                        entity: switch.back_yard
-                        color_type: icon
-                        color: rgb(0, 145, 255)
-                        icon: mdi:numeric-4-box
-                        name: Back
-                        hold_action: 
-                          action: more-info
-            
-
-#############################################################################################################################################
-#                                                                                                                                           # 
 #                                                          VIEW 5 - SYSTEM STATUS                                                          #
 #                                                                                                                                           #
 #############################################################################################################################################
 
-  - id: 3  
+  - id: 1
     icon: mdi:server-network
     name: System Status
     cards:
@@ -1319,7 +1178,77 @@ views:
             entities:
             - entity: input_boolean.zigbee_permit_join
             - entity: timer.zigbee_permit_join
-            - entity: sensor.bridge_state          
+            - entity: sensor.bridge_state    
+
+          - type: custom:vertical-stack-in-card
+            cards:
+              - type: picture-elements
+                image: /local/lovelace/room.png
+                elements:
+                  - entity: sensor.blank
+                    hold-action: none
+                    prefix: RainMachine
+                    style:
+                      bottom: 20%
+                      font-size: 150%
+                      left: 5%
+                      transform: initial
+                    tap-action: none
+                    type: state-label
+                
+              - type: horizontal-stack
+                cards:
+                  - type: "custom:button-card"
+                    entity: switch.irrigation_program
+                    color_type: icon
+                    color: rgb(0, 145, 255)
+                    icon: mdi:alarm-check
+                    name: Program Enable
+                    hold_action: 
+                      action: more-info
+                  - type: "custom:button-card"
+                    entity: switch.irrigation_run_program
+                    color_type: icon
+                    color: rgb(0, 145, 255)
+                    icon: mdi:weather-pouring
+                    name: Run Program
+                    hold_action: 
+                      action: more-info
+            
+                  - type: horizontal-stack
+                    cards:
+                      - type: "custom:button-card"
+                        entity: switch.front_yard_right
+                        color_type: icon
+                        color: rgb(0, 145, 255)
+                        icon: mdi:numeric-1-box
+                        name: R Front
+                        hold_action: 
+                          action: more-info
+                      - type: "custom:button-card"
+                        entity: switch.front_yard_left
+                        color_type: icon
+                        color: rgb(0, 145, 255)
+                        icon: mdi:numeric-2-box
+                        name: L Front
+                        hold_action: 
+                          action: more-info
+                      - type: "custom:button-card"
+                        entity: switch.front_flower_bed
+                        color_type: icon
+                        color: rgb(0, 145, 255)
+                        icon: mdi:numeric-3-box
+                        name: Flowerbed
+                        hold_action: 
+                          action: more-info
+                      - type: "custom:button-card"
+                        entity: switch.back_yard
+                        color_type: icon
+                        color: rgb(0, 145, 255)
+                        icon: mdi:numeric-4-box
+                        name: Back
+                        hold_action: 
+                          action: more-info
 
 #################################################################
 #                                                               #
