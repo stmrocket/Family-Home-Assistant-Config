@@ -6,32 +6,6 @@
 
 #################################################################
 #                                                               #
-#                           Group                               #
-#                                                               #
-#################################################################
-
-group:
-        
-  internet:
-    name: Internet
-    view: no
-    entities:
-      - sensor.wan_ping   
-      - sensor.wan_in_mbps 
-      - sensor.wan_out_mbps 
-    
-  rpi resources:
-    name: RPi Resources
-    view: no
-    entities:
-      - sensor.disk_use
-      - sensor.memory_use_percent
-      - sensor.processor_use
-      - sensor.cpu_temperature
-      - sensor.last_boot    
-
-#################################################################
-#                                                               #
 #                       Binary Sensors                          #
 #                                                               #
 #################################################################
