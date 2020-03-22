@@ -37,6 +37,13 @@ resources:
     type: js
   - url: /local/community/text-element/text-element.js
     type: js
+  - url: /local/community/lovelace-card-preloader/lovelace-card-preloader.js
+    type: js
+
+# Preload Cards
+
+preload:
+  - picture-elements
 
 #################################################################
 #                                                               #
