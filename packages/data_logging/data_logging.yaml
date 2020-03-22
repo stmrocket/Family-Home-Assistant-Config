@@ -25,5 +25,13 @@ recorder:
     - binary_sensor.hvac_system_cool
     - sensor.hvac_system_fan_runtime
     - sensor.hvac_system_heat_runtime
-    - sensor.hvac_system_cool_runtime
+    - sensor.hvac_system_cool_runtime    
+    - sensor.us_coronavirus_confirmed
+    - sensor.us_coronavirus_current
+    - sensor.us_coronavirus_deaths
+    - sensor.us_coronavirus_recovered
+    - sensor.worldwide_coronavirus_confirmed
+    - sensor.worldwide_coronavirus_current
+    - sensor.worldwide_coronavirus_deaths
+    - sensor.worldwide_coronavirus_recovered
 
