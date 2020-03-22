@@ -32,3 +32,13 @@
           - media_player.alexa_craft
           - media_player.alexa_master
           - media_player.alexa_kitchen
+
+- alias: 'Set Theme to Midnight'
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: frontend.set_theme
+      data:
+        name: midnight                  
