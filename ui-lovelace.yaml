@@ -1225,6 +1225,29 @@ views:
                     hold_action: 
                       action: more-info
 
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                title: "US Cases"
+                entities:
+                  - entity: sensor.covid_us_total
+                    name: Total
+                  - entity: sensor.covid_us_today_new
+                    name: Today
+                  - entity: sensor.covid_us_yesterday_new
+                    name: Yesterday
+              - type: horizontal-stack
+                cards:
+                  - type: entities
+                    title: "Worldwide Cases"
+                    entities:
+                      - entity: sensor.covid_world_total
+                        name: Total
+                      - entity: sensor.covid_world_today_new
+                        name: Today
+                      - entity: sensor.covid_world_yesterday_new
+                        name: Yesterday                      
+
 #################################################################
 #                                                               #
 #                       Den Harmony Control                     #
@@ -1291,4 +1314,3 @@ views:
                       - VolumeUp
                     device: 35324836        
 
-              
