@@ -39,6 +39,8 @@ resources:
     type: js
   - url: /local/community/lovelace-card-preloader/lovelace-card-preloader.js
     type: js
+  - url: /local/community/lovelace-card-mod/card-mod.js
+    type: module
 
 # Preload Cards
 
