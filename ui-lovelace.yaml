@@ -624,7 +624,7 @@ views:
                         cards:
                           - type: custom:bar-card
                             name: Disk (Videos)
-                            entity: sensor.synology_dsm_volume_used_volume_2
+                            entity: sensor.synology_volume_used_volume_2
                             entity_row: true
                             positions:
                               icon: 'off'
@@ -659,7 +659,7 @@ views:
                               }                    
                           - type: custom:bar-card
                             name: Temperature (Videos)
-                            entity: sensor.synology_dsm_average_disk_temp_volume_2
+                            entity: sensor.synology_average_disk_temp_volume_2
                             entity_row: true
                             positions:
                               icon: 'off'
@@ -704,7 +704,7 @@ views:
                         cards:
                         - type: custom:bar-card
                           name: CPU
-                          entity: sensor.synology_dsm_cpu_load_total
+                          entity: sensor.synology_cpu_load_total
                           entity_row: true
                           positions:
                             icon: 'off'
@@ -739,7 +739,7 @@ views:
                             }   
                         - type: custom:bar-card
                           name: RAM
-                          entity: sensor.synology_dsm_memory_usage_real
+                          entity: sensor.synology_memory_usage_real
                           entity_row: true
                           positions:
                             icon: 'off'
@@ -777,7 +777,7 @@ views:
                         cards:
                           - type: custom:bar-card
                             name: Disk (Files)
-                            entity: sensor.synology_dsm_volume_used_volume_1
+                            entity: sensor.synology_volume_used_volume_1
                             entity_row: true
                             positions:
                               icon: 'off'
@@ -812,7 +812,7 @@ views:
                               }  
                           - type: custom:bar-card
                             name: Temperature (Files)
-                            entity: sensor.synology_dsm_average_disk_temp_volume_1
+                            entity: sensor.synology_average_disk_temp_volume_1
                             entity_row: true
                             positions:
                               icon: 'off'
