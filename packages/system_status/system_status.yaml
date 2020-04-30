@@ -206,7 +206,7 @@ sensor:
 #                                                  #
 ####################################################
 
-  - platform: synologydsm
+  - platform: synology_dsm
     host: !secret nas_host
     username: !secret nas_user
     password: !secret nas_pass
