@@ -418,3 +418,9 @@ switch:
             program_id: 1
 
 browser_mod:
+
+# ISY 994 Integration 
+isy994:
+  host: !secret isy_host
+  username: !secret isy_user
+  password: !secret isy_pass
