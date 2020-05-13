@@ -1803,6 +1803,9 @@ views:
                 color: rgb(255, 255, 255)
                 icon: mdi:alarm
                 name: "Shawn"
+                lock:
+                  enabled: true
+                  unlock: hold
                 tap_action:
                   action: call-service
                   service: rest_command.wake_remote

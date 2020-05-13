@@ -429,3 +429,4 @@ browser_mod:
 rest_command:
   wake_remote:
     url: !secret webhook_wake
+    method: post
