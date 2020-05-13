@@ -384,9 +384,6 @@ media_player:
 #HACS
 hacs:
   token: !secret hacs_git
-  appdaemon: true
-  python_script: true
-  theme: true
 
 #Breaking Changes
 breaking_changes:
