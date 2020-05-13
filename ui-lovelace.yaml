@@ -1047,7 +1047,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1064,18 +1064,38 @@ views:
                         to: ${states['sensor.automation_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
-                      }                    
+                      }                     
                     tap_action: service
                     service_options:
                       domain: script
