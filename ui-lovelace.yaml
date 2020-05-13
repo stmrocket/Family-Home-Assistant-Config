@@ -2,7 +2,7 @@ title: The Geek House
 
 resources:
   - url: /hacsfiles/bar-card/bar-card.js
-    type: js
+    type: module
   - url: /hacsfiles/button-card/button-card.js
     type: module
   - url: /hacsfiles/lovelace-card-modder/card-modder.js
