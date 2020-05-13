@@ -1,7 +1,7 @@
 title: The Geek House
 
 resources:
-  - url: /local/hacsfiles/bar-card/bar-card.js
+  - url: /local/community/bar-card/bar-card.js
     type: js
   - url: /local/community/button-card/button-card.js
     type: module
