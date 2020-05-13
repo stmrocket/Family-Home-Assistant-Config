@@ -182,7 +182,7 @@ views:
                         entity_row: true
                         positions:
                           icon: 'off'
-                          title: inside
+                          name: inside
                           value: inside
                         padding: 4px
                         card_style: 
@@ -191,17 +191,37 @@ views:
                         color: red
                         decimal: 2
                         style: |-
-                          bar-card-value {
-                            margin-right: auto;
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
                             margin-left: auto;
-                            margin-bottom: auto;
-                            margin-top: 0px;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
                           }
                           bar-card-divider {
                             display: none;
-                          }
-                          bar-card-contentbar {
-                            flex-direction: column;
                           }
                         
                       - type: custom:bar-card
@@ -210,7 +230,7 @@ views:
                         entity_row: true
                         positions:
                           icon: 'off'
-                          title: inside
+                          name: inside
                           value: inside
                         padding: 4px
                         card_style: 
@@ -219,17 +239,37 @@ views:
                         color: blue
                         decimal: 2
                         style: |-
-                          bar-card-value {
-                            margin-right: auto;
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
                             margin-left: auto;
-                            margin-bottom: auto;
-                            margin-top: 0px;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
                           }
                           bar-card-divider {
                             display: none;
-                          }
-                          bar-card-contentbar {
-                            flex-direction: column;
                           }
 
                   - type: horizontal-stack
@@ -241,7 +281,7 @@ views:
                         entity_row: true
                         positions:
                           icon: 'off'
-                          title: inside
+                          name: inside
                           value: inside
                         padding: 4px
                         card_style: 
@@ -250,17 +290,37 @@ views:
                         color: green
                         decimal: 2
                         style: |-
-                          bar-card-value {
-                            margin-right: auto;
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
                             margin-left: auto;
-                            margin-bottom: auto;
-                            margin-top: 0px;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
                           }
                           bar-card-divider {
                             display: none;
-                          }
-                          bar-card-contentbar {
-                            flex-direction: column;
                           }
                         
                       - type: custom:bar-card
@@ -269,7 +329,7 @@ views:
                         entity_row: true
                         positions:
                           icon: 'off'
-                          title: inside
+                          name: inside
                           value: inside
                         padding: 4px
                         card_style: 
@@ -277,17 +337,37 @@ views:
                         max: 24
                         decimal: 2
                         style: |-
-                          bar-card-value {
-                            margin-right: auto;
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
                             margin-left: auto;
-                            margin-bottom: auto;
-                            margin-top: 0px;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
                           }
                           bar-card-divider {
                             display: none;
-                          }
-                          bar-card-contentbar {
-                            flex-direction: column;
                           }
 
 #################################################################
@@ -519,7 +599,7 @@ views:
                   entity_row: true
                   positions:
                     icon: 'off'
-                    title: inside
+                    name: inside
                     value: inside
                   padding: 4px
                   card_style: 
@@ -536,17 +616,37 @@ views:
                     to: 1000
                     color: '#ff0000'
                   style: |-
-                    bar-card-value {
-                      margin-right: auto;
+                    .contentbar-direction-right {
+                      flex-direction: column;
+                    }
+                    .min-direction-right {
+                      margin: 0px;
+                      margin-bottom: -20px;
+                      bottom: 10px;
+                    }
+                      bar-card-value {
+                      margin: 0px;
+                      font-size: 13px;
                       margin-left: auto;
-                      margin-bottom: auto;
-                      margin-top: 0px;
+                      margin-right: auto;
+                      font-weight: bold;
+                      text-shadow: 1px 1px #0005;
+                    }
+                    bar-card-name {
+                      margin: 0px;
+                      margin-top: 5px;
+                      font-size: 14px;
+                      font-weight: bold;
+                      text-shadow: 1px 1px #0005;              
+                    }
+                    bar-card-max {
+                      margin: 0px;
+                      margin-left: auto;
+                      margin-top: -20px;
+                      top: 10px;
                     }
                     bar-card-divider {
                       display: none;
-                    }
-                    bar-card-contentbar {
-                      flex-direction: column;
                     }
 
                 - type: custom:bar-card
@@ -555,7 +655,7 @@ views:
                   entity_row: true
                   positions:
                     icon: 'off'
-                    title: inside
+                    name: inside
                     value: inside
                   padding: 4px
                   card_style: 
@@ -572,17 +672,37 @@ views:
                     to: 1000
                     color: '#ff0000'
                   style: |-
-                    bar-card-value {
-                      margin-right: auto;
+                    .contentbar-direction-right {
+                      flex-direction: column;
+                    }
+                    .min-direction-right {
+                      margin: 0px;
+                      margin-bottom: -20px;
+                      bottom: 10px;
+                    }
+                      bar-card-value {
+                      margin: 0px;
+                      font-size: 13px;
                       margin-left: auto;
-                      margin-bottom: auto;
-                      margin-top: 0px;
+                      margin-right: auto;
+                      font-weight: bold;
+                      text-shadow: 1px 1px #0005;
+                    }
+                    bar-card-name {
+                      margin: 0px;
+                      margin-top: 5px;
+                      font-size: 14px;
+                      font-weight: bold;
+                      text-shadow: 1px 1px #0005;              
+                    }
+                    bar-card-max {
+                      margin: 0px;
+                      margin-left: auto;
+                      margin-top: -20px;
+                      top: 10px;
                     }
                     bar-card-divider {
                       display: none;
-                    }
-                    bar-card-contentbar {
-                      flex-direction: column;
                     }
 
 #################################################################
@@ -620,174 +740,196 @@ views:
                 
                   - type: horizontal-stack
                     cards:  
-                      - type: custom:vertical-stack-in-card
-                        cards:
-                          - type: custom:bar-card
-                            name: Disk (Videos)
-                            entity: sensor.synology_volume_used_volume_2
-                            entity_row: true
-                            positions:
-                              icon: 'off'
-                              title: inside
-                              value: inside
-                            padding: 4px
-                            card_style: 
-                              border-radius: 5px
-                            max: 100
-                            severity:
-                              - from: 0
-                                to: 79
-                                color: '#1db954'
-                              - from: 80
-                                to: 94
-                                color: '#bf9540'
-                              - from: 95
-                                to: 100
-                                color: '#ff0000'  
-                            style: |-
-                              bar-card-value {
-                                margin-right: auto;
-                                margin-left: auto;
-                                margin-bottom: auto;
-                                margin-top: 0px;
-                              }
-                              bar-card-divider {
-                                display: none;
-                              }
-                              bar-card-contentbar {
-                                flex-direction: column;
-                              }                    
-                          - type: custom:bar-card
-                            name: Temperature (Videos)
-                            entity: sensor.synology_average_disk_temp_volume_2
-                            entity_row: true
-                            positions:
-                              icon: 'off'
-                              title: inside
-                              value: inside
-                            padding: 4px
-                            card_style: 
-                              border-radius: 5px
-                            max: 200
-                            severity:
-                              - from: 0
-                                to: 130
-                                color: '#1db954'
-                              - from: 131
-                                to: 140
-                                color: '#bf9540'
-                              - from: 141
-                                to: 150
-                                color: '#bf4040'
-                            style: |-
-                              bar-card-value {
-                                margin-right: auto;
-                                margin-left: auto;
-                                margin-bottom: auto;
-                                margin-top: 0px;
-                              }
-                              bar-card-divider {
-                                display: none;
-                              }
-                              bar-card-contentbar {
-                                flex-direction: column;
-                              }
-                              bar-card-name {
-                                margin-right: auto;
-                                margin-left: auto;
-                                margin-bottom: auto;
-                                margin-top: 0px;
-                              }
-
                         
                       - type: custom:vertical-stack-in-card
                         cards:
                         - type: custom:bar-card
                           name: CPU
                           entity: sensor.synology_cpu_load_total
+                          decimal: 1
                           entity_row: true
                           positions:
                             icon: 'off'
-                            title: inside
+                            name: inside
                             value: inside
                           padding: 4px
                           card_style: 
                             border-radius: 5px
                           max: 100
                           severity:
-                            - from: 0
-                              to: 50
-                              color: '#1db954'
-                            - from: 51
-                              to: 75
-                              color: '#bf9540'
-                            - from: 76
-                              to: 100
-                              color: '#ff0000'  
+                          - from: 0
+                            to: 50
+                            color: '#1db954'
+                          - from: 51
+                            to: 75
+                            color: '#bf9540'
+                          - from: 76
+                            to: 100
+                            color: '#ff0000'  
                           style: |-
-                            bar-card-value {
-                              margin-right: auto;
+                            .contentbar-direction-right {
+                              flex-direction: column;
+                            }
+                            .min-direction-right {
+                              margin: 0px;
+                              margin-bottom: -20px;
+                              bottom: 10px;
+                            }
+                              bar-card-value {
+                              margin: 0px;
+                              font-size: 13px;
                               margin-left: auto;
-                              margin-bottom: auto;
-                              margin-top: 0px;
+                              margin-right: auto;
+                              font-weight: bold;
+                              text-shadow: 1px 1px #0005;
+                            }
+                            bar-card-name {
+                              margin: 0px;
+                              margin-top: 5px;
+                              font-size: 14px;
+                              font-weight: bold;
+                              text-shadow: 1px 1px #0005;              
+                            }
+                            bar-card-max {
+                              margin: 0px;
+                              margin-left: auto;
+                              margin-top: -20px;
+                              top: 10px;
                             }
                             bar-card-divider {
                               display: none;
-                            }
-                            bar-card-contentbar {
-                              flex-direction: column;
-                            }   
+                            } 
+
                         - type: custom:bar-card
                           name: RAM
                           entity: sensor.synology_memory_usage_real
+                          decimal: 1
                           entity_row: true
                           positions:
                             icon: 'off'
-                            title: inside
+                            name: inside
                             value: inside
                           padding: 4px
                           card_style: 
                             border-radius: 5px
                           max: 100
                           severity:
-                            - from: 0
-                              to: 50
-                              color: '#1db954'
-                            - from: 51
-                              to: 75
-                              color: '#bf9540'
-                            - from: 76
-                              to: 100
-                              color: '#ff0000'            
+                          - from: 0
+                            to: 50
+                            color: '#1db954'
+                          - from: 51
+                            to: 75
+                            color: '#bf9540'
+                          - from: 76
+                            to: 100
+                            color: '#ff0000'            
                           style: |-
-                            bar-card-value {
-                              margin-right: auto;
+                            .contentbar-direction-right {
+                              flex-direction: column;
+                            }
+                            .min-direction-right {
+                              margin: 0px;
+                              margin-bottom: -20px;
+                              bottom: 10px;
+                            }
+                              bar-card-value {
+                              margin: 0px;
+                              font-size: 13px;
                               margin-left: auto;
-                              margin-bottom: auto;
-                              margin-top: 0px;
+                              margin-right: auto;
+                              font-weight: bold;
+                              text-shadow: 1px 1px #0005;
+                            }
+                            bar-card-name {
+                              margin: 0px;
+                              margin-top: 5px;
+                              font-size: 14px;
+                              font-weight: bold;
+                              text-shadow: 1px 1px #0005;              
+                            }
+                            bar-card-max {
+                              margin: 0px;
+                              margin-left: auto;
+                              margin-top: -20px;
+                              top: 10px;
                             }
                             bar-card-divider {
                               display: none;
-                            }
-                            bar-card-contentbar {
-                              flex-direction: column;
-                            }                           
+                            }                         
                         
-                      - type: custom:vertical-stack-in-card
-                        cards:
-                          - type: custom:bar-card
-                            name: Disk (Files)
-                            entity: sensor.synology_volume_used_volume_1
-                            entity_row: true
-                            positions:
-                              icon: 'off'
-                              title: inside
-                              value: inside
-                            padding: 4px
-                            card_style: 
-                              border-radius: 5px
-                            max: 100
-                            severity:
+                      - type: custom:bar-card
+                        name: Disk (Files)
+                        entity: sensor.synology_volume_used_volume_1
+                        decimal: 1
+                        entity_row: true
+                        positions:
+                          icon: 'off'
+                          name: inside
+                          value: inside
+                        padding: 4px
+                        card_style: 
+                          border-radius: 5px
+                        max: 100
+                        severity:
+                        - from: 0
+                          to: 79
+                          color: '#1db954'
+                        - from: 80
+                          to: 94
+                          color: '#bf9540'
+                        - from: 95
+                          to: 100
+                          color: '#ff0000'  
+                        style: |-
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
+                            margin-left: auto;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
+                          }
+                          bar-card-divider {
+                            display: none;
+                          }                    
+
+                          - type: custom:vertical-stack-in-card
+                            cards:
+                            - type: custom:bar-card
+                              name: Disk (Videos)
+                              entity: sensor.synology_volume_used_volume_2
+                              decimal: 1
+                              entity_row: true
+                              positions:
+                                icon: 'off'
+                                name: inside
+                                value: inside
+                              padding: 4px
+                              card_style: 
+                                border-radius: 5px
+                              max: 100
+                              severity:
                               - from: 0
                                 to: 79
                                 color: '#1db954'
@@ -797,54 +939,40 @@ views:
                               - from: 95
                                 to: 100
                                 color: '#ff0000'  
-                            style: |-
-                              bar-card-value {
-                                margin-right: auto;
-                                margin-left: auto;
-                                margin-bottom: auto;
-                                margin-top: 0px;
-                              }
-                              bar-card-divider {
-                                display: none;
-                              }
-                              bar-card-contentbar {
-                                flex-direction: column;
-                              }  
-                          - type: custom:bar-card
-                            name: Temperature (Files)
-                            entity: sensor.synology_average_disk_temp_volume_1
-                            entity_row: true
-                            positions:
-                              icon: 'off'
-                              title: inside
-                              value: inside
-                            padding: 4px
-                            card_style: 
-                              border-radius: 5px
-                            max: 200
-                            severity:
-                              - from: 0
-                                to: 130
-                                color: '#1db954'
-                              - from: 131
-                                to: 140
-                                color: '#bf9540'
-                              - from: 141
-                                to: 150
-                                color: '#bf4040'  
-                            style: |-
-                              bar-card-value {
-                                margin-right: auto;
-                                margin-left: auto;
-                                margin-bottom: auto;
-                                margin-top: 0px;
-                              }
-                              bar-card-divider {
-                                display: none;
-                              }
-                              bar-card-contentbar {
-                                flex-direction: column;
-                              }              
+                              style: |-
+                                .contentbar-direction-right {
+                                  flex-direction: column;
+                                }
+                                .min-direction-right {
+                                  margin: 0px;
+                                  margin-bottom: -20px;
+                                  bottom: 10px;
+                                }
+                                  bar-card-value {
+                                  margin: 0px;
+                                  font-size: 13px;
+                                  margin-left: auto;
+                                  margin-right: auto;
+                                  font-weight: bold;
+                                  text-shadow: 1px 1px #0005;
+                                }
+                                bar-card-name {
+                                  margin: 0px;
+                                  margin-top: 5px;
+                                  font-size: 14px;
+                                  font-weight: bold;
+                                  text-shadow: 1px 1px #0005;              
+                                }
+                                bar-card-max {
+                                  margin: 0px;
+                                  margin-left: auto;
+                                  margin-top: -20px;
+                                  top: 10px;
+                                }
+                                bar-card-divider {
+                                  display: none;
+                                } 
+          
 
 #################################################################
 #                                                               #
@@ -890,7 +1018,7 @@ views:
                       entity_row: true
                       positions:
                         icon: 'off'
-                        title: inside
+                        name: inside
                         value: inside
                       padding: 4px
                       card_style: 
@@ -907,25 +1035,46 @@ views:
                         to: 100
                         color: '#ff0000'  
                       style: |-
-                        bar-card-value {
-                          margin-right: auto;
+                        .contentbar-direction-right {
+                          flex-direction: column;
+                        }
+                        .min-direction-right {
+                          margin: 0px;
+                          margin-bottom: -20px;
+                          bottom: 10px;
+                        }
+                          bar-card-value {
+                          margin: 0px;
+                          font-size: 13px;
                           margin-left: auto;
-                          margin-bottom: auto;
-                          margin-top: 0px;
+                          margin-right: auto;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;
+                        }
+                        bar-card-name {
+                          margin: 0px;
+                          margin-top: 5px;
+                          font-size: 14px;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;              
+                        }
+                        bar-card-max {
+                          margin: 0px;
+                          margin-left: auto;
+                          margin-top: -20px;
+                          top: 10px;
                         }
                         bar-card-divider {
                           display: none;
-                        }
-                        bar-card-contentbar {
-                          flex-direction: column;
                         }   
+
                     - type: custom:bar-card
                       name: RAM
                       entity: sensor.memory_use_percent
                       entity_row: true
                       positions:
                         icon: 'off'
-                        title: inside
+                        name: inside
                         value: inside
                       padding: 4px
                       card_style: 
@@ -942,18 +1091,39 @@ views:
                         to: 100
                         color: '#ff0000'            
                       style: |-
-                        bar-card-value {
-                          margin-right: auto;
+                        .contentbar-direction-right {
+                          flex-direction: column;
+                        }
+                        .min-direction-right {
+                          margin: 0px;
+                          margin-bottom: -20px;
+                          bottom: 10px;
+                        }
+                          bar-card-value {
+                          margin: 0px;
+                          font-size: 13px;
                           margin-left: auto;
-                          margin-bottom: auto;
-                          margin-top: 0px;
+                          margin-right: auto;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;
+                        }
+                        bar-card-name {
+                          margin: 0px;
+                          margin-top: 5px;
+                          font-size: 14px;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;              
+                        }
+                        bar-card-max {
+                          margin: 0px;
+                          margin-left: auto;
+                          margin-top: -20px;
+                          top: 10px;
                         }
                         bar-card-divider {
                           display: none;
-                        }
-                        bar-card-contentbar {
-                          flex-direction: column;
                         }                          
+
                 - type: custom:vertical-stack-in-card
                   cards:
                     - type: custom:bar-card
@@ -962,7 +1132,7 @@ views:
                       entity_row: true
                       positions:
                         icon: 'off'
-                        title: inside
+                        name: inside
                         value: inside
                       padding: 4px
                       card_style: 
@@ -979,25 +1149,46 @@ views:
                         to: 100
                         color: '#ff0000'  
                       style: |-
-                        bar-card-value {
-                          margin-right: auto;
+                        .contentbar-direction-right {
+                          flex-direction: column;
+                        }
+                        .min-direction-right {
+                          margin: 0px;
+                          margin-bottom: -20px;
+                          bottom: 10px;
+                        }
+                          bar-card-value {
+                          margin: 0px;
+                          font-size: 13px;
                           margin-left: auto;
-                          margin-bottom: auto;
-                          margin-top: 0px;
+                          margin-right: auto;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;
+                        }
+                        bar-card-name {
+                          margin: 0px;
+                          margin-top: 5px;
+                          font-size: 14px;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;              
+                        }
+                        bar-card-max {
+                          margin: 0px;
+                          margin-left: auto;
+                          margin-top: -20px;
+                          top: 10px;
                         }
                         bar-card-divider {
                           display: none;
-                        }
-                        bar-card-contentbar {
-                          flex-direction: column;
-                        }                    
+                        } 
+
                     - type: custom:bar-card
                       name: Temperature
                       entity: sensor.cpu_temperature
                       entity_row: true
                       positions:
                         icon: 'off'
-                        title: inside
+                        name: inside
                         value: inside
                       padding: 4px
                       card_style: 
@@ -1014,18 +1205,39 @@ views:
                         to: 200
                         color: '#bf4040'  
                       style: |-
-                        bar-card-value {
-                          margin-right: auto;
+                        .contentbar-direction-right {
+                          flex-direction: column;
+                        }
+                        .min-direction-right {
+                          margin: 0px;
+                          margin-bottom: -20px;
+                          bottom: 10px;
+                        }
+                          bar-card-value {
+                          margin: 0px;
+                          font-size: 13px;
                           margin-left: auto;
-                          margin-bottom: auto;
-                          margin-top: 0px;
+                          margin-right: auto;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;
+                        }
+                        bar-card-name {
+                          margin: 0px;
+                          margin-top: 5px;
+                          font-size: 14px;
+                          font-weight: bold;
+                          text-shadow: 1px 1px #0005;              
+                        }
+                        bar-card-max {
+                          margin: 0px;
+                          margin-left: auto;
+                          margin-top: -20px;
+                          top: 10px;
                         }
                         bar-card-divider {
                           display: none;
-                        }
-                        bar-card-contentbar {
-                          flex-direction: column;
-                        }              
+                        } 
+
             - type: horizontal-stack
               cards:
               - type: "custom:gap-card"
@@ -1117,7 +1329,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1134,17 +1346,37 @@ views:
                       to: ${states['sensor.binary_sensor_count_high'].state}
                       color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
                       }                    
                     tap_action: service
                     service_options:
@@ -1168,7 +1400,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1185,18 +1417,38 @@ views:
                         to: ${states['sensor.switch_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
-                      }                    
+                      }                   
                     tap_action: service
                     service_options:
                       domain: script
@@ -1220,7 +1472,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1237,17 +1489,37 @@ views:
                         to: ${states['sensor.fan_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
                       }                    
                     tap_action: service
                     service_options:
@@ -1270,7 +1542,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1287,17 +1559,37 @@ views:
                         to: ${states['sensor.light_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
                       }                    
                     tap_action: service
                     service_options:
@@ -1320,7 +1612,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1337,18 +1629,38 @@ views:
                         to:: ${states['sensor.tracked_device_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
-                      }                    
+                      }                  
                     tap_action: service
                     service_options:
                       domain: script
@@ -1372,7 +1684,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1389,18 +1701,38 @@ views:
                         to: ${states['sensor.media_player_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
-                      }                    
+                      }                   
                     tap_action: service
                     service_options:
                       domain: script
@@ -1422,7 +1754,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1439,17 +1771,37 @@ views:
                         to: ${states['sensor.script_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
                       }                    
                     tap_action: service
                     service_options:
@@ -1472,7 +1824,7 @@ views:
                     entity_row: true
                     positions:
                       icon: 'off'
-                      title: inside
+                      name: inside
                       value: inside
                     padding: 4px
                     card_style: 
@@ -1489,18 +1841,38 @@ views:
                         to: ${states['sensor.sensor_count_high'].state}
                         color: '#bf9540'
                     style: |-
-                      bar-card-value {
-                        margin-right: auto;
+                      .contentbar-direction-right {
+                        flex-direction: column;
+                      }
+                      .min-direction-right {
+                        margin: 0px;
+                        margin-bottom: -20px;
+                        bottom: 10px;
+                      }
+                        bar-card-value {
+                        margin: 0px;
+                        font-size: 13px;
                         margin-left: auto;
-                        margin-bottom: auto;
-                        margin-top: 0px;
+                        margin-right: auto;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;
+                      }
+                      bar-card-name {
+                        margin: 0px;
+                        margin-top: 5px;
+                        font-size: 14px;
+                        font-weight: bold;
+                        text-shadow: 1px 1px #0005;              
+                      }
+                      bar-card-max {
+                        margin: 0px;
+                        margin-left: auto;
+                        margin-top: -20px;
+                        top: 10px;
                       }
                       bar-card-divider {
                         display: none;
-                      }
-                      bar-card-contentbar {
-                        flex-direction: column;
-                      }                    
+                      }                   
                     tap_action: service
                     service_options:
                       domain: script
