@@ -1795,3 +1795,19 @@ views:
                       - VolumeUp
                     device: 35324836        
 
+          - type: horizontal-stack
+            cards:                  
+
+              - type: "custom:button-card"
+                color_type: icon
+                color: rgb(255, 255, 255)
+                icon: mdi:alarm
+                name: "Shawn"
+                tap_action:
+                  action: call-service
+                  service: rest_command.wake_remote
+              
+              - type: "custom:gap-card"
+              - type: "custom:gap-card"
+              - type: "custom:gap-card"
+              - type: "custom:gap-card"

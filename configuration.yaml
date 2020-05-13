@@ -425,3 +425,7 @@ switch:
             program_id: 1
 
 browser_mod:
+
+rest_command:
+  wake_remote:
+    url: !secret webhook_wake
