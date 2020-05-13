@@ -203,7 +203,7 @@ sensor:
         friendly_name: ''
       
       webhook_wake:
-        value_template: !secret erbhook_wake
+        value_template: !secret webhook_wake
         
 #Input Booleans
 
@@ -263,7 +263,6 @@ isy994:
   host: !secret isy_host
   username: !secret isy_user
   password: !secret isy_pass
-  enable_climate: false
 
 #Elk M1 Integration
 elkm1:
