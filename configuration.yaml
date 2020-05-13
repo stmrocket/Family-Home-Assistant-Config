@@ -201,6 +201,9 @@ sensor:
       blank:
         value_template: ''
         friendly_name: ''
+      
+      webhook_wake:
+        value_template: !secret erbhook_wake
         
 #Input Booleans
 
@@ -428,5 +431,5 @@ browser_mod:
 
 rest_command:
   wake_remote:
-    url: !secret webhook_wake
+    url: "{{states('sensor.webhook_wake')}}"
     method: post
