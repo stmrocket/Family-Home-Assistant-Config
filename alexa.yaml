@@ -15,5 +15,5 @@ smart_home:
       - switch
       - cover
 
-  entity_config:
+  #entity_config:
     
