@@ -1,7 +1,7 @@
 smart_home:
   filter:
     include_entities:
-
+      - light.back_yard_l
 
     exclude_domains:
       - automation
