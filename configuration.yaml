@@ -287,8 +287,8 @@ elkm1:
     include: [1-15, 17-26, 49-53]
 
 #Alexa
-#api:
-#alexa: !include alexa.yaml
+api:
+alexa: !include alexa.yaml
 
 # Zoneminder
 # zoneminder:
