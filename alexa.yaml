@@ -11,6 +11,11 @@ smart_home:
       - light.front_porch_1
       - light.guest_lamp
       - light.master_lamp
+      - input_boolean.elk_night_on
+      - input_boolean.elk_night_off
+      - input_boolean.elk_stay_on
+      - input_boolean.elk_stay_off
+      - input_boolean.elk_away_on
 
     exclude_domains:
       - automation
@@ -26,7 +31,8 @@ smart_home:
       - binary_sensor
       - media_player
       - input_boolean
-      - climate   
+      - climate
+      - input_number   
 
   entity_config:
     switch.left_back_porch:
