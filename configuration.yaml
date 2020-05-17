@@ -239,7 +239,7 @@ input_boolean:
     name: Outside Timer Lights
     icon: mdi:timer
   
-    elk_night_on:
+  elk_night_on:
     name: Elk Night Mode On Trigger
     icon: mdi:alarm-bell
 
