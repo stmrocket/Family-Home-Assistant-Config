@@ -239,6 +239,26 @@ input_boolean:
     name: Outside Timer Lights
     icon: mdi:timer
   
+    elk_night_on:
+    name: Elk Night Mode On Trigger
+    icon: mdi:alarm-bell
+
+  elk_night_off:
+    name: Elk Night Mode Off Trigger
+    icon: mdi:alarm-bell  
+
+  elk_stay_on:
+    name: Elk Stay Mode On Trigger
+    icon: mdi:alarm-bell
+
+  elk_stay_off:
+    name: Elk Stay Mode Off Trigger
+    icon: mdi:alarm-bell
+
+  elk_away_on:
+    name: Elk Away Mode On Trigger
+    icon: mdi:alarm-bell
+  
 # Timers
 timer:
   washer_alert:
@@ -276,7 +296,7 @@ elkm1:
   keypad:
     exclude: [4-16]
   output:
-    include: [3, 64, 177-180]
+    include: [3, 64, 177-180, 182]
   task:
     enabled: false
   thermostat:
@@ -385,8 +405,6 @@ media_player:
 hacs:
   token: !secret hacs_git
 
-#Breaking Changes
-breaking_changes:
 
 #Alexa Media Player
 alexa_media:

@@ -1,7 +1,16 @@
 smart_home:
   filter:
     include_entities:
-      - light.back_yard_l
+      - switch.left_back_porch
+      - switch.right_back_porch
+      - switch.back_porch
+      - switch.den_lamp
+      - switch.driveay
+      - light.craft_room_lamp
+      - light.entry
+      - light.front_porch_1
+      - light.guest_lamp
+      - light.master_lamp
 
     exclude_domains:
       - automation
@@ -14,6 +23,21 @@ smart_home:
       - sensor
       - switch
       - cover
+      - binary_sensor
+      - media_player
+      - input_boolean
+      - climate   
 
-  #entity_config:
-    
+  entity_config:
+    switch.left_back_porch:
+      name: Left Back Yard Light
+    switch.right_back_porch:
+      name: Right Back Yard Light
+    switch.back_porch:
+      name: Back Porch Light
+    switch.driveway:
+      name: Driveway Light
+    light.entry:
+      name: Entry Light
+    light.front_porch_1:
+      name: Front Porch Light
