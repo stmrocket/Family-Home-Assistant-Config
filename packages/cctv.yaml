@@ -1,0 +1,122 @@
+camera:
+  - platform: mjpeg
+    name: Front Porch
+    still_image_url: !secret front_porch_still
+    mjpeg_url: !secret front_porch_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Back Porch
+    still_image_url: !secret back_porch_still
+    mjpeg_url: !secret back_porch_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Den
+    still_image_url: !secret den_still
+    mjpeg_url: !secret den_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Kitchen
+    still_image_url: !secret kitchen_still
+    mjpeg_url: !secret kitchen_stream
+    verify_ssl: false
+
+  - platform: mqtt
+    name: Back Porch Last Person
+    topic: frigate/back_porch/person/snapshot
+
+  - platform: mqtt
+    name: Front Porch Last Person
+    topic: frigate/front_porch/person/snapshot
+
+binary_sensor:
+  - platform: mqtt
+    name: Back Porch Person
+    state_topic: frigate/back_porch/person
+    device_class: motion
+    availability_topic: frigate/available
+
+  - platform: mqtt
+    name: Front Porch Person
+    state_topic: frigate/front_porch/person
+    device_class: motion
+    availability_topic: frigate/available
+
+sensor:
+  - platform: rest
+    name: Frigate Debug
+    resource: !secret frigate_debug
+    json_attributes:
+      - back_porch
+      - front_porch
+      - coral
+    value_template: 'OK' 
+
+  - platform: template
+    sensors:
+      frigate_back_porch_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_back_porch_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_back_porch_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_front_porch_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_front_porch_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_front_porch_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_coral_inference:
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
+        unit_of_measurement: 'ms'   
+      frigate_coral_queue_length:
+        value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["detection_queue"] }}' 
+        unit_of_measurement: 'frames'       
+
+input_boolean:
+
+  frigate_enabled:
+    name: Enable Frigate
+    icon: mdi:cctv
+
+input_number:
+  frigate_disable_time:
+    name: Frigate Disable Time
+    min: 1
+    max: 24
+    step: 1
+    icon: mdi:camera-timer
+    unit_of_measurement: h
+
+timer:
+  frigate_disable:
+    name: Frigate Auto-restart Timer
+    icon: mdi:timer
+    
+shell_command:
+  clear_temp_images: bash /config/bin/clean_up_temp_images.sh
+
+notify:
+  - platform: smtp
+    name: cctv_email
+    server: !secret smtp_server
+    port: 587
+    timeout: 15
+    sender: !secret smtp_user
+    encryption: starttls
+    username: !secret smtp_user
+    password: !secret smtp_pass
+    recipient:
+      - !secret karen_email
+    sender_name: Home Assistant  
