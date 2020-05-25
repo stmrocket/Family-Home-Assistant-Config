@@ -61,10 +61,6 @@
         seconds: 30
   action:
     - service: rest_command.docker_frigate_restart
-    - service: notify.mobile_app_shawn_7t
-      data:
-        message: Frigate has been restarted due to unresponsiveness.
-        title: Frigate CCTV
 
 - alias: Start Reset Timer When Frigate Disabled
   trigger:
