@@ -476,6 +476,7 @@ views:
           #       name: Tree
           #       hold_action: 
           #         action: more-info
+
   ################################################################
   #                                                               #
   #                          Home - Laundry                       #
@@ -2059,7 +2060,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.irrigation_program
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:alarm-check
                     name: Program Enable
                     hold_action: 
@@ -2067,7 +2068,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.irrigation_run_program
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:weather-pouring
                     name: Run Program
                     hold_action: 
@@ -2078,7 +2079,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.front_yard_right
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:numeric-1-box
                     name: R Front
                     hold_action: 
@@ -2086,7 +2087,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.front_yard_left
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:numeric-2-box
                     name: L Front
                     hold_action: 
@@ -2094,7 +2095,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.front_flower_bed
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:numeric-3-box
                     name: Flowerbed
                     hold_action: 
@@ -2102,7 +2103,7 @@ views:
                   - type: "custom:button-card"
                     entity: switch.back_yard
                     color_type: icon
-                    color: rgb(0, 145, 255)
+                    color: rgb(228, 94, 101)
                     icon: mdi:numeric-4-box
                     name: Back
                     hold_action: 
