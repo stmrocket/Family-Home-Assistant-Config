@@ -213,7 +213,7 @@ popup_hacs:
           columns:
             - {field: name, title: 'Name'}
             - {field: installed version, title: 'Installed'}
-            - {field: available version, title: 'Latest'}              
+            - {field: available version, title: 'Latest'}           
 
 popup_washer:
   sequence:
