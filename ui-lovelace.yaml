@@ -2024,7 +2024,19 @@ views:
             - entity: input_boolean.zigbee_permit_join
             - entity: timer.zigbee_permit_join
             - entity: sensor.bridge_state    
+          
+          - type: entities
+            show_header_toggle: false
+            title: CCTV
+            entities:          
+              - input_boolean.frigate_enabled
+              - entity: input_number.frigate_disable_time
+                name: Delay
+              - entity: timer.frigate_disable
+                name: Time Remaining
 
+      - type: vertical-stack
+        cards:  
           - type: custom:vertical-stack-in-card
             cards:
               - type: picture-elements
