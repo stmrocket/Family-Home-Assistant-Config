@@ -33,7 +33,7 @@ cards:
             - entity: camera.back_porch
             - entity: camera.den
             - entity: camera.kitchen
-
+      - type: 'custom:gap-card'
 #################################################################
 #                                                               #
 #                          Home - HVAC                          #
