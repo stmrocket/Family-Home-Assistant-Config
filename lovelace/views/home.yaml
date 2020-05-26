@@ -42,7 +42,7 @@ cards:
 ################################################################# 
   - type: vertical-stack
     cards: 
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
         cards:
             - type: custom:simple-thermostat
               entity: climate.home
