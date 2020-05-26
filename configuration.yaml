@@ -63,7 +63,7 @@ lovelace:
     type: js
   - url: /hacsfiles/lovelace-card-mod/card-mod.js
     type: module
-  - url:	/hacsfiles/stack-in-card/stack-in-card.js
+  - url: /hacsfiles/stack-in-card/stack-in-card.js
     type:	module
 
 # Discover some devices automatically
