@@ -1326,6 +1326,9 @@ cards:
                     deviceID: 
                       - this
 
+      - type: 'custom:gap-card'
+        height: 1
+
 #################################################################
 #                                                               #
 #                      Home - GitHub                            #
