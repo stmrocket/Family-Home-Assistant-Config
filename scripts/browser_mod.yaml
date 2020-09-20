@@ -325,6 +325,9 @@ popup_pooper:
                       color: rgb(255, 255, 255)
                   icon: mdi:power
                   name: Power
+                  lock:
+                    enabled: true
+                    unlock: hold
                 
                 - type: "custom:button-card"
                   color_type: icon
