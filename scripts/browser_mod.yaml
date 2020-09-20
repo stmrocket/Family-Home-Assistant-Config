@@ -136,7 +136,7 @@ popup_github:
                       color: rgb(228, 94, 101)
                     - value: 'off'
                       color: rgb(255, 255, 255)
-                  icon: mdi:github-circle
+                  icon: mdi:github
                   name: Pull
                   tap_action: 
                     action: call-service
@@ -150,7 +150,7 @@ popup_github:
                       color: rgb(228, 94, 101)
                     - value: 'off'
                       color: rgb(255, 255, 255)
-                  icon: mdi:github-circle
+                  icon: mdi:github
                   name: Restart
                   tap_action: 
                     action: call-service
@@ -391,7 +391,7 @@ popup_pooper:
                 - type: "custom:button-card"
                   entity: sensor.litter_robot_cycle_wait_time
                   color_type: icon
-                  icon: mdi:timer
+                  icon: mdi:timer-outline
                   state:
                     - value: '3'
                       color: rgb(228, 94, 101)
@@ -409,7 +409,7 @@ popup_pooper:
                 - type: "custom:button-card"
                   entity: sensor.litter_robot_cycle_wait_time
                   color_type: icon
-                  icon: mdi:timer
+                  icon: mdi:timer-outline
                   state:
                     - value: '7'
                       color: rgb(228, 94, 101)
@@ -427,7 +427,7 @@ popup_pooper:
                 - type: "custom:button-card"
                   entity: sensor.litter_robot_cycle_wait_time
                   color_type: icon
-                  icon: mdi:timer
+                  icon: mdi:timer-outline
                   state:
                     - value: '15'
                       color: rgb(228, 94, 101)

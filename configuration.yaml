@@ -233,9 +233,6 @@ sensor:
       - pressure
       - visibility
 
-  - platform: rpi_power
-    text_state: true
-
   #Template Sensors
   - platform: template
     sensors:
@@ -262,7 +259,7 @@ input_boolean:
 
   guest_mode:
     name: Guest Mode
-    icon: mdi:timer
+    icon: mdi:timer-outline
 
   timer_lights:
     name: Timer Lights
@@ -280,7 +277,7 @@ input_boolean:
     
   outside_timer_lights:
     name: Outside Timer Lights
-    icon: mdi:timer
+    icon: mdi:timer-outline
   
   elk_night_on:
     name: Elk Night Mode On Trigger
@@ -358,14 +355,6 @@ ffmpeg:
 #Notification Services
 notify:
 
-  - name: den_kodi
-    platform: kodi
-    host: !secret den_kodi_host
-
-  - name: guest_kodi
-    platform: kodi
-    host: !secret guest_kodi_host
-
   - platform: html5
     name: browser
     vapid_pub_key: !secret vapid_public
@@ -380,15 +369,6 @@ counter:
   washer_alert:
     initial: 0
     step: 1
-
-# Kodi Media Player
-media_player:
-  - name: den_kodi
-    platform: kodi
-    host: !secret den_kodi_host
-  - name: guest_kodi
-    platform: kodi
-    host: !secret guest_kodi_host
       
 #HACS
 hacs:
