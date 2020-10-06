@@ -42,3 +42,20 @@
     - service: frontend.set_theme
       data:
         name: midnight                  
+
+- alias: Turn On Sound Machine
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.area_001
+      from: armed_home
+      to: armed_night
+    - platform: state
+      entity_id: alarm_control_panel.area_001
+      from: disarmed
+      to: armed_night
+  action: 
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.alexa_master
+        media_content_id: "Turn On Sound Machine"
+        media_content_type: "routine"
