@@ -1591,7 +1591,7 @@ cards:
         cards:                  
 
           - type: "custom:button-card"
-            entity: remote.harmony_hub
+            entity: remote.harmony_den
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:remote-tv-off
@@ -1600,10 +1600,10 @@ cards:
               action: call-service
               service: remote.turn_off
               service_data:
-                entity_id: remote.harmony_hub
+                entity_id: remote.harmony_den
           
           - type: "custom:button-card"
-            entity: remote.harmony_hub
+            entity: remote.harmony_den
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:volume-minus
@@ -1612,13 +1612,13 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_hub
+                entity_id: remote.harmony_den
                 command:
                   - VolumeDown
                 device: 35324836
 
           - type: "custom:button-card"
-            entity: remote.harmony_hub
+            entity: remote.harmony_den
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:volume-mute
@@ -1627,13 +1627,13 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_hub
+                entity_id: remote.harmony_den
                 command:
                   - Mute
                 device: 35324836      
 
           - type: "custom:button-card"
-            entity: remote.harmony_hub
+            entity: remote.harmony_den
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:volume-plus
@@ -1642,7 +1642,7 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_hub
+                entity_id: remote.harmony_den
                 command:
                   - VolumeUp
                 device: 35324836        
