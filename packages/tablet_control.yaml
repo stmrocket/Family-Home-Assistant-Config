@@ -1,0 +1,37 @@
+rest_command:
+  den_tablet_on:
+    url: !secret den_tablet_on
+  den_tablet_off:
+    url: !secret den_tablet_off
+  den_tablet_reload:
+    url: !secret den_tablet_reload
+  den_tablet_restart:
+    url: !secret den_tablet_restart
+  craft_tablet_on:
+    url: !secret craft_tablet_on
+  craft_tablet_off:
+    url: !secret craft_tablet_off
+  craft_tablet_reload:
+    url: !secret craft_tablet_reload
+  craft_tablet_restart:
+    url: !secret craft_tablet_restart
+script:
+  tablets_on:
+    sequence:
+      - service: rest_command.den_tablet_on
+      - service: rest_command.craft_tablet_on
+
+  tablets_off:
+    sequence:
+      - service: rest_command.den_tablet_off
+      - service: rest_command.craft_tablet_off
+
+  tablets_reload:
+    sequence:
+      - service: rest_command.den_tablet_reload
+      - service: rest_command.craft_tablet_reload
+
+  tablets_restart:
+    sequence:
+      - service: rest_command.den_tablet_restart
+      - service: rest_command.craft_tablet_restart
