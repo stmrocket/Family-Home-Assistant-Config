@@ -44,6 +44,8 @@ cards:
 ################################################################# 
       - type: vertical-stack
         cards:  
+        - type: 'custom:mm2-clock-card'
+          timezone: America/Chicago
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
