@@ -22,6 +22,12 @@ frontend:
 # Enable Lovelace yaml mode
 lovelace:
   mode: yaml
+  dashboards:
+    lovelace-tablet:
+      mode: yaml
+      filename: lovelace-tablet.yaml
+      title: Tablet View
+      show_in_sidebar: false
   resources:
   - url: /hacsfiles/bar-card/bar-card.js
     type: module
@@ -32,8 +38,6 @@ lovelace:
   - url: /hacsfiles/lovelace-card-tools/card-tools.js
     type: js
   - url: /hacsfiles/circle-sensor-card/circle-sensor-card.js
-    type: module
-  - url: /hacsfiles/custom-header/custom-header.js
     type: module
   - url: /hacsfiles/dark-sky-weather-card/dark-sky-weather-card.js
     type: module
