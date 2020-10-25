@@ -1,0 +1,231 @@
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                              VIEW 9 - Office Tablet                                                       #
+#                                                                                                                                           #
+############################################################################################################################################# 
+
+id: 8
+icon: mdi:castle
+name: Home
+cards:
+
+#################################################################
+#                                                               #
+#                      Home - Weather Card                      #
+#                                                               #
+#################################################################
+
+      - type: vertical-stack
+        cards:
+          - !include /config/lovelace/cards/weather.yaml  
+
+#################################################################
+#                                                               #
+#                        Home - CCTV                            #
+#                                                               #
+################################################################# 
+          - type: glance
+            columns: 2
+            show_name: true
+            show_state: false
+            entities:
+                - entity: camera.front_porch
+                - entity: camera.back_porch
+          - type: 'custom:gap-card'
+            
+
+#################################################################
+#                                                               #
+#                         Home - Media                          #
+#                                                               #
+################################################################# 
+      - type: vertical-stack
+        cards:  
+        - type: 'custom:mm2-clock-card'
+          timezone: America/Chicago
+          displaySeconds: false
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: sensor.litter_robot_status_short
+              color_type: icon
+              icon: mdi:cat
+              state:
+                - value: "Ready"
+                  color: rgb(255, 255, 255)
+                  name: '[[[ return `Ready - ${states[''sensor.litter_robot_drawer_level''].state}%` ]]]'
+                - value: "Clean"
+                  color: rgb(255, 255, 255)
+                  name: Clean
+                - value: "Drawer 2"
+                  color: rgb(255, 255, 255)
+                  name: Drawer 2
+                - value: "Drawer 1"
+                  color: rgb(255, 255, 255)
+                  name: Drawer 1
+                - value: "Sensor"
+                  color: rgb(228, 94, 101)
+                  name: Sensor
+                - value: "Timing"
+                  color: rgb(255, 255, 255)
+                  name: Timing
+                - value: "Bonnet"
+                  color: rgb(228, 94, 101)
+                  name: Bonnet
+                - value: "Paused"
+                  color: rgb(228, 94, 101)
+                  name: Paused
+                - value: "Off"
+                  color: rgb(255, 255, 255)
+                  name: "Off"
+                - value: "Full"
+                  color: rgb(228, 94, 101)
+                  name: Full
+                - value: "Error"
+                  color: rgb(228, 94, 101)
+                  name: Error
+              tap_action:
+                action: call-service
+                service: script.popup_pooper
+                service_data:
+                  deviceID: 
+                    - this                
+            - type: "custom:button-card"
+              entity: sensor.washer_state
+              color_type: icon
+              icon: mdi:washing-machine
+              state:
+                - value: "Washing"
+                  color: rgb(228, 94, 101)
+                  name: Washing
+                - value: "Idle"
+                  color: rgb(255, 255, 255)
+                  name: Idle   
+              tap_action:
+                action: call-service
+                service: script.popup_washer
+                service_data:
+                  deviceID: 
+                    - this                
+              hold_action: 
+                action: call-service
+                service: script.popup_washer
+                service_data:
+                  deviceID: 
+                    - this
+
+            - type: "custom:button-card"
+              entity: sensor.dryer_state
+              color_type: icon
+              icon: mdi:tumble-dryer
+              state:
+                - value: "Drying"
+                  color: rgb(228, 94, 101)
+                  name: Drying
+                - value: "Idle"
+                  color: rgb(255, 255, 255)
+                  name: Idle
+                - value: "Door Open"
+                  color: rgb(255, 200, 0)
+                  name: Door                    
+              tap_action:
+                action: call-service
+                service: script.popup_dryer
+                service_data:
+                  deviceID: 
+                    - this              
+              hold_action: 
+                action: call-service
+                service: script.popup_dryer
+                service_data:
+                  deviceID: 
+                    - this
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: switch.driveway
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:road
+              name: Driveway
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: light.front_porch_1
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:door
+              name: Front Porch
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: light.entry
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:ceiling-light
+              name: Entry
+              hold_action: 
+                action: more-info
+  
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: switch.right_back_porch
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:spotlight
+              name: L Flood
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: switch.back_porch_1
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:door
+              name: Back Porch
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: switch.left_back_porch
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:spotlight
+              name: R Flood
+              hold_action: 
+                action: more-info
+        
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: switch.den_lamp
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:lamp
+              name: Den
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: light.master_lamp
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:lamp
+              name: Master
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: light.guest_lamp
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:lamp
+              name: Guest
+              hold_action: 
+                action: more-info
+            - type: "custom:button-card"
+              entity: light.craft_room_lamp
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:lamp
+              name: Craft
+              hold_action: 
+                action: more-info

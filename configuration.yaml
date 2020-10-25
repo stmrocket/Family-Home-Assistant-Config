@@ -23,10 +23,15 @@ frontend:
 lovelace:
   mode: yaml
   dashboards:
-    lovelace-tablet:
+    lovelace-den:
       mode: yaml
-      filename: lovelace-tablet.yaml
-      title: Tablet View
+      filename: lovelace-den.yaml
+      title: Den Tablet View
+      show_in_sidebar: false
+    lovelace-craft:
+      mode: yaml
+      filename: lovelace-craft.yaml
+      title: Craft Tablet View
       show_in_sidebar: false
   resources:
   - url: /hacsfiles/bar-card/bar-card.js
