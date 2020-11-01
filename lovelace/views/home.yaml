@@ -1,269 +1,265 @@
 #############################################################################################################################################
-#                                                                                                                                           # 
+#                                                                                                                                           #
 #                                                               VIEW 0 - HOME                                                               #
 #                                                                                                                                           #
-#############################################################################################################################################  
+#############################################################################################################################################
 
 id: 0
 icon: mdi:castle
 name: Home
 cards:
-
-#################################################################
-#                                                               #
-#                      Home - Weather Card                      #
-#                                                               #
-#################################################################
+  #################################################################
+  #                                                               #
+  #                      Home - Weather Card                      #
+  #                                                               #
+  #################################################################
 
   - type: vertical-stack
     cards:
       - !include /config/lovelace/cards/weather.yaml
 
-#################################################################
-#                                                               #
-#                       Home - Cameras                          #
-#                                                               #
-################################################################# 
+      #################################################################
+      #                                                               #
+      #                       Home - Cameras                          #
+      #                                                               #
+      #################################################################
       - type: glance
         columns: 4
         show_name: true
         show_state: false
         entities:
-            - entity: camera.front_porch
-            - entity: camera.back_porch
-            - entity: camera.den
-            - entity: camera.kitchen
-      - type: 'custom:gap-card'
+          - entity: camera.front_porch
+          - entity: camera.back_porch
+          - entity: camera.den
+          - entity: camera.kitchen
+      - type: "custom:gap-card"
         height: 1
-#################################################################
-#                                                               #
-#                          Home - HVAC                          #
-#                                                               #
-################################################################# 
+  #################################################################
+  #                                                               #
+  #                          Home - HVAC                          #
+  #                                                               #
+  #################################################################
   - type: vertical-stack
-    cards: 
-      - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:stack-in-card
         cards:
-            - type: custom:simple-thermostat
-              entity: climate.home
-              icon: mdi:thermostat-box
-              step_size: 1
-              decimals: 0
-              sensors:
+          - type: custom:simple-thermostat
+            entity: climate.home
+            icon: mdi:thermostat-box
+            step_size: 1
+            decimals: 0
+            sensors:
               - attribute: current_humidity
                 name: Humidity
                 unit: "%"
               - entity: sensor.hvac_system_state
                 name: State
-              hide:
-                state: true
-              control:
-                - hvac:
-                    mode: none
-              
+            hide:
+              state: true
+            control:
+              - hvac:
+                  mode: none
 
-            - type: horizontal-stack
-              cards:          
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                name: "Heat:"
+                entity: sensor.hvac_system_heat_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: red
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
 
-                - type: custom:bar-card
-                  name: 'Heat:'
-                  entity: sensor.hvac_system_heat_runtime
-                  entity_row: true
-                  positions:
-                    icon: 'off'
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style: 
-                    border-radius: 5px
-                  max: 24
-                  color: red
-                  decimal: 2
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  
-                - type: custom:bar-card
-                  name: 'Cool:'
-                  entity: sensor.hvac_system_cool_runtime
-                  entity_row: true
-                  positions:
-                    icon: 'off'
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style: 
-                    border-radius: 5px
-                  max: 24
-                  color: blue
-                  decimal: 2
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
+              - type: custom:bar-card
+                name: "Cool:"
+                entity: sensor.hvac_system_cool_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: blue
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
 
-            - type: horizontal-stack
-              cards:          
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                name: "Fan:"
+                entity: sensor.hvac_system_fan_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: green
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
 
-                - type: custom:bar-card
-                  name: 'Fan:'
-                  entity: sensor.hvac_system_fan_runtime
-                  entity_row: true
-                  positions:
-                    icon: 'off'
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style: 
-                    border-radius: 5px
-                  max: 24
-                  color: green
-                  decimal: 2
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  
-                - type: custom:bar-card
-                  name: 'Total:'
-                  entity: sensor.hvac_system_runtime
-                  entity_row: true
-                  positions:
-                    icon: 'off'
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style: 
-                    border-radius: 5px
-                  max: 24
-                  decimal: 2
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
+              - type: custom:bar-card
+                name: "Total:"
+                entity: sensor.hvac_system_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
 
-#################################################################
-#                                                               #
-#                       Home - Buttons                          #
-#                                                               #
-################################################################# 
+      #################################################################
+      #                                                               #
+      #                       Home - Buttons                          #
+      #                                                               #
+      #################################################################
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
@@ -272,7 +268,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:road
             name: Driveway
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: light.front_porch_1
@@ -280,7 +276,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:door
             name: Front Porch
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: light.entry
@@ -288,7 +284,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:ceiling-light
             name: Entry
-            hold_action: 
+            hold_action:
               action: more-info
 
       - type: horizontal-stack
@@ -299,7 +295,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:spotlight
             name: L Flood
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: switch.back_porch_1
@@ -307,7 +303,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:door
             name: Back Porch
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: switch.left_back_porch
@@ -315,9 +311,9 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:spotlight
             name: R Flood
-            hold_action: 
+            hold_action:
               action: more-info
-      
+
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
@@ -326,7 +322,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:lamp
             name: Den
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: light.master_lamp
@@ -334,7 +330,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:lamp
             name: Master
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: light.guest_lamp
@@ -342,7 +338,7 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:lamp
             name: Guest
-            hold_action: 
+            hold_action:
               action: more-info
           - type: "custom:button-card"
             entity: light.craft_room_lamp
@@ -350,10 +346,10 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:lamp
             name: Craft
-            hold_action: 
+            hold_action:
               action: more-info
       # - type: horizontal-stack
-      #   cards:                    
+      #   cards:
       #     - type: "custom:gap-card"
       #     - type: "custom:gap-card"
       #     - type: "custom:gap-card"
@@ -363,16 +359,16 @@ cards:
       #       color: rgb(228, 94, 101)
       #       icon: mdi:pine-tree
       #       name: Tree
-      #       hold_action: 
+      #       hold_action:
       #         action: more-info
 
-################################################################
-#                                                               #
-#                          Home - Laundry                       #
-#                                                               #
-################################################################# 
+  ################################################################
+  #                                                               #
+  #                          Home - Laundry                       #
+  #                                                               #
+  #################################################################
   - type: vertical-stack
-    cards: 
+    cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
@@ -382,7 +378,7 @@ cards:
             state:
               - value: "Ready"
                 color: rgb(255, 255, 255)
-                name: '[[[ return `Ready - ${states[''sensor.litter_robot_drawer_level''].state}%` ]]]'
+                name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
               - value: "Clean"
                 color: rgb(255, 255, 255)
                 name: Clean
@@ -417,8 +413,8 @@ cards:
               action: call-service
               service: script.popup_pooper
               service_data:
-                deviceID: 
-                  - this                
+                deviceID:
+                  - this
           - type: "custom:button-card"
             entity: sensor.washer_state
             color_type: icon
@@ -429,18 +425,18 @@ cards:
                 name: Washing
               - value: "Idle"
                 color: rgb(255, 255, 255)
-                name: Idle   
+                name: Idle
             tap_action:
               action: call-service
               service: script.popup_washer
               service_data:
-                deviceID: 
-                  - this                
-            hold_action: 
+                deviceID:
+                  - this
+            hold_action:
               action: call-service
               service: script.popup_washer
               service_data:
-                deviceID: 
+                deviceID:
                   - this
 
           - type: "custom:button-card"
@@ -456,25 +452,25 @@ cards:
                 name: Idle
               - value: "Door Open"
                 color: rgb(255, 200, 0)
-                name: Door                    
+                name: Door
             tap_action:
               action: call-service
               service: script.popup_dryer
               service_data:
-                deviceID: 
-                  - this              
-            hold_action: 
+                deviceID:
+                  - this
+            hold_action:
               action: call-service
               service: script.popup_dryer
               service_data:
-                deviceID: 
+                deviceID:
                   - this
 
-#################################################################
-#                                                               #
-#                      Home - Alarm                             #
-#                                                               #
-################################################################# 
+      #################################################################
+      #                                                               #
+      #                      Home - Alarm                             #
+      #                                                               #
+      #################################################################
       - type: alarm-panel
         name: House Alarm
         states:
