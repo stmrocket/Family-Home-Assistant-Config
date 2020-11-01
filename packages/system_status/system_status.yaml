@@ -11,25 +11,24 @@
 #################################################################
 
 binary_sensor:
-
   - platform: ping
     name: WAN Ping
     host: !secret ping_ip
     count: 4
-    scan_interval: 600      
+    scan_interval: 600
 
   - platform: template
     sensors:
       # True if there's an update available for supervisor
       updater_supervisor:
-        friendly_name: 'Updater - Supervisor'
+        friendly_name: "Updater - Supervisor"
         device_class: problem
-        value_template: "{{ state_attr('sensor.supervisor_updates', 'current_version') != state_attr('sensor.supervisor_updates', 'newest_version') }}"
+        value_template: "{{ state_attr('sensor.supervisor_updates', 'update_available') }}"
         availability_template: "{{ (states('sensor.supervisor_updates') | int(-1)) > -1 }}"
 
       # True if there's updates available for any addons
       updater_addons:
-        friendly_name: 'Updater - Addons'
+        friendly_name: "Updater - Addons"
         device_class: problem
         value_template: "{{ states('sensor.supervisor_updates') | int > 0 }}"
 
@@ -40,46 +39,44 @@ binary_sensor:
 #################################################################
 
 sensor:
-
-####################################################
-#                                                  #
-#              Sensor - Command Line               #
-#                                                  #
-####################################################
-
+  ####################################################
+  #                                                  #
+  #              Sensor - Command Line               #
+  #                                                  #
+  ####################################################
 
   - platform: command_line
     name: CPU Temperature
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
-    value_template: '{{ (value | multiply(0.001)) | round(1) }}'
-    
-####################################################
-#                                                  #
-#                  Sensor - SNMP                   #
-#                                                  #
-#################################################### 
+    value_template: "{{ (value | multiply(0.001)) | round(1) }}"
+
+  ####################################################
+  #                                                  #
+  #                  Sensor - SNMP                   #
+  #                                                  #
+  ####################################################
 
   - platform: snmp
-    name: 'ERL WAN In'
+    name: "ERL WAN In"
     host: !secret edge_os_host
     baseoid: 1.3.6.1.2.1.31.1.1.1.6.2
-    community: 'public'
-    version: '2c'
+    community: "public"
+    version: "2c"
     scan_interval: 10
 
   - platform: snmp
-    name: 'ERL WAN Out'
+    name: "ERL WAN Out"
     host: !secret edge_os_host
     baseoid: 1.3.6.1.2.1.31.1.1.1.10.2
-    community: 'public'
-    version: '2c'
+    community: "public"
+    version: "2c"
     scan_interval: 10
 
   - platform: snmp
     host: !secret nas_ip
     baseoid: .1.3.6.1.2.1.25.1.1.0
-    name: 'NAS Uptime'
+    name: "NAS Uptime"
     value_template: >-
       {% set time = (value | int) | int %}
       {% set minutes = ((time % 360000) / 6000) | int%}
@@ -123,7 +120,7 @@ sensor:
   - platform: snmp
     host: !secret core_router_ip
     baseoid: .1.3.6.1.2.1.25.1.1.0
-    name: 'Core Router Uptime'
+    name: "Core Router Uptime"
     value_template: >-
       {% set time = (value | int) | int %}
       {% set minutes = ((time % 360000) / 6000) | int%}
@@ -164,67 +161,63 @@ sensor:
           {%- endif -%}
         {%- endif -%}
 
-####################################################
-#                                                  #
-#             Sensor - System Monitor              #
-#                                                  #
-####################################################
+  ####################################################
+  #                                                  #
+  #             Sensor - System Monitor              #
+  #                                                  #
+  ####################################################
 
   - platform: systemmonitor
     resources:
-    - type: disk_use_percent
-      arg: '/'
-    - type: memory_use_percent
-    - type: processor_use
-    - type: last_boot
+      - type: disk_use_percent
+        arg: "/"
+      - type: memory_use_percent
+      - type: processor_use
+      - type: last_boot
 
-####################################################
-#                                                  #
-#               Sensor - Statistics                #
-#                                                  #
-####################################################
+  ####################################################
+  #                                                  #
+  #               Sensor - Statistics                #
+  #                                                  #
+  ####################################################
 
   - platform: statistics
-    name: 'ERL WAN In Stats'
+    name: "ERL WAN In Stats"
     entity_id: sensor.erl_wan_in
     sampling_size: 4
     max_age:
       hours: 24
 
   - platform: statistics
-    name: 'ERL WAN Out Stats'
+    name: "ERL WAN Out Stats"
     entity_id: sensor.erl_wan_out
     sampling_size: 4
     max_age:
       hours: 24
 
-#################################################################
-#                                                               #
-#                       Template Sensors                        #
-#                                                               #
-################################################################# 
-   
+  #################################################################
+  #                                                               #
+  #                       Template Sensors                        #
+  #                                                               #
+  #################################################################
+
   - platform: template
     sensors:
       wan_in_mbps:
         value_template: "{{ (state_attr('sensor.erl_wan_in_stats','change_rate')|float*8*(state_attr('sensor.erl_wan_in_stats', 'sampling_size')-1)/1000000)|round(2) }}"
-        unit_of_measurement: 'MBps'
-        entity_id: sensor.erl_wan_in_stats
+        unit_of_measurement: "MBps"
 
       wan_out_mbps:
         value_template: "{{ (state_attr('sensor.erl_wan_out_stats','change_rate')|float*8*(state_attr('sensor.erl_wan_out_stats', 'sampling_size')-1)/1000000)|round(2) }}"
-        unit_of_measurement: 'MBps'
-        entity_id: sensor.erl_wan_out_stats
-      
+        unit_of_measurement: "MBps"
+
       wan_ping:
-          friendly_name: 'WAN Ping'
-          entity_id:
-            - binary_sensor.wan_ping
-          value_template: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2) }}"
-          unit_of_measurement: "ms"
-      
+        friendly_name: "WAN Ping"
+        value_template: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2) }}"
+        unit_of_measurement: "ms"
+
       sensor_count:
-        friendly_name: 'Number of Sensors'
+        friendly_name: "Number of Sensors"
         value_template: >
           {%- set domains = ['sensor'] -%}
           {%- for domain in domains -%}
@@ -234,9 +227,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       automation_count:
-        friendly_name: 'Number of Automations'
+        friendly_name: "Number of Automations"
         value_template: >
           {%- set domains = ['automation'] -%}
           {%- for domain in domains -%}
@@ -246,9 +239,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       script_count:
-        friendly_name: 'Number of Scripts'
+        friendly_name: "Number of Scripts"
         value_template: >
           {%- set domains = ['script'] -%}
           {%- for domain in domains -%}
@@ -258,9 +251,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       switch_count:
-        friendly_name: 'Number of Switches'
+        friendly_name: "Number of Switches"
         value_template: >
           {%- set domains = ['switch'] -%}
           {%- for domain in domains -%}
@@ -270,9 +263,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       binary_sensor_count:
-        friendly_name: 'Number of Binary Sensors'
+        friendly_name: "Number of Binary Sensors"
         value_template: >
           {%- set domains = ['binary_sensor'] -%}
           {%- for domain in domains -%}
@@ -282,9 +275,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       lights_count:
-        friendly_name: 'Number of Lights'
+        friendly_name: "Number of Lights"
         value_template: >
           {%- set domains = ['light'] -%}
           {%- for domain in domains -%}
@@ -294,9 +287,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       tracker_count:
-        friendly_name: 'Number of Devices'
+        friendly_name: "Number of Devices"
         value_template: >
           {%- set domains = ['device_tracker'] -%}
           {%- for domain in domains -%}
@@ -306,9 +299,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       camera_count:
-        friendly_name: 'Number of Devices'
+        friendly_name: "Number of Devices"
         value_template: >
           {%- set domains = ['camera'] -%}
           {%- for domain in domains -%}
@@ -318,9 +311,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       fan_count:
-        friendly_name: 'Number of Devices'
+        friendly_name: "Number of Devices"
         value_template: >
           {%- set domains = ['fan'] -%}
           {%- for domain in domains -%}
@@ -330,9 +323,9 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-          
+
       media_player_count:
-        friendly_name: 'Number of Devices'
+        friendly_name: "Number of Devices"
         value_template: >
           {%- set domains = ['media_player'] -%}
           {%- for domain in domains -%}
@@ -344,76 +337,76 @@ sensor:
           {%- endfor -%}
 
       automation_count_high:
-        friendly_name: 'Automation Count High Limit'
-        value_template: '{{ states.input_number.automation_count_expected.state |int + 150}}'
+        friendly_name: "Automation Count High Limit"
+        value_template: "{{ states.input_number.automation_count_expected.state |int + 150}}"
 
       automation_count_low:
-        friendly_name: 'Automation Count Low Limit'
-        value_template: '{{ states.input_number.automation_count_expected.state |int - 1}}'
+        friendly_name: "Automation Count Low Limit"
+        value_template: "{{ states.input_number.automation_count_expected.state |int - 1}}"
 
       binary_sensor_count_high:
-        friendly_name: 'Binary Sensor Count High Limit'
-        value_template: '{{ states.input_number.binary_sensor_count_expected.state |int + 150}}'
+        friendly_name: "Binary Sensor Count High Limit"
+        value_template: "{{ states.input_number.binary_sensor_count_expected.state |int + 150}}"
 
       binary_sensor_count_low:
-        friendly_name: 'Binary Sensor Count Low Limit'
-        value_template: '{{ states.input_number.binary_sensor_count_expected.state |int - 1}}'
+        friendly_name: "Binary Sensor Count Low Limit"
+        value_template: "{{ states.input_number.binary_sensor_count_expected.state |int - 1}}"
 
       switch_count_high:
-        friendly_name: 'Switch Count High Limit'
-        value_template: '{{ states.input_number.switch_count_expected.state |int + 150}}'
+        friendly_name: "Switch Count High Limit"
+        value_template: "{{ states.input_number.switch_count_expected.state |int + 150}}"
 
       switch_count_low:
-        friendly_name: 'Switch Count Low Limit'
-        value_template: '{{ states.input_number.switch_count_expected.state |int - 1}}'
+        friendly_name: "Switch Count Low Limit"
+        value_template: "{{ states.input_number.switch_count_expected.state |int - 1}}"
 
       fan_count_high:
-        friendly_name: 'Fan Count High Limit'
-        value_template: '{{ states.input_number.fan_count_expected.state |int + 150}}'
+        friendly_name: "Fan Count High Limit"
+        value_template: "{{ states.input_number.fan_count_expected.state |int + 150}}"
 
       fan_count_low:
-        friendly_name: 'Fan Count Low Limit'
-        value_template: '{{ states.input_number.fan_count_expected.state |int - 1}}'
+        friendly_name: "Fan Count Low Limit"
+        value_template: "{{ states.input_number.fan_count_expected.state |int - 1}}"
 
       light_count_high:
-        friendly_name: 'Light Count High Limit'
-        value_template: '{{ states.input_number.light_count_expected.state |int + 150}}'
+        friendly_name: "Light Count High Limit"
+        value_template: "{{ states.input_number.light_count_expected.state |int + 150}}"
 
       light_count_low:
-        friendly_name: 'Light Count Low Limit'
-        value_template: '{{ states.input_number.light_count_expected.state |int - 1}}'
+        friendly_name: "Light Count Low Limit"
+        value_template: "{{ states.input_number.light_count_expected.state |int - 1}}"
 
       tracked_device_count_high:
-        friendly_name: 'Tracked Device Count High Limit'
-        value_template: '{{ states.input_number.tracked_device_count_expected.state |int + 150}}'
+        friendly_name: "Tracked Device Count High Limit"
+        value_template: "{{ states.input_number.tracked_device_count_expected.state |int + 150}}"
 
       tracked_device_count_low:
-        friendly_name: 'Tracked Device Count Low Limit'
-        value_template: '{{ states.input_number.tracked_device_count_expected.state |int - 1}}'
+        friendly_name: "Tracked Device Count Low Limit"
+        value_template: "{{ states.input_number.tracked_device_count_expected.state |int - 1}}"
 
       media_player_count_high:
-        friendly_name: 'Media Player Count High Limit'
-        value_template: '{{ states.input_number.media_player_count_expected.state |int + 150}}'
+        friendly_name: "Media Player Count High Limit"
+        value_template: "{{ states.input_number.media_player_count_expected.state |int + 150}}"
 
       media_player_count_low:
-        friendly_name: 'Media Player Count Low Limit'
-        value_template: '{{ states.input_number.media_player_count_expected.state |int - 1}}'
+        friendly_name: "Media Player Count Low Limit"
+        value_template: "{{ states.input_number.media_player_count_expected.state |int - 1}}"
 
       script_count_high:
-        friendly_name: 'Script Count High Limit'
-        value_template: '{{ states.input_number.script_count_expected.state |int + 150}}'
+        friendly_name: "Script Count High Limit"
+        value_template: "{{ states.input_number.script_count_expected.state |int + 150}}"
 
       script_count_low:
-        friendly_name: 'Script Count Low Limit'
-        value_template: '{{ states.input_number.script_count_expected.state |int - 1}}'
+        friendly_name: "Script Count Low Limit"
+        value_template: "{{ states.input_number.script_count_expected.state |int - 1}}"
 
       sensor_count_high:
-        friendly_name: 'Sensor Count High Limit'
-        value_template: '{{ states.input_number.sensor_count_expected.state |int + 150}}'
+        friendly_name: "Sensor Count High Limit"
+        value_template: "{{ states.input_number.sensor_count_expected.state |int + 150}}"
 
       sensor_count_low:
-        friendly_name: 'Sensor Count Low Limit'
-        value_template: '{{ states.input_number.sensor_count_expected.state |int - 1}}'
+        friendly_name: "Sensor Count Low Limit"
+        value_template: "{{ states.input_number.sensor_count_expected.state |int - 1}}"
 
       hass_uptime:
         friendly_name: Home Assistant Uptime
@@ -457,11 +450,11 @@ sensor:
                 {%- endif -%}
               {%- endif -%}
 
-####################################################
-#                                                  #
-#                 Sensor - Uptime                  #
-#                                                  #
-####################################################
+  ####################################################
+  #                                                  #
+  #                 Sensor - Uptime                  #
+  #                                                  #
+  ####################################################
 
   - platform: uptime
     name: Time Online
@@ -470,12 +463,14 @@ sensor:
   # Sensor to track available updates for supervisor & addons
   - platform: command_line
     name: Supervisor updates
-    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"addons":[.data.addons[] | select(.version != .installed)]}'''
+    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
     value_template: "{{ value_json.addons | length }}"
+    unit_of_measurement: pending update(s)
     json_attributes:
-    - newest_version
-    - current_version
-    - addons    
+      - update_available
+      - newest_version
+      - current_version
+      - addons
 
 ####################################################
 #                                                  #
@@ -533,6 +528,6 @@ input_number:
 #                                                               #
 #                         System Health                         #
 #                                                               #
-################################################################# 
+#################################################################
 
-system_health:              
+system_health:
