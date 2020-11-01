@@ -2,7 +2,7 @@ popup_automation_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]                    
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Automation Count Settings
         card:
           type: entities
@@ -15,7 +15,7 @@ popup_binary_sensor_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]       
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Binary Sensor Count Settings
         card:
           type: entities
@@ -28,7 +28,7 @@ popup_switch_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]   
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Switch Count Settings
         card:
           type: entities
@@ -41,7 +41,7 @@ popup_fan_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]   
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Fan Count Settings
         card:
           type: entities
@@ -54,7 +54,7 @@ popup_lights_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]       
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Light Count Settings
         card:
           type: entities
@@ -67,7 +67,7 @@ popup_tracker_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]                       
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Device Tracker Count Settings
         card:
           type: entities
@@ -80,7 +80,7 @@ popup_media_player_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]      
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Media Player Count Settings
         card:
           type: entities
@@ -93,7 +93,7 @@ popup_script_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]                
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Script Count Settings
         card:
           type: entities
@@ -106,7 +106,7 @@ popup_sensor_count:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]             
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Sensor Count Settings
         card:
           type: entities
@@ -119,40 +119,38 @@ popup_github:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]                                    
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: GitHub Updater
         card:
           type: vertical-stack
           cards:
-            
             - type: horizontal-stack
               cards:
+                - type: "custom:button-card"
+                  entity: binary_sensor.git_update_ready
+                  color_type: icon
+                  state:
+                    - value: "on"
+                      color: rgb(228, 94, 101)
+                    - value: "off"
+                      color: rgb(255, 255, 255)
+                  icon: mdi:github
+                  name: Pull
+                  tap_action:
+                    action: call-service
+                    service: script.update_config
 
                 - type: "custom:button-card"
                   entity: binary_sensor.git_update_ready
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
-                    - value: 'off'
-                      color: rgb(255, 255, 255)
-                  icon: mdi:github
-                  name: Pull
-                  tap_action: 
-                    action: call-service
-                    service: script.update_config
-                
-                - type: "custom:button-card"
-                  entity: binary_sensor.git_update_ready
-                  color_type: icon
-                  state:
-                    - value: 'on'
-                      color: rgb(228, 94, 101)
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                   icon: mdi:github
                   name: Restart
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: script.update_config_restart
 
@@ -160,34 +158,33 @@ popup_github:
                   entity: binary_sensor.git_update_ready
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                   icon: mdi:equal
                   name: Clear
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: script.clear_config_update_flag
-                    
+
             - type: horizontal-stack
               cards:
-
                 - type: "custom:button-card"
                   color_type: icon
                   color: rgb(255, 255, 255)
                   icon: mdi:robot
                   name: Automations
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: automation.reload
-                
+
                 - type: "custom:button-card"
                   color_type: icon
                   color: rgb(255, 255, 255)
                   icon: mdi:script-text
                   name: Scripts
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: script.reload
 
@@ -196,7 +193,7 @@ popup_github:
                   color: rgb(255, 255, 255)
                   icon: mdi:tools
                   name: Helpers
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: script.reload_all_helpers
 
@@ -204,16 +201,16 @@ popup_hacs:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]        
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: HACS
         card:
           type: "custom:list-card"
-          entity: sensor.hacs            
+          entity: sensor.hacs
           feed_attribute: repositories
           columns:
-            - {field: display_name, title: 'Name'}
-            - {field: installed_version, title: 'Installed'}
-            - {field: available_version, title: 'Latest'}           
+            - { field: display_name, title: "Name" }
+            - { field: installed_version, title: "Installed" }
+            - { field: available_version, title: "Latest" }
 
 popup_washer:
   sequence:
@@ -229,11 +226,11 @@ popup_washer:
             - entity: sensor.washer_watts
             - entity: sensor.washer_amps
             - entity: sensor.washer_energy_today
-              icon: 'mdi:gauge'
+              icon: "mdi:gauge"
             - entity: sensor.washer_energy_yesterday
-              icon: 'mdi:gauge'
+              icon: "mdi:gauge"
             - entity: sensor.washer_signal
-              icon: 'mdi:wifi'               
+              icon: "mdi:wifi"
 
 popup_dryer:
   sequence:
@@ -249,26 +246,26 @@ popup_dryer:
             - entity: sensor.dryer_watts
             - entity: sensor.dryer_amps
             - entity: sensor.dryer_energy_today
-              icon: 'mdi:gauge'
+              icon: "mdi:gauge"
             - entity: sensor.dryer_energy_yesterday
-              icon: 'mdi:gauge'
+              icon: "mdi:gauge"
             - entity: sensor.dryer_signal
-              icon: 'mdi:wifi'                        
+              icon: "mdi:wifi"
 
 popup_addons:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]        
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Add-Ons
         card:
           type: "custom:list-card"
-          entity: sensor.supervisor_updates         
+          entity: sensor.supervisor_updates
           feed_attribute: addons
           columns:
-            - {field: name, title: 'Name'}
-            - {field: installed, title: 'Installed'}
-            - {field: version, title: 'Latest'}                             
+            - { field: name, title: "Name" }
+            - { field: version, title: "Installed" }
+            - { field: version_latest, title: "Latest" }
 
 popup_supervisor:
   sequence:
@@ -280,26 +277,25 @@ popup_supervisor:
           type: entities
           show_header_toggle: false
           entities:
-              - entity:  sensor.supervisor_updates
-                type: custom:multiple-entity-row
-                name: Version
-                show_state: false
-                entities:
-                  - attribute: current_version
-                    name: Installed
-                  - attribute: newest_version
-                    name: Available                            
-                    
+            - entity: sensor.supervisor_updates
+              type: custom:multiple-entity-row
+              name: Version
+              show_state: false
+              entities:
+                - attribute: current_version
+                  name: Installed
+                - attribute: newest_version
+                  name: Available
+
 popup_pooper:
   sequence:
     - service: browser_mod.popup
       data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]                                    
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Litter Robot
         card:
           type: vertical-stack
           cards:
-            
             - type: entities
               entities:
                 - entity: sensor.litter_robot_status_short
@@ -314,27 +310,26 @@ popup_pooper:
 
             - type: horizontal-stack
               cards:
-
                 - type: "custom:button-card"
                   entity: switch.litter_robot_power
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                   icon: mdi:power
                   name: Power
                   lock:
                     enabled: true
                     unlock: hold
-                
+
                 - type: "custom:button-card"
                   color_type: icon
                   color: rgb(255, 255, 255)
                   icon: mdi:trash-can
                   name: Empty
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: script.litter_robot_empty
 
@@ -343,35 +338,34 @@ popup_pooper:
                   color: rgb(255, 255, 255)
                   icon: mdi:reload
                   name: Cycle
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: mqtt.publish
                     service_data:
                       topic: "pooper/command/clean"
-                    
+
             - type: horizontal-stack
               cards:
-
                 - type: "custom:button-card"
                   entity: switch.litter_robot_lock
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
                       icon: mdi:lock
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                       icon: mdi:lock-open
                   name: Lock
-                
+
                 - type: "custom:button-card"
                   entity: switch.litter_robot_light
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
                       icon: mdi:lightbulb-on-outline
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                       icon: mdi:lightbulb-outline
                   name: Light
@@ -380,29 +374,28 @@ popup_pooper:
                   entity: switch.litter_robot_sleep_mode
                   color_type: icon
                   state:
-                    - value: 'on'
+                    - value: "on"
                       color: rgb(228, 94, 101)
                       icon: mdi:sleep
-                    - value: 'off'
+                    - value: "off"
                       color: rgb(255, 255, 255)
                       icon: mdi:sleep-off
-                  name: Sleep                   
+                  name: Sleep
 
             - type: horizontal-stack
               cards:
-
                 - type: "custom:button-card"
                   entity: sensor.litter_robot_cycle_wait_time
                   color_type: icon
                   icon: mdi:timer-outline
                   state:
-                    - value: '3'
+                    - value: "3"
                       color: rgb(228, 94, 101)
-                    - operator: '!='
-                      value: '3'
+                    - operator: "!="
+                      value: "3"
                       color: rgb(255, 255, 255)
                   name: 3 Min.
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: mqtt.publish
                     service_data:
@@ -414,13 +407,13 @@ popup_pooper:
                   color_type: icon
                   icon: mdi:timer-outline
                   state:
-                    - value: '7'
+                    - value: "7"
                       color: rgb(228, 94, 101)
-                    - operator: '!='
-                      value: '7'
+                    - operator: "!="
+                      value: "7"
                       color: rgb(255, 255, 255)
                   name: 7 Min.
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: mqtt.publish
                     service_data:
@@ -432,15 +425,15 @@ popup_pooper:
                   color_type: icon
                   icon: mdi:timer-outline
                   state:
-                    - value: '15'
+                    - value: "15"
                       color: rgb(228, 94, 101)
-                    - operator: '!='
-                      value: '15'
+                    - operator: "!="
+                      value: "15"
                       color: rgb(255, 255, 255)
                   name: 15 Min.
-                  tap_action: 
+                  tap_action:
                     action: call-service
                     service: mqtt.publish
                     service_data:
                       topic: "pooper/command/wait"
-                      payload: "15"                    
+                      payload: "15"
