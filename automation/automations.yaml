@@ -1,26 +1,26 @@
 - alias: Refresh Entity Counters
   trigger:
-  - platform: time_pattern
-    minutes: "/15"  
+    - platform: time_pattern
+      minutes: "/15"
   action:
-  - service: homeassistant.update_entity
-    entity_id: 
-      - sensor.automation_count
-      - sensor.binary_sensor_count
-      - sensor.switch_count
-      - sensor.fan_count
-      - sensor.lights_count
-      - sensor.tracker_count
-      - sensor.media_player_count
-      - sensor.script_count
-      - sensor.sensor_count
+    - service: homeassistant.update_entity
+      entity_id:
+        - sensor.automation_count
+        - sensor.binary_sensor_count
+        - sensor.switch_count
+        - sensor.fan_count
+        - sensor.lights_count
+        - sensor.tracker_count
+        - sensor.media_player_count
+        - sensor.script_count
+        - sensor.sensor_count
 
 - alias: Doorbell Announcement
   trigger:
     - platform: state
       entity_id: sensor.doorbell
-      from: 'Normal'
-      to: 'Violated'
+      from: "Normal"
+      to: "Violated"
   action:
     - service: notify.alexa_media
       data:
@@ -33,29 +33,38 @@
           - media_player.alexa_master
           - media_player.alexa_kitchen
 
-- alias: 'Set Theme to Midnight'
-  initial_state: 'on'
+- alias: "Set Theme to Midnight"
   trigger:
     - platform: homeassistant
       event: start
   action:
     - service: frontend.set_theme
       data:
-        name: midnight                  
+        name: midnight
 
-# - alias: Turn On Sound Machine
-#   trigger:
-#     - platform: state
-#       entity_id: alarm_control_panel.area_001
-#       from: armed_home
-#       to: armed_night
-#     - platform: state
-#       entity_id: alarm_control_panel.area_001
-#       from: disarmed
-#       to: armed_night
-#   action: 
-#     - service: media_player.play_media
-#       data:
-#         entity_id: media_player.alexa_master
-#         media_content_id: "Turn On Sound Machine"
-#         media_content_type: "routine"
+- alias: Turn On Sound Machine
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.area_001
+      from: armed_home
+      to: armed_night
+    - platform: state
+      entity_id: alarm_control_panel.area_001
+      from: disarmed
+      to: armed_night
+  action:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.alexa_master
+        volume_level: 0
+    - delay: 20
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.alexa_master
+        media_content_id: "Bedtime Sounds"
+        media_content_type: "routine"
+    - delay: 20
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.alexa_master
+        volume_level: 0.21
