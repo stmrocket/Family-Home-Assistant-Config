@@ -348,19 +348,27 @@ cards:
             name: Craft
             hold_action:
               action: more-info
-      # - type: horizontal-stack
-      #   cards:
-      #     - type: "custom:gap-card"
-      #     - type: "custom:gap-card"
-      #     - type: "custom:gap-card"
-      #     - type: "custom:button-card"
-      #       entity: switch.christmas_tree
-      #       color_type: icon
-      #       color: rgb(228, 94, 101)
-      #       icon: mdi:pine-tree
-      #       name: Tree
-      #       hold_action:
-      #         action: more-info
+      - type: conditional
+        conditions:
+          - entity: switch.christmas_tree
+            state_not: "unavailable"
+          - entity: switch.christmas_tree
+            state_not: "unknown"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: switch.christmas_tree
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:pine-tree
+              name: Tree
+              hold_action:
+                action: more-info
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+            
 
   ################################################################
   #                                                               #
