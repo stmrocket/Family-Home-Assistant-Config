@@ -41,3 +41,10 @@
       state: armed_night
   action:
     - service: rest_command.den_tablet_on
+
+- alias: Reload Tablets When HA Starts
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - service: script.tablets_reload
