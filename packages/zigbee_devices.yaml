@@ -61,6 +61,6 @@ binary_sensor:
     state_topic: "zigbee2mqtt/den_motion"
     availability_topic: "zigbee2mqtt/bridge/state"
     value_template: "{{ value_json.occupancy }}"
-    payload_on: "true"
-    payload_off: "false"
+    payload_on: true
+    payload_off: false
     device_class: "motion"
