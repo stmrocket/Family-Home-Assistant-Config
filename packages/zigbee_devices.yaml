@@ -33,4 +33,34 @@ sensor:
     availability_topic: "zigbee2mqtt/bridge/state"
     unit_of_measurement: "-"
     value_template: "{{ value_json.linkquality }}"
+  - platform: "mqtt"
+    name: Den Motion Battery
+    state_topic: "zigbee2mqtt/den_motion"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "%"
+    value_template: "{{ value_json.battery }}"
+    device_class: "battery"
+  - platform: "mqtt"
+    name: Den Motion Illuminance
+    state_topic: "zigbee2mqtt/den_motion"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "lx"
+    value_template: "{{ value_json.illuminance }}"
+    device_class: "illuminance"
+  - platform: "mqtt"
+    name: Den Motion Link Quality
+    state_topic: "zigbee2mqtt/den_motion"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    unit_of_measurement: "lqi"
+    value_template: "{{ value_json.linkquality }}"
+    icon: "mdi:signal"
 
+binary_sensor:
+  - platform: "mqtt"
+    name: Den Motion Occupancy
+    state_topic: "zigbee2mqtt/den_motion"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.occupancy }}"
+    payload_on: "true"
+    payload_off: "false"
+    device_class: "motion"

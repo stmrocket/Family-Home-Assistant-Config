@@ -33,8 +33,10 @@
 
 - alias: Tablet Early Morning
   trigger:
-    - platform: time
-      at: "05:00:00"
+    - platform: state
+      entity_id: binary_sensor.den_motion_occupancy
+      from: "off"
+      to: "on"
   condition:
     - condition: state
       entity_id: alarm_control_panel.area_001
