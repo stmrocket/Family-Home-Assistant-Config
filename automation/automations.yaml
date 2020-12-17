@@ -68,3 +68,14 @@
       data:
         entity_id: media_player.alexa_master
         volume_level: 0.3
+
+- alias: Record HA Shutdown Time
+  trigger:
+    - platform: homeassistant
+      event: shutdown
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: hass/restart
+        payload: "{{ now() }}"
+        retain: true
