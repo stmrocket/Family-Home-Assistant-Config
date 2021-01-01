@@ -61,7 +61,7 @@
     - service: media_player.play_media
       data:
         entity_id: media_player.alexa_master
-        media_content_id: "Turn On Sound Machine"
+        media_content_id: "Bedtime Sounds"
         media_content_type: "routine"
 
 - alias: Record HA Shutdown Time
