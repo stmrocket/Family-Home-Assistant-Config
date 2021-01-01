@@ -45,29 +45,24 @@
 - alias: Turn On Sound Machine
   trigger:
     - platform: state
-      entity_id: alarm_control_panel.area_001
-      from: armed_home
-      to: armed_night
-    - platform: state
-      entity_id: alarm_control_panel.area_001
-      from: disarmed
-      to: armed_night
+      entity_id: light.master_lamp
+      from: 'on'
+      to: 'off'
+  condition:
+    - condition: not
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.area_001
+          state: armed_away
+    - condition: time
+      after: '19:00:00'
+      before: '07:00:00'
   action:
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.alexa_master
-        volume_level: 0
-    - delay: 20
     - service: media_player.play_media
       data:
         entity_id: media_player.alexa_master
-        media_content_id: "Bedtime Sounds"
+        media_content_id: "Turn On Sound Machine"
         media_content_type: "routine"
-    - delay: 20
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.alexa_master
-        volume_level: 0.3
 
 - alias: Record HA Shutdown Time
   trigger:
