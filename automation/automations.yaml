@@ -56,7 +56,7 @@
           state: armed_away
     - condition: time
       after: '19:00:00'
-      before: '07:00:00'
+      before: '02:00:00'
   action:
     - service: media_player.play_media
       data:
