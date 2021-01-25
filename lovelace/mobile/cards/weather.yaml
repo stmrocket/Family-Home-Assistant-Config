@@ -8,12 +8,10 @@ cards:
     gridcols: auto 0px
     cards:
       - type: 'custom:bom-weather-card'
-        gridrow: 1
-        gridcol: 1
         title: BOM Weather
         entity_current_conditions: sensor.openweathermap_current_icon
         entity_current_text: sensor.openweathermap_current_summary
-        entity_temperature: sensor.acurite_outside_temperature
+        entity_temperature: sensor.openweathermap_current_temperature
         entity_forecast_high_temp_1: sensor.openweathermap_day_1_maximum_temperature
         entity_forecast_high_temp_2: sensor.openweathermap_day_2_maximum_temperature
         entity_forecast_high_temp_3: sensor.openweathermap_day_3_maximum_temperature
@@ -40,9 +38,9 @@ cards:
         entity_wind_bearing: sensor.openweathermap_current_wind_bearing
         entity_wind_speed: sensor.openweathermap_current_wind_speed
         entity_wind_gust: sensor.openweathermap_current_wind_gust
-        entity_humidity: sensor.acurite_outside_humidity
+        entity_humidity: sensor.openweathermap_current_humidity
         entity_apparent_temp: sensor.openweathermap_current_apparent_temperature
-        entity_daily_summary: sensor.weather_description
+        entity_daily_summary: sensor.openweathermap_weekly_summary
         entity_pop: sensor.openweathermap_current_pop
         entity_pop_intensity: sensor.openweathermap_current_precip_forecast
         entity_possible_today: sensor.openweathermap_current_precip_forecast
@@ -58,9 +56,7 @@ cards:
         entity_pop_5: sensor.openweathermap_day_5_pop
         entity_uv_alert_summary: sensor.openweathermap_current_uv_combined
         entity_visibility: sensor.kaus_current_visibility
-        entity_pressure: sensor.aquara_den_pressure
-        entity_precip_current: sensor.rain_day
-        entity_precip_intensity_current: sensor.rain_rate
+        entity_pressure: sensor.openweathermap_current_pressure
         slot_l1: daytime_low
         slot_r1: daytime_high
         slot_l2: wind
@@ -71,10 +67,11 @@ cards:
         slot_r4: pressure
         slot_l5: sun_next
         slot_r5: sun_following
-        slot_l6: precip_current
-        slot_r6: precip_intensity_current
+        slot_l6: remove
+        slot_r6: remove
         current_data_top_margin: 6em
         current_text_top_margin: 45px
         current_text_alignment: left
         current_text_left_pos: 5em
         refresh_interval: 5
+      
