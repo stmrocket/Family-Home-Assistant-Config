@@ -1,0 +1,488 @@
+#############################################################################################################################################
+#                                                                                                                                           #
+#                                                               VIEW 0 - HOME                                                               #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+id: 0
+icon: mdi:castle
+name: Home
+cards:
+  #################################################################
+  #                                                               #
+  #                      Home - Weather Card                      #
+  #                                                               #
+  #################################################################
+
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/mobile/cards/weather.yaml
+
+      #################################################################
+      #                                                               #
+      #                       Home - Cameras                          #
+      #                                                               #
+      #################################################################
+      - type: glance
+        columns: 4
+        show_name: true
+        show_state: false
+        entities:
+          - entity: camera.front_porch
+          - entity: camera.back_porch
+          - entity: camera.den
+          - entity: camera.kitchen
+      - type: "custom:gap-card"
+        height: 1
+  #################################################################
+  #                                                               #
+  #                          Home - HVAC                          #
+  #                                                               #
+  #################################################################
+  - type: vertical-stack
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:simple-thermostat
+            entity: climate.home
+            icon: mdi:thermostat-box
+            step_size: 1
+            decimals: 0
+            sensors:
+              - attribute: current_humidity
+                name: Humidity
+                unit: "%"
+              - entity: sensor.hvac_system_state
+                name: State
+            hide:
+              state: true
+            control:
+              - hvac:
+                  mode: none
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                name: "Heat:"
+                entity: sensor.hvac_system_heat_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: red
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+
+              - type: custom:bar-card
+                name: "Cool:"
+                entity: sensor.hvac_system_cool_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: blue
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:bar-card
+                name: "Fan:"
+                entity: sensor.hvac_system_fan_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                color: green
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+
+              - type: custom:bar-card
+                name: "Total:"
+                entity: sensor.hvac_system_runtime
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 24
+                decimal: 2
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+
+      #################################################################
+      #                                                               #
+      #                       Home - Buttons                          #
+      #                                                               #
+      #################################################################
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: switch.driveway
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:road
+            name: Driveway
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: light.front_porch_1
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:door
+            name: Front Porch
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: light.entry
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:ceiling-light
+            name: Entry
+            hold_action:
+              action: more-info
+
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: switch.right_back_porch
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:spotlight
+            name: L Flood
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: switch.back_porch_1
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:door
+            name: Back Porch
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: switch.left_back_porch
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:spotlight
+            name: R Flood
+            hold_action:
+              action: more-info
+
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: switch.den_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Den
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: light.master_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Master
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: light.guest_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Guest
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: light.craft_room_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Craft
+            hold_action:
+              action: more-info
+      - type: conditional
+        conditions:
+          - entity: switch.christmas_tree
+            state_not: "unavailable"
+          - entity: switch.christmas_tree
+            state_not: "unknown"
+        card:
+          type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
+              entity: switch.christmas_tree
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:pine-tree
+              name: Tree
+              hold_action:
+                action: more-info
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+            
+
+  ################################################################
+  #                                                               #
+  #                          Home - Laundry                       #
+  #                                                               #
+  #################################################################
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: sensor.litter_robot_status_short
+            color_type: icon
+            icon: mdi:cat
+            state:
+              - value: "Ready"
+                color: rgb(255, 255, 255)
+                name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
+              - value: "Clean"
+                color: rgb(255, 255, 255)
+                name: Clean
+              - value: "Drawer 2"
+                color: rgb(255, 255, 255)
+                name: Drawer 2
+              - value: "Drawer 1"
+                color: rgb(255, 255, 255)
+                name: Drawer 1
+              - value: "Sensor"
+                color: rgb(228, 94, 101)
+                name: Sensor
+              - value: "Timing"
+                color: rgb(255, 255, 255)
+                name: Timing
+              - value: "Bonnet"
+                color: rgb(228, 94, 101)
+                name: Bonnet
+              - value: "Paused"
+                color: rgb(228, 94, 101)
+                name: Paused
+              - value: "Off"
+                color: rgb(255, 255, 255)
+                name: "Off"
+              - value: "Full"
+                color: rgb(228, 94, 101)
+                name: Full
+              - value: "Error"
+                color: rgb(228, 94, 101)
+                name: Error
+            tap_action:
+              action: call-service
+              service: script.popup_pooper
+              service_data:
+                deviceID:
+                  - this
+          - type: "custom:button-card"
+            entity: sensor.washer_state
+            color_type: icon
+            icon: mdi:washing-machine
+            state:
+              - value: "Washing"
+                color: rgb(228, 94, 101)
+                name: Washing
+              - value: "Idle"
+                color: rgb(255, 255, 255)
+                name: Idle
+            tap_action:
+              action: call-service
+              service: script.popup_washer
+              service_data:
+                deviceID:
+                  - this
+            hold_action:
+              action: call-service
+              service: script.popup_washer
+              service_data:
+                deviceID:
+                  - this
+
+          - type: "custom:button-card"
+            entity: sensor.dryer_state
+            color_type: icon
+            icon: mdi:tumble-dryer
+            state:
+              - value: "Drying"
+                color: rgb(228, 94, 101)
+                name: Drying
+              - value: "Idle"
+                color: rgb(255, 255, 255)
+                name: Idle
+              - value: "Door Open"
+                color: rgb(255, 200, 0)
+                name: Door
+            tap_action:
+              action: call-service
+              service: script.popup_dryer
+              service_data:
+                deviceID:
+                  - this
+            hold_action:
+              action: call-service
+              service: script.popup_dryer
+              service_data:
+                deviceID:
+                  - this
+
+      #################################################################
+      #                                                               #
+      #                      Home - Alarm                             #
+      #                                                               #
+      #################################################################
+      - type: alarm-panel
+        name: House Alarm
+        states:
+          - arm_home
+          - arm_away
+          - arm_night
+        entity: alarm_control_panel.area_001
