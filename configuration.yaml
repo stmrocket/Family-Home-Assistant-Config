@@ -407,10 +407,12 @@ switch:
         turn_on:
           service: rainmachine.enable_program
           data:
+            entity_id: switch.front_yard_right
             program_id: 1
         turn_off:
           service: rainmachine.disable_program
           data:
+            entity_id: switch.front_yard_right
             program_id: 1
 
       irrigation_run_program:
@@ -419,10 +421,12 @@ switch:
         turn_on:
           service: rainmachine.start_program
           data:
+            entity_id: switch.front_yard_right
             program_id: 1
         turn_off:
           service: rainmachine.stop_program
           data:
+            entity_id: switch.front_yard_right
             program_id: 1
 
 browser_mod:
