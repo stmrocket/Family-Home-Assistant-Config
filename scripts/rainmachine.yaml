@@ -1,0 +1,67 @@
+rainmachine_control_zone_1:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.front_yard_right
+              state: "off"
+          sequence:
+            - service: rainmachine.start_zone
+              data:
+                entity_id: switch.front_yard_right
+                zone_id: 1
+                zone_run_time: 300
+      default:
+        - service: switch.turn_off
+          entity_id: switch.front_yard_right
+
+rainmachine_control_zone_2:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.front_flower_bed
+              state: "off"
+          sequence:
+            - service: rainmachine.start_zone
+              data:
+                entity_id: switch.front_flower_bed
+                zone_id: 2
+                zone_run_time: 300
+      default:
+        - service: switch.turn_off
+          entity_id: switch.front_yard_right          
+
+rainmachine_control_zone_3:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.front_yard_left
+              state: "off"
+          sequence:
+            - service: rainmachine.start_zone
+              data:
+                entity_id: switch.front_yard_left
+                zone_id: 3
+                zone_run_time: 300
+      default:
+        - service: switch.turn_off
+          entity_id: switch.front_yard_right          
+
+rainmachine_control_zone_4:
+  sequence:
+    - choose:
+        - conditions:
+            - condition: state
+              entity_id: switch.back_yard
+              state: "off"
+          sequence:
+            - service: rainmachine.start_zone
+              data:
+                entity_id: switch.back_yard
+                zone_id: 4
+                zone_run_time: 900
+      default:
+        - service: switch.turn_off
+          entity_id: switch.front_yard_right              
