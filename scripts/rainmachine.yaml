@@ -30,7 +30,7 @@ rainmachine_control_zone_2:
                 zone_run_time: 300
       default:
         - service: switch.turn_off
-          entity_id: switch.front_yard_right          
+          entity_id: switch.front_flower_bed       
 
 rainmachine_control_zone_3:
   sequence:
@@ -47,7 +47,7 @@ rainmachine_control_zone_3:
                 zone_run_time: 300
       default:
         - service: switch.turn_off
-          entity_id: switch.front_yard_right          
+          entity_id: switch.front_yard_left       
 
 rainmachine_control_zone_4:
   sequence:
@@ -64,4 +64,4 @@ rainmachine_control_zone_4:
                 zone_run_time: 900
       default:
         - service: switch.turn_off
-          entity_id: switch.front_yard_right              
+          entity_id: switch.back_yard            
