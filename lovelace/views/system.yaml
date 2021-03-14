@@ -1452,6 +1452,13 @@ cards:
                 color: rgb(228, 94, 101)
                 icon: mdi:numeric-1-box
                 name: R Front
+                tap_action:
+                  action: call-service
+                  service: rainmachine.start_zone
+                  service_data:
+                    entity_id: switch.front_yard_right
+                    zone_id: 1
+                    zone_run_time: 300
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1460,6 +1467,13 @@ cards:
                 color: rgb(228, 94, 101)
                 icon: mdi:numeric-2-box
                 name: L Front
+                tap_action:
+                  action: call-service
+                  service: rainmachine.start_zone
+                  service_data:
+                    entity_id: switch.front_yard_left
+                    zone_id: 3
+                    zone_run_time: 300
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1468,6 +1482,13 @@ cards:
                 color: rgb(228, 94, 101)
                 icon: mdi:numeric-3-box
                 name: Flowerbed
+                tap_action:
+                  action: call-service
+                  service: rainmachine.start_zone
+                  service_data:
+                    entity_id: switch.front_flower_bed
+                    zone_id: 2
+                    zone_run_time: 300
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1476,6 +1497,13 @@ cards:
                 color: rgb(228, 94, 101)
                 icon: mdi:numeric-4-box
                 name: Back
+                tap_action:
+                  action: call-service
+                  service: rainmachine.start_zone
+                  service_data:
+                    entity_id: switch.back_yard
+                    zone_id: 4
+                    zone_run_time: 300
                 hold_action:
                   action: more-info
 
