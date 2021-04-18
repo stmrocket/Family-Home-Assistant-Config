@@ -1,4 +1,5 @@
 - alias: Elk Night Mode On from Trigger
+  id: e70dcf76-34cc-460f-accd-66c4465a4672
   trigger:
     - platform: state
       entity_id: input_boolean.elk_night_on
@@ -15,6 +16,7 @@
       entity_id: input_boolean.elk_night_on
 
 - alias: Elk Night Mode Off from Trigger
+  id: 1cada28e-68d9-4009-877e-248cc6b80182
   trigger:
     - platform: state
       entity_id: input_boolean.elk_night_off
@@ -31,6 +33,7 @@
       entity_id: input_boolean.elk_night_off  
 
 - alias: Elk Stay Mode On from Trigger
+  id: d074bb20-fbc8-459e-a8ec-3f113e53b305
   trigger:
     - platform: state
       entity_id: input_boolean.elk_stay_on
@@ -47,6 +50,7 @@
       entity_id: input_boolean.elk_stay_on
 
 - alias: Elk Stay Mode Off from Trigger
+  id: 8d7082ab-3db5-4f9e-9f94-6b9bd164250b
   trigger:
     - platform: state
       entity_id: input_boolean.elk_stay_off
@@ -63,6 +67,7 @@
       entity_id: input_boolean.elk_stay_off      
 
 - alias: Elk Away Mode On from Trigger
+  id: 4f80ec1b-a8cf-427f-8900-ca5ee23bc57a
   trigger:
     - platform: state
       entity_id: input_boolean.elk_away_on
@@ -79,6 +84,7 @@
       entity_id: input_boolean.elk_away_on    
 
 - alias: Elk Clear Trigger if State Disallowed
+  id: c85727a7-5132-4a0a-a260-2e39fec21d56
   trigger:
     - platform: state
       entity_id: input_boolean.elk_night_on

@@ -1,4 +1,5 @@
 - alias: 'Dryer State - Door'
+  id: 2b2bbced-7673-4944-9199-82a1b9936d71
   trigger:
     platform: numeric_state
     entity_id: sensor.dryer_watts
@@ -14,6 +15,7 @@
         retain: 'true'
 
 - alias: 'Dryer State - Drying'
+  id: c6b0a8b2-8c82-4098-ae93-c9fb8956d86f
   trigger:
     platform: numeric_state
     entity_id: sensor.dryer_watts
@@ -30,6 +32,7 @@
       entity_id: input_boolean.dryer_end
 
 - alias: 'Dryer State - Idle'
+  id: c0484d8c-fd9c-4556-9a46-1d8589483209
   trigger:
     platform: numeric_state
     entity_id: sensor.dryer_watts
@@ -47,6 +50,7 @@
 #  Washing Machine Start/Finish
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 - alias: 'Washer State - Start'
+  id: ebebbad4-b704-41b3-ac4d-7507e957f23e
   trigger:
     platform: numeric_state
     entity_id: sensor.washer_watts
@@ -67,6 +71,7 @@
       entity_id: input_boolean.washer_end
 
 - alias: 'Washer State - Idle'
+  id: 28708a17-80cd-4683-badb-5d5f1ac54526
   trigger:
     platform: numeric_state
     entity_id: sensor.washer_watts
@@ -81,6 +86,7 @@
         retain: 'true'
 
 - alias: 'Dryer Finished'
+  id: 808d187b-2175-4158-9da7-f968751e74c4
   trigger:
     platform: state
     entity_id: sensor.dryer_state
@@ -92,6 +98,7 @@
         entity_id: input_boolean.dryer_end
 
 - alias: 'Washer Finished'
+  id: 54daac37-84fa-4d7c-9337-43bef0bc952a
   trigger:
     platform: state
     entity_id: sensor.washer_state
@@ -109,6 +116,7 @@
 #  Announcements
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 - alias: 'Announce Dryer Finished'
+  id: c790a0d0-8a98-425c-afa8-15aea2994b89
   trigger:
     platform: state
     entity_id: input_boolean.dryer_end
@@ -141,6 +149,7 @@
       entity_id: input_boolean.dryer_end
 
 - alias: 'Announce Washer Finished'
+  id: 2de2b07e-f754-4667-a620-de035f87cc61
   trigger:
     platform: state
     entity_id: input_boolean.washer_end

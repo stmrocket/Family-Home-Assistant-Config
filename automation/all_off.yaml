@@ -1,5 +1,6 @@
 
 - alias: All Off Main
+  id: a29b6284-c1cf-4b82-935c-9b4d2fa224c1
   trigger:
   - platform: state
     entity_id: alarm_control_panel.area_001
@@ -22,6 +23,7 @@
       entity_id: switch.right_back_porch
 
 - alias: All Off Timer Lights
+  id: 1ee390dc-5453-470d-9ff8-e88a8f8cd641
   trigger:
   - platform: event
     event_type: automation_triggered
@@ -46,6 +48,7 @@
       entity_id: light.craft_room_lamp
 
 - alias: All Off Outside Lights
+  id: e6af1bb3-8d93-4ed5-a8ad-7e10328468b4
   trigger:
   - platform: event
     event_type: automation_triggered

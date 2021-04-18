@@ -16,8 +16,8 @@ sensor:
     icon: mdi:router-wireless
 
 automation:
-  - id: enable_zigbee_join
-    alias: Enable Zigbee joining
+  - alias: Enable Zigbee joining
+    id: a041ee21-90db-4e67-ba4f-d58242220fad
     trigger:
       platform: state
       entity_id: input_boolean.zigbee_permit_join
@@ -30,8 +30,8 @@ automation:
     - service: timer.start
       data:
         entity_id: timer.zigbee_permit_join
-  - id: disable_zigbee_join
-    alias: Disable Zigbee joining
+  - alias: Disable Zigbee joining
+    id: a867df1f-6615-4f81-b5dc-9716ca6eda15
     trigger:
     - entity_id: input_boolean.zigbee_permit_join
       platform: state
@@ -44,8 +44,8 @@ automation:
     - data:
         entity_id: timer.zigbee_permit_join
       service: timer.cancel
-  - id: disable_zigbee_join_timer
-    alias: Disable Zigbee joining by timer
+  - alias: Disable Zigbee joining by timer
+    id: 839f67eb-f108-4022-9dd8-5ca0247ff24e
     trigger:
     - platform: event
       event_type: timer.finished

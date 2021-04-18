@@ -1,4 +1,5 @@
 - alias: HVAC Night
+  id: ddd83345-0437-4afd-b1d7-5df3b1f41b05
   trigger:
   - platform: state
     entity_id: alarm_control_panel.area_001
@@ -16,6 +17,7 @@
       target_temp_low: 62
 
 - alias: HVAC When Home
+  id: a290c27e-bc4a-4e40-876f-4dd7662593e9
   trigger:
   - platform: state
     entity_id: alarm_control_panel.area_001
@@ -41,6 +43,7 @@
       target_temp_low: 69
 
 - alias: HVAC When Away
+  id: bd12cdfd-77bc-41d3-aa19-562b9115993f
   trigger:
   - platform: state
     entity_id: alarm_control_panel.area_001
