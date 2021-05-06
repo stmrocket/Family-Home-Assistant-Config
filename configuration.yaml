@@ -386,9 +386,6 @@ counter:
     initial: 0
     step: 1
 
-#HACS
-hacs:
-  token: !secret hacs_git
 
 #Alexa Media Player
 alexa_media:
