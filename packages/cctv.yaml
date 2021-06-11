@@ -82,7 +82,9 @@ sensor:
         unit_of_measurement: 'ms'   
       frigate_coral_queue_length:
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["detection_queue"] }}' 
-        unit_of_measurement: 'frames'       
+        unit_of_measurement: 'frames'      
+      frigate_processing_frame:
+        value_template: '{{ (states.sensor.frigate_debug.attributes["front_porch"]["frame_info"]["read"] + states.sensor.frigate_debug.attributes["back_porch"]["frame_info"]["read"]) / 2}}'
 
 input_boolean:
 

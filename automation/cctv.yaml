@@ -57,11 +57,9 @@
 - alias: Restart Frigate if Hung
   id: f6462af0-4262-42e7-8742-3ac6ad3d7ec8
   trigger:
-    - platform: numeric_state
-      entity_id: sensor.frigate_coral_queue_length
-      above: 100
-      for: 
-        seconds: 30
+    - platform: state
+      entity_id: sensor.frigate_processing_frame
+      for: "00:05:00"
   action:
     - service: rest_command.docker_frigate_restart
 
