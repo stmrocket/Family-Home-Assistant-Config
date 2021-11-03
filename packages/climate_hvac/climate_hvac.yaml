@@ -11,9 +11,8 @@
 #################################################################
 
 climate:
-  - platform: honeywell
-    username: !secret tcc_user
-    password: !secret tcc_pass
+  - platform: venstar
+    host: !secret thermostat_ip
 
 
 #################################################################
@@ -46,15 +45,15 @@ binary_sensor:
 
       hvac_system_fan:
         friendly_name: "HVAC System Fan Call"
-        value_template: '{{states.climate.home.attributes.fan_action | string == "running" and states.climate.home.attributes.hvac_action | string == "idle" }}'
+        value_template: '{{states.climate.thermostat.attributes.fan_action | string == "running" and states.climate.thermostat.attributes.hvac_action | string == "idle" }}'
 
       hvac_system_heat:
         friendly_name: "HVAC System Heat Call"
-        value_template: '{{states.climate.home.attributes.hvac_action | string == "heating" }}'
+        value_template: '{{states.climate.thermostat.attributes.hvac_action | string == "heating" }}'
 
       hvac_system_cool:
         friendly_name: "HVAC System Cool Call"
-        value_template: '{{states.climate.home.attributes.hvac_action | string == "cooling" }}'    
+        value_template: '{{states.climate.thermostat.attributes.hvac_action | string == "cooling" }}'    
 
 #################################################################
 #                                                               #

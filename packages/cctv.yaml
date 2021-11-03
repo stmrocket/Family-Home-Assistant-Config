@@ -18,9 +18,21 @@ camera:
     verify_ssl: false
 
   - platform: mjpeg
-    name: Kitchen
-    still_image_url: !secret kitchen_still
-    mjpeg_url: !secret kitchen_stream
+    name: Driveway
+    still_image_url: !secret driveway_still
+    mjpeg_url: !secret driveway_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Garage
+    still_image_url: !secret garage_still
+    mjpeg_url: !secret garage_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Foyer
+    still_image_url: !secret foyer_still
+    mjpeg_url: !secret foyer_stream
     verify_ssl: false
 
   - platform: mqtt

@@ -225,6 +225,6 @@ sensor:
     state_topic: openweathermap
     value_template: "{{value_json['alert_summary'] }}"
   - platform: mqtt
-    name: KAUS Current Visibility
-    state_topic: weather/kaus/visibility
+    name: KCLL Current Visibility
+    state_topic: weather/kcll/visibility
     unit_of_measurement: "mi"

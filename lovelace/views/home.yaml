@@ -26,14 +26,16 @@ cards:
       #                                                               #
       #################################################################
       - type: glance
-        columns: 4
+        columns: 3
         show_name: true
         show_state: false
         entities:
           - entity: camera.front_porch
+          - entity: camera.driveway
           - entity: camera.back_porch
+          - entity: camera.garage
+          - entity: camera.foyer
           - entity: camera.den
-          - entity: camera.kitchen
       - type: "custom:gap-card"
         height: 1
   #################################################################
@@ -46,7 +48,7 @@ cards:
       - type: custom:stack-in-card
         cards:
           - type: custom:simple-thermostat
-            entity: climate.home
+            entity: climate.thermostat
             icon: mdi:thermostat-box
             step_size: 1
             decimals: 0
@@ -262,59 +264,59 @@ cards:
       #                       Home - Buttons                          #
       #                                                               #
       #################################################################
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            entity: switch.driveway
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:road
-            name: Driveway
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: light.front_porch_1
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:door
-            name: Front Porch
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: light.entry
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:ceiling-light
-            name: Entry
-            hold_action:
-              action: more-info
+    #   - type: horizontal-stack
+    #     cards:
+    #       - type: "custom:button-card"
+    #         entity: switch.driveway
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:road
+    #         name: Driveway
+    #         hold_action:
+    #           action: more-info
+    #       - type: "custom:button-card"
+    #         entity: light.front_porch_1
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:door
+    #         name: Front Porch
+    #         hold_action:
+    #           action: more-info
+    #       - type: "custom:button-card"
+    #         entity: light.entry
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:ceiling-light
+    #         name: Entry
+    #         hold_action:
+    #           action: more-info
 
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            entity: switch.right_back_porch
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:spotlight
-            name: L Flood
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: switch.back_porch_1
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:door
-            name: Back Porch
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: switch.left_back_porch
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:spotlight
-            name: R Flood
-            hold_action:
-              action: more-info
+    #   - type: horizontal-stack
+    #     cards:
+    #       - type: "custom:button-card"
+    #         entity: switch.right_back_porch
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:spotlight
+    #         name: L Flood
+    #         hold_action:
+    #           action: more-info
+    #       - type: "custom:button-card"
+    #         entity: switch.back_porch_1
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:door
+    #         name: Back Porch
+    #         hold_action:
+    #           action: more-info
+    #       - type: "custom:button-card"
+    #         entity: switch.left_back_porch
+    #         color_type: icon
+    #         color: rgb(228, 94, 101)
+    #         icon: mdi:spotlight
+    #         name: R Flood
+    #         hold_action:
+    #           action: more-info
 
       - type: horizontal-stack
         cards:
@@ -370,17 +372,9 @@ cards:
             - type: "custom:gap-card"
             - type: "custom:gap-card"
             - type: "custom:gap-card"
-            
-
-  ################################################################
-  #                                                               #
-  #                          Home - Laundry                       #
-  #                                                               #
-  #################################################################
-  - type: vertical-stack
-    cards:
       - type: horizontal-stack
         cards:
+          - type: "custom:gap-card"
           - type: "custom:button-card"
             entity: sensor.litter_robot_status_short
             color_type: icon
@@ -421,46 +415,100 @@ cards:
                 name: Error
             tap_action:
               action: more-info
-          - type: "custom:button-card"
-            entity: sensor.washer_state
-            color_type: icon
-            icon: mdi:washing-machine
-            state:
-              - value: "Washing"
-                color: rgb(228, 94, 101)
-                name: Washing
-              - value: "Idle"
-                color: rgb(255, 255, 255)
-                name: Idle
-            tap_action:
-              action: more-info
+          - type: "custom:gap-card"
+            
 
-          - type: "custom:button-card"
-            entity: sensor.dryer_state
-            color_type: icon
-            icon: mdi:tumble-dryer
-            state:
-              - value: "Drying"
-                color: rgb(228, 94, 101)
-                name: Drying
-              - value: "Idle"
-                color: rgb(255, 255, 255)
-                name: Idle
-              - value: "Door Open"
-                color: rgb(255, 200, 0)
-                name: Door
-            tap_action:
-              action: more-info
+  ################################################################
+  #                                                               #
+  #                          Home - Laundry                       #
+  #                                                               #
+  #################################################################
+#   - type: vertical-stack
+#     cards:
+#       - type: horizontal-stack
+#         cards:
+#           - type: "custom:gap-card"
+#           - type: "custom:button-card"
+#             entity: sensor.litter_robot_status_short
+#             color_type: icon
+#             icon: mdi:cat
+#             state:
+#               - value: "Ready"
+#                 color: rgb(255, 255, 255)
+#                 name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
+#               - value: "Clean"
+#                 color: rgb(255, 255, 255)
+#                 name: Clean
+#               - value: "Drawer 2"
+#                 color: rgb(255, 255, 255)
+#                 name: Drawer 2
+#               - value: "Drawer 1"
+#                 color: rgb(255, 255, 255)
+#                 name: Drawer 1
+#               - value: "Sensor"
+#                 color: rgb(228, 94, 101)
+#                 name: Sensor
+#               - value: "Timing"
+#                 color: rgb(255, 255, 255)
+#                 name: Timing
+#               - value: "Bonnet"
+#                 color: rgb(228, 94, 101)
+#                 name: Bonnet
+#               - value: "Paused"
+#                 color: rgb(228, 94, 101)
+#                 name: Paused
+#               - value: "Off"
+#                 color: rgb(255, 255, 255)
+#                 name: "Off"
+#               - value: "Full"
+#                 color: rgb(228, 94, 101)
+#                 name: Full
+#               - value: "Error"
+#                 color: rgb(228, 94, 101)
+#                 name: Error
+#             tap_action:
+#               action: more-info
+#           - type: "custom:gap-card"
+        #   - type: "custom:button-card"
+        #     entity: sensor.washer_state
+        #     color_type: icon
+        #     icon: mdi:washing-machine
+        #     state:
+        #       - value: "Washing"
+        #         color: rgb(228, 94, 101)
+        #         name: Washing
+        #       - value: "Idle"
+        #         color: rgb(255, 255, 255)
+        #         name: Idle
+        #     tap_action:
+        #       action: more-info
+
+        #   - type: "custom:button-card"
+        #     entity: sensor.dryer_state
+        #     color_type: icon
+        #     icon: mdi:tumble-dryer
+        #     state:
+        #       - value: "Drying"
+        #         color: rgb(228, 94, 101)
+        #         name: Drying
+        #       - value: "Idle"
+        #         color: rgb(255, 255, 255)
+        #         name: Idle
+        #       - value: "Door Open"
+        #         color: rgb(255, 200, 0)
+        #         name: Door
+        #     tap_action:
+        #       action: more-info
 
       #################################################################
       #                                                               #
       #                      Home - Alarm                             #
       #                                                               #
       #################################################################
-      - type: alarm-panel
-        name: House Alarm
-        states:
-          - arm_home
-          - arm_away
-          - arm_night
-        entity: alarm_control_panel.area_001
+    #   - type: alarm-panel
+    #     name: House Alarm
+    #     states:
+    #       - arm_home
+    #       - arm_away
+    #       - arm_night
+    #     entity: alarm_control_panel.area_001
