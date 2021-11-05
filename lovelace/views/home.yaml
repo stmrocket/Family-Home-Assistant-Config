@@ -321,7 +321,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            entity: switch.den_lamp
+            entity: light.den_lamp
             color_type: icon
             color: rgb(228, 94, 101)
             icon: mdi:lamp
