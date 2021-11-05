@@ -17,9 +17,9 @@
       entity_id: sun.sun
       state: 'below_horizon'
   action:
-  - service: switch.turn_on
+  - service: light.turn_on
     data:
-      entity_id: switch.den_lamp
+      entity_id: light.den_lamp
   - service: light.turn_on
     data:
       entity_id: light.guest_lamp
@@ -34,9 +34,9 @@
     event: sunset
     offset: '-00:30:00'   
   action:
-  - service: switch.turn_on
+  - service: light.turn_on
     data:
-      entity_id: switch.den_lamp
+      entity_id: light.den_lamp
   - service: light.turn_on
     data:
       entity_id: light.master_lamp
@@ -56,14 +56,14 @@
   trigger:
   - platform: time
     at: '23:30:00'
-  condition:
-  - condition: state
-    entity_id: alarm_control_panel.area_001
-    state: armed_away
+  # condition:
+  # - condition: state
+  #   entity_id: alarm_control_panel.area_001
+  #   state: armed_away
   action:
-  - service: switch.turn_off
+  - service: light.turn_off
     data:
-      entity_id: switch.den_lamp
+      entity_id: light.den_lamp
   - service: light.turn_off
     data:
       entity_id: light.master_lamp
@@ -84,9 +84,9 @@
     event: sunrise
     offset: '+00:30:00'
   action:
-  - service: switch.turn_off
+  - service: light.turn_off
     data:
-      entity_id: switch.den_lamp
+      entity_id: light.den_lamp
   - service: light.turn_off
     data:
       entity_id: light.guest_lamp
@@ -106,9 +106,9 @@
     from: armed_home
     to: armed_night
   action:
-  - service: switch.turn_off
+  - service: light.turn_off
     data:
-      entity_id: switch.den_lamp
+      entity_id: light.den_lamp
   - service: light.turn_off
     data:
       entity_id: light.guest_lamp
@@ -120,42 +120,42 @@
       entity_id: input_boolean.timer_lights
 
 
-- alias: Timer Lights On Outside
-  id: f5639c10-7d8f-46fc-8a34-6cbcb6357acb
-  trigger:
-  - platform: sun
-    event: sunset
-    offset: '-00:30:00'
-  action:
-  - service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.outside_timer_lights
-  - service: switch.turn_on
-    data:
-      entity_id: switch.driveway
-  - service: switch.turn_on
-    data:
-      entity_id: switch.back_porch_1
-  - service: light.turn_on
-    data:
-      entity_id: light.front_porch_1
+# - alias: Timer Lights On Outside
+#   id: f5639c10-7d8f-46fc-8a34-6cbcb6357acb
+#   trigger:
+#   - platform: sun
+#     event: sunset
+#     offset: '-00:30:00'
+#   action:
+#   - service: input_boolean.turn_on
+#     data:
+#       entity_id: input_boolean.outside_timer_lights
+#   - service: switch.turn_on
+#     data:
+#       entity_id: switch.driveway
+#   - service: switch.turn_on
+#     data:
+#       entity_id: switch.back_porch_1
+#   - service: light.turn_on
+#     data:
+#       entity_id: light.front_porch_1
 
-- alias: Timer Lights Off Outside
-  id: 9fa15f7d-6bd3-4cf4-9405-35a555974e6e
-  trigger:
-  - platform: sun
-    event: sunrise
-    #offset: '+00:30:00'
-  action:
-  - service: input_boolean.turn_off
-    data:
-      entity_id: input_boolean.outside_timer_lights
-  - service: switch.turn_off
-    data:
-      entity_id: switch.driveway
-  - service: switch.turn_off
-    data:
-      entity_id: switch.back_porch_1
-  - service: light.turn_off
-    data:
-      entity_id: light.front_porch_1
+# - alias: Timer Lights Off Outside
+#   id: 9fa15f7d-6bd3-4cf4-9405-35a555974e6e
+#   trigger:
+#   - platform: sun
+#     event: sunrise
+#     #offset: '+00:30:00'
+#   action:
+#   - service: input_boolean.turn_off
+#     data:
+#       entity_id: input_boolean.outside_timer_lights
+#   - service: switch.turn_off
+#     data:
+#       entity_id: switch.driveway
+#   - service: switch.turn_off
+#     data:
+#       entity_id: switch.back_porch_1
+#   - service: light.turn_off
+#     data:
+#       entity_id: light.front_porch_1
