@@ -32,7 +32,7 @@
   #   entity_id: alarm_control_panel.area_001
   #   state: armed_away
   action:
-  - service: switch.turn_on
+  - service: switch.turn_off
     data:
       entity_id: 
         - switch.guest_room_lamp
