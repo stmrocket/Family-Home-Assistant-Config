@@ -1,3 +1,48 @@
+camera:
+  - platform: mjpeg
+    name: Front Porch
+    still_image_url: !secret front_porch_still
+    mjpeg_url: !secret front_porch_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Back Porch
+    still_image_url: !secret back_porch_still
+    mjpeg_url: !secret back_porch_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Den
+    still_image_url: !secret den_still
+    mjpeg_url: !secret den_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Driveway
+    still_image_url: !secret driveway_still
+    mjpeg_url: !secret driveway_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Garage
+    still_image_url: !secret garage_still
+    mjpeg_url: !secret garage_stream
+    verify_ssl: false
+
+  - platform: mjpeg
+    name: Foyer
+    still_image_url: !secret foyer_still
+    mjpeg_url: !secret foyer_stream
+    verify_ssl: false
+
+  # - platform: mqtt
+  #   name: Back Porch Last Person
+  #   topic: frigate/back_porch/person/snapshot
+
+  # - platform: mqtt
+  #   name: Front Porch Last Person
+  #   topic: frigate/front_porch/person/snapshot
+
 binary_sensor:
   - platform: mqtt
     name: Back Porch Person
