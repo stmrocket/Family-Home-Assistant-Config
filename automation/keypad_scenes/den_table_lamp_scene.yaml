@@ -1,0 +1,58 @@
+- alias: Den Table Lamp On from Keypad
+  id: a65ab0fb-bf76-44c3-987d-027ad5bfac3d
+  trigger:
+    - platform: state
+      entity_id: switch.den_table_lamp
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.den_table_lamp
+      state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.den_table_lamp
+
+- alias: Den Table Lamp Off from Keypad
+  id: 570789ff-33a3-477b-8603-f0fe74de436f
+  trigger:
+    - platform: state
+      entity_id: switch.den_table_lamp
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: light.den_table_lamp
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.den_table_lamp
+
+- alias: Den Table Lamp Keypad On
+  id: 08de6513-a343-40b2-bf7d-91f01fa4a54f
+  trigger:
+    - platform: state
+      entity_id: light.den_table_lamp
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.den_table_lamp
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.den_table_lamp
+
+- alias: Den Table Lamp Keypad Off
+  id: 6b723d09-1661-4380-9929-3667070931d4
+  trigger:
+    - platform: state
+      entity_id: light.den_table_lamp
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.den_table_lamp
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.den_table_lamp

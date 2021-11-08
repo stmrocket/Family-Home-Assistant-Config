@@ -1,0 +1,58 @@
+- alias: Entry Lamp On from Keypad
+  id: 2a45f8f1-acd7-4e26-ba32-91585e815280
+  trigger:
+    - platform: state
+      entity_id: switch.entry_lamp
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.entry_lamp
+      state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.entry_lamp
+
+- alias: Entry Lamp Off from Keypad
+  id: 2b0412be-ca7e-4d72-94b4-2954887629cc
+  trigger:
+    - platform: state
+      entity_id: switch.entry_lamp
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: light.entry_lamp
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.entry_lamp
+
+- alias: Entry Lamp Keypad On
+  id: 63045d04-407c-4c1d-a877-729d3b3fd09f
+  trigger:
+    - platform: state
+      entity_id: light.entry_lamp
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.entry_lamp
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.entry_lamp
+
+- alias: Entry Lamp Keypad Off
+  id: bfd20a6a-5233-40ef-a974-59a850b2f30f
+  trigger:
+    - platform: state
+      entity_id: light.entry_lamp
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.entry_lamp
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.entry_lamp

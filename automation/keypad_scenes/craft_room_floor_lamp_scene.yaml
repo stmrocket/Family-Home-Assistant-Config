@@ -1,0 +1,58 @@
+- alias: Craft Room Floor Lamp On from Keypad
+  id: 718cd4ce-8cb5-47bb-9000-92d89efaecce
+  trigger:
+    - platform: state
+      entity_id: switch.craft_room_floor_lamp
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.craft_room_uplight
+      state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.craft_room_uplight
+
+- alias: Craft Room Floor Lamp Off from Keypad
+  id: e289fd75-eb25-4c57-9d1e-4a1eeb2c6747
+  trigger:
+    - platform: state
+      entity_id: switch.craft_room_floor_lamp
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: light.craft_room_uplight
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.craft_room_uplight
+
+- alias: Craft Room Floor Lamp Keypad On
+  id: a830dc68-0bb3-44c1-9640-40d3adc52797
+  trigger:
+    - platform: state
+      entity_id: light.craft_room_uplight
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.craft_room_floor_lamp
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.craft_room_floor_lamp
+
+- alias: Craft Room Floor Lamp Keypad Off
+  id: 4adf742e-6b82-427b-bd5d-697f2b273318
+  trigger:
+    - platform: state
+      entity_id: light.craft_room_uplight
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.craft_room_floor_lamp
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.craft_room_floor_lamp

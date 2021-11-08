@@ -1,0 +1,58 @@
+- alias: Watch Shop Lamp On from Keypad
+  id: 8937c859-3f75-4013-9f0c-d92494c9c4b7
+  trigger:
+    - platform: state
+      entity_id: switch.watch_shop_lamp
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.watch_shop_lamp
+      state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.watch_shop_lamp
+
+- alias: Watch Shop Lamp Off from Keypad
+  id: c60bdc8f-bc69-4bd3-acb8-b5f119e9f7ce
+  trigger:
+    - platform: state
+      entity_id: switch.watch_shop_lamp
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: light.watch_shop_lamp
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.watch_shop_lamp
+
+- alias: Watch Shop Lamp Keypad On
+  id: bd3ae271-23ab-45f7-a848-21e8b1a0bd84
+  trigger:
+    - platform: state
+      entity_id: light.watch_shop_lamp
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.watch_shop_lamp
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.watch_shop_lamp
+
+- alias: Watch Shop Lamp Keypad Off
+  id: bb6f7e20-cb74-4ba6-aab0-224631957253
+  trigger:
+    - platform: state
+      entity_id: light.watch_shop_lamp
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.watch_shop_lamp
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.watch_shop_lamp
