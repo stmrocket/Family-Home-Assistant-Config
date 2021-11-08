@@ -65,7 +65,7 @@ script:
       - service: rainmachine.enable_program
         data:
           entity_id: switch.foxcroft_every_3_days
-      - service: rainmachine.foxcroft_right_side
+      - service: rainmachine.disable_program
         data:
           entity_id: switch.foxcroft_every_2_days
 
