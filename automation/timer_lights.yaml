@@ -6,16 +6,17 @@
     offset: '-00:30:00'   
   action:
   - service: switch.turn_on
-    data:
-      entity_id: 
-        - switch.guest_room_lamp
-        - switch.watch_shop_lamp
-        - switch.craft_room_table_lamp
-        - switch.craft_room_floor_lamp
-        - switch.entry_lamp
-        - switch.den_curio_cabinet
-        - switch.den_table_lamp
-        - switch.master_bedroom_lamp
+    entity_id: 
+      - switch.guest_room_lamp
+      - switch.craft_room_table_lamp
+      - switch.den_curio_cabinet
+      - switch.master_bedroom_lamp
+  - service: light.turn_on
+    entity_id:
+      - light.watch_shop_lamp
+      - light.craft_room_floor_lamp
+      - light.entry_lamp
+      - light.den_table_lamp
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.timer_lights
@@ -27,50 +28,53 @@
   trigger:
   - platform: time
     at: '23:30:00'
-  # condition:
-  # - condition: state
-  #   entity_id: alarm_control_panel.house
-  #   state: armed_away
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.house
+    state: armed_away
   action:
   - service: switch.turn_off
-    data:
-      entity_id: 
-        - switch.guest_room_lamp
-        - switch.watch_shop_lamp
-        - switch.craft_room_table_lamp
-        - switch.craft_room_floor_lamp
-        - switch.entry_lamp
-        - switch.den_curio_cabinet
-        - switch.den_table_lamp
-        - switch.master_bedroom_lamp
+    entity_id: 
+      - switch.guest_room_lamp
+      - switch.craft_room_table_lamp
+      - switch.den_curio_cabinet
+      - switch.master_bedroom_lamp
+  - service: light.turn_off
+    entity_id:
+      - light.watch_shop_lamp
+      - light.craft_room_floor_lamp
+      - light.entry_lamp
+      - light.den_table_lamp
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.timer_lights
 
-# - alias: Timer Lights Off Main Night Mode
-#   id: 660283a7-76b7-4183-bfde-28e77c9aef2f
-#   trigger:
-#   - platform: state
-#     entity_id: alarm_control_panel.house
-#     from: disarmed
-#     to: armed_night
-#   - platform: state
-#     entity_id: alarm_control_panel.house
-#     from: armed_home
-#     to: armed_night
-#   action:
-#   - service: light.turn_off
-#     data:
-#       entity_id: light.den_lamp
-#   - service: light.turn_off
-#     data:
-#       entity_id: light.guest_lamp
-#   - service: light.turn_off
-#     data:
-#       entity_id: light.craft_room_lamp
-#   - service: input_boolean.turn_off
-#     data:
-#       entity_id: input_boolean.timer_lights
+- alias: Timer Lights Off Main Night Mode
+  id: 660283a7-76b7-4183-bfde-28e77c9aef2f
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    from: disarmed
+    to: armed_night
+  - platform: state
+    entity_id: alarm_control_panel.house
+    from: armed_home
+    to: armed_night
+  action:
+  - service: switch.turn_off
+    entity_id: 
+      - switch.guest_room_lamp
+      - switch.craft_room_table_lamp
+      - switch.den_curio_cabinet
+  - service: light.turn_off
+    entity_id:
+      - light.watch_shop_lamp
+      - light.craft_room_floor_lamp
+      - light.entry_lamp
+      - light.den_table_lamp
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.timer_lights
 
 
 - alias: Timer Lights On Outside
