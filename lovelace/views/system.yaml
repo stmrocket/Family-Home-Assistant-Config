@@ -1408,7 +1408,7 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:stack-in-card
+      - type: custom:vertical-stack-in-card
         cards:
           - type: picture-elements
             image: /local/lovelace/room.png
@@ -1428,18 +1428,36 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                entity: switch.irrigation_program
+                entity: switch.irrigation_program_2_days
                 color_type: icon
-                color: rgb(228, 94, 101)
-                icon: mdi:alarm-check
-                name: Program Enable
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                    icon: mdi:alarm-check
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                    icon: mdi:alarm-off
+                name: Every 2 Days
+                hold_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: switch.irrigation_program_3_days
+                color_type: icon
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                    icon: mdi:alarm-check
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                    icon: mdi:alarm-off
+                name: Every 3 Days
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
                 entity: switch.irrigation_run_program
                 color_type: icon
                 color: rgb(228, 94, 101)
-                icon: mdi:weather-pouring
+                icon: mdi:sprinkler-variant
                 name: Run Program
                 hold_action:
                   action: more-info
@@ -1447,47 +1465,88 @@ cards:
           - type: horizontal-stack
             cards:
               - type: "custom:button-card"
-                entity: switch.front_yard_right
+                entity: binary_sensor.rm_zone_1_watering
                 color_type: icon
-                color: rgb(228, 94, 101)
                 icon: mdi:numeric-1-box
-                name: R Front
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: Front
                 tap_action:
                   action: call-service
-                  service: script.rainmachine_control_zone_1
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.east_front
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
-                entity: switch.front_yard_left
+                entity: binary_sensor.rm_zone_2_watering
                 color_type: icon
-                color: rgb(228, 94, 101)
                 icon: mdi:numeric-2-box
-                name: L Front
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: Flowers
                 tap_action:
                   action: call-service
-                  service: script.rainmachine_control_zone_3
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.east_side
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
-                entity: switch.front_flower_bed
+                entity: binary_sensor.rm_zone_3_watering
                 color_type: icon
-                color: rgb(228, 94, 101)
                 icon: mdi:numeric-3-box
-                name: Flowerbed
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: L Side
                 tap_action:
                   action: call-service
-                  service: script.rainmachine_control_zone_2
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.back_yard
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
-                entity: switch.back_yard
+                entity: binary_sensor.rm_zone_4_watering
                 color_type: icon
-                color: rgb(228, 94, 101)
                 icon: mdi:numeric-4-box
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
                 name: Back
                 tap_action:
                   action: call-service
-                  service: script.rainmachine_control_zone_4
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.west_side
+                hold_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: binary_sensor.rm_zone_5_watering
+                color_type: icon
+                icon: mdi:numeric-5-box
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: R Side
+                tap_action:
+                  action: call-service
+                  service: switch.toggle
+                  service_data:
+                    entity_id: switch.west_front
                 hold_action:
                   action: more-info
 

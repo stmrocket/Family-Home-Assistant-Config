@@ -1,0 +1,98 @@
+switch:
+  - platform: template
+    switches:
+      irrigation_program_3_days:
+        friendly_name: "Irrigation Schedule Every 3 Days Enabled"
+        value_template: "{{ not is_state('switch.foxcroft_every_3_days', 'unavailable') }}"
+        turn_on:
+          service: script.rainmachine_program_2_on
+        turn_off:
+          service: rainmachine.disable_program
+          data:
+            entity_id: switch.foxcroft_right_side
+            program_id: 2
+
+      irrigation_program_2_days:
+        friendly_name: "Irrigation Schedule Every 2 Days Enabled"
+        value_template: "{{ not is_state('switch.foxcroft_every_2_days', 'unavailable') }}"
+        turn_on:
+          service: script.rainmachine_program_1_on
+        turn_off:
+          service: rainmachine.disable_program
+          data:
+            entity_id: switch.foxcroft_right_side
+            program_id: 1
+
+      irrigation_run_program:
+        friendly_name: "Run Irrigation Program"
+        value_template: "{{ is_state('switch.foxcroft_every_2_days','on') or is_state('switch.foxcroft_every_3_days','on') }}"
+        turn_on:
+          service: script.rainmachine_start_program
+        turn_off:
+          service: rainmachine.stop_all
+          data:
+            entity_id: switch.foxcroft_right_side
+
+binary_sensor:
+  - platform: template
+    sensors:
+      rm_zone_1_watering:
+        friendly_name: "Zone 1 watering"
+        value_template: "{{ is_state_attr('switch.foxcroft_front_yard','status','Running') }}"
+      rm_zone_2_watering:
+        friendly_name: "Zone 2 watering"
+        value_template: "{{ is_state_attr('switch.foxcroft_flower_beds','status','Running') }}"
+      rm_zone_3_watering:
+        friendly_name: "Zone 3 watering"
+        value_template: "{{ is_state_attr('switch.foxcroft_left_side','status','Running') }}"
+      rm_zone_4_watering:
+        friendly_name: "Zone 4 watering"
+        value_template: "{{ is_state_attr('switch.foxcroft_back_yard','status','Running') }}"
+      rm_zone_5_watering:
+        friendly_name: "Zone 5 watering"
+        value_template: "{{ is_state_attr('switch.foxcroft_right_side','status','Running') }}"
+
+script:
+  rainmachine_program_1_on:
+    sequence:
+      - service: rainmachine.enable_program
+        data:
+          entity_id: switch.foxcroft_right_side
+          program_id: 1
+      - service: rainmachine.disable_program
+        data:
+          entity_id: switch.foxcroft_right_side
+          program_id: 2
+
+  rainmachine_program_2_on:
+    sequence:
+      - service: rainmachine.enable_program
+        data:
+          entity_id: switch.east_front
+          program_id: 2
+      - service: rainmachine.foxcroft_right_side
+        data:
+          entity_id: switch.foxcroft_right_side
+          program_id: 1
+
+  rainmachine_start_program:
+    sequence:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: switch.irrigation_program_3_days
+                state: "on"
+            sequence:
+              - service: rainmachine.start_program
+                data:
+                  entity_id: switch.foxcroft_right_side
+                  program_id: 2
+          - conditions:
+              - condition: state
+                entity_id: switch.irrigation_program_2_days
+                state: "on"
+            sequence:
+              - service: rainmachine.start_program
+                data:
+                  entity_id: switch.foxcroft_right_side
+                  program_id: 1
