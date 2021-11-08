@@ -9,8 +9,7 @@ switch:
         turn_off:
           service: rainmachine.disable_program
           data:
-            entity_id: switch.foxcroft_right_side
-            program_id: 2
+            entity_id: switch.foxcroft_every_3_days
 
       irrigation_program_2_days:
         friendly_name: "Irrigation Schedule Every 2 Days Enabled"
@@ -20,8 +19,7 @@ switch:
         turn_off:
           service: rainmachine.disable_program
           data:
-            entity_id: switch.foxcroft_right_side
-            program_id: 1
+            entity_id: switch.foxcroft_every_2_days
 
       irrigation_run_program:
         friendly_name: "Run Irrigation Program"
@@ -31,7 +29,7 @@ switch:
         turn_off:
           service: rainmachine.stop_all
           data:
-            entity_id: switch.foxcroft_right_side
+            device_id: Foxcroft
 
 binary_sensor:
   - platform: template
@@ -57,23 +55,19 @@ script:
     sequence:
       - service: rainmachine.enable_program
         data:
-          entity_id: switch.foxcroft_right_side
-          program_id: 1
+          entity_id: switch.foxcroft_every_2_days
       - service: rainmachine.disable_program
         data:
-          entity_id: switch.foxcroft_right_side
-          program_id: 2
+          entity_id: switch.foxcroft_every_3_days
 
   rainmachine_program_2_on:
     sequence:
       - service: rainmachine.enable_program
         data:
-          entity_id: switch.east_front
-          program_id: 2
+          entity_id: switch.foxcroft_every_3_days
       - service: rainmachine.foxcroft_right_side
         data:
-          entity_id: switch.foxcroft_right_side
-          program_id: 1
+          entity_id: switch.foxcroft_every_2_days
 
   rainmachine_start_program:
     sequence:
@@ -85,8 +79,7 @@ script:
             sequence:
               - service: rainmachine.start_program
                 data:
-                  entity_id: switch.foxcroft_right_side
-                  program_id: 2
+                  entity_id: switch.foxcroft_every_3_days
           - conditions:
               - condition: state
                 entity_id: switch.irrigation_program_2_days
@@ -94,5 +87,4 @@ script:
             sequence:
               - service: rainmachine.start_program
                 data:
-                  entity_id: switch.foxcroft_right_side
-                  program_id: 1
+                  entity_id: switch.foxcroft_every_2_days
