@@ -12,7 +12,7 @@
   action:
   - service: climate.set_temperature
     data:
-      entity_id: climate.home
+      entity_id: climate.thermostat
       target_temp_high: 76
       target_temp_low: 62
 
@@ -38,7 +38,7 @@
   action:
   - service: climate.set_temperature
     data:
-      entity_id: climate.home
+      entity_id: climate.thermostat
       target_temp_high: 79
       target_temp_low: 69
 
@@ -51,6 +51,6 @@
   action:
   - service: climate.set_temperature
     data:
-      entity_id: climate.home
+      entity_id: climate.thermostat
       target_temp_high: 82
       target_temp_low: 62
