@@ -1,0 +1,82 @@
+- alias: Auto Attic Light
+  id: 5a8ba10b-9e1a-4634-908b-7b6eb05f0fc2
+  trigger:
+    - entity_id: sensor.attic_trapdoor
+      platform: state
+      to: Violated
+    - entity_id: sensor.attic_trapdoor
+      platform: state
+      to: Normal
+  action:
+    - service_template: >
+        {% if states('sensor.attic_trapdoor') == "Violated" %}
+          light.turn_on
+        {% else %}
+          light.turn_off
+        {% endif %}
+      entity_id: light.attic_lights
+
+- alias: Master Closet Light Auto On
+  id: 7eb4d327-5962-406d-932c-ea13cc15dd3e
+  trigger:
+    - entity_id: sensor.closet_motion
+      platform: state
+      to: Violated
+  action:
+    - service: switch.turn_on
+      entity_id: switch.master_closet_light
+
+- alias: Master Closet Light Auto Off
+  id: e2a21bb9-de5e-4cd6-8389-ac91023387a8
+  trigger:
+    - entity_id: sensor.closet_motion
+      platform: state
+      to: Normal
+      for:
+        minutes: 2
+  action:
+    - service: switch.turn_off
+      entity_id: switch.master_closet_light      
+
+- alias: Auto Linen Closet Light On
+  id: f0b8a508-5210-446f-bf99-4a8e7137a7da
+  trigger:
+    - entity_id: sensor.linen_closet
+      platform: state
+      to: Violated
+  action:
+    - service: scene.create
+      data:
+        scene_id: linen_closet_restore
+        snapshot_entities:
+          - light.back_hall_light
+    - service: light.turn_on
+      entity_id: light.back_hall_light
+
+- alias: Auto Linen Closet Light Off
+  id: 07470e78-7eb4-4fa7-a8fd-0c4f55dad8e5
+  trigger:
+    - entity_id: sensor.linen_closet
+      platform: state
+      to: Normal
+  action:
+    - service: scene.turn_on
+      entity_id: scene.linen_closet_restore    
+
+- alias: Auto Pantry Light
+  id: 1975c1a5-cd5c-4581-9f99-ca49dc68b9ba
+  trigger:
+    - entity_id: sensor.pantry_door
+      platform: state
+      to: Violated
+    - entity_id: sensor.pantry_door
+      platform: state
+      to: Normal
+  action:
+    - service_template: >
+        {% if states('sensor.pantry_door') == "Violated" %}
+          light.turn_on
+        {% else %}
+          light.turn_off
+        {% endif %}
+      entity_id: light.pantry_light      
