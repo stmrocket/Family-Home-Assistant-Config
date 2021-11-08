@@ -423,8 +423,8 @@ cards:
   #                          Home - Laundry                       #
   #                                                               #
   #################################################################
-#   - type: vertical-stack
-#     cards:
+  - type: vertical-stack
+    cards:
 #       - type: horizontal-stack
 #         cards:
 #           - type: "custom:gap-card"
@@ -505,10 +505,10 @@ cards:
       #                      Home - Alarm                             #
       #                                                               #
       #################################################################
-    #   - type: alarm-panel
-    #     name: House Alarm
-    #     states:
-    #       - arm_home
-    #       - arm_away
-    #       - arm_night
-    #     entity: alarm_control_panel.house
+      - type: alarm-panel
+        name: House Alarm
+        states:
+          - arm_home
+          - arm_away
+          - arm_night
+        entity: alarm_control_panel.house
