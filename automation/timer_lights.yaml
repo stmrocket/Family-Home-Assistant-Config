@@ -29,7 +29,7 @@
     at: '23:30:00'
   # condition:
   # - condition: state
-  #   entity_id: alarm_control_panel.area_001
+  #   entity_id: alarm_control_panel.house
   #   state: armed_away
   action:
   - service: switch.turn_off
@@ -51,11 +51,11 @@
 #   id: 660283a7-76b7-4183-bfde-28e77c9aef2f
 #   trigger:
 #   - platform: state
-#     entity_id: alarm_control_panel.area_001
+#     entity_id: alarm_control_panel.house
 #     from: disarmed
 #     to: armed_night
 #   - platform: state
-#     entity_id: alarm_control_panel.area_001
+#     entity_id: alarm_control_panel.house
 #     from: armed_home
 #     to: armed_night
 #   action:

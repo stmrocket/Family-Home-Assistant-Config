@@ -2,10 +2,10 @@
   id: 1a134ab1-f2c9-4c89-90c1-f8ca73da8b46
   trigger:
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     to: disarmed
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     to: armed_home
   action:
   - service: switch.turn_on
@@ -16,10 +16,10 @@
   id: 63914fe0-40f3-4124-b94c-15abc036a79a
   trigger:
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     to: armed_away
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     to: armed_night
   action:
   - service: switch.turn_off

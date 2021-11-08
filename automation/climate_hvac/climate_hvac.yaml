@@ -2,11 +2,11 @@
   id: ddd83345-0437-4afd-b1d7-5df3b1f41b05
   trigger:
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: disarmed
     to: armed_night
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: armed_home
     to: armed_night
   action:
@@ -20,19 +20,19 @@
   id: a290c27e-bc4a-4e40-876f-4dd7662593e9
   trigger:
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: armed_night
     to: disarmed
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: armed_night
     to: armed_home
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: armed_away
     to: disarmed
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     from: pending
     to: disarmed
   action:
@@ -46,7 +46,7 @@
   id: bd12cdfd-77bc-41d3-aa19-562b9115993f
   trigger:
   - platform: state
-    entity_id: alarm_control_panel.area_001
+    entity_id: alarm_control_panel.house
     to: armed_away
   action:
   - service: climate.set_temperature
