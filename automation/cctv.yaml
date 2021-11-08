@@ -52,7 +52,35 @@
         data: 
           images:
             - /config/www/cctv/front_porch_person.jpg
-            - /config/www/cctv/front_porch_full.jpg                                
+            - /config/www/cctv/front_porch_full.jpg                        
+
+- alias: CCTV Driveway Person Detected
+  id: 767fe3ac-cc69-4418-a916-4072ab2c32c7
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.driveway_person
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.frigate_enabled
+      state: 'on'
+  action:
+    - service: camera.snapshot
+      data:
+        entity_id: camera.driveway
+        filename: /config/www/cctv/driveway_full.jpg
+    - service: camera.snapshot
+      data:
+        entity_id: camera.driveway_last_person
+        filename: /config/www/cctv/driveway_person.jpg
+    - service: notify.cctv_email
+      data:
+        title: "CCTV Alarm: Driveway - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+        message: "A person was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}."
+        data: 
+          images:
+            - /config/www/cctv/driveway_person.jpg
+            - /config/www/cctv/driveway_full.jpg                        
 
 - alias: Restart Frigate if Hung
   id: f6462af0-4262-42e7-8742-3ac6ad3d7ec8

@@ -35,13 +35,17 @@ camera:
     mjpeg_url: !secret foyer_stream
     verify_ssl: false
 
-  # - platform: mqtt
-  #   name: Back Porch Last Person
-  #   topic: frigate/back_porch/person/snapshot
+  - platform: mqtt
+    name: Back Porch Last Person
+    topic: frigate/back_porch/person/snapshot
 
-  # - platform: mqtt
-  #   name: Front Porch Last Person
-  #   topic: frigate/front_porch/person/snapshot
+  - platform: mqtt
+    name: Front Porch Last Person
+    topic: frigate/front_porch/person/snapshot
+
+  - platform: mqtt
+    name: Driveway Last Person
+    topic: frigate/driveway/person/snapshot
 
 binary_sensor:
   - platform: mqtt
@@ -56,6 +60,12 @@ binary_sensor:
     device_class: motion
     availability_topic: frigate/available
 
+  - platform: mqtt
+    name: Driveway Person
+    state_topic: frigate/driveway/person
+    device_class: motion
+    availability_topic: frigate/available
+
 sensor:
   - platform: rest
     name: Frigate Debug
@@ -63,6 +73,7 @@ sensor:
     json_attributes:
       - back_porch
       - front_porch
+      - driveway
       - coral
     value_template: 'OK' 
 
@@ -85,6 +96,15 @@ sensor:
         unit_of_measurement: 'FPS'
       frigate_front_porch_skipped_fps: 
         value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["skipped_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_driveway_detection_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["detection_fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_driveway_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["fps"] }}'
+        unit_of_measurement: 'FPS'
+      frigate_driveway_skipped_fps: 
+        value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["skipped_fps"] }}'
         unit_of_measurement: 'FPS'
       frigate_coral_fps: 
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
