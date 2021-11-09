@@ -431,6 +431,7 @@ cards:
             state:
               - value: 'Off'
                 color: rgb(255, 255, 255)
+                name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
               - operator: default
                 color: rgb(228, 94, 101)
                 name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
@@ -443,6 +444,7 @@ cards:
             state:
               - value: 'Off'
                 color: rgb(255, 255, 255)
+                name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
               - operator: default
                 color: rgb(228, 94, 101)
                 name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
