@@ -62,7 +62,7 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
-      entity_id: switch.output_182
+      entity_id: switch.output_180
     - service: input_boolean.turn_off
       entity_id: input_boolean.elk_stay_off      
 
