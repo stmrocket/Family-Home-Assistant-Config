@@ -40,6 +40,7 @@ smart_home:
       - switch.master_bedroom_lamp
       - switch.outside_lights
       - switch.watch_shop_fan
+      - switch.warmer
       - input_boolean.elk_night_on
       - input_boolean.elk_night_off
       - input_boolean.elk_stay_on
@@ -72,3 +73,5 @@ smart_home:
       name: Curio Cabinet
     switch.kitchen_undercabinet_lights:
       name: Counter Lights
+    switch.warmer:
+      name: Wax Warmer

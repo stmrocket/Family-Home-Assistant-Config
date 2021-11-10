@@ -1,0 +1,91 @@
+switch:
+  - platform: mqtt
+    name: "Wax Warmer"
+    state_topic: "warmer/stat/POWER"
+    command_topic: "warmer/cmnd/POWER"
+    availability_topic: "warmer/tele/LWT"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    
+Automation:
+  - alias: Turn On Wax Warmer
+    id: 0bcfd9c1-0db1-4fb7-a788-07c81799d8db
+    trigger:
+      - platform: state
+        entity_id: switch.warmer
+        from: "off"
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: switch.wax_warmer
+        state: "off"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.wax_warmer
+
+  - alias: Turn Off Wax Warmer
+    id: 765d039d-43ba-451a-9c16-9f46d8ca8a8d
+    trigger:
+      - platform: state
+        entity_id: switch.warmer
+        from: "on"
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: switch.wax_warmer
+        state: "on"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.wax_warmer
+
+  - alias: Wax Warmer Keypad On if Warmer On
+    id: 60d623db-1eb0-47de-866d-1fcf0b3cb9d3
+    trigger:
+      - entity_id: switch.wax_warmer
+        platform: state
+        from: "off"
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: switch.warmer
+        state: "off"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.warmer
+
+  - alias: Wax Warmer Keypad Off if Warmer Off
+    id: 902f932c-cfbc-4ca9-86ef-642356f809a7
+    trigger:
+      - entity_id: switch.wax_warmer
+        platform: state
+        from: "on"
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: switch.warmer
+        state: "on"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.warmer
+
+  - alias: Keep Wax Warmer Off When Away
+    id: 6639626d-14a1-4858-af33-b26b44fddd40
+    trigger:
+      - platform: state
+        entity_id: switch.wax_warmer
+        to: "on"
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: armed_night
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: armed_away
+    action:
+      - service: switch.turn_off
+        entity_id: switch.wax_warmer
