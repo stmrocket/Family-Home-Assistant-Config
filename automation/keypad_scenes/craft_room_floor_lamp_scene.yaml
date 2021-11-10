@@ -7,12 +7,12 @@
       to: "on"
   condition:
     - condition: state
-      entity_id: light.craft_room_uplight
+      entity_id: light.craft_room_floor_lamp
       state: "off"
   action:
     - service: light.turn_on
       data:
-        entity_id: light.craft_room_uplight
+        entity_id: light.craft_room_floor_lamp
 
 - alias: Craft Room Floor Lamp Off from Keypad
   id: e289fd75-eb25-4c57-9d1e-4a1eeb2c6747
@@ -23,17 +23,17 @@
       to: "off"
   condition:
     - condition: state
-      entity_id: light.craft_room_uplight
+      entity_id: light.craft_room_floor_lamp
       state: "on"
   action:
     - service: light.turn_off
-      entity_id: light.craft_room_uplight
+      entity_id: light.craft_room_floor_lamp
 
 - alias: Craft Room Floor Lamp Keypad On
   id: a830dc68-0bb3-44c1-9640-40d3adc52797
   trigger:
     - platform: state
-      entity_id: light.craft_room_uplight
+      entity_id: light.craft_room_floor_lamp
       to: "on"
   condition:
     - condition: state
@@ -47,7 +47,7 @@
   id: 4adf742e-6b82-427b-bd5d-697f2b273318
   trigger:
     - platform: state
-      entity_id: light.craft_room_uplight
+      entity_id: light.craft_room_floor_lamp
       to: "off"
   condition:
     - condition: state
