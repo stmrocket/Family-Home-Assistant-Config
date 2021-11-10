@@ -1,16 +1,45 @@
 smart_home:
   filter:
     include_entities:
-      - switch.left_back_porch
-      - switch.right_back_porch
-      - switch.back_porch
-      - switch.den_lamp
-      - switch.driveay
-      - light.craft_room_lamp
-      - light.entry
-      - light.front_porch_1
-      - light.guest_lamp
-      - light.master_lamp
+      - light.back_yard_lights
+      - light.back_hall_light
+      - light.back_porch_light
+      - light.craft_room_light
+      - light.front_hall_light
+      - light.garage_lights
+      - light.guest_bath_light
+      - light.guest_room_light
+      - light.half_bath_light
+      - light.kitchen_pendants
+      - light.laundry_room_light
+      - light.master_bathroom_lights
+      - light.master_bedroom_light
+      - light.master_shower_light
+      - light.master_toilet_light
+      - light.watch_shop_light
+      - switch.christmas_outlets
+      - switch.back_porch_fan
+      - switch.craft_room_desk
+      - switch.craft_room_fan
+      - switch.craft_room_floor_lamp
+      - switch.craft_room_table_lamp
+      - switch.den_curio_cabinet
+      - switch.den_fan
+      - switch.den_lights
+      - switch.den_table_lamp
+      - switch.dining_light
+      - switch.drop_zone_light
+      - switch.entry_lamp
+      - switch.foyer_lights
+      - switch.guest_mode
+      - switch.guest_room_fan
+      - switch.guest_room_lamp
+      - switch.kitchen_lights
+      - switch.kitchen_undercabinet_lights
+      - switch.master_bedroom_fan
+      - switch.master_bedroom_lamp
+      - switch.outside_lights
+      - switch.watch_shop_fan
       - input_boolean.elk_night_on
       - input_boolean.elk_night_off
       - input_boolean.elk_stay_on
@@ -35,15 +64,11 @@ smart_home:
       - input_number   
 
   entity_config:
-    switch.left_back_porch:
-      name: Left Back Yard Light
-    switch.right_back_porch:
-      name: Right Back Yard Light
-    switch.back_porch:
-      name: Back Porch Light
-    switch.driveway:
-      name: Driveway Light
-    light.entry:
-      name: Entry Light
-    light.front_porch_1:
-      name: Front Porch Light
+    light.guest_bath_light:
+      name: Guest Bathroom Light
+    switch.christmas_outlets:
+      name: Outdoor Christmas
+    switch.den_curio_cabinet:
+      name: Curio Cabinet
+    switch.kitchen_undercabinet_lights:
+      name: Counter Lights
