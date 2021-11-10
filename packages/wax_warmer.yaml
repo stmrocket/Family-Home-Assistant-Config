@@ -10,7 +10,7 @@ switch:
     payload_available: "Online"
     payload_not_available: "Offline"
     
-Automation:
+automation:
   - alias: Turn On Wax Warmer
     id: 0bcfd9c1-0db1-4fb7-a788-07c81799d8db
     trigger:
