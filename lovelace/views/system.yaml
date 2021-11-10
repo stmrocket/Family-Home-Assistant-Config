@@ -462,235 +462,174 @@ cards:
                 type: state-label
 
           - type: horizontal-stack
-            cards:
-              - type: custom:stack-in-card
-                cards:
-                  - type: custom:bar-card
-                    name: CPU
-                    entity: sensor.processor_use
-                    entity_row: true
-                    positions:
-                      icon: "off"
-                      name: inside
-                      value: inside
-                    padding: 4px
-                    card_style:
-                      border-radius: 5px
-                    max: 100
-                    severity:
-                      - from: 0
-                        to: 50
-                        color: "#1db954"
-                      - from: 51
-                        to: 75
-                        color: "#bf9540"
-                      - from: 76
-                        to: 100
-                        color: "#ff0000"
-                    style: |-
-                      .contentbar-direction-right {
-                        flex-direction: column;
-                      }
-                      .min-direction-right {
-                        margin: 0px;
-                        margin-bottom: -20px;
-                        bottom: 10px;
-                      }
-                        bar-card-value {
-                        margin: 0px;
-                        font-size: 13px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;
-                      }
-                      bar-card-name {
-                        margin: 0px;
-                        margin-top: 5px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;              
-                      }
-                      bar-card-max {
-                        margin: 0px;
-                        margin-left: auto;
-                        margin-top: -20px;
-                        top: 10px;
-                      }
-                      bar-card-divider {
-                        display: none;
-                      }
+            cards:              
+              - type: custom:bar-card
+                name: CPU
+                entity: sensor.processor_use
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 100
+                severity:
+                  - from: 0
+                    to: 50
+                    color: "#1db954"
+                  - from: 51
+                    to: 75
+                    color: "#bf9540"
+                  - from: 76
+                    to: 100
+                    color: "#ff0000"
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
 
-                  - type: custom:bar-card
-                    name: RAM
-                    entity: sensor.memory_use_percent
-                    entity_row: true
-                    positions:
-                      icon: "off"
-                      name: inside
-                      value: inside
-                    padding: 4px
-                    card_style:
-                      border-radius: 5px
-                    max: 100
-                    severity:
-                      - from: 0
-                        to: 50
-                        color: "#1db954"
-                      - from: 51
-                        to: 75
-                        color: "#bf9540"
-                      - from: 76
-                        to: 100
-                        color: "#ff0000"
-                    style: |-
-                      .contentbar-direction-right {
-                        flex-direction: column;
-                      }
-                      .min-direction-right {
-                        margin: 0px;
-                        margin-bottom: -20px;
-                        bottom: 10px;
-                      }
-                        bar-card-value {
-                        margin: 0px;
-                        font-size: 13px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;
-                      }
-                      bar-card-name {
-                        margin: 0px;
-                        margin-top: 5px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;              
-                      }
-                      bar-card-max {
-                        margin: 0px;
-                        margin-left: auto;
-                        margin-top: -20px;
-                        top: 10px;
-                      }
-                      bar-card-divider {
-                        display: none;
-                      }
-
-              - type: custom:stack-in-card
-                cards:
-                  - type: custom:bar-card
-                    name: Disk
-                    entity: sensor.disk_use_percent
-                    entity_row: true
-                    positions:
-                      icon: "off"
-                      name: inside
-                      value: inside
-                    padding: 4px
-                    card_style:
-                      border-radius: 5px
-                    max: 100
-                    severity:
-                      - from: 0
-                        to: 79
-                        color: "#1db954"
-                      - from: 80
-                        to: 94
-                        color: "#bf9540"
-                      - from: 95
-                        to: 100
-                        color: "#ff0000"
-                    style: |-
-                      .contentbar-direction-right {
-                        flex-direction: column;
-                      }
-                      .min-direction-right {
-                        margin: 0px;
-                        margin-bottom: -20px;
-                        bottom: 10px;
-                      }
-                        bar-card-value {
-                        margin: 0px;
-                        font-size: 13px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;
-                      }
-                      bar-card-name {
-                        margin: 0px;
-                        margin-top: 5px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;              
-                      }
-                      bar-card-max {
-                        margin: 0px;
-                        margin-left: auto;
-                        margin-top: -20px;
-                        top: 10px;
-                      }
-                      bar-card-divider {
-                        display: none;
-                      }
-
-                  - type: custom:bar-card
-                    name: Temperature
-                    entity: sensor.cpu_temperature
-                    entity_row: true
-                    positions:
-                      icon: "off"
-                      name: inside
-                      value: inside
-                    padding: 4px
-                    card_style:
-                      border-radius: 5px
-                    max: 200
-                    severity:
-                      - from: 0
-                        to: 140
-                        color: "#1db954"
-                      - from: 141
-                        to: 160
-                        color: "#bf9540"
-                      - from: 161
-                        to: 200
-                        color: "#bf4040"
-                    style: |-
-                      .contentbar-direction-right {
-                        flex-direction: column;
-                      }
-                      .min-direction-right {
-                        margin: 0px;
-                        margin-bottom: -20px;
-                        bottom: 10px;
-                      }
-                        bar-card-value {
-                        margin: 0px;
-                        font-size: 13px;
-                        margin-left: auto;
-                        margin-right: auto;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;
-                      }
-                      bar-card-name {
-                        margin: 0px;
-                        margin-top: 5px;
-                        font-size: 14px;
-                        font-weight: bold;
-                        text-shadow: 1px 1px #0005;              
-                      }
-                      bar-card-max {
-                        margin: 0px;
-                        margin-left: auto;
-                        margin-top: -20px;
-                        top: 10px;
-                      }
-                      bar-card-divider {
-                        display: none;
-                      }
-
+              - type: custom:bar-card
+                name: RAM
+                entity: sensor.memory_use_percent
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 100
+                severity:
+                  - from: 0
+                    to: 50
+                    color: "#1db954"
+                  - from: 51
+                    to: 75
+                    color: "#bf9540"
+                  - from: 76
+                    to: 100
+                    color: "#ff0000"
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+              - type: custom:bar-card
+                name: Disk
+                entity: sensor.disk_use_percent
+                entity_row: true
+                positions:
+                  icon: "off"
+                  name: inside
+                  value: inside
+                padding: 4px
+                card_style:
+                  border-radius: 5px
+                max: 100
+                severity:
+                  - from: 0
+                    to: 79
+                    color: "#1db954"
+                  - from: 80
+                    to: 94
+                    color: "#bf9540"
+                  - from: 95
+                    to: 100
+                    color: "#ff0000"
+                style: |-
+                  .contentbar-direction-right {
+                    flex-direction: column;
+                  }
+                  .min-direction-right {
+                    margin: 0px;
+                    margin-bottom: -20px;
+                    bottom: 10px;
+                  }
+                    bar-card-value {
+                    margin: 0px;
+                    font-size: 13px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;
+                  }
+                  bar-card-name {
+                    margin: 0px;
+                    margin-top: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-shadow: 1px 1px #0005;              
+                  }
+                  bar-card-max {
+                    margin: 0px;
+                    margin-left: auto;
+                    margin-top: -20px;
+                    top: 10px;
+                  }
+                  bar-card-divider {
+                    display: none;
+                  }
+                      
           - type: horizontal-stack
             cards:
               - type: "custom:gap-card"
