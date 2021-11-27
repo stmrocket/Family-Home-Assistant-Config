@@ -43,8 +43,6 @@ lovelace:
       type: js
     - url: /hacsfiles/circle-sensor-card/circle-sensor-card.js
       type: module
-    - url: /hacsfiles/dark-sky-weather-card/dark-sky-weather-card.js
-      type: module
     - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
       type: js
     - url: /hacsfiles/lovelace-gap-card/gap-card.js
