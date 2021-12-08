@@ -1498,7 +1498,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
-            entity: remote.harmony_den
+            entity: remote.den_harmony
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:remote-tv-off
@@ -1507,7 +1507,7 @@ cards:
               action: call-service
               service: remote.turn_off
               service_data:
-                entity_id: remote.harmony_den
+                entity_id: remote.den_harmony
 
           - type: "custom:button-card"
             entity: remote.harmony_den
@@ -1519,13 +1519,13 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_den
+                entity_id: remote.den_harmony
                 command:
                   - VolumeDown
                 device: 35324836
 
           - type: "custom:button-card"
-            entity: remote.harmony_den
+            entity: remote.den_harmony
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:volume-mute
@@ -1534,13 +1534,13 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_den
+                entity_id: remote.den_harmony
                 command:
                   - Mute
                 device: 35324836
 
           - type: "custom:button-card"
-            entity: remote.harmony_den
+            entity: remote.den_harmony
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:volume-plus
@@ -1549,7 +1549,7 @@ cards:
               action: call-service
               service: remote.send_command
               service_data:
-                entity_id: remote.harmony_den
+                entity_id: remote.den_harmony
                 command:
                   - VolumeUp
                 device: 35324836
