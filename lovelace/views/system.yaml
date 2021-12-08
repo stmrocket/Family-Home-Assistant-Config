@@ -1522,7 +1522,7 @@ cards:
                 entity_id: remote.den_harmony
                 command:
                   - VolumeDown
-                device: 35324836
+                device: 76331422
 
           - type: "custom:button-card"
             entity: remote.den_harmony
@@ -1537,7 +1537,7 @@ cards:
                 entity_id: remote.den_harmony
                 command:
                   - Mute
-                device: 35324836
+                device: 76331422
 
           - type: "custom:button-card"
             entity: remote.den_harmony
@@ -1552,7 +1552,7 @@ cards:
                 entity_id: remote.den_harmony
                 command:
                   - VolumeUp
-                device: 35324836
+                device: 76331422
 
       - type: horizontal-stack
         cards:
