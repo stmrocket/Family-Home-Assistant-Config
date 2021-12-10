@@ -19,10 +19,9 @@
 - alias: Doorbell Announcement
   id: f5faa343-5c1f-4a3e-8bf5-fe9e7d0836e2
   trigger:
-    - platform: state
-      entity_id: sensor.doorbell
-      from: "Normal"
-      to: "Violated"
+    - platform: mqtt
+      topic: amcrest2mqtt/Z05919E169440/doorbell
+      payload: "on"
   action:
     - service: notify.alexa_media
       data:
@@ -34,6 +33,8 @@
           - media_player.alexa_craft
           - media_player.alexa_master
           - media_player.alexa_kitchen
+          - media_player.alexa_guest
+          - media_player.alexa_watch
 
 - alias: "Set Theme to Midnight"
   id: 5fbf01bf-84c0-46af-8177-b09e96dad69c
