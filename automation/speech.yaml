@@ -133,6 +133,6 @@
       payload: "on"
   action:
     - service: mqtt.publish
-      data_:
+      data:
         topic: parrot/command/set/play
         payload: 4,1
