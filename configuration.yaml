@@ -198,6 +198,8 @@ notify:
     vapid_email: !secret vapid_email
 
 browser_mod:
+  disable:
+    - all
 
 rest_command:
   wake_remote:

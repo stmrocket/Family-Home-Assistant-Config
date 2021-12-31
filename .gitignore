@@ -14,7 +14,7 @@ acl.conf
 fitbit.conf
 harmony_harmony_hub.conf
 harmony_living_room.conf
-home-assistant.log
+home-assistant.log*
 home-assistant_v2.db*
 known_devices.yaml
 secrets.yaml
@@ -31,3 +31,7 @@ __pycache__/
 www/icons/
 custom_components/
 www/community/
+harmony_*
+html5_push_registrations.conf
+www/
+blueprints/
