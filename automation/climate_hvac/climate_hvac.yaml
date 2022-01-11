@@ -40,7 +40,7 @@
     data:
       entity_id: climate.thermostat
       target_temp_high: 79
-      target_temp_low: 69
+      target_temp_low: 70
 
 - alias: HVAC When Away
   id: bd12cdfd-77bc-41d3-aa19-562b9115993f
