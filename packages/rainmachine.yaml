@@ -59,7 +59,7 @@ script:
   rainmachine_program_2_on:
     sequence:
       - service: switch.turn_off
-        entity_id: switch.program_every_3_days_enabled
+        entity_id: switch.foxcroft_every_3_days_enabled
       - service: switch.turn_on
         entity_id: switch.foxcroft_every_2_days_enabled
 
