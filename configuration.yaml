@@ -145,6 +145,10 @@ input_boolean:
     name: Elk Away Mode On Trigger
     icon: mdi:alarm-bell
 
+  elk_speech:
+    name: Elk Speech Enabled
+    
+
 # Text to speech
 tts:
   - platform: google_translate

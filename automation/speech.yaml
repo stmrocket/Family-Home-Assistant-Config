@@ -4,6 +4,10 @@
     - entity_id: sensor.elk_front_door
       platform: state
       to: Violated
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -16,6 +20,10 @@
     - entity_id: sensor.elk_back_door
       platform: state
       to: Violated
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -28,6 +36,10 @@
     - entity_id: sensor.elk_garage_door
       platform: state
       to: Violated
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -39,6 +51,10 @@
   trigger:
     - platform: template
       value_template: "{{ is_state_attr('sensor.elk_garage_entry', 'physical_status', 'open') }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -56,6 +72,10 @@
       from: armed_night
       platform: state
       to: armed_home
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -69,6 +89,10 @@
       from: disarmed
       platform: state
       to: armed_away
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -85,6 +109,10 @@
   trigger:
     - platform: template
       value_template: "{{ is_state_attr('alarm_control_panel.house', 'armed_status', 'armed_to_vacation') }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -107,6 +135,10 @@
       from: armed_home
       platform: state
       to: armed_night
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -119,6 +151,10 @@
     - entity_id: alarm_control_panel.house
       platform: state
       to: disarmed
+  condition:
+    - condition: state
+      entity_id: input_boolean.elk_speech
+      state: "on"
   action:
     - service: mqtt.publish
       data:
@@ -136,3 +172,25 @@
       data:
         topic: parrot/command/set/play
         payload: 4,1
+
+- alias: Disable Speech at Night if Dad Home
+  id: a2eaf102-55ee-4ed9-9893-a4cc4e9c4764
+  trigger:
+    - platform: time
+      at: "22:00:00"
+  condition:
+    - platform: state
+      entity_id: person.scott_mccoy
+      state: home
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.elk_speech
+
+- alias: Enable Speech in Morning
+  id: 7f4d76a0-b434-4e01-866f-1c31b5715a55
+  trigger:
+    - platform: time
+      at: "07:00:00"
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.elk_speech
