@@ -21,8 +21,6 @@
     data:
       entity_id: input_boolean.timer_lights
 
-
-
 - alias: Timer Lights Off Main Night Away
   id: 852f6cf2-ed7a-4ce8-8942-0e56c973c4a6
   trigger:
@@ -113,8 +111,8 @@
   - service: switch.turn_on
     entity_id: switch.christmas_outlets
 
-- alias: Timer Lights Off Main Night Away
-  id: fd42936e-0de1-48f9-87c3-807d96f47315
+- alias: Christmas Lights Off
+  id: 87e03159-71a3-4978-9cee-5d0c65102900
   trigger:
   - platform: time
     at: '23:00:00'
