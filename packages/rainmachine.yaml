@@ -3,23 +3,21 @@ switch:
     switches:
       irrigation_program_3_days:
         friendly_name: "Irrigation Schedule Every 3 Days Enabled"
-        value_template: "{{ not is_state('switch.foxcroft_every_3_days', 'unavailable') }}"
-        turn_on:
-          service: script.rainmachine_program_2_on
-        turn_off:
-          service: rainmachine.disable_program
-          data:
-            entity_id: switch.foxcroft_every_3_days
-
-      irrigation_program_2_days:
-        friendly_name: "Irrigation Schedule Every 2 Days Enabled"
-        value_template: "{{ not is_state('switch.foxcroft_every_2_days', 'unavailable') }}"
+        value_template: "{{ is_state('switch.foxcroft_every_3_days_enabled', 'on') }}"
         turn_on:
           service: script.rainmachine_program_1_on
         turn_off:
-          service: rainmachine.disable_program
-          data:
-            entity_id: switch.foxcroft_every_2_days
+          service: switch.turn_off
+          entity_id: switch.foxcroft_every_3_days_enabled
+
+      irrigation_program_2_days:
+        friendly_name: "Irrigation Schedule Every 2 Days Enabled"
+        value_template: "{{ is_state('switch.foxcroft_every_2_days_enabled', 'on') }}"
+        turn_on:
+          service: script.rainmachine_program_2_on
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.foxcroft_every_2_days_enabled
 
       irrigation_run_program:
         friendly_name: "Run Irrigation Program"
@@ -29,7 +27,7 @@ switch:
         turn_off:
           service: rainmachine.stop_all
           data:
-            device_id: Foxcroft
+            entity_id: switch.foxcroft_every_2_days
 
 binary_sensor:
   - platform: template
@@ -53,21 +51,17 @@ binary_sensor:
 script:
   rainmachine_program_1_on:
     sequence:
-      - service: rainmachine.enable_program
-        data:
-          entity_id: switch.foxcroft_every_2_days
-      - service: rainmachine.disable_program
-        data:
-          entity_id: switch.foxcroft_every_3_days
+      - service: switch.turn_off
+        entity_id: switch.foxcroft_every_2_days_enabled
+      - service: switch.turn_on
+        entity_id: switch.foxcroft_every_3_days_enabled
 
   rainmachine_program_2_on:
     sequence:
-      - service: rainmachine.enable_program
-        data:
-          entity_id: switch.foxcroft_every_3_days
-      - service: rainmachine.disable_program
-        data:
-          entity_id: switch.foxcroft_every_2_days
+      - service: switch.turn_off
+        entity_id: switch.program_every_3_days_enabled
+      - service: switch.turn_on
+        entity_id: switch.foxcroft_every_3_days_enabled
 
   rainmachine_start_program:
     sequence:
