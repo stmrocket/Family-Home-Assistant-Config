@@ -32,7 +32,6 @@ sensor:
         value_template: "{{ states('input_text.garage_entry_lock_status') }}"
 
 timer:
-  front_door:
   garage_entry:
     name: Garage Entry Lock Timer
     duration: "01:00:00"
