@@ -1,0 +1,136 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      garage_entry_lock_battery_low:
+        value_template: "{{ states('sensor.garage_entry_lock_battery_level') | int(none) < 40 }}"
+        friendly_name: "Garage Entry Lock Battery Low"
+        delay_on:
+          minutes: 5
+
+alert:
+  garage_entry_lock_battery_low:
+    name: Low Battery!
+    entity_id: binary_sensor.garage_entry_lock_battery_low
+    state: "on"
+    repeat: 1440
+    can_acknowledge: true
+    skip_first: false
+    message: "The garage entry lock battery is low."
+    done_message: "The garage entry lock battery has been replaced."
+    notifiers:
+      - mobile_app_karen_7t
+
+input_text:
+  garage_entry_lock_status:
+    name: Garage Entry Lock Status
+
+sensor:
+  - platform: template
+    sensors:
+      garage_entry_lock_status:
+        friendly_name: Garage Entry Lock Status
+        value_template: "{{ states('input_text.garage_entry_lock_status') }}"
+
+timer:
+  front_door:
+  garage_entry:
+    name: Garage Entry Lock Timer
+    duration: "01:00:00"
+
+automation:
+  - alias: 'Garage Entry Lock Status Update'
+    id: 809c150c-b1ec-4b67-978b-28a1725444e2
+    description: Update garage entry lock status.
+    trigger:
+      - platform: event
+        event_type: zwave_js_notification
+    condition: "{{ trigger.event.data.device_id == '6de38d703bfee53c81627244ac62a308' and trigger.event.data.event_label.endswith('lock operation') }}"
+    action:
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.garage_entry_lock_status
+          value: >
+            {% set userID = trigger.event.data.parameters['userId'] %}
+            {% if trigger.event.data.event_label == 'Manual unlock operation' %} Unlocked (Manual)
+            {% elif trigger.event.data.event_label == 'Manual lock operation' %} Locked (Manual)
+            {% elif trigger.event.data.event_label == 'RF unlock operation' %} Unlocked (RF)
+            {% elif trigger.event.data.event_label == 'RF lock operation' %} Locked (RF)
+            {% elif trigger.event.data.event_label == 'Keypad unlock operation' %} Unlocked (User {{ userID }})
+            {% elif trigger.event.data.event_label == 'Keypad lock operation' %} Locked (Keypad)
+            {% else %} Unknown
+            {% endif %}
+
+  - alias: Lock Garage Entry When Leaving or Going to Bed
+    id: fcf8f279-8cd8-41f0-af95-b7fa06b48265
+    trigger:
+      - entity_id: alarm_control_panel.house
+        from: arming
+        platform: state
+        to: armed_night
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: 
+          - disarmed
+          - armed_home
+        to: armed_night
+        for: "00:01:00"
+      - entity_id: alarm_control_panel.house
+        from: arming
+        platform: state
+        to: armed_away
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: 
+          - disarmed
+          - armed_home
+        to: armed_away
+        for: "00:01:00"
+    condition:
+      - condition: state
+        entity_id: lock.garage_entry
+        state: unlocked
+    action:
+      - data:
+          entity_id: lock.garage_entry
+        service: lock.lock
+
+  - alias: Garage Entry Lock Timer Trigger
+    id: b3d5062b-a651-425c-ab31-41c49e692318
+    trigger:
+      - entity_id: sensor.elk_garage_entry
+        from: Normal
+        to: Violated
+        platform: state
+      - entity_id: lock.garage_entry
+        from: locked
+        platform: state
+        to: unlocked
+      - entity_id: sensor.elk_garage_motion
+        from: Normal
+        to: Violated
+        platform: state
+    action:
+      service: timer.start
+      entity_id: timer.garage_entry
+
+  - alias: Garage Entry Left Unlocked
+    id: 23a5e483-971e-4bb3-aaff-32bf7b10f0d8
+    trigger:
+      - event_data:
+          entity_id: timer.garage_entry
+        event_type: timer.finished
+        platform: event
+    condition:
+      - condition: state
+        entity_id: sensor.elk_garage_entry
+        state: Normal
+      - condition: state
+        entity_id: sensor.elk_garage_door
+        state: Violated
+      - condition: state
+        entity_id: lock.garage_entry
+        state: unlocked
+    action:
+      - data:
+          entity_id: lock.garage_entry
+        service: lock.lock

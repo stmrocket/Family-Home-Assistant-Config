@@ -1,0 +1,140 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      front_door_lock_battery_low:
+        value_template: "{{ states('sensor.front_door_lock_battery_level') | int(none) < 40 }}"
+        friendly_name: "Front Door Lock Battery Low"
+        delay_on:
+          minutes: 5
+
+alert:
+  front_door_lock_battery_low:
+    name: Low Battery!
+    entity_id: binary_sensor.front_door_lock_battery_low
+    state: "on"
+    repeat: 1440
+    can_acknowledge: true
+    skip_first: false
+    message: "The front door lock battery is low."
+    done_message: "The front door lock battery has been replaced."
+    notifiers:
+      - mobile_app_karen_7t
+
+input_text:
+  front_door_lock_status:
+    name: Front Door Lock Status
+
+sensor:
+  - platform: template
+    sensors:
+      front_door_lock_status:
+        friendly_name: Front Door Lock Status
+        value_template: "{{ states('input_text.front_door_lock_status') }}"
+
+timer:
+  front_door:
+    name: Front Door Lock Timer
+    duration: "01:00:00"
+
+automation:
+  - alias: 'Front Door Lock Status Update'
+    id: 42a60a12-db17-4f4f-a3d4-7665716b2855
+    trigger:
+      - platform: event
+        event_type: zwave_js_notification
+    condition: "{{ trigger.event.data.device_id == '3bcf6cad458e8d919370b1712e7b1f40' and trigger.event.data.event_label.endswith('lock operation') }}"
+    action:
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.front_door_lock_status
+          value: >
+            {% set userID = trigger.event.data.parameters['userId'] %}
+            {% if trigger.event.data.event_label == 'Manual unlock operation' %} Unlocked (Manual)
+            {% elif trigger.event.data.event_label == 'Manual lock operation' %} Locked (Manual)
+            {% elif trigger.event.data.event_label == 'RF unlock operation' %} Unlocked (RF)
+            {% elif trigger.event.data.event_label == 'RF lock operation' %} Locked (RF)
+            {% elif trigger.event.data.event_label == 'Keypad unlock operation' %} Unlocked (User {{ userID }})
+            {% elif trigger.event.data.event_label == 'Keypad lock operation' %} Locked (Keypad)
+            {% else %} Unknown
+            {% endif %}
+
+  - alias: Lock Front Door When Away or Going to Bed
+    id: e8f75c21-4ae5-4411-9773-c38c5e2019e1
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: arming
+        to: armed_night
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: 
+          - disarmed
+          - armed_home
+        to: armed_night
+        for: "00:01:00"
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: arming
+        to: armed_away
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: 
+          - disarmed
+          - armed_home
+        to: armed_away
+        for: "00:01:00"
+    condition:
+      - condition: state
+        entity_id: lock.front_door
+        state: unlocked
+    action:
+      - service: lock.lock
+        entity_id: lock.front_door
+
+  - alias: Front Door Lock Timer Trigger
+    id: 95633cc9-3d10-4816-b934-2b3d0b5aaa3a
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_front_door
+        from: Normal
+        to: Violated
+      - platform: state
+        entity_id: lock.front_door
+        from: locked
+        to: unlocked
+    action:
+      - service: timer.start
+        entity_id: timer.front_door
+
+  - alias: Front Door Left Unlocked
+    id: 1538a79b-57be-4708-9f3f-bbab98a87589
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.front_door
+    condition:
+      - condition: state
+        entity_id: sensor.elk_front_door
+        state: Normal
+      - condition: state
+        entity_id: lock.front_door
+        state: unlocked
+    action:
+      - service: lock.lock
+        entity_id: lock.front_door
+
+  - alias: Lock Front Door When Leaving
+    id: 7c586818-9c1a-4d6a-8608-216403f37331
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_front_door
+        from: Violated
+        to: Normal
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.house
+        state: arming
+    action:
+      - service: lock.lock
+        entity_id: lock.front_door
