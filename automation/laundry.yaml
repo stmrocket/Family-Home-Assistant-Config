@@ -22,16 +22,10 @@
       data:
         message: The dryer has stopped.
         title: Laundry Update
-    - service: notify.alexa_media
+    - service: mqtt.publish
       data:
-        message: "The dryer has stopped."
-        data:
-          type: announce
-          method: all
-        target:
-          - media_player.alexa_craft
-          - media_player.alexa_master
-          - media_player.alexa_kitchen
+        topic: parrot/command/set/play
+        payload: 3,1
 
 - alias: 'Announce Washer Finished'
   id: 2de2b07e-f754-4667-a620-de035f87cc61
@@ -53,13 +47,7 @@
       data:
         message: The washer has stopped.
         title: Laundry Update
-    - service: notify.alexa_media
+    - service: mqtt.publish
       data:
-        message: "The Washer has stopped."
-        data:
-          type: announce
-          method: all
-        target:
-          - media_player.alexa_craft
-          - media_player.alexa_master
-          - media_player.alexa_kitchen
+        topic: parrot/command/set/play
+        payload: 3,3
