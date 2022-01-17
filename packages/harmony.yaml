@@ -5,6 +5,6 @@ sensor:
         friendly_name: Den Harmony Activity
         value_template: "{{ state_attr('remote.den_harmony', 'current_activity') }}"
 
-      master_harmony_activity:
+      craft_harmony_activity:
         friendly_name: Craft Room Harmony Activity
         value_template: "{{ state_attr('remote.craft_room_harmony', 'current_activity') }}"
