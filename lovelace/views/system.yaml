@@ -1347,7 +1347,7 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:vertical-stack-in-card
+      - type: custom:stack-in-card
         cards:
           - type: picture-elements
             image: /local/lovelace/room.png
