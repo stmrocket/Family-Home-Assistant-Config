@@ -1,0 +1,73 @@
+# Garage
+type: custom:vertical-stack-in-card
+cards:
+  - type: picture-elements
+    image: /local/lovelace/room_sm.png
+    elements:
+      - entity: lock.garage_entry
+        style:
+          bottom: -5%
+          font-weight: bold
+          right: 5%
+          transform: initial
+        type: state-icon
+      - entity: cover.garage_door
+        style:
+          bottom: -5%
+          font-weight: bold
+          right: 12%
+          transform: initial
+        type: state-icon
+        tap_action:
+          action: more-info
+      - entity: sensor.blank
+        hold-action: none
+        prefix: Utility
+        style:
+          bottom: -5%
+          font-size: 150%
+          left: 5%
+          transform: initial
+        tap_action: none
+        hold_action: none
+        type: state-label
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        entity: switch.drop_zone_light
+        color_type: icon
+        color: rgb(228, 94, 101)
+        state:
+          - value: "on"
+            icon: mdi:lightbulb-on-outline
+          - value: "off"
+            icon: mdi:lightbulb-outline
+        name: Drop Zone
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: light.garage_lights
+        color_type: icon
+        color: rgb(228, 94, 101)
+        state:
+          - value: "on"
+            icon: mdi:lightbulb-on-outline
+          - value: "off"
+            icon: mdi:lightbulb-outline
+        name: Garage
+        hold_action:
+          action: more-info
+      - type: "custom:button-card"
+        entity: light.laundry_room_light
+        color_type: icon
+        color: rgb(228, 94, 101)
+        state:
+          - value: "on"
+            icon: mdi:lightbulb-on-outline
+          - value: "off"
+            icon: mdi:lightbulb-outline
+        name: Laundry
+        hold_action:
+          action: more-info
+      - type: "custom:gap-card"
+      
