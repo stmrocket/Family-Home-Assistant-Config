@@ -91,121 +91,149 @@ cards:
                   name: Error
               tap_action:
                 action: more-info              
-            - type: "custom:button-card"
-              entity: sensor.washer_state
+            - type: custom:button-card
+              entity: sensor.washer_status_combined
               color_type: icon
               icon: mdi:washing-machine
               state:
-                - value: "Washing"
-                  color: rgb(228, 94, 101)
-                  name: Washing
-                - value: "Idle"
+                - value: 'Off'
                   color: rgb(255, 255, 255)
-                  name: Idle   
+                  name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
+                - operator: default
+                  color: rgb(228, 94, 101)
+                  name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
               tap_action:
                 action: more-info
-
-            - type: "custom:button-card"
-              entity: sensor.dryer_state
+            - type: custom:button-card
+              entity: sensor.dryer_status_combined
               color_type: icon
               icon: mdi:tumble-dryer
               state:
-                - value: "Drying"
-                  color: rgb(228, 94, 101)
-                  name: Drying
-                - value: "Idle"
+                - value: 'Off'
                   color: rgb(255, 255, 255)
-                  name: Idle
-                - value: "Door Open"
-                  color: rgb(255, 200, 0)
-                  name: Door                    
+                  name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
+                - operator: default
+                  color: rgb(228, 94, 101)
+                  name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
               tap_action:
                 action: more-info
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
-              entity: switch.driveway
+              entity: light.craft_room_light
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:road
-              name: Driveway
-              hold_action: 
+              state:
+                - value: "on"
+                  icon: mdi:lightbulb-on-outline
+                - value: "off"
+                  icon: mdi:lightbulb-outline
+              name: Light
+              hold_action:
                 action: more-info
             - type: "custom:button-card"
-              entity: light.front_porch_1
+              entity: switch.craft_room_fan
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:door
-              name: Front Porch
-              hold_action: 
+              state:
+                - value: "on"
+                  icon: mdi:fan
+                - value: "off"
+                  icon: mdi:fan-off
+              name: Fan
+              hold_action:
                 action: more-info
             - type: "custom:button-card"
-              entity: light.entry
+              entity: switch.craft_room_floor_lamp
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:ceiling-light
-              name: Entry
-              hold_action: 
+              icon: mdi:lamp
+              name: Floor
+              hold_action:
                 action: more-info
-  
+            - type: "custom:button-card"
+              entity: switch.craft_room_table_lamp
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:lamp
+              name: Table
+              hold_action:
+                action: more-info
+        - type: horizontal-stack
+          cards:
+            - type: "custom:gap-card"
+              height: 10
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
-              entity: switch.right_back_porch
+              entity: sensor.craft_harmony_activity
               color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:spotlight
-              name: L Flood
-              hold_action: 
-                action: more-info
+              state:
+                - value: "PowerOff"
+                  color: rgb(228, 94, 101)
+                - value: "PowerOff"
+                  operator: "!="
+                  color: rgb(255, 255, 255)
+              icon: mdi:remote-tv-off
+              name: "Off"
+              tap_action:
+                action: call-service
+                service: remote.turn_off
+                service_data:
+                  entity_id: remote.craft_room_harmony
+
             - type: "custom:button-card"
-              entity: switch.back_porch_1
+              entity: sensor.craft_harmony_activity
               color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:door
-              name: Back Porch
-              hold_action: 
-                action: more-info
+              state:
+                - value: "Watch PVR"
+                  color: rgb(228, 94, 101)
+                - value: "Watch PVR"
+                  operator: "!="
+                  color: rgb(255, 255, 255)
+              icon: mdi:kodi
+              name: Kodi
+              tap_action:
+                action: call-service
+                service: remote.turn_on
+                service_data:
+                  entity_id: remote.craft_room_harmony
+                  activity: "Watch PVR"
+
             - type: "custom:button-card"
-              entity: switch.left_back_porch
+              entity: sensor.craft_harmony_activity
               color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:spotlight
-              name: R Flood
-              hold_action: 
-                action: more-info
-        
-        - type: horizontal-stack
-          cards:
+              state:
+                - value: "Watch Roku"
+                  color: rgb(228, 94, 101)
+                - value: "Watch Roku"
+                  operator: "!="
+                  color: rgb(255, 255, 255)
+              icon: mdi:youtube-tv
+              name: Roku
+              tap_action:
+                action: call-service
+                service: remote.turn_on
+                service_data:
+                  entity_id: remote.craft_room_harmony
+                  activity: "Watch Roku"
+
             - type: "custom:button-card"
-              entity: switch.den_lamp
+              entity: sensor.craft_harmony_activity
               color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Den
-              hold_action: 
-                action: more-info
-            - type: "custom:button-card"
-              entity: light.master_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Master
-              hold_action: 
-                action: more-info
-            - type: "custom:button-card"
-              entity: light.guest_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Guest
-              hold_action: 
-                action: more-info
-            - type: "custom:button-card"
-              entity: light.craft_room_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Craft
-              hold_action: 
-                action: more-info
+              state:
+                - value: "Watch ChromeCast"
+                  color: rgb(228, 94, 101)
+                - value: "Watch ChromeCast"
+                  operator: "!="
+                  color: rgb(255, 255, 255)
+              icon: mdi:cast
+              name: Cast
+              tap_action:
+                action: call-service
+                service: remote.turn_on
+                service_data:
+                  entity_id: remote.craft_room_harmony
+                  activity: "ChromeCast"
+
+            - type: "custom:gap-card"
