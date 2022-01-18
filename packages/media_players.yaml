@@ -1,0 +1,108 @@
+media_player:
+  - platform: universal
+    name: Den Kodi Harmony
+    children:
+      - media_player.osmc_den
+    commands:
+      volume_up:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - VolumeUp
+          device: 76331422
+      volume_down:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - VolumeDown
+          device: 76331422
+      volume_mute:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - Mute
+          device: 76331422
+
+  - platform: universal
+    name: Den Roku Harmony
+    children:
+      - media_player.den_roku
+    commands:
+      volume_up:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - VolumeUp
+          device: 76331422
+      volume_down:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - VolumeDown
+          device: 76331422
+      volume_mute:
+        service: remote.send_command
+        data:
+          entity_id: remote.den_harmony
+          command:
+            - Mute
+          device: 76331422
+
+  - platform: universal
+    name: Craft Kodi Harmony
+    children:
+      - media_player.osmc_craft
+    commands:
+      volume_up:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - VolumeUp
+          device: 76865953
+      volume_down:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - VolumeDown
+          device: 76865953
+      volume_mute:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - Mute
+          device: 76865953
+
+  - platform: universal
+    name: Craft Roku Harmony
+    children:
+      - media_player.craft_room_roku_roku
+    commands:
+      volume_up:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - VolumeUp
+          device: 35113962
+      volume_down:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - VolumeDown
+          device: 35113962
+      volume_mute:
+        service: remote.send_command
+        data:
+          entity_id: remote.craft_room_harmony
+          command:
+            - Mute
+          device: 35113962
