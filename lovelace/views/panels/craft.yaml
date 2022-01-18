@@ -237,3 +237,40 @@ cards:
                   activity: "ChromeCast"
 
             - type: "custom:gap-card"
+      - type: conditional
+        conditions:
+          - entity: sensor.craft_harmony_activity
+            state: "Watch PVR"
+          - entity: media_player.osmc_craft
+            state_not: "idle"
+          - entity: media_player.osmc_craft
+            state_not: "off"
+        card:
+          type: 'custom:mini-media-player'
+          entity: media_player.craft_kodi_harmony
+          icon: mdi:blank
+          artwork: cover
+          group: true
+          info: scroll
+          volume_stateless: true
+          hide:
+            name: true
+            power: true
+
+      - type: conditional
+        conditions:
+          - entity: sensor.craft_harmony_activity
+            state: "Watch Roku"
+          - entity: media_player.craft_room_roku_roku
+            state_not: "home"
+        card:
+          type: 'custom:mini-media-player'
+          entity: media_player.craft_roku_harmony
+          icon: mdi:blank
+          artwork: cover
+          group: true
+          info: scroll
+          volume_stateless: true
+          hide:
+            name: true
+            power: true            
