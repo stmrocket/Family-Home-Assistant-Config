@@ -30,17 +30,17 @@ lovelace:
     lovelace-entry:
       mode: yaml
       filename: lovelace-entry.yaml
-      title: Craft Tablet View
+      title: Entry Tablet View
       show_in_sidebar: false
     lovelace-kitchen:
       mode: yaml
       filename: lovelace-kitchen.yaml
-      title: Craft Tablet View
+      title: Kitchen Tablet View
       show_in_sidebar: false
     lovelace-watch:
       mode: yaml
       filename: lovelace-watch.yaml
-      title: Craft Tablet View
+      title: Watch Shop Tablet View
       show_in_sidebar: false
     lovelace-mobile:
       mode: yaml
