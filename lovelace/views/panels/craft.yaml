@@ -37,7 +37,6 @@ cards:
                 - entity: camera.back_porch
                 - entity: camera.den
           - type: 'custom:gap-card'
-            height: 50
             
 
 #################################################################
