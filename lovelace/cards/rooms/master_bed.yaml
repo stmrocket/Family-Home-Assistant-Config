@@ -1,4 +1,4 @@
-# Watch Shop
+# Master Bedroom
 type: custom:vertical-stack-in-card
 cards:
   - type: picture-elements
@@ -6,7 +6,7 @@ cards:
     elements:
       - entity: sensor.blank
         hold-action: none
-        prefix: Watch Shop
+        prefix: Master Bedroom
         style:
           bottom: -5%
           font-size: 150%
