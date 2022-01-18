@@ -8,8 +8,8 @@
 id: 1
 icon: mdi:lightbulb-on
 title: Rooms
-popup_cards:
-  !include /config/lovelace/popup/popup_rooms.yaml
+# popup_cards:
+#   !include /config/lovelace/popup/popup_rooms.yaml
 cards:
   - !include /config/lovelace/cards/rooms/craft.yaml
   - !include /config/lovelace/cards/rooms/den.yaml
