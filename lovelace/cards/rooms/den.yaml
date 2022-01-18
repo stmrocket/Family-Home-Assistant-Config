@@ -144,7 +144,7 @@ cards:
             operator: "!="
             color: rgb(255, 255, 255)
         icon: mdi:disc
-        name: Cast
+        name: Blu-Ray
         tap_action:
           action: call-service
           service: remote.turn_on
