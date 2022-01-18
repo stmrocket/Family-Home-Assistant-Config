@@ -1,0 +1,21 @@
+cover:
+  - platform: template
+    covers:
+      garage_door:
+        device_class: garage
+        friendly_name: Garage Door
+        value_template: "{{ not is_state('sensor.elk_garage_door', 'Normal') }}"
+        open_cover:
+          service: script.toggle_garage_door
+        close_cover:
+          service: script.toggle_garage_door
+
+script:
+  toggle_garag_door:
+    sequence:
+      - service: switch.turn_on
+        entity_id: switch.elk_garage_door
+      - delay:
+          seconds: 2
+      - service: switch.turn_off
+        entity_id: switch.elk_garage_door
