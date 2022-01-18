@@ -15,12 +15,12 @@ cards:
     cards:
       - !include /config/lovelace/cards/rooms/outside.yaml
       - !include /config/lovelace/cards/rooms/kitchen.yaml
-      - !include /config/lovelace/cards/rooms/craft.yaml
-      - !include /config/lovelace/cards/rooms/watch.yaml
+      - !include /config/lovelace/cards/rooms/den.yaml
   - type: vertical-stack
     cards:
       - !include /config/lovelace/cards/rooms/entry.yaml
-      - !include /config/lovelace/cards/rooms/den.yaml
+      - !include /config/lovelace/cards/rooms/craft.yaml
+      - !include /config/lovelace/cards/rooms/watch.yaml
       - !include /config/lovelace/cards/rooms/guest_bed.yaml
       - !include /config/lovelace/cards/rooms/guest_bath.yaml
   - type: vertical-stack
