@@ -184,7 +184,7 @@ cards:
             elements:
               - entity: sensor.blank
                 hold-action: none
-                prefix: Master Bedroom
+                prefix: Craft Room
                 style:
                   bottom: 20%
                   font-size: 150%
@@ -193,11 +193,13 @@ cards:
                 tap_action: none
                 hold_action: none
                 type: state-label
-
           - type: horizontal-stack
             cards:
               - type: "custom:gap-card"
                 height: 10
+
+          - type: horizontal-stack
+            cards:
 
               - type: horizontal-stack
                 cards:
@@ -273,6 +275,7 @@ cards:
                         activity: "ChromeCast"
 
                   - type: "custom:gap-card"
+                  
               - type: conditional
                 conditions:
                   - entity: sensor.craft_harmony_activity
