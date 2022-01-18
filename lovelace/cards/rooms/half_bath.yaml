@@ -1,4 +1,4 @@
-# Guest Bathroom
+# Half Bathroom
 type: custom:vertical-stack-in-card
 cards:
   - type: picture-elements
@@ -6,7 +6,7 @@ cards:
     elements:
       - entity: sensor.blank
         hold-action: none
-        prefix: Guest Bathroom
+        prefix: Half Bathroom
         style:
           bottom: -5%
           font-size: 150%
@@ -19,7 +19,7 @@ cards:
     cards:
       - type: "custom:gap-card"
       - type: "custom:button-card"
-        entity: light.guest_bath_light
+        entity: light.half_bath_light
         color_type: icon
         color: rgb(228, 94, 101)
         state:
@@ -31,7 +31,7 @@ cards:
         hold_action:
           action: more-info
       - type: "custom:button-card"
-        entity: switch.guest_bath_fan
+        entity: switch.half_bath_fan
         color_type: icon
         color: rgb(228, 94, 101)
         state:
