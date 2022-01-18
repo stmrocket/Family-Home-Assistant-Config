@@ -1,0 +1,312 @@
+#############################################################################################################################################
+#                                                                                                                                           #
+#                                                                 VIEW 5 - Media                                                            #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+id: 2
+icon: mdi:music
+title: Media
+popup_cards:
+  !include /config/lovelace/popup/popup_media.yaml
+cards:
+  #################################################################
+  #                                                               #
+  #                      Media  - Gmusic Status                   #
+  #                                                               #
+  #################################################################
+
+  - type: vertical-stack
+    cards:
+      
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/lovelace/room.png
+            elements:
+              - entity: sensor.blank
+                hold-action: none
+                prefix: Den
+                style:
+                  bottom: 20%
+                  font-size: 150%
+                  left: 5%
+                  transform: initial
+                tap_action: none
+                hold_action: none
+                type: state-label
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:gap-card"
+                height: 10
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "PowerOff"
+                    color: rgb(228, 94, 101)
+                  - value: "PowerOff"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:remote-tv-off
+                name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.turn_off
+                  service_data:
+                    entity_id: remote.den_harmony
+
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch PVR"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch PVR"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:kodi
+                name: Kodi
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Watch PVR"
+
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch Roku"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch Roku"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:youtube-tv
+                name: Roku
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Watch Roku"
+
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch ChromeCast"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch ChromeCast"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:cast
+                name: Cast
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "ChromeCast"
+
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch a Movie"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch a Movie"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:disc
+                name: Blu-Ray
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Blu-Ray"
+          - type: horizontal-stack
+            cards:
+              - type: "custom:gap-card"
+                height: 10
+
+          - type: conditional
+            conditions:
+              - entity: sensor.den_harmony_activity
+                state: "Watch PVR"
+              - entity: media_player.den_kodi
+                state_not: "idle"
+              - entity: media_player.den_kodi
+                state_not: "off"
+            card:
+              type: 'custom:mini-media-player'
+              entity: media_player.den_kodi_harmony
+              icon: mdi:blank
+              artwork: cover
+              group: true
+              info: scroll
+              volume_stateless: true
+              hide:
+                name: true
+                power: true
+
+          - type: conditional
+            conditions:
+              - entity: sensor.den_harmony_activity
+                state: "Watch Roku"
+              - entity: media_player.roku_living_room
+                state_not: "home"
+            card:
+              type: 'custom:mini-media-player'
+              entity: media_player.den_roku_harmony
+              icon: mdi:blank
+              artwork: cover
+              group: true
+              info: scroll
+              volume_stateless: true
+              hide:
+                name: true
+                power: true
+
+
+  - type: vertical-stack
+    cards:
+      - type: custom:vertical-stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/lovelace/room.png
+            elements:
+              - entity: sensor.blank
+                hold-action: none
+                prefix: Master Bedroom
+                style:
+                  bottom: 20%
+                  font-size: 150%
+                  left: 5%
+                  transform: initial
+                tap_action: none
+                hold_action: none
+                type: state-label
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:gap-card"
+                height: 10
+
+              - type: horizontal-stack
+                cards:
+                  - type: "custom:button-card"
+                    entity: sensor.craft_harmony_activity
+                    color_type: icon
+                    state:
+                      - value: "PowerOff"
+                        color: rgb(228, 94, 101)
+                      - value: "PowerOff"
+                        operator: "!="
+                        color: rgb(255, 255, 255)
+                    icon: mdi:remote-tv-off
+                    name: "Off"
+                    tap_action:
+                      action: call-service
+                      service: remote.turn_off
+                      service_data:
+                        entity_id: remote.craft_room_harmony
+
+                  - type: "custom:button-card"
+                    entity: sensor.craft_harmony_activity
+                    color_type: icon
+                    state:
+                      - value: "Watch PVR"
+                        color: rgb(228, 94, 101)
+                      - value: "Watch PVR"
+                        operator: "!="
+                        color: rgb(255, 255, 255)
+                    icon: mdi:kodi
+                    name: Kodi
+                    tap_action:
+                      action: call-service
+                      service: remote.turn_on
+                      service_data:
+                        entity_id: remote.craft_room_harmony
+                        activity: "Watch PVR"
+
+                  - type: "custom:button-card"
+                    entity: sensor.craft_harmony_activity
+                    color_type: icon
+                    state:
+                      - value: "Watch Roku"
+                        color: rgb(228, 94, 101)
+                      - value: "Watch Roku"
+                        operator: "!="
+                        color: rgb(255, 255, 255)
+                    icon: mdi:youtube-tv
+                    name: Roku
+                    tap_action:
+                      action: call-service
+                      service: remote.turn_on
+                      service_data:
+                        entity_id: remote.craft_room_harmony
+                        activity: "Watch Roku"
+
+                  - type: "custom:button-card"
+                    entity: sensor.craft_harmony_activity
+                    color_type: icon
+                    state:
+                      - value: "Watch ChromeCast"
+                        color: rgb(228, 94, 101)
+                      - value: "Watch ChromeCast"
+                        operator: "!="
+                        color: rgb(255, 255, 255)
+                    icon: mdi:cast
+                    name: Cast
+                    tap_action:
+                      action: call-service
+                      service: remote.turn_on
+                      service_data:
+                        entity_id: remote.craft_room_harmony
+                        activity: "ChromeCast"
+
+                  - type: "custom:gap-card"
+              - type: conditional
+                conditions:
+                  - entity: sensor.craft_harmony_activity
+                    state: "Watch PVR"
+                  - entity: media_player.osmc_craft
+                    state_not: "idle"
+                  - entity: media_player.osmc_craft
+                    state_not: "off"
+                card:
+                  type: 'custom:mini-media-player'
+                  entity: media_player.craft_kodi_harmony
+                  icon: mdi:blank
+                  artwork: cover
+                  group: true
+                  info: scroll
+                  volume_stateless: true
+                  hide:
+                    name: true
+                    power: true
+
+              - type: conditional
+                conditions:
+                  - entity: sensor.craft_harmony_activity
+                    state: "Watch Roku"
+                  - entity: media_player.craft_room_roku_roku
+                    state_not: "home"
+                card:
+                  type: 'custom:mini-media-player'
+                  entity: media_player.craft_roku_harmony
+                  icon: mdi:blank
+                  artwork: cover
+                  group: true
+                  info: scroll
+                  volume_stateless: true
+                  hide:
+                    name: true
+                    power: true    
