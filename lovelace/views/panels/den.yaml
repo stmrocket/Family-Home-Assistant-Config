@@ -160,10 +160,6 @@ cards:
                 action: more-info
         - type: horizontal-stack
           cards:
-            - type: "custom:gap-card"
-              height: 10
-        - type: horizontal-stack
-          cards:
             - type: "custom:button-card"
               entity: sensor.den_harmony_activity
               color_type: icon
@@ -252,10 +248,6 @@ cards:
                 service_data:
                   entity_id: remote.den_harmony
                   activity: "Blu-Ray"
-        - type: horizontal-stack
-          cards:
-            - type: "custom:gap-card"
-              height: 10
 
         - type: conditional
           conditions:

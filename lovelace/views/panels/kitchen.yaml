@@ -199,12 +199,6 @@ cards:
               name: Pantry
               hold_action:
                 action: more-info
-
-            - type: "custom:gap-card"
-        - type: horizontal-stack
-          cards:
-            - type: "custom:gap-card"
-              height: 10
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
@@ -295,10 +289,6 @@ cards:
                 service_data:
                   entity_id: remote.den_harmony
                   activity: "Blu-Ray"
-        - type: horizontal-stack
-          cards:
-            - type: "custom:gap-card"
-              height: 10
 
         - type: conditional
           conditions:

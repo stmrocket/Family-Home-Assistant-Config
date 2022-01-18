@@ -161,10 +161,6 @@ cards:
                 action: more-info
         - type: horizontal-stack
           cards:
-            - type: "custom:gap-card"
-              height: 10
-        - type: horizontal-stack
-          cards:
             - type: "custom:button-card"
               entity: sensor.craft_harmony_activity
               color_type: icon
