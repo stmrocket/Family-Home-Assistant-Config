@@ -119,7 +119,7 @@ cards:
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
-              entity: switch.den_lights
+              entity: switch.kitchen_lights
               color_type: icon
               color: rgb(228, 94, 101)
               state:
@@ -127,37 +127,80 @@ cards:
                   icon: mdi:lightbulb-on-outline
                 - value: "off"
                   icon: mdi:lightbulb-outline
-              name: Light
+              name: Cans
               hold_action:
                 action: more-info
+
             - type: "custom:button-card"
-              entity: switch.den_fan
+              entity: switch.kitchen_island_lights
               color_type: icon
               color: rgb(228, 94, 101)
               state:
                 - value: "on"
-                  icon: mdi:fan
+                  icon: mdi:lightbulb-on-outline
                 - value: "off"
-                  icon: mdi:fan-off
-              name: Fan
+                  icon: mdi:lightbulb-outline
+              name: Island
               hold_action:
                 action: more-info
+
             - type: "custom:button-card"
-              entity: switch.den_curio_cabinet
+              entity: switch.kitchen_undercabinet_lights
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Curio
+              state:
+                - value: "on"
+                  icon: mdi:lightbulb-on-outline
+                - value: "off"
+                  icon: mdi:lightbulb-outline
+              name: Undercabinet
               hold_action:
                 action: more-info
+
             - type: "custom:button-card"
-              entity: switch.den_table_lamp
+              entity: switch.dining_light
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Table
+              state:
+                - value: "on"
+                  icon: mdi:lightbulb-on-outline
+                - value: "off"
+                  icon: mdi:lightbulb-outline
+              name: Dining
               hold_action:
                 action: more-info
+
+        - type: horizontal-stack
+          cards:
+            - type: "custom:gap-card"
+
+            - type: "custom:button-card"
+              entity: light.back_hall_light
+              color_type: icon
+              color: rgb(228, 94, 101)
+              state:
+                - value: "on"
+                  icon: mdi:lightbulb-on-outline
+                - value: "off"
+                  icon: mdi:lightbulb-outline
+              name: Hall
+              hold_action:
+                action: more-info
+
+            - type: "custom:button-card"
+              entity: light.pantry_light
+              color_type: icon
+              color: rgb(228, 94, 101)
+              state:
+                - value: "on"
+                  icon: mdi:lightbulb-on-outline
+                - value: "off"
+                  icon: mdi:lightbulb-outline
+              name: Pantry
+              hold_action:
+                action: more-info
+
+            - type: "custom:gap-card"
         - type: horizontal-stack
           cards:
             - type: "custom:gap-card"
