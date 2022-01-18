@@ -26,6 +26,6 @@ cards:
   - type: vertical-stack
     cards:
       - !include /config/lovelace/cards/rooms/utility.yaml
-      - !include /config/lovelace/cards/rooms/master_ben.yaml
+      - !include /config/lovelace/cards/rooms/master_bed.yaml
       - !include /config/lovelace/cards/rooms/master_bath.yaml
       - !include /config/lovelace/cards/rooms/half_bath.yaml
