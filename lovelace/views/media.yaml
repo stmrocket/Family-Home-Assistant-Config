@@ -274,6 +274,7 @@ cards:
                     activity: "ChromeCast"
 
               - type: "custom:gap-card"
+                height: 10
 
           - type: conditional
             conditions:
