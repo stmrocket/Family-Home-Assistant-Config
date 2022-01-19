@@ -274,8 +274,10 @@ cards:
                     activity: "ChromeCast"
 
               - type: "custom:gap-card"
+          - type: horizontal-stack
+            cards:
+              - type: "custom:gap-card"
                 height: 10
-
           - type: conditional
             conditions:
               - entity: sensor.craft_harmony_activity
