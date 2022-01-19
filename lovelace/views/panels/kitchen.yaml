@@ -120,19 +120,19 @@ cards:
               entity: alarm_control_panel.house
               color_type: icon
               state:
-                - value: "Disarmed"
+                - value: "disarmed"
                   color: rgb(255, 255, 255)
                   name: Disarmed
                   icon: mdi:shield-off
-                - value: "Armed Home"
+                - value: "armed home"
                   color: rgb(228, 94, 101)
                   name: Stay
                   icon: mdi:shield-home
-                - value: "Armed Night"
+                - value: "nrmed night"
                   color: rgb(228, 94, 101)
                   name: Night
                   icon: mdi:shield-moon
-                - value: "Armed Away"
+                - value: "armed away"
                   color: rgb(228, 94, 101)
                   name: Away
                   icon: mdi:shield-lock                
