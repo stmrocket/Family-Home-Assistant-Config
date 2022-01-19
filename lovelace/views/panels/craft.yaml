@@ -117,6 +117,28 @@ cards:
                   name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
               tap_action:
                 action: more-info
+            - type: "custom:button-card"
+              entity: alarm_control_panel.house
+              color_type: icon
+              state:
+                - value: "Disarmed"
+                  color: rgb(255, 255, 255)
+                  name: Disarmed
+                  icon: mdi:shield-off
+                - value: "Armed Home"
+                  color: rgb(228, 94, 101)
+                  name: Stay
+                  icon: mdi:shield-home
+                - value: "Armed Night"
+                  color: rgb(228, 94, 101)
+                  name: Night
+                  icon: mdi:shield-moon
+                - value: "Armed Away"
+                  color: rgb(228, 94, 101)
+                  name: Away
+                  icon: mdi:shield-lock                
+              tap_action:
+                action: more-info            
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
