@@ -199,6 +199,7 @@ cards:
               name: Pantry
               hold_action:
                 action: more-info
+            - type: "custom:gap-card"
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
