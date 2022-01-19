@@ -1,37 +1,36 @@
-rest_command:
-  den_tablet_on:
-    url: !secret den_tablet_on
-  den_tablet_off:
-    url: !secret den_tablet_off
-  den_tablet_reload:
-    url: !secret den_tablet_reload
-  den_tablet_restart:
-    url: !secret den_tablet_restart
-  craft_tablet_on:
-    url: !secret craft_tablet_on
-  craft_tablet_off:
-    url: !secret craft_tablet_off
-  craft_tablet_reload:
-    url: !secret craft_tablet_reload
-  craft_tablet_restart:
-    url: !secret craft_tablet_restart
 script:
   tablets_on:
     sequence:
-      - service: rest_command.den_tablet_on
-      - service: rest_command.craft_tablet_on
+      - service: light.turn_on
+        entity_id:
+          - light.craft_tablet_screen
+          - light.den_tablet_screen
+          - light.entry_tablet_screen
+          - light.kitchen_tablet_screen
 
   tablets_off:
     sequence:
-      - service: rest_command.den_tablet_off
-      - service: rest_command.craft_tablet_off
+      - service: light.turn_off
+        entity_id:
+          - light.craft_tablet_screen
+          - light.den_tablet_screen
+          - light.entry_tablet_screen
+          - light.kitchen_tablet_screen
 
   tablets_reload:
     sequence:
-      - service: rest_command.den_tablet_reload
-      - service: rest_command.craft_tablet_reload
+      - service: button.press
+        entity_id:
+          - button.craft_tablet_load_start_url
+          - button.den_tablet_load_start_url
+          - button.entry_tablet_load_start_url
+          - button.kitchen_tablet_load_start_url
 
   tablets_restart:
     sequence:
-      - service: rest_command.den_tablet_restart
-      - service: rest_command.craft_tablet_restart
+      - service: button.press
+        entity_id:
+          - button.craft_tablet_reboot_device
+          - button.den_tablet_reboot_device
+          - button.entry_tablet_reboot_device
+          - button.kitchen_tablet_reboot_device
