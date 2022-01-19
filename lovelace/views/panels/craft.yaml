@@ -1,260 +1,255 @@
-
 #############################################################################################################################################
-#                                                                                                                                           # 
+#                                                                                                                                           #
 #                                                              VIEW 9 - Office Tablet                                                       #
 #                                                                                                                                           #
-############################################################################################################################################# 
+#############################################################################################################################################
 
 id: 8
 icon: mdi:castle
 title: Home
-popup_cards:
-  !include /config/lovelace/popup/popup_home.yaml
+popup_cards: !include /config/lovelace/popup/popup_home.yaml
 cards:
+  #################################################################
+  #                                                               #
+  #                      Home - Weather Card                      #
+  #                                                               #
+  #################################################################
 
-#################################################################
-#                                                               #
-#                      Home - Weather Card                      #
-#                                                               #
-#################################################################
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/cards/weather.yaml
 
-      - type: vertical-stack
+      #################################################################
+      #                                                               #
+      #                        Home - CCTV                            #
+      #                                                               #
+      #################################################################
+      - type: glance
+        columns: 4
+        show_name: true
+        show_state: false
+        entities:
+          - entity: camera.front_porch
+          - entity: camera.driveway
+          - entity: camera.back_porch
+          - entity: camera.den
+      - type: "custom:gap-card"
+
+  #################################################################
+  #                                                               #
+  #                         Home - Media                          #
+  #                                                               #
+  #################################################################
+  - type: vertical-stack
+    cards:
+      - type: "custom:mm2-clock-card"
+        timezone: America/Chicago
+        displaySeconds: false
+      - type: horizontal-stack
         cards:
-          - !include /config/lovelace/cards/weather.yaml  
+          - type: "custom:button-card"
+            entity: sensor.litter_robot_status_short
+            color_type: icon
+            icon: mdi:cat
+            state:
+              - value: "Ready"
+                color: rgb(255, 255, 255)
+                name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
+              - value: "Clean"
+                color: rgb(255, 255, 255)
+                name: Clean
+              - value: "Drawer 2"
+                color: rgb(255, 255, 255)
+                name: Drawer 2
+              - value: "Drawer 1"
+                color: rgb(255, 255, 255)
+                name: Drawer 1
+              - value: "Sensor"
+                color: rgb(228, 94, 101)
+                name: Sensor
+              - value: "Timing"
+                color: rgb(255, 255, 255)
+                name: Timing
+              - value: "Bonnet"
+                color: rgb(228, 94, 101)
+                name: Bonnet
+              - value: "Paused"
+                color: rgb(228, 94, 101)
+                name: Paused
+              - value: "Off"
+                color: rgb(255, 255, 255)
+                name: "Off"
+              - value: "Full"
+                color: rgb(228, 94, 101)
+                name: Full
+              - value: "Error"
+                color: rgb(228, 94, 101)
+                name: Error
+            tap_action:
+              action: more-info
+          - type: custom:button-card
+            entity: sensor.washer_status_combined
+            color_type: icon
+            icon: mdi:washing-machine
+            state:
+              - value: "Off"
+                color: rgb(255, 255, 255)
+                name: "[[[ return `${states['sensor.washer_status_combined'].state}` ]]]"
+              - operator: default
+                color: rgb(228, 94, 101)
+                name: "[[[ return `${states['sensor.washer_status_combined'].state}` ]]]"
+            tap_action:
+              action: more-info
+          - type: custom:button-card
+            entity: sensor.dryer_status_combined
+            color_type: icon
+            icon: mdi:tumble-dryer
+            state:
+              - value: "Off"
+                color: rgb(255, 255, 255)
+                name: "[[[ return `${states['sensor.dryer_status_combined'].state}` ]]]"
+              - operator: default
+                color: rgb(228, 94, 101)
+                name: "[[[ return `${states['sensor.dryer_status_combined'].state}` ]]]"
+            tap_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: alarm_control_panel.house
+            color_type: icon
+            state:
+              - value: "disarmed"
+                color: rgb(255, 255, 255)
+                name: Disarmed
+                icon: mdi:shield-off
+              - value: "armed home"
+                color: rgb(228, 94, 101)
+                name: Stay
+                icon: mdi:shield-home
+              - value: "armed night"
+                color: rgb(228, 94, 101)
+                name: Night
+                icon: mdi:shield-moon
+              - value: "armed away"
+                color: rgb(228, 94, 101)
+                name: Away
+                icon: mdi:shield-lock
+            tap_action:
+              action: more-info
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: light.craft_room_light
+            color_type: icon
+            color: rgb(228, 94, 101)
+            state:
+              - value: "on"
+                icon: mdi:lightbulb-on-outline
+              - value: "off"
+                icon: mdi:lightbulb-outline
+            name: Light
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: switch.craft_room_fan
+            color_type: icon
+            color: rgb(228, 94, 101)
+            state:
+              - value: "on"
+                icon: mdi:fan
+              - value: "off"
+                icon: mdi:fan-off
+            name: Fan
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: switch.craft_room_floor_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Floor
+            hold_action:
+              action: more-info
+          - type: "custom:button-card"
+            entity: switch.craft_room_table_lamp
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:lamp
+            name: Table
+            hold_action:
+              action: more-info
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            entity: sensor.craft_harmony_activity
+            color_type: icon
+            state:
+              - value: "PowerOff"
+                color: rgb(228, 94, 101)
+              - value: "PowerOff"
+                operator: "!="
+                color: rgb(255, 255, 255)
+            icon: mdi:remote-tv-off
+            name: "Off"
+            tap_action:
+              action: call-service
+              service: remote.turn_off
+              service_data:
+                entity_id: remote.craft_room_harmony
 
-#################################################################
-#                                                               #
-#                        Home - CCTV                            #
-#                                                               #
-################################################################# 
-          - type: glance
-            columns: 4
-            show_name: true
-            show_state: false
-            entities:
-                - entity: camera.front_porch
-                - entity: camera.driveway
-                - entity: camera.back_porch
-                - entity: camera.den
-          - type: 'custom:gap-card'
-            
+          - type: "custom:button-card"
+            entity: sensor.craft_harmony_activity
+            color_type: icon
+            state:
+              - value: "Watch PVR"
+                color: rgb(228, 94, 101)
+              - value: "Watch PVR"
+                operator: "!="
+                color: rgb(255, 255, 255)
+            icon: mdi:kodi
+            name: Kodi
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                entity_id: remote.craft_room_harmony
+                activity: "Watch PVR"
 
-#################################################################
-#                                                               #
-#                         Home - Media                          #
-#                                                               #
-################################################################# 
-      - type: vertical-stack
-        cards:  
-        - type: 'custom:mm2-clock-card'
-          timezone: America/Chicago
-          displaySeconds: false
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: sensor.litter_robot_status_short
-              color_type: icon
-              icon: mdi:cat
-              state:
-                - value: "Ready"
-                  color: rgb(255, 255, 255)
-                  name: '[[[ return `Ready - ${states[''sensor.litter_robot_drawer_level''].state}%` ]]]'
-                - value: "Clean"
-                  color: rgb(255, 255, 255)
-                  name: Clean
-                - value: "Drawer 2"
-                  color: rgb(255, 255, 255)
-                  name: Drawer 2
-                - value: "Drawer 1"
-                  color: rgb(255, 255, 255)
-                  name: Drawer 1
-                - value: "Sensor"
-                  color: rgb(228, 94, 101)
-                  name: Sensor
-                - value: "Timing"
-                  color: rgb(255, 255, 255)
-                  name: Timing
-                - value: "Bonnet"
-                  color: rgb(228, 94, 101)
-                  name: Bonnet
-                - value: "Paused"
-                  color: rgb(228, 94, 101)
-                  name: Paused
-                - value: "Off"
-                  color: rgb(255, 255, 255)
-                  name: "Off"
-                - value: "Full"
-                  color: rgb(228, 94, 101)
-                  name: Full
-                - value: "Error"
-                  color: rgb(228, 94, 101)
-                  name: Error
-              tap_action:
-                action: more-info              
-            - type: custom:button-card
-              entity: sensor.washer_status_combined
-              color_type: icon
-              icon: mdi:washing-machine
-              state:
-                - value: 'Off'
-                  color: rgb(255, 255, 255)
-                  name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
-                - operator: default
-                  color: rgb(228, 94, 101)
-                  name: '[[[ return `${states[''sensor.washer_status_combined''].state}` ]]]'
-              tap_action:
-                action: more-info
-            - type: custom:button-card
-              entity: sensor.dryer_status_combined
-              color_type: icon
-              icon: mdi:tumble-dryer
-              state:
-                - value: 'Off'
-                  color: rgb(255, 255, 255)
-                  name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
-                - operator: default
-                  color: rgb(228, 94, 101)
-                  name: '[[[ return `${states[''sensor.dryer_status_combined''].state}` ]]]'
-              tap_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: alarm_control_panel.house
-              color_type: icon
-              state:
-                - value: "disarmed"
-                  color: rgb(255, 255, 255)
-                  name: Disarmed
-                  icon: mdi:shield-off
-                - value: "armed home"
-                  color: rgb(228, 94, 101)
-                  name: Stay
-                  icon: mdi:shield-home
-                - value: "armed night"
-                  color: rgb(228, 94, 101)
-                  name: Night
-                  icon: mdi:shield-moon
-                - value: "armed away"
-                  color: rgb(228, 94, 101)
-                  name: Away
-                  icon: mdi:shield-lock                
-              tap_action:
-                action: more-info            
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: light.craft_room_light
-              color_type: icon
-              color: rgb(228, 94, 101)
-              state:
-                - value: "on"
-                  icon: mdi:lightbulb-on-outline
-                - value: "off"
-                  icon: mdi:lightbulb-outline
-              name: Light
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.craft_room_fan
-              color_type: icon
-              color: rgb(228, 94, 101)
-              state:
-                - value: "on"
-                  icon: mdi:fan
-                - value: "off"
-                  icon: mdi:fan-off
-              name: Fan
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.craft_room_floor_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Floor
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.craft_room_table_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Table
-              hold_action:
-                action: more-info
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: sensor.craft_harmony_activity
-              color_type: icon
-              state:
-                - value: "PowerOff"
-                  color: rgb(228, 94, 101)
-                - value: "PowerOff"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:remote-tv-off
-              name: "Off"
-              tap_action:
-                action: call-service
-                service: remote.turn_off
-                service_data:
-                  entity_id: remote.craft_room_harmony
+          - type: "custom:button-card"
+            entity: sensor.craft_harmony_activity
+            color_type: icon
+            state:
+              - value: "Watch Roku"
+                color: rgb(228, 94, 101)
+              - value: "Watch Roku"
+                operator: "!="
+                color: rgb(255, 255, 255)
+            icon: mdi:youtube-tv
+            name: Roku
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                entity_id: remote.craft_room_harmony
+                activity: "Watch Roku"
 
-            - type: "custom:button-card"
-              entity: sensor.craft_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch PVR"
-                  color: rgb(228, 94, 101)
-                - value: "Watch PVR"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:kodi
-              name: Kodi
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.craft_room_harmony
-                  activity: "Watch PVR"
+          - type: "custom:button-card"
+            entity: sensor.craft_harmony_activity
+            color_type: icon
+            state:
+              - value: "Watch ChromeCast"
+                color: rgb(228, 94, 101)
+              - value: "Watch ChromeCast"
+                operator: "!="
+                color: rgb(255, 255, 255)
+            icon: mdi:cast
+            name: Cast
+            tap_action:
+              action: call-service
+              service: remote.turn_on
+              service_data:
+                entity_id: remote.craft_room_harmony
+                activity: "ChromeCast"
 
-            - type: "custom:button-card"
-              entity: sensor.craft_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch Roku"
-                  color: rgb(228, 94, 101)
-                - value: "Watch Roku"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:youtube-tv
-              name: Roku
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.craft_room_harmony
-                  activity: "Watch Roku"
-
-            - type: "custom:button-card"
-              entity: sensor.craft_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch ChromeCast"
-                  color: rgb(228, 94, 101)
-                - value: "Watch ChromeCast"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:cast
-              name: Cast
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.craft_room_harmony
-                  activity: "ChromeCast"
-
-            - type: "custom:gap-card"
       - type: conditional
         conditions:
           - entity: sensor.craft_harmony_activity
@@ -264,7 +259,7 @@ cards:
           - entity: media_player.osmc_craft
             state_not: "off"
         card:
-          type: 'custom:mini-media-player'
+          type: "custom:mini-media-player"
           entity: media_player.craft_kodi_harmony
           icon: mdi:blank
           artwork: cover
@@ -282,7 +277,7 @@ cards:
           - entity: media_player.craft_room_roku_roku
             state_not: "home"
         card:
-          type: 'custom:mini-media-player'
+          type: "custom:mini-media-player"
           entity: media_player.craft_roku_harmony
           icon: mdi:blank
           artwork: cover
@@ -291,4 +286,4 @@ cards:
           volume_stateless: true
           hide:
             name: true
-            power: true            
+            power: true
