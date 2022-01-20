@@ -94,12 +94,12 @@ cards:
             state:
               - value: "Off"
                 color: rgb(255, 255, 255)
-                name: "[[[ return `${states['sensor.washer_status_combined'].state}` ]]]"
+                name: "Off"
               - operator: default
                 color: rgb(228, 94, 101)
-                name: "[[[ return `${states['sensor.washer_status_combined'].state}` ]]]"
+                name: "[[[ return `${states['sensor.washer_time_remaining'].state}` ]]]"
             tap_action:
-              action: more-info
+              action: none
           - type: custom:button-card
             entity: sensor.dryer_status_combined
             color_type: icon
@@ -107,12 +107,12 @@ cards:
             state:
               - value: "Off"
                 color: rgb(255, 255, 255)
-                name: "[[[ return `${states['sensor.dryer_status_combined'].state}` ]]]"
+                name: "Off"
               - operator: default
                 color: rgb(228, 94, 101)
-                name: "[[[ return `${states['sensor.dryer_status_combined'].state}` ]]]"
+                name: "[[[ return `${states['sensor.dryer_time_remaining'].state}` ]]]"
             tap_action:
-              action: more-info
+              action: none
           - type: "custom:button-card"
             entity: alarm_control_panel.house
             color_type: icon
