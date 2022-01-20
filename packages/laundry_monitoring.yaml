@@ -28,4 +28,10 @@ sensor:
             {{ (state_attr("sensor.dryer", "run_state")) }} {{ (state_attr("sensor.dryer", "remain_time")) }}
           {% else -%}
             Error
-          {% endif -%}        
+          {% endif -%}    
+      washer_time_remaining:
+        friendly_name: Washer Remaining Time
+        value_template: "{{ state_attr('sensor.washer', 'remain_time') }}" 
+      dryer_time_remaining:
+        friendly_name: Dryer Remaining Time
+        value_template: "{{ state_attr('sensor.dryer', 'remain_time') }}" 
