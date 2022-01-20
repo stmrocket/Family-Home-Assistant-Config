@@ -208,3 +208,33 @@ binary_sensor.updater_supervisor:
             name: Installed
           - attribute: newest_version
             name: Available
+
+sensor.wan_in_mbps:
+  title: Wan In
+  card:
+    type: entities
+    entities:
+      - entity: sensor.wan_in_mbps
+        name: Current
+        icon: mdi:transfer-down
+      - entity: sensor.wan_in_daily
+        name: Daily
+        icon: mdi:harddisk
+      - entity: sensor.wan_in_monthly
+        name: Daily
+        icon: mdi:harddisk
+
+sensor.wan_out_mbps:
+  title: Wan Out
+  card:
+    type: entities
+    entities:
+      - entity: sensor.wan_out_mbps
+        name: Current
+        icon: mdi:transfer-down
+      - entity: sensor.wan_out_daily
+        name: Daily
+        icon: mdi:harddisk
+      - entity: sensor.wan_out_monthly
+        name: Daily
+        icon: mdi:harddisk            
