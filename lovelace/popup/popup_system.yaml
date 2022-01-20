@@ -231,7 +231,7 @@ sensor.wan_out_mbps:
     entities:
       - entity: sensor.wan_out_mbps
         name: Current
-        icon: mdi:transfer-down
+        icon: mdi:transfer-up
       - entity: sensor.wan_out_daily
         name: Daily
         icon: mdi:harddisk
