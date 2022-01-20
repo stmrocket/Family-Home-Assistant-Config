@@ -6,7 +6,7 @@ cards:
     elements:
       - entity: sensor.blank
         hold-action: none
-        prefix: Master Bedroom
+        prefix: Watch Shop
         style:
           bottom: -5%
           font-size: 150%
