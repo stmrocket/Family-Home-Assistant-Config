@@ -1,0 +1,107 @@
+timer:
+  front_door_dho:
+    name: Front Door Alert Timer
+    duration: "00:05:00"
+  back_door_dho:
+    name: Back Door Alert Timer
+    duration: "00:05:00"
+  garage_entry_dho:
+    name: Garage Entry Alert Timer
+    duration: "00:05:00"
+
+automation:
+  - alias: Start Front Door Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_front_door
+        to: Violated
+    actions:
+      - service: timer.start
+        entity_id: timer.front_door_dho
+
+  - alias: Start Back Door Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_back_door
+        to: Violated
+    actions:
+      - service: timer.start
+        entity_id: timer.back_door_dho
+
+  - alias: Start Garage Entry Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_garage_entry
+        to: Violated
+    actions:
+      - service: timer.start
+        entity_id: timer.garage_entry_dho
+
+  - alias: Cancel Front Door Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_front_door
+        to: Normal
+    actions:
+      - service: timer.cancel
+        entity_id: timer.front_door_dho
+
+  - alias: Cancel Back Door Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_back_door
+        to: Normal
+    actions:
+      - service: timer.cancel
+        entity_id: timer.back_door_dho
+
+  - alias: Cancel Garage Entry Alert Timer When Door Open
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_garage_entry
+        to: Normal
+    actions:
+      - service: timer.cancel
+        entity_id: timer.garage_entry_dho
+
+  - alias: Announce Front Door Alert When Timer Ends
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.front_door_dho
+    action:
+      - service: mqtt.publish
+        data:
+          topic: parrot/command/set/play
+          payload: 1,7
+      - service: timer.start
+        entity_id: timer.front_door_dho
+
+  - alias: Announce Back Door Alert When Timer Ends
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.back_door_dho
+    action:
+      - service: mqtt.publish
+        data:
+          topic: parrot/command/set/play
+          payload: 1,2
+      - service: timer.start
+        entity_id: timer.back_door_dho
+
+  - alias: Announce Garage Entry Alert When Timer Ends
+    trigger:
+      - platform: event
+        event_type: timer.finished
+        event_data:
+          entity_id: timer.garage_entry_dho
+    action:
+      - service: mqtt.publish
+        data:
+          topic: parrot/command/set/play
+          payload: 1,10
+      - service: timer.start
+        entity_id: timer.garage_entry_dho
