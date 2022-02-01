@@ -15,7 +15,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_front_door
         to: Violated
-    actions:
+    action:
       - service: timer.start
         entity_id: timer.front_door_dho
 
@@ -24,7 +24,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_back_door
         to: Violated
-    actions:
+    action:
       - service: timer.start
         entity_id: timer.back_door_dho
 
@@ -33,7 +33,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_garage_entry
         to: Violated
-    actions:
+    action:
       - service: timer.start
         entity_id: timer.garage_entry_dho
 
@@ -42,7 +42,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_front_door
         to: Normal
-    actions:
+    action:
       - service: timer.cancel
         entity_id: timer.front_door_dho
 
@@ -51,7 +51,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_back_door
         to: Normal
-    actions:
+    action:
       - service: timer.cancel
         entity_id: timer.back_door_dho
 
@@ -60,7 +60,7 @@ automation:
       - platform: state
         entity_id: sensor.elk_garage_entry
         to: Normal
-    actions:
+    action:
       - service: timer.cancel
         entity_id: timer.garage_entry_dho
 
