@@ -31,7 +31,7 @@ sensor:
           {% endif -%}    
       washer_time_remaining:
         friendly_name: Washer Remaining Time
-        value_template: "{{ state_attr('sensor.washer', 'remain_time') }}" 
+        value_template: "{{ state_attr('sensor.washer', 'remain_time')[:-3] }}" 
       dryer_time_remaining:
         friendly_name: Dryer Remaining Time
-        value_template: "{{ state_attr('sensor.dryer', 'remain_time') }}" 
+        value_template: "{{ state_attr('sensor.dryer', 'remain_time')[:-3] }}" 
