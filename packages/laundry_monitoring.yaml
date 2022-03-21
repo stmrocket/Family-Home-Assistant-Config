@@ -11,7 +11,7 @@ sensor:
           {% elif is_state_attr('sensor.washer', 'remain_time', '0:00') or is_state_attr('sensor.washer', 'run_state', 'Finished') -%}
             {{ (state_attr("sensor.washer", "run_state")) }}
           {% elif is_state('sensor.washer', 'on') -%}
-            {{ (state_attr("sensor.washer", "run_state")) }} {{ (state_attr("sensor.washer", "remain_time")) }}
+            {{ (state_attr("sensor.washer", "run_state")) }} {{ (state_attr("sensor.washer", "remain_time")[:-3]) }}
           {% else -%}
             Error
           {% endif -%}
@@ -25,7 +25,7 @@ sensor:
           {% elif is_state_attr('sensor.dryer', 'remain_time', '0:00') or is_state_attr('sensor.dryer', 'run_state', 'Finished') -%}
             {{ (state_attr("sensor.dryer", "run_state")) }}
           {% elif is_state('sensor.dryer', 'on') -%}
-            {{ (state_attr("sensor.dryer", "run_state")) }} {{ (state_attr("sensor.dryer", "remain_time")) }}
+            {{ (state_attr("sensor.dryer", "run_state")) }} {{ (state_attr("sensor.dryer", "remain_time")[:-3]) }}
           {% else -%}
             Error
           {% endif -%}    
