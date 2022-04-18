@@ -9,6 +9,20 @@ timer:
     name: Garage Entry Alert Timer
     duration: "00:05:00"
 
+template:
+  - binary_sensor:
+    - name: Front Door Status
+      state: "{{ not is_state('sensor.elk_front_door', 'Normal') }}"
+      device_class: door
+    
+    - name: Back Door Status
+      state: "{{ not is_state('sensor.elk_back_door', 'Normal') }}"
+      device_class: door
+    
+    - name: Garage Entry Status
+      state: "{{ not is_state('sensor.elk_garage_entry', 'Normal') }}"
+      device_class: door
+
 automation:
   - alias: Start Front Door Alert Timer When Door Open
     trigger:
