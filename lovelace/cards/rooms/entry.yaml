@@ -11,6 +11,15 @@ cards:
           right: 5%
           transform: initial
         type: state-icon
+      - entity: binary_sensor.front_door_status
+        style:
+          bottom: '-5%'
+          font-weight: bold
+          right: 12%
+          transform: initial
+        type: state-icon
+        tap_action:
+          action: more-info
       - entity: sensor.blank
         hold-action: none
         prefix: Entry

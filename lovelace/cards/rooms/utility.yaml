@@ -6,16 +6,25 @@ cards:
     elements:
       - entity: lock.garage_entry
         style:
-          bottom: -5%
+          bottom: '-5%'
           font-weight: bold
           right: 5%
           transform: initial
         type: state-icon
-      - entity: cover.garage_door
+      - entity: binary_sensor.garage_entry_status
         style:
-          bottom: -5%
+          bottom: '-5%'
           font-weight: bold
           right: 12%
+          transform: initial
+        type: state-icon
+        tap_action:
+          action: more-info
+      - entity: cover.garage_door
+        style:
+          bottom: '-5%'
+          font-weight: bold
+          right: 19%
           transform: initial
         type: state-icon
         tap_action:
@@ -24,7 +33,7 @@ cards:
         hold-action: none
         prefix: Utility
         style:
-          bottom: -5%
+          bottom: '-5%'
           font-size: 150%
           left: 5%
           transform: initial
@@ -33,41 +42,42 @@ cards:
         type: state-label
   - type: horizontal-stack
     cards:
-      - type: "custom:button-card"
+      - type: custom:button-card
         entity: switch.drop_zone_light
         color_type: icon
         color: rgb(228, 94, 101)
         state:
-          - value: "on"
+          - value: 'on'
             icon: mdi:lightbulb-on-outline
-          - value: "off"
+          - value: 'off'
             icon: mdi:lightbulb-outline
         name: Drop Zone
         hold_action:
           action: more-info
-      - type: "custom:button-card"
+      - type: custom:button-card
         entity: light.garage_lights
         color_type: icon
         color: rgb(228, 94, 101)
         state:
-          - value: "on"
+          - value: 'on'
             icon: mdi:lightbulb-on-outline
-          - value: "off"
+          - value: 'off'
             icon: mdi:lightbulb-outline
         name: Garage
         hold_action:
           action: more-info
-      - type: "custom:button-card"
+      - type: custom:button-card
         entity: light.laundry_room_light
         color_type: icon
         color: rgb(228, 94, 101)
         state:
-          - value: "on"
+          - value: 'on'
             icon: mdi:lightbulb-on-outline
-          - value: "off"
+          - value: 'off'
             icon: mdi:lightbulb-outline
         name: Laundry
         hold_action:
           action: more-info
-      - type: "custom:gap-card"
+      - type: custom:gap-card
+
       
