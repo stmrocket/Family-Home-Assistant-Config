@@ -112,3 +112,35 @@ automation:
     action:
       - service: switch.turn_off
         entity_id: switch.guest_mode_led
+
+  - alias: Guest Mode On from Charger
+    id: ce56f2a4-1c30-4890-8526-15b77e5f0ad0
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.guest_charger_watts
+        above: 0
+        for: 
+          seconds: 10
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: "off"
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.guest_mode
+
+  - alias: Guest Mode Off from Charger
+    id: ec212bad-7e87-4560-82f9-148ca9020175
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.guest_charger_watts
+        below: 1
+        for: 
+          seconds: 10
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_mode        
