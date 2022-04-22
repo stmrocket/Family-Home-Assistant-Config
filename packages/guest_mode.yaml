@@ -1,8 +1,8 @@
 # Sensors
 sensor:
-  #Sonoff Guest ChargerMonitor
+  #Sonoff Guest Charger Monitor
   - platform: mqtt
-    name: "Guest ChargerWatts"
+    name: "Guest Charger Watts"
     state_topic: "guest-charger/tele/SENSOR"
     value_template: "{{value_json['ENERGY'].Power }}"
     qos: 2
@@ -12,7 +12,7 @@ sensor:
     payload_available: "Online"
     payload_not_available: "Offline"
   - platform: mqtt
-    name: "Guest ChargerVoltage"
+    name: "Guest Charger Voltage"
     state_topic: "guest-charger/tele/SENSOR"
     value_template: "{{value_json['ENERGY'].Voltage }}"
     qos: 2
@@ -22,7 +22,7 @@ sensor:
     payload_available: "Online"
     payload_not_available: "Offline"
   - platform: mqtt
-    name: "Guest ChargerAmps"
+    name: "Guest Charger Amps"
     state_topic: "guest-charger/tele/SENSOR"
     value_template: "{{value_json['ENERGY'].Current }}"
     qos: 2
@@ -32,7 +32,7 @@ sensor:
     payload_available: "Online"
     payload_not_available: "Offline"
   - platform: mqtt
-    name: "Guest ChargerEnergy Today"
+    name: "Guest Charger Energy Today"
     state_topic: "guest-charger/tele/SENSOR"
     value_template: "{{value_json['ENERGY'].Today }}"
     qos: 2
@@ -41,7 +41,7 @@ sensor:
     payload_available: "Online"
     payload_not_available: "Offline"
   - platform: mqtt
-    name: "Guest ChargerEnergy Yesterday"
+    name: "Guest Charger Energy Yesterday"
     state_topic: "guest-charger/tele/SENSOR"
     value_template: "{{value_json['ENERGY'].Yesterday }}"
     qos: 2
@@ -52,10 +52,63 @@ sensor:
 
   - platform: mqtt
     state_topic: "guest-charger/tele/STATE"
-    name: "Guest ChargerSignal"
+    name: "Guest Charger Signal"
     unit_of_measurement: "%"
     value_template: "{{value_json['Wifi'].RSSI }}"
     availability_topic: "guest-charger/tele/LWT"
     qos: 1
     payload_available: "Online"
     payload_not_available: "Offline"
+
+automation:
+  - alias: Guest Mode On from Keypad
+    id: b4543958-2736-46c0-b13a-1eecbce1acd1
+    trigger:
+      - platform: state
+        entity_id: switch.guest_mode_led
+        from: "off"
+        to: "on"
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.guest_mode
+
+  - alias: Guest Mode Off from Keypad
+    id: bea19440-acfa-4105-99a9-9ebc8566336f
+    trigger:
+      - platform: state
+        entity_id: switch.guest_mode_led
+        from: "on"
+        to: "off"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.guest_mode
+
+  - alias: Guest Mode Keypad On
+    id: 4c39b750-5544-4f74-94bd-e8ee163eae49
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        from: "off"
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: switch.guest_mode_led
+        state: "off"
+    action:
+      - service: switch.turn_on
+        entity_id: switch.guest_mode_led
+
+  - alias: Guest Mode Keypad Off
+    id: 44f68f4a-4c89-4b7c-8471-a73dd79ba38c
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        from: "on"
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: switch.guest_mode_led
+        state: "on"
+    action:
+      - service: switch.turn_off
+        entity_id: switch.guest_mode_led
