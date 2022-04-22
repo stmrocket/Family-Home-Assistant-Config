@@ -42,17 +42,17 @@
     state: 'off'
   action:
   - service: switch.turn_off
-    data:
-      entity_id: switch.den_lamp
+    entity_id: 
+      - switch.guest_room_lamp
+      - switch.craft_room_table_lamp
+      - switch.den_curio_cabinet
+      - switch.master_bedroom_lamp
   - service: light.turn_off
-    data:
-      entity_id: light.master_lamp
-  - service: light.turn_off
-    data:
-      entity_id: light.guest_lamp
-  - service: light.turn_off
-    data:
-      entity_id: light.craft_room_lamp
+    entity_id:
+      - light.watch_shop_lamp
+      - light.craft_room_floor_lamp
+      - light.entry_lamp
+      - light.den_table_lampmp
 
 - alias: All Off Outside Lights
   id: e6af1bb3-8d93-4ed5-a8ad-7e10328468b4
@@ -68,10 +68,4 @@
   action:
   - service: switch.turn_off
     data:
-      entity_id: switch.driveway
-  - service: switch.turn_off
-    data:
-      entity_id: switch.back_porch_1
-  - service: light.turn_off
-    data:
-      entity_id: light.front_porch_1
+      entity_id: switch.outside_lights
