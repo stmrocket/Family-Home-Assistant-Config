@@ -2,70 +2,112 @@
 - alias: All Off Main
   id: a29b6284-c1cf-4b82-935c-9b4d2fa224c1
   trigger:
-  - platform: state
-    entity_id: alarm_control_panel.house
-    from: arming
-    to: armed_away
-  - platform: state
-    entity_id: alarm_control_panel.house
-    from: 
-      - disarmed
-      - armed_home
-    to: armed_away
-    for: "00:01:00"
-  - platform: state
-    entity_id: alarm_control_panel.house
-    from: armed_home
-    to: armed_night
-  - platform: state
-    entity_id: alarm_control_panel.house
-    from: disarmed
-    to: armed_night
-  action:
-  - service: swtich.turn_off
-    data:
-      entity_id: switch.left_back_porch
-  - service: switch.turn_off
-    data:
-      entity_id: switch.right_back_porch
-
-- alias: All Off Timer Lights
-  id: 1ee390dc-5453-470d-9ff8-e88a8f8cd641
-  trigger:
-  - platform: event
-    event_type: automation_triggered
-    event_data:
-      entity_id: automation.all_off_main
+    - platform: state
+      entity_id: alarm_control_panel.house
+      attribute: armed_status
+      from: armed_and_exit_timer_running
+      to: 
+        - fully_armed
+        - armed_with_bypass
   condition:
-  - condition: state
-    entity_id: input_boolean.timer_lights
-    state: 'off'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: alarm_control_panel.house
+        state: armed_away
+      - condition: state
+        entity_id: alarm_control_panel.house
+        state: armed_night        
   action:
-  - service: switch.turn_off
-    entity_id: 
-      - switch.guest_room_lamp
-      - switch.craft_room_table_lamp
-      - switch.den_curio_cabinet
-      - switch.master_bedroom_lamp
-  - service: light.turn_off
-    entity_id:
-      - light.watch_shop_lamp
-      - light.craft_room_floor_lamp
-      - light.entry_lamp
-      - light.den_table_lampmp
-
-- alias: All Off Outside Lights
-  id: e6af1bb3-8d93-4ed5-a8ad-7e10328468b4
-  trigger:
-  - platform: event
-    event_type: automation_triggered
-    event_data:
-      entity_id: automation.all_off_main
-  condition:
-  - condition: state
-    entity_id: input_boolean.outside_timer_lights
-    state: 'off'
-  action:
-  - service: switch.turn_off
-    data:
-      entity_id: switch.outside_lights
+    - service: light.turn_off
+      entity_id:
+        - light.back_porch_light
+        - light.back_hall_light
+        - light.pantry_light
+        - light.watch_shop_light
+        - light.half_bath_light
+        - light.garage_lights
+        - light.laundry_room_light
+        - light.craft_room_light
+        - light.master_shower_light
+        - light.master_toilet_light
+        - light.front_hall_light
+    - service: switch.turn_off
+      entity_id:
+        - switch.back_yard_lights
+        - switch.back_porch_fan
+        - switch.kitchen_lights
+        - switch.kitchen_island_lights
+        - switch.kitchen_undercabinet_lights
+        - switch.dining_light
+        - switch.den_lights
+        - switch.den_fan
+        - switch.foyer_lights
+        - switch.half_bath_fan
+        - switch.drop_zone_light
+        - switch.craft_room_fan
+        - switch.master_shower_fan
+        - switch.master_closet_light
+        - switch.watch_shop_fan
+    - choose: # When timer lights are off:
+      - conditions:
+        - condition: state
+          entity_id: input_boolean.timer_lights
+          state: 'off'
+        sequence:
+          - service: switch.turn_off
+            entity_id: 
+              - switch.guest_room_lamp
+              - switch.craft_room_table_lamp
+              - switch.den_curio_cabinet
+              - switch.master_bedroom_lamp
+          - service: light.turn_off
+            entity_id:
+              - light.watch_shop_lamp
+              - light.craft_room_floor_lamp
+              - light.entry_lamp
+              - light.den_table_lamp
+    - choose: # When outside timer lights are off:
+      - conditions:
+        - condition: state
+          entity_id: input_boolean.outside_timer_lights
+          state: 'off'
+        sequence:
+          - service: switch.turn_off
+            data:
+              entity_id: switch.outside_lights
+    - choose: # When armed away
+      - conditions:
+        - condition: state
+          entity_id: alarm_control_panel.house
+          state: armed_away
+        sequence:
+          - service: light.turn_off
+            entity_id:
+              - light.guest_room_light
+              - light.guest_bath_light
+              - light.master_bedroom_light
+              - light.master_bathroom_lights
+          - service: switch.turn_off
+            entity_id:
+              - switch.guest_room_fan
+              - switch.guest_bath_fan
+              - switch.master_bedroom_fan
+              - switch.master_toilet_fan
+    - choose: # When armed night and not in Guest Mode
+      - conditions:
+        - condition: state
+          entity_id: alarm_control_panel.house
+          state: armed_night
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: "off"
+        sequence:
+          - service: light.turn_off
+            entity_id:
+              - light.guest_room_light
+              - light.guest_bath_light
+          - service: switch.turn_off
+            entity_id:
+              - switch.guest_room_fan
+              - switch.guest_bath_fan
