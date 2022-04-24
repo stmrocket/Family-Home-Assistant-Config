@@ -62,7 +62,7 @@ sensor:
 
 automation:
   - alias: Guest Mode On from Keypad
-    id: 13ac6974-02e0-473b-84fa-f24d2d8b0bd1
+    id: b4543958-2736-46c0-b13a-1eecbce1acd1
     trigger:
       - platform: state
         entity_id: switch.guest_mode
@@ -73,7 +73,7 @@ automation:
         entity_id: input_boolean.guest_mode
 
   - alias: Guest Mode Off from Keypad
-    id: 8fa2957d-e2a2-4ae3-b723-701f6ccf79c8
+    id: bea19440-acfa-4105-99a9-9ebc8566336f
     trigger:
       - platform: state
         entity_id: switch.guest_mode
@@ -84,7 +84,7 @@ automation:
         entity_id: input_boolean.guest_mode
 
   - alias: Guest Mode Keypad On
-    id: e5d6d21e-1fd1-4b11-a2c9-6135dfb039a8
+    id: 4c39b750-5544-4f74-94bd-e8ee163eae49
     trigger:
       - platform: state
         entity_id: input_boolean.guest_mode
@@ -99,7 +99,7 @@ automation:
         entity_id: switch.guest_mode
 
   - alias: Guest Mode Keypad Off
-    id: ede11bb3-9f30-4513-864c-5ac4d413d324
+    id: 44f68f4a-4c89-4b7c-8471-a73dd79ba38c
     trigger:
       - platform: state
         entity_id: input_boolean.guest_mode
