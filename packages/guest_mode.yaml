@@ -65,7 +65,7 @@ automation:
     id: b4543958-2736-46c0-b13a-1eecbce1acd1
     trigger:
       - platform: state
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
         from: "off"
         to: "on"
     action:
@@ -76,7 +76,7 @@ automation:
     id: bea19440-acfa-4105-99a9-9ebc8566336f
     trigger:
       - platform: state
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
         from: "on"
         to: "off"
     action:
@@ -92,11 +92,11 @@ automation:
         to: "on"
     condition:
       - condition: state
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
         state: "off"
     action:
       - service: switch.turn_on
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
 
   - alias: Guest Mode Keypad Off
     id: 44f68f4a-4c89-4b7c-8471-a73dd79ba38c
@@ -107,11 +107,11 @@ automation:
         to: "off"
     condition:
       - condition: state
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
         state: "on"
     action:
       - service: switch.turn_off
-        entity_id: switch.guest_mode_led
+        entity_id: switch.guest_mode
 
   - alias: Guest Mode On from Charger
     id: ce56f2a4-1c30-4890-8526-15b77e5f0ad0
