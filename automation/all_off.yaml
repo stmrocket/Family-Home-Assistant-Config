@@ -4,7 +4,7 @@
   trigger:
     - platform: state
       entity_id: alarm_control_panel.house
-      attribute: armed_status
+      attribute: arm_up_status
       from: armed_and_exit_timer_running
       to: 
         - fully_armed
