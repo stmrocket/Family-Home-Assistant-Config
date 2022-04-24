@@ -94,6 +94,25 @@
               - switch.guest_bath_fan
               - switch.master_bedroom_fan
               - switch.master_toilet_fan
+    - choose: # When armed night
+      - conditions:
+        - condition: state
+          entity_id: alarm_control_panel.house
+          state: armed_night
+        sequence:
+          - service: switch.turn_off
+            entity_id: 
+              - switch.craft_room_table_lamp
+              - switch.den_curio_cabinet
+          - service: light.turn_off
+            entity_id:
+              - light.watch_shop_lamp
+              - light.craft_room_floor_lamp
+              - light.entry_lamp
+              - light.den_table_lamp
+          - service: input_boolean.turn_off
+            data:
+              entity_id: input_boolean.timer_lights
     - choose: # When armed night and not in Guest Mode
       - conditions:
         - condition: state
@@ -109,5 +128,6 @@
               - light.guest_bath_light
           - service: switch.turn_off
             entity_id:
+              - switch.guest_room_lamp
               - switch.guest_room_fan
               - switch.guest_bath_fan
