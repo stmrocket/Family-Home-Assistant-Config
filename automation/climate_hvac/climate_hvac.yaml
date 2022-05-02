@@ -54,3 +54,37 @@
       entity_id: climate.thermostat
       target_temp_high: 82
       target_temp_low: 62
+
+- alias: HVAC Off When Back Door Open
+  id: 05dfec06-a230-4874-88bb-4bac4d1fdfc5
+  trigger:
+    - platform: state
+      entity_id: sensor.elk_back_door
+      to: Violated
+      for:
+        minutes: 10
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: 'off'
+      target:
+        entity_id: climate.thermostat
+    - service: switch.turn_off
+      entity_id: switch.den_fan
+
+- alias: HVAC On When Back Door Closed
+  id: 8f9c905f-b015-4371-a286-beb6061317ae
+  trigger:
+    - platform: state
+      entity_id: sensor.elk_back_door
+      to: Normal
+  condition:
+    - condition: state
+      entity_id: climate.thermostat
+      state: 'off'
+  action:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: 'auto'
+      target:
+        entity_id: climate.thermostat
