@@ -62,7 +62,7 @@
       entity_id: sensor.elk_back_door
       to: Violated
       for:
-        minutes: 10
+        minutes: 5
   action:
     - service: climate.set_hvac_mode
       data:
