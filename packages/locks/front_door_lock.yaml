@@ -134,7 +134,8 @@ automation:
     condition:
       - condition: state
         entity_id: alarm_control_panel.house
-        state: arming
+        attribute: arm_up_state
+        state: armed_and_exit_timer_running
     action:
       - service: lock.lock
         entity_id: lock.front_door
