@@ -1,0 +1,56 @@
+switch:
+  - platform: template
+    switches:
+      manual_timer_lights:
+        friendly_name: "Manual Timer Lights"
+        value_template: "{{ is_state('input_boolean.timer_lights', 'on') or is_state('input_boolean.manual_timer_lights', 'on') }}"
+        turn_on:
+          service: script.timer_lights_manual_on
+        turn_off:
+          service: script.timer_lights_manual_off
+
+input_boolean:
+  manual_timer_lights:
+    name: Manual Timer Lights
+    icon: mdi:lamp
+
+script:
+  timer_lights_manual_on:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.timer_lights
+        state: "off"
+      - service: switch.turn_on
+        entity_id: 
+          - switch.guest_room_lamp
+          - switch.craft_room_table_lamp
+          - switch.den_curio_cabinet
+          - switch.master_bedroom_lamp
+      - service: light.turn_on
+        entity_id:
+          - light.watch_shop_lamp
+          - light.craft_room_floor_lamp
+          - light.entry_lamp
+          - light.den_table_lamp
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.manual_timer_lights
+
+  timer_lights_manual_off:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.timer_lights
+        state: "off"
+      - service: switch.turn_off
+        entity_id: 
+          - switch.guest_room_lamp
+          - switch.craft_room_table_lamp
+          - switch.den_curio_cabinet
+          - switch.master_bedroom_lamp
+      - service: light.turn_off
+        entity_id:
+          - light.watch_shop_lamp
+          - light.craft_room_floor_lamp
+          - light.entry_lamp
+          - light.den_table_lamp
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.manual_timer_lights

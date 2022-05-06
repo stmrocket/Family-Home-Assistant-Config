@@ -259,99 +259,26 @@ cards:
                     display: none;
                   }
 
-      #################################################################
-      #                                                               #
-      #                       Home - Buttons                          #
-      #                                                               #
-      #################################################################
-    #   - type: horizontal-stack
-    #     cards:
-    #       - type: "custom:button-card"
-    #         entity: switch.driveway
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:road
-    #         name: Driveway
-    #         hold_action:
-    #           action: more-info
-    #       - type: "custom:button-card"
-    #         entity: light.front_porch_1
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:door
-    #         name: Front Porch
-    #         hold_action:
-    #           action: more-info
-    #       - type: "custom:button-card"
-    #         entity: light.entry
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:ceiling-light
-    #         name: Entry
-    #         hold_action:
-    #           action: more-info
+      - type: custom:mini-graph-card
+        entities:
+          - sensor.openweathermap_current_temperature
+        name: Outside
+        height: 46
+        line_width: 2
+        font_size: 65
+        hours_to_show: 168
+        points_per_hour: 1
+        show:
+          icon: false
+          extrema: true
+        color_thresholds:
+          - value: 90
+            color: "#e74c3c"
+          - value: 60
+            color: "#1db954"
+          - value: 32
+            color: "#3498db"
 
-    #   - type: horizontal-stack
-    #     cards:
-    #       - type: "custom:button-card"
-    #         entity: switch.right_back_porch
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:spotlight
-    #         name: L Flood
-    #         hold_action:
-    #           action: more-info
-    #       - type: "custom:button-card"
-    #         entity: switch.back_porch_1
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:door
-    #         name: Back Porch
-    #         hold_action:
-    #           action: more-info
-    #       - type: "custom:button-card"
-    #         entity: switch.left_back_porch
-    #         color_type: icon
-    #         color: rgb(228, 94, 101)
-    #         icon: mdi:spotlight
-    #         name: R Flood
-    #         hold_action:
-    #           action: more-info
-
-      - type: horizontal-stack
-        cards:
-          - type: "custom:button-card"
-            entity: light.den_lamp
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:lamp
-            name: Den
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: light.master_lamp
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:lamp
-            name: Master
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: light.guest_lamp
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:lamp
-            name: Guest
-            hold_action:
-              action: more-info
-          - type: "custom:button-card"
-            entity: light.craft_room_lamp
-            color_type: icon
-            color: rgb(228, 94, 101)
-            icon: mdi:lamp
-            name: Craft
-            hold_action:
-              action: more-info
       - type: conditional
         conditions:
           - entity: switch.christmas_tree
@@ -452,6 +379,18 @@ cards:
               action: more-info
       - type: horizontal-stack
         cards:
+          - type: "custom:button-card"
+            entity: switch.manual_timer_lights
+            color_type: icon
+            icon: mdi:lamp
+            state:
+              - value: "on"
+                color: rgb(228, 94, 101)
+              - value: "off"
+                color: rgb(255, 255, 255)
+            name: All
+            hold_action:
+              action: more-info
           - type: "custom:button-card"
             entity: lock.front_door
             color_type: icon
