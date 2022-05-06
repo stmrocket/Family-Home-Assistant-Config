@@ -112,7 +112,9 @@
               - light.den_table_lamp
           - service: input_boolean.turn_off
             data:
-              entity_id: input_boolean.timer_lights
+              entity_id: 
+                - input_boolean.timer_lights
+                - input_boolean.manual_timer_lights
     - choose: # When armed night and not in Guest Mode
       - conditions:
         - condition: state

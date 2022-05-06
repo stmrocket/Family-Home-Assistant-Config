@@ -45,7 +45,9 @@
       - light.den_table_lamp
   - service: input_boolean.turn_off
     data:
-      entity_id: input_boolean.timer_lights
+      entity_id: 
+        - input_boolean.timer_lights
+        - input_boolean.manual_timer_lights
 
 - alias: Timer Lights On Outside
   id: f5639c10-7d8f-46fc-8a34-6cbcb6357acb
