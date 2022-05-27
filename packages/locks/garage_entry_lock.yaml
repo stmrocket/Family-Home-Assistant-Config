@@ -34,7 +34,7 @@ sensor:
 timer:
   garage_entry:
     name: Garage Entry Lock Timer
-    duration: "01:00:00"
+    duration: "00:15:00"
 
 automation:
   - alias: 'Garage Entry Lock Status Update'
@@ -104,10 +104,6 @@ automation:
         from: locked
         platform: state
         to: unlocked
-      - entity_id: sensor.elk_garage_motion
-        from: Normal
-        to: Violated
-        platform: state
     action:
       service: timer.start
       entity_id: timer.garage_entry

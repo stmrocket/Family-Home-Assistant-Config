@@ -34,7 +34,7 @@ sensor:
 timer:
   front_door:
     name: Front Door Lock Timer
-    duration: "01:00:00"
+    duration: "00:15:00"
 
 automation:
   - alias: 'Front Door Lock Status Update'

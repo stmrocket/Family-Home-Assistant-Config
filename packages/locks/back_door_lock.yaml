@@ -34,7 +34,7 @@ sensor:
 timer:
   back_door:
     name: Back Door Lock Timer
-    duration: "01:00:00"
+    duration: "00:15:00"
 
 automation:
   - alias: 'Back Door Lock Status Update'
