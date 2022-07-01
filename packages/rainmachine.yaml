@@ -3,65 +3,121 @@ switch:
     switches:
       irrigation_program_3_days:
         friendly_name: "Irrigation Schedule Every 3 Days Enabled"
-        value_template: "{{ is_state('switch.foxcroft_every_3_days_enabled', 'on') }}"
+        value_template: "{{ is_state('switch.rm_every_3_days_enabled', 'on') }}"
         turn_on:
           service: script.rainmachine_program_1_on
         turn_off:
           service: switch.turn_off
-          entity_id: switch.foxcroft_every_3_days_enabled
+          entity_id: switch.rm_every_3_days_enabled
 
       irrigation_program_2_days:
         friendly_name: "Irrigation Schedule Every 2 Days Enabled"
-        value_template: "{{ is_state('switch.foxcroft_every_2_days_enabled', 'on') }}"
+        value_template: "{{ is_state('switch.rm_every_2_days_enabled', 'on') }}"
         turn_on:
           service: script.rainmachine_program_2_on
         turn_off:
           service: switch.turn_off
-          entity_id: switch.foxcroft_every_2_days_enabled
+          entity_id: switch.rm_every_2_days_enabled
+
+      irrigation_program_restriction:
+        friendly_name: "Irrigation Schedule Watering Restriction"
+        value_template: "{{ is_state('switch.rm_twice_weekly', 'on') }}"
+        turn_on:
+          service: script.rainmachine_program_restriction_on
+        turn_off:
+          service: switch.turn_off
+          entity_id: switch.rm_twice_weekly_enabled
 
       irrigation_run_program:
         friendly_name: "Run Irrigation Program"
-        value_template: "{{ is_state('switch.foxcroft_every_2_days','on') or is_state('switch.foxcroft_every_3_days','on') }}"
+        value_template: "{{ is_state('switch.rm_every_2_days','on') or is_state('switch.rm_every_3_days','on') or is_state('switch.rm_twice_weekly','on') }}"
         turn_on:
           service: script.rainmachine_start_program
         turn_off:
           service: rainmachine.stop_all
           data:
-            entity_id: switch.foxcroft_every_2_days
+            device_id: 032305af67494d03b682235da4fa36d6
 
 binary_sensor:
   - platform: template
     sensors:
       rm_zone_1_watering:
         friendly_name: "Zone 1 watering"
-        value_template: "{{ is_state_attr('switch.foxcroft_front_yard','status','Running') }}"
+        value_template: "{{ is_state_attr('switch.rm_front_yard','status','Running') }}"
       rm_zone_2_watering:
         friendly_name: "Zone 2 watering"
-        value_template: "{{ is_state_attr('switch.foxcroft_flower_beds','status','Running') }}"
+        value_template: "{{ is_state_attr('switch.rm_flower_beds','status','Running') }}"
       rm_zone_3_watering:
         friendly_name: "Zone 3 watering"
-        value_template: "{{ is_state_attr('switch.foxcroft_left_side','status','Running') }}"
+        value_template: "{{ is_state_attr('switch.rm_left_side','status','Running') }}"
       rm_zone_4_watering:
         friendly_name: "Zone 4 watering"
-        value_template: "{{ is_state_attr('switch.foxcroft_back_yard','status','Running') }}"
+        value_template: "{{ is_state_attr('switch.rm_back_yard','status','Running') }}"
       rm_zone_5_watering:
         friendly_name: "Zone 5 watering"
-        value_template: "{{ is_state_attr('switch.foxcroft_right_side','status','Running') }}"
+        value_template: "{{ is_state_attr('switch.rm_right_side','status','Running') }}"
+
+sensor:
+  - platform: template
+    sensors:
+      program_every_3_days_status:
+        friendly_name: Irrigation Schedule Every 3 Days Status
+        value_template: >-
+          {% if is_state('switch.rm_every_3_days_enabled', 'on') and is_state('switch.rm_every_3_days', 'off') -%}
+            enabled
+          {% elif  is_state('switch.rm_every_3_days_enabled', 'on') and is_state('switch.rm_every_3_days', 'on') -%}
+            running
+          {% else -%}
+            disabled
+          {% endif -%}
+      program_every_2_days_status:
+        friendly_name: Irrigation Schedule Every 2 Days Status
+        value_template: >-
+          {% if is_state('switch.rm_every_2_days_enabled', 'on') and is_state('switch.rm_every_2_days', 'off') -%}
+            enabled
+          {% elif  is_state('switch.rm_every_2_days_enabled', 'on') and is_state('switch.rm_every_2_days', 'on') -%}
+            running
+          {% else -%}
+            disabled
+          {% endif -%}
+      program_restriction_status:
+        friendly_name: Irrigation Schedule Restriction Status
+        value_template: >-
+          {% if is_state('switch.rm_twice_weekly_enabled', 'on') and is_state('switch.rm_twice_weekly', 'off') -%}
+            enabled
+          {% elif  is_state('switch.rm_twice_weekly_enabled', 'on') and is_state('switch.rm_twice_weekly', 'on') -%}
+            running
+          {% else -%}
+            disabled
+          {% endif -%}
 
 script:
   rainmachine_program_1_on:
     sequence:
       - service: switch.turn_off
-        entity_id: switch.foxcroft_every_2_days_enabled
+        entity_id: 
+          - switch.rm_every_2_days_enabled
+          - switch.rm_twice_weekly_enabled
       - service: switch.turn_on
-        entity_id: switch.foxcroft_every_3_days_enabled
+        entity_id: switch.rm_every_3_days_enabled
 
   rainmachine_program_2_on:
     sequence:
       - service: switch.turn_off
-        entity_id: switch.foxcroft_every_3_days_enabled
+        entity_id: 
+          - switch.rm_every_3_days_enabled
+          - switch.rm_twice_weekly_enabled
       - service: switch.turn_on
-        entity_id: switch.foxcroft_every_2_days_enabled
+        entity_id: switch.rm_every_2_days_enabled
+
+  rainmachine_program_restriction_on:
+    sequence:
+      - service: switch.turn_off
+        entity_id: 
+          - switch.rm_every_2_days_enabled
+          - switch.rm_every_3_days_enabled
+      - service: switch.turn_on
+        entity_id: switch.rm_twice_weekly_enabled
 
   rainmachine_start_program:
     sequence:
@@ -73,7 +129,7 @@ script:
             sequence:
               - service: rainmachine.start_program
                 data:
-                  entity_id: switch.foxcroft_every_3_days
+                  entity_id: switch.rm_every_3_days
           - conditions:
               - condition: state
                 entity_id: switch.irrigation_program_2_days
@@ -81,4 +137,78 @@ script:
             sequence:
               - service: rainmachine.start_program
                 data:
-                  entity_id: switch.foxcroft_every_2_days
+                  entity_id: switch.rm_every_2_days
+          - conditions:
+              - condition: state
+                entity_id: switch.irrigation_program_restriction
+                state: "on"
+            sequence:
+              - service: rainmachine.start_program
+                data:
+                  entity_id: switch.rm_twice_weekly
+
+  rainmachine_program_1_tap:
+    sequence:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_every_3_days_enabled
+                state: "off"
+            sequence:
+              - service: switch.turn_off
+                entity_id: 
+                  - switch.rm_every_2_days_enabled
+                  - switch.rm_twice_weekly_enabled
+              - service: switch.turn_on
+                entity_id: switch.rm_every_3_days_enabled
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_every_3_days_enabled
+                state: "on"
+            sequence:
+              - service: switch.turn_off
+                entity_id: switch.rm_every_3_days_enabled
+
+  rainmachine_program_2_tap:
+    sequence:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_every_2_days_enabled
+                state: "off"
+            sequence:
+              - service: switch.turn_off
+                entity_id: 
+                  - switch.rm_every_3_days_enabled
+                  - switch.rm_twice_weekly_enabled
+              - service: switch.turn_on
+                entity_id: switch.rm_every_2_days_enabled
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_every_2_days_enabled
+                state: "on"
+            sequence:
+              - service: switch.turn_off
+                entity_id: switch.rm_every_2_days_enabled
+
+  rainmachine_program_restriction_tap:
+    sequence:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_twice_weekly_enabled
+                state: "off"
+            sequence:
+              - service: switch.turn_off
+                entity_id: 
+                  - switch.rm_every_3_days_enabled
+                  - switch.rm_every_2_days_enabled
+              - service: switch.turn_on
+                entity_id: switch.rm_twice_weekly_enabled
+          - conditions:
+              - condition: state
+                entity_id: switch.rm_twice_weekly_enabled
+                state: "on"
+            sequence:
+              - service: switch.turn_off
+                entity_id: switch.rm_twice_weekly_enabled
