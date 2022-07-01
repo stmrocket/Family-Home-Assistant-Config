@@ -1462,7 +1462,7 @@ cards:
                   action: call-service
                   service: switch.toggle
                   service_data:
-                    entity_id: switch.east_front
+                    entity_id: switch.rm_front_yard
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1479,7 +1479,7 @@ cards:
                   action: call-service
                   service: switch.toggle
                   service_data:
-                    entity_id: switch.east_side
+                    entity_id: switch.rm_flower_beds
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1496,7 +1496,7 @@ cards:
                   action: call-service
                   service: switch.toggle
                   service_data:
-                    entity_id: switch.back_yard
+                    entity_id: switch.rm_left_side
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1513,7 +1513,7 @@ cards:
                   action: call-service
                   service: switch.toggle
                   service_data:
-                    entity_id: switch.west_side
+                    entity_id: switch.rm_back_yard
                 hold_action:
                   action: more-info
               - type: "custom:button-card"
@@ -1530,7 +1530,7 @@ cards:
                   action: call-service
                   service: switch.toggle
                   service_data:
-                    entity_id: switch.west_front
+                    entity_id: switch.rm_right_side
                 hold_action:
                   action: more-info
 
