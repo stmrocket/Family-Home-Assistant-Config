@@ -1,0 +1,268 @@
+automation:
+  - alias: Vacation Mode On
+    id: 367daa48-3126-4dea-bad5-89b76b6814b6
+    trigger:
+      - platform: template
+        value_template: "{{ is_state_attr('alarm_control_panel.house', 'armed_status', 'armed_to_vacation') }}"
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.vacation_mode
+
+  - alias: Vacation Mode Off
+    id: d24d2f8f-2821-41c9-90c7-042c54a223e4
+    trigger:
+      - platform: state
+        entity_id: person.karen_mccoy
+        to: "home"
+      - platform: state
+        entity_id: person.scott_mccoy
+        to: "home"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.vacation_mode
+
+  - alias: Vacation Replay Lights Off in Morning
+    id: 8757403b-1145-471c-be4d-bc48a9bbb12d
+    trigger:
+      - platform: state
+        entity_id: input_boolean.outside_timer_lights
+        from: "on"
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      - service: light.turn_off
+        entity_id:
+          - light.back_porch_light
+          - light.back_hall_light
+          - light.front_hall_light
+          - light.watch_shop_light
+          - light.guest_room_light
+          - light.guest_bath_light
+          - light.half_bath_light
+          - light.laundry_room_light
+          - light.craft_room_light
+          - light.master_bedroom_light
+          - light.master_bathroom_lights
+          - light.master_shower_light
+          - light.master_toilet_light
+      - service: switch.turn_off
+        entity_id:
+          - switch.back_yard_lights
+          - switch.kitchen_lights
+          - switch.kitchen_island_lights
+          - switch.kitchen_undercabinet_lights
+          - switch.dining_light
+          - switch.den_lights
+          - switch.foyer_lights
+          - switch.drop_zone_light
+
+input_boolean:
+  vacation_mode:
+    name: Vacation Mode
+    icon: mdi:airplane
+
+sensor:
+  - platform: history_stats
+    name: Replay Back Porch Light
+    entity_id: light.back_porch_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Back Yard Light
+    entity_id: switch.back_yard_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Kitchen Can Lights
+    entity_id: switch.kitchen_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Kitchen Island Lights
+    entity_id: switch.kitchen_island_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Kitchen Undercabinet Lights
+    entity_id: switch.kitchen_undercabinet_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Dining Room Light
+    entity_id: switch.dining_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Back Hall Light
+    entity_id: light.back_hall_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Front Hall Light
+    entity_id: light.front_hall_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Den Lights
+    entity_id: switch.den_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Foyer Lights
+    entity_id: switch.foyer_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Watch Shop Light
+    entity_id: light.watch_shop_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Guest Bedroom Light
+    entity_id: light.guest_room_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Guest Bathroom Light
+    entity_id: light.guest_bath_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Half Bathroom Light
+    entity_id: light.half_bath_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Drop Zone Light
+    entity_id: switch.drop_zone_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Laundry Room Light
+    entity_id: light.laundry_room_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Craft Room Light
+    entity_id: light.craft_room_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Master Bedroom Light
+    entity_id: light.master_bedroom_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Master Sink Lights
+    entity_id: light.master_bathroom_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Master Shower Light
+    entity_id: light.master_shower_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Master Shower Light
+    entity_id: light.master_toilet_light
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
+
+  - platform: history_stats
+    name: Replay Timer Lamps
+    entity_id: input_boolean.timer_lights
+    state: "on"
+    type: count
+    start: >
+      {{ as_timestamp(now(), none) - (7*86400) }}
+    duration: 00:00:30
