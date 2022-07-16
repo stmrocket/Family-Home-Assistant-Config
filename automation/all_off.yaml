@@ -68,6 +68,7 @@
               - light.craft_room_floor_lamp
               - light.entry_lamp
               - light.den_table_lamp
+              - light.dining_armoire_leds
     - choose: # When outside timer lights are off:
       - conditions:
         - condition: state
@@ -111,6 +112,7 @@
               - light.craft_room_floor_lamp
               - light.entry_lamp
               - light.den_table_lamp
+              - light.dining_armoire_leds
           - service: input_boolean.turn_off
             data:
               entity_id: 

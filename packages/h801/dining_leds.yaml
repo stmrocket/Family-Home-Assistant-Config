@@ -1,0 +1,72 @@
+mqtt:
+  light:
+    - name: "Dining Armoire LEDs"
+      state_topic: "h801/dining/tele/current"
+      command_topic: "h801/dining/command/set/w1/power"
+      brightness_state_topic: "h801/dining/tele/current"
+      brightness_command_topic: "h801/dining/command/set/w1/brightness"
+      state_value_template: "{{value_json['w1_power']}}"
+      brightness_value_template: "{{value_json['w1_brightness']}}"
+      color_temp_command_topic: "h801/dining/command/set/w1/temperature"
+      color_temp_state_topic: "h801/dining/tele/current"
+      color_temp_value_template: "{{value_json['temperature']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      qos: 0
+      retain: false
+      payload_on: "ON"
+      payload_off: "OFF"
+      optimistic: false
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+  sensor:
+    #Driver Status Messages
+
+    - name: "Dining Armoire LEDs Version"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['espVersion']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs Uptime"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['espUptime']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs RSSI"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['signalStrength']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs IP"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['bridgeIP']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs Free Heap"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['heapFree']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs Heap Fragmentation"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['heapFragmentation']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"
+
+    - name: "Dining Armoire LEDs Core Version"
+      state_topic: "h801/dining/tele/status"
+      value_template: "{{value_json['espCore']}}"
+      availability_topic: "h801/dining/tele/LWT"
+      payload_available: "Online"
+      payload_not_available: "Offline"

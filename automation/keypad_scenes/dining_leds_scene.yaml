@@ -1,0 +1,58 @@
+- alias: Dining Room LEDs On from Keypad
+  id: 2793f2fb-3113-48a5-ab29-c6bc3da5a2cb
+  trigger:
+    - platform: state
+      entity_id: switch.dining_room_lamp
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: light.dining_armoire_leds
+      state: "off"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.dining_armoire_leds
+
+- alias: Dining Room LEDs Off from Keypad
+  id: a35f8e4e-ff2a-4ec0-b4c7-1b11a30b22bf
+  trigger:
+    - platform: state
+      entity_id: switch.dining_room_lamp
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: light.dining_armoire_leds
+      state: "on"
+  action:
+    - service: light.turn_off
+      entity_id: light.dining_armoire_leds
+
+- alias: Dining Room LEDs Keypad On
+  id: e2b38479-9d18-45fd-983d-b44c8b046dd2
+  trigger:
+    - platform: state
+      entity_id: light.dining_armoire_leds
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.dining_room_lamp
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.dining_room_lamp
+
+- alias: Dining Room LEDs Keypad Off
+  id: 2e2fd125-ac7f-477d-aa86-ec11d60fb540
+  trigger:
+    - platform: state
+      entity_id: light.dining_armoire_leds
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.dining_room_lamp
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.dining_room_lamp
