@@ -49,6 +49,7 @@
         - switch.master_shower_fan
         - switch.master_closet_light
         - switch.watch_shop_fan
+        - switch.wax_warmer
     - choose: # When timer lights are off:
       - conditions:
         - condition: state

@@ -184,6 +184,19 @@ cards:
         - type: horizontal-stack
           cards:
             - type: "custom:button-card"
+              entity: switch.wax_warmer
+              color_type: icon
+              color: rgb(228, 94, 101)
+              icon: mdi:fire
+              name: Wax Warmer
+              hold_action:
+                action: more-info
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+            - type: "custom:gap-card"
+        - type: horizontal-stack
+          cards:
+            - type: "custom:button-card"
               entity: sensor.den_harmony_activity
               color_type: icon
               state:
