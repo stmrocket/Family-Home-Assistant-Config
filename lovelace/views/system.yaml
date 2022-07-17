@@ -1534,6 +1534,14 @@ cards:
                 hold_action:
                   action: more-info
 
+      - type: 'custom:our-groceries-card'
+        title: Shopping Lists
+        show_header: false
+        entity: sensor.our_groceries
+        show_crossed_off: true
+        sort_by_name: true
+        hide_empty_lists: false
+
       - type: horizontal-stack
         cards:
           - type: "custom:gap-card"
