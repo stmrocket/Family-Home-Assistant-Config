@@ -1,0 +1,23 @@
+mqtt:
+  sensor:
+    - name: AcuRite Outside Temperature
+      state_topic: rtl_433/7044/temperature_C
+      unit_of_measurement: "°C"
+      device_class: temperature
+
+    - name: AcuRite Outside Humidity
+      state_topic: rtl_433/7044/humidity
+      unit_of_measurement: "%"
+
+    - name: AcuRite Cumulative Rain
+      state_topic: rtl_433/2142/rain_mm
+      unit_of_measurement: "mm"
+
+  binary_sensor:
+    - name: AcuRite Thermometer Battery Low
+      state_topic: rtl_433/7044/battery_ok
+      value_template: "{{ value | int (0) == 0}}"
+
+    - name: AcuRite Thermometer Battery Low
+      state_topic: rtl_433/2142/battery_ok
+      value_template: "{{ value | int (0) == 0}}"
