@@ -261,7 +261,7 @@ cards:
 
       - type: custom:mini-graph-card
         entities:
-          - sensor.openweathermap_current_temperature
+          - sensor.acurite_outside_temperature
         name: Outside
         height: 46
         line_width: 2
