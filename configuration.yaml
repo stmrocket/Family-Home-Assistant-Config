@@ -180,27 +180,27 @@ isy994:
   username: !secret isy_user
   password: !secret isy_pass
 
-#Elk M1 Integration
-elkm1:
-  host: !secret elk_host
-  username: !secret elk_user
-  password: !secret elk_pass
-  area:
-    exclude: [2-8]
-  counter:
-    enabled: false
-  keypad:
-    exclude: [5-16]
-  output:
-    include: [3, 9, 10, 177-180]
-  task:
-    enabled: false
-  thermostat:
-    enabled: false
-  plc:
-    enabled: false
-  zone:
-    include: [1-32]
+# #Elk M1 Integration
+# elkm1:
+#   host: !secret elk_host
+#   username: !secret elk_user
+#   password: !secret elk_pass
+#   area:
+#     exclude: [2-8]
+#   counter:
+#     enabled: false
+#   keypad:
+#     exclude: [5-16]
+#   output:
+#     include: [3, 9, 10, 177-180]
+#   task:
+#     enabled: false
+#   thermostat:
+#     enabled: false
+#   plc:
+#     enabled: false
+#   zone:
+#     include: [1-32]
 
 #Alexa
 api:
