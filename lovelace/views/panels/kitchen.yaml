@@ -28,13 +28,14 @@ cards:
 #                                                               #
 ################################################################# 
           - type: glance
-            columns: 3
+            columns: 4
             show_name: true
             show_state: false
             entities:
                 - entity: camera.front_porch
                 - entity: camera.driveway
                 - entity: camera.back_porch
+                - entity: camera.back_yard
           - type: 'custom:gap-card'
             
 
@@ -199,7 +200,11 @@ cards:
               entity: light.dining_armoire_leds
               color_type: icon
               color: rgb(228, 94, 101)
-              icon: mdi:radio-tower
+              state:
+                - value: "on"
+                  icon: mdi:led-on
+                - value: "off"
+                  icon: mdi:led-off
               name: Dining
               hold_action:
                 action: more-info
