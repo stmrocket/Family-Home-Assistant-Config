@@ -13,7 +13,7 @@
   - service: climate.set_temperature
     data:
       entity_id: climate.thermostat
-      target_temp_high: 76
+      target_temp_high: 75
       target_temp_low: 62
 
 - alias: HVAC When Home
