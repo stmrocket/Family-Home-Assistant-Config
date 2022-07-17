@@ -97,7 +97,7 @@ cards:
             icon: mdi:led-on
           - value: "off"
             icon: mdi:led-off
-        name: Desk
+        name: Dining
         hold_action:
           action: more-info
 
