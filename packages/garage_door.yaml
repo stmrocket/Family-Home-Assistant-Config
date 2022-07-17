@@ -11,7 +11,7 @@ cover:
           service: script.toggle_garage_door
 
 script:
-  toggle_garag_door:
+  toggle_garage_door:
     sequence:
       - service: switch.turn_on
         entity_id: switch.garage_door
