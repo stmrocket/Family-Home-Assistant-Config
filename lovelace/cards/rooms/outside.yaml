@@ -4,7 +4,7 @@ cards:
   - type: picture-elements
     image: /local/lovelace/room_sm.png
     elements:
-      - entity: sensor.openweathermap_current_temperature
+      - entity: sensor.acurite_outside_temperature
         style:
           bottom: -5%
           right: 5%
