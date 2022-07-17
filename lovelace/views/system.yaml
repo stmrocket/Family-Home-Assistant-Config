@@ -1534,73 +1534,9 @@ cards:
                 hold_action:
                   action: more-info
 
-      #################################################################
-      #                                                               #
-      #                       Den Harmony Control                     #
-      #                                                               #
-      #################################################################
-
       - type: horizontal-stack
         cards:
-          - type: "custom:button-card"
-            entity: remote.den_harmony
-            color_type: icon
-            color: rgb(255, 255, 255)
-            icon: mdi:remote-tv-off
-            name: "Off"
-            tap_action:
-              action: call-service
-              service: remote.turn_off
-              service_data:
-                entity_id: remote.den_harmony
-
-          - type: "custom:button-card"
-            entity: remote.harmony_den
-            color_type: icon
-            color: rgb(255, 255, 255)
-            icon: mdi:volume-minus
-            name: "Down"
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.den_harmony
-                command:
-                  - VolumeDown
-                device: 76331422
-
-          - type: "custom:button-card"
-            entity: remote.den_harmony
-            color_type: icon
-            color: rgb(255, 255, 255)
-            icon: mdi:volume-mute
-            name: "Mute"
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.den_harmony
-                command:
-                  - Mute
-                device: 76331422
-
-          - type: "custom:button-card"
-            entity: remote.den_harmony
-            color_type: icon
-            color: rgb(255, 255, 255)
-            icon: mdi:volume-plus
-            name: "Up"
-            tap_action:
-              action: call-service
-              service: remote.send_command
-              service_data:
-                entity_id: remote.den_harmony
-                command:
-                  - VolumeUp
-                device: 76331422
-
-      - type: horizontal-stack
-        cards:
+          - type: "custom:gap-card"
           - type: "custom:button-card"
             color_type: icon
             color: rgb(255, 255, 255)
@@ -1611,9 +1547,24 @@ cards:
               unlock: hold
             tap_action:
               action: call-service
-              service: rest_command.wake_remote
-
-          - type: "custom:gap-card"
-          - type: "custom:gap-card"
+              service: rest_command.wake_remote         
+          - type: "custom:button-card"
+            entity: sensor.furnace_service_required
+            color_type: icon
+            icon: mdi:air-filter
+            state:
+              - value: "Filter"
+                color: rgb(228, 94, 101)
+                name: Replace
+              - value: "Bleach"
+                color: rgb(228, 94, 101)
+                name: Bleach
+              - value: "OK"
+                color: rgb(255, 255, 255)
+                name: OK
+            tap_action:
+              action: more-info
+            hold_action:
+              action: more-info
           - type: "custom:gap-card"
           - type: "custom:gap-card"
