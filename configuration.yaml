@@ -92,7 +92,7 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-layout-card/layout-card.js
       type: module
-    - url: /local/restriction-card.js
+    - url: /hacsfiles/restriction-card.js
       type: module
 
 # Discover some devices automatically
