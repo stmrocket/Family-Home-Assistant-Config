@@ -14,8 +14,8 @@ script:
   toggle_garag_door:
     sequence:
       - service: switch.turn_on
-        entity_id: switch.elk_garage_door
+        entity_id: switch.garage_door
       - delay:
           seconds: 2
       - service: switch.turn_off
-        entity_id: switch.elk_garage_door
+        entity_id: switch.garage_door
