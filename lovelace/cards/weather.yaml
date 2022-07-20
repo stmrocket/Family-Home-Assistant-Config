@@ -31,7 +31,7 @@ entity_wind_speed: sensor.openweathermap_current_wind_speed
 entity_wind_gust: sensor.openweathermap_current_wind_gust
 entity_humidity: sensor.acurite_outside_humidity
 entity_apparent_temp: sensor.local_apparent_temperature
-entity_daily_summary: sensor.openweathermap_weekly_summary
+entity_daily_summary: sensor.weather_description
 entity_pop: sensor.openweathermap_current_pop
 entity_pop_intensity: sensor.openweathermap_current_precip_forecast
 entity_possible_today: sensor.openweathermap_current_precip_forecast
@@ -48,6 +48,8 @@ entity_pop_5: sensor.openweathermap_day_5_pop
 entity_uv_alert_summary: sensor.openweathermap_current_uv_combined
 entity_visibility: sensor.kcll_current_visibility
 entity_pressure: sensor.openweathermap_current_pressure
+entity_precip_current: sensor.rain_day
+entity_precip_intensity_current: sensor.rain_rate
 slot_l1: daytime_low
 slot_r1: daytime_high
 slot_l2: wind
@@ -58,8 +60,8 @@ slot_l4: visibility
 slot_r4: pressure
 slot_l5: sun_next
 slot_r5: sun_following
-slot_l6: remove
-slot_r6: remove
+slot_l6: precip_current
+slot_r6: precip_intensity_current
 current_data_top_margin: 6em
 current_text_top_margin: 45px
 current_text_alignment: left
