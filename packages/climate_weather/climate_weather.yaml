@@ -2,247 +2,298 @@ mqtt:
   sensor:
     #OpenWeatherMap
     - name: OpenWeatherMap Current Icon
+      unique_id: cc655c05-8875-48ec-9b0d-f44973bebf84
       state_topic: openweathermap
       value_template: "{{value_json['current'].icon }}"
 
     - name: OpenWeatherMap Current Summary
+      unique_id: 6dafb340-8d97-4a76-88c4-c969f5934a83
       state_topic: openweathermap
       value_template: "{{value_json['current'].summary }}"
       
     - name: OpenWeatherMap Current Temperature
+      unique_id: 12a96948-b1dc-494f-aa08-889aa8069bda
       state_topic: openweathermap
       value_template: "{{value_json['current'].temperature }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Current Visibility
+      unique_id: 20048d25-efc9-4a3f-97bd-e52496df9972
       state_topic: openweathermap
       value_template: "{{value_json['current'].visibility }}"
       unit_of_measurement: "mi"
 
     - name: OpenWeatherMap Current Maximum Temperature
+      unique_id: 2f19f658-044d-4238-9a75-85091e3400c1
       state_topic: openweathermap
       value_template: "{{value_json['current'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Current Minimum Temperature
+      unique_id: da796462-6f23-428c-85a7-0d71580b41fa
       state_topic: openweathermap
       value_template: "{{value_json['current'].mintemp }}"
       unit_of_measurement: "°F"  
       device_class: temperature
 
     - name: OpenWeatherMap Current Wind Bearing
+      unique_id: e2c51987-01ca-4ddd-ae33-b8dfd27b1ff7
       state_topic: openweathermap
       value_template: "{{value_json['current'].wind_dir }}"
       unit_of_measurement: "°"
 
     - name: OpenWeatherMap Current Wind Speed
+      unique_id: 45075802-4492-4b40-9ec1-63aac3787353
       state_topic: openweathermap
       value_template: "{{value_json['current'].wind_spd }}"
       unit_of_measurement: "mi/h"
 
     - name: OpenWeatherMap Current Wind Gust
+      unique_id: 7c5b1157-73bf-4713-a8e7-cd81a9bb0cd1
       state_topic: openweathermap
       value_template: "{{value_json['current'].wind_gust }}"
       unit_of_measurement: "mi/h"
 
     - name: OpenWeatherMap Current Humidity
+      unique_id: eb3edee3-4dca-4cac-b0a8-94c6638ec403
       state_topic: openweathermap
       value_template: "{{value_json['current'].humidity }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Current Pressure
+      unique_id: 396151a2-6733-4f10-9f52-c029253ef39f
       state_topic: openweathermap
       value_template: "{{value_json['current'].pressure }}"
       unit_of_measurement: "hPa"
 
     - name: OpenWeatherMap Current Apparent Temperature
+      unique_id: 71379107-c50f-4ef7-8270-3eeb1db15544
       state_topic: openweathermap
       value_template: "{{value_json['current'].apparent }}"
       unit_of_measurement: "°F"
-
       device_class: temperature
+
     - name: OpenWeatherMap Current POP
+      unique_id: c0ba5006-6576-4fa1-a70c-f7effc249dba
       state_topic: openweathermap
       value_template: "{{value_json['current'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Current Precip Forecast
+      unique_id: 8e47c17b-08ae-4241-96d8-074c21aa8406
       state_topic: openweathermap
       value_template: "{{value_json['current'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Current UV Index
+      unique_id: 50bc01df-b020-4926-bd15-76e9604453a9
       state_topic: openweathermap
       value_template: "{{value_json['current'].uv_index }}"
 
     - name: OpenWeatherMap Current UV Risk
+      unique_id: f98451f2-7b52-4191-a337-2c0716f9171e
       state_topic: openweathermap
       value_template: "{{value_json['current'].uv_risk }}"
 
     - name: OpenWeatherMap Current UV Combined
+      unique_id: fff6bdbf-c38e-4587-a930-48658f6bbeff
       state_topic: openweathermap
       value_template: "{{value_json['current'].uv_combined }}"
 
     - name: OpenWeatherMap Day 1 Icon
+      unique_id: 4a77f29c-f975-4121-a3c2-18e0e040afc8
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].icon }}"
 
     - name: OpenWeatherMap Day 1 Summary
+      unique_id: 9e24912f-ca51-4356-9331-481110b5e9ab
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].summary }}"
 
     - name: OpenWeatherMap Day 1 Maximum Temperature
+      unique_id: 20fd6999-74be-455d-8958-71f6a96b2ba8
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Day 1 Minimum Temperature
+      unique_id: 018cd4c6-c394-446b-b82c-5149ab917da0
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].mintemp }}"
       unit_of_measurement: "°F" 
       device_class: temperature 
       
     - name: OpenWeatherMap Day 1 POP
+      unique_id: a93eecae-cf2b-434e-8b80-ff8f55ad28f7
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Day 1 Precip Forecast
+      unique_id: 3c60f972-fe84-4631-9cba-119d6ef15c08
       state_topic: openweathermap
       value_template: "{{value_json['day_1'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Day 2 Icon
+      unique_id: 40be1709-d2e7-4d0a-af40-24c279804f24
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].icon }}"
 
     - name: OpenWeatherMap Day 2 Summary
+      unique_id: 317ae337-725b-4f5a-b560-a4fa0093c339
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].summary }}"
 
     - name: OpenWeatherMap Day 2 Maximum Temperature
+      unique_id: fb31a78f-d253-48c8-952f-76b009cd9b0f
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Day 2 Minimum Temperature
+      unique_id: cf674ac1-48ba-4223-8ed5-72a3314edad8
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].mintemp }}"
       unit_of_measurement: "°F" 
       device_class: temperature 
 
     - name: OpenWeatherMap Day 2 POP
+      unique_id: a91826dc-6af4-4b97-8ced-4e7afaf1e892
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Day 2 Precip Forecast
+      unique_id: 1cd3696a-1f34-42df-bc28-0f430c227997
       state_topic: openweathermap
       value_template: "{{value_json['day_2'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Day 3 Icon
+      unique_id: 4b18f9db-591b-49c0-a103-b1f52e429a80
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].icon }}"
 
     - name: OpenWeatherMap Day 3 Summary
+      unique_id: 6be2a419-1546-471c-bd87-17efa89d2afa
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].summary }}"
 
     - name: OpenWeatherMap Day 3 Maximum Temperature
+      unique_id: 68ef3dc2-a3b2-4b6a-b3b5-5690d0b38851
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Day 3 Minimum Temperature
+      unique_id: 373db5dd-f8ad-469d-a4e0-2080d62bc9b7
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].mintemp }}"
       unit_of_measurement: "°F"  
       device_class: temperature
 
     - name: OpenWeatherMap Day 3 POP
+      unique_id: 41d61af3-a2fa-434f-b8c3-de5d9eeddf91
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Day 3 Precip Forecast
+      unique_id: d466dfe6-989c-49a4-8340-2c40d233e39a
       state_topic: openweathermap
       value_template: "{{value_json['day_3'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Day 4 Icon
+      unique_id: 6bdeb95f-9521-4273-b55a-cab1ac617f72
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].icon }}"
 
     - name: OpenWeatherMap Day 4 Summary
+      unique_id: 57a211e4-1465-43dc-9927-d6a47aaf5e6e
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].summary }}"
 
     - name: OpenWeatherMap Day 4 Maximum Temperature
+      unique_id: 939745ca-c531-4120-8ac0-533317935d79
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Day 4 Minimum Temperature
+      unique_id: c9e6b757-7b17-40fb-a55f-111f8df24ced
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].mintemp }}"
       unit_of_measurement: "°F"  
       device_class: temperature
 
     - name: OpenWeatherMap Day 4 POP
+      unique_id: 7c0f1249-5eec-4c4a-9c3e-227f505ece90
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Day 4 Precip Forecast
+      unique_id: 9872807b-166b-46b3-89e9-7d5406d739fd
       state_topic: openweathermap
       value_template: "{{value_json['day_4'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Day 5 Icon
+      unique_id: 214164a7-2d94-4441-baf1-067a9d049c9b
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].icon }}"
 
     - name: OpenWeatherMap Day 5 Summary
+      unique_id: 3640f310-bbf4-4a82-b559-97873a16168a
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].summary }}"
 
     - name: OpenWeatherMap Day 5 Maximum Temperature
+      unique_id: 202409b0-c164-48fd-9813-2a7f6841bfb6
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].maxtemp }}"
       unit_of_measurement: "°F"
       device_class: temperature
 
     - name: OpenWeatherMap Day 5 Minimum Temperature
+      unique_id: a917e864-a606-4433-96ac-aa9039bf05b2
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].mintemp }}"
       unit_of_measurement: "°F"  
       device_class: temperature
 
     - name: OpenWeatherMap Day 5 POP
+      unique_id: 47c1d4ff-7dc6-4dc5-927e-96c6ca28f87f
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].precip_chance }}"
       unit_of_measurement: "%"
 
     - name: OpenWeatherMap Day 5 Precip Forecast
+      unique_id: a06e9494-2cae-4fe8-b7da-f0c446f051df
       state_topic: openweathermap
       value_template: "{{value_json['day_5'].precip_forecast }}"
       unit_of_measurement: "in"
 
     - name: OpenWeatherMap Current Weather Alerts
+      unique_id: 16ca9768-fe18-44f9-9837-ebed7b13a90e
       state_topic: openweathermap
       value_template: "{{value_json['alerts'] }}"
 
     - name: OpenWeatherMap Weekly Summary
+      unique_id: 9a5eee60-0ba5-4acb-8384-655e94f1ce37
       state_topic: openweathermap
       value_template: "{{value_json['summary'] }}"
+
     - name: KCLL Current Visibility
+      unique_id: 339e6688-c310-4036-99d8-07858e80f28d
       state_topic: weather/kcll/visibility
       unit_of_measurement: "mi"
 
@@ -250,6 +301,7 @@ sensor:
   - platform: template
     sensors:
       local_apparent_temperature:
+        unique_id: ec95a2b3-f9ac-48b7-a901-d132ec4de1e3
         value_template: >-
           {% set temp = (states('sensor.acurite_outside_temperature') | float(0) - 32) * (5/9) %}
           {% set ws = states('sensor.openweathermap_current_wind_speed') | float(0) / 2.237 %}
@@ -259,177 +311,213 @@ sensor:
           {{ at | round(2,none) }}
         unit_of_measurement: "°F"
         device_class: temperature
+
       temp_high_overall:
+        unique_id: d9449310-d4e9-4037-b253-ade4a616fdb9
         value_template: "{{ states('input_number.temp_high_overall') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_overall:
+        unique_id: 4c53e5fa-e9d1-4080-86bf-0a8d4aac1862
         value_template: "{{ states('input_number.temp_low_overall') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_day:
+        unique_id: 10cf76c8-188a-47be-b9fd-c739413fdf7d
         value_template: "{{ states('input_number.temp_high_day') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_day:
+        unique_id: 2657a832-3724-4077-ba12-aaa92d9f86f8
         value_template: "{{ states('input_number.temp_low_day') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_week:
+        unique_id: acdbf0e2-f2f0-457c-a839-d5af16fcd3af
         value_template: "{{ states('input_number.temp_high_week') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_week:
+        unique_id: 1594429c-7301-4c98-8abb-0270e643e6b8
         value_template: "{{ states('input_number.temp_low_week') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month:
+        unique_id: ffe838a7-8fc7-4837-abd2-b36b1f7e57d3
         value_template: "{{ states('input_number.temp_high_month') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month:
+        unique_id: e19cb4cb-bc0a-45ce-b1b9-6dbe3fe3e855
         value_template: "{{ states('input_number.temp_low_month') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_year:
+        unique_id: 28034f84-ea53-42f7-ae14-4bab62549fc8
         value_template: "{{ states('input_number.temp_high_year') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_year:
+        unique_id: 357bc257-2c25-44ce-a0c2-698485b0af7c
         value_template: "{{ states('input_number.temp_low_year') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_1:
+        unique_id: 78cff045-c272-4344-bd30-db852632a3bb
         value_template: "{{ states('input_number.temp_high_month_1') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_1:
+        unique_id: 8db5bd1b-fc3d-411f-94dd-2228840c5d5c
         value_template: "{{ states('input_number.temp_low_month_1') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_2:
+        unique_id: 7059055b-cef2-46e5-926e-2df8e2092182
         value_template: "{{ states('input_number.temp_high_month_2') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_2:
+        unique_id: 6aff15db-4ae9-4a7e-81c1-528d3747cb71
         value_template: "{{ states('input_number.temp_low_month_2') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_3:
+        unique_id: cf37d301-720e-4df7-a1a9-f8b57cddbb0a
         value_template: "{{ states('input_number.temp_high_month_3') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_3:
+        unique_id: c2945466-01a7-4adc-b20b-5279e78b5a97
         value_template: "{{ states('input_number.temp_low_month_3') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_4:
+        unique_id: 37fa3ee3-771b-4895-a4df-b6122adf03d5
         value_template: "{{ states('input_number.temp_high_month_4') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_4:
+        unique_id: 0f6f19ae-ade5-45b0-b2aa-34fc3f1007c3
         value_template: "{{ states('input_number.temp_low_month_4') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_5:
+        unique_id: 6ee90840-d5df-4290-ad0f-281554074bc5
         value_template: "{{ states('input_number.temp_high_month_5') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_5:
+        unique_id: db4d3b89-4730-46ad-bfc9-9aded918c217
         value_template: "{{ states('input_number.temp_low_month_5') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_6:
+        unique_id: 40bf5be6-c549-4240-80e8-d1600381e2ef
         value_template: "{{ states('input_number.temp_high_month_6') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_6:
+        unique_id: e988281b-78fc-4ee4-81b1-b5b9205c1893
         value_template: "{{ states('input_number.temp_low_month_6') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_7:
+        unique_id: 25974789-cae9-4dde-bb35-d1688ed5c5e3
         value_template: "{{ states('input_number.temp_high_month_7') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_7:
+        unique_id: 6301a91c-4e63-4c72-8286-ce93de0524f9
         value_template: "{{ states('input_number.temp_low_month_7') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_8:
+        unique_id: ff6de17f-7a8b-442b-997e-46324d67c988
         value_template: "{{ states('input_number.temp_high_month_8') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_8:
+        unique_id: 3b61b5c8-2865-4cec-9174-c271b970eef0
         value_template: "{{ states('input_number.temp_low_month_8') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_9:
+        unique_id: d38a5827-c612-47a8-8c43-07cc225818b5
         value_template: "{{ states('input_number.temp_high_month_9') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_9:
+        unique_id: 0371434e-4a85-48a3-b155-fea28c298785
         value_template: "{{ states('input_number.temp_low_month_9') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_10:
+        unique_id: 65ad667e-9ae8-4303-b97e-b3d0bc50003c
         value_template: "{{ states('input_number.temp_high_month_10') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_10:
+        unique_id: 42f1b2aa-7753-4da2-a771-b3f8c0bc961d
         value_template: "{{ states('input_number.temp_low_month_10') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_11:
+        unique_id: 5cd0f5ca-e70e-422b-b656-1ec5434da67f
         value_template: "{{ states('input_number.temp_high_month_11') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_11:
+        unique_id: 7828686b-1a92-4d4e-ae4e-dad2b2927d0b
         value_template: "{{ states('input_number.temp_low_month_11') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_high_month_12:
+        unique_id: 88c25c7b-0e8f-4fee-9742-0b298b34b0b1
         value_template: "{{ states('input_number.temp_high_month_12') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       temp_low_month_12:
+        unique_id: 509c7ff4-5fa9-43dc-afb5-c505015ff93a
         value_template: "{{ states('input_number.temp_low_month_12') | float(none) | round(1, default=none) }}"
         unit_of_measurement: "°F"
         device_class: temperature
 
       weather_description:
+        unique_id: 20149856-900c-4a4e-b27c-85484669478a
         value_template: >-
           {% if is_state('input_boolean.is_raining','on') -%}
             {{ states('sensor.openweathermap_current_weather_alerts') }}  Rain now.  {{ states('sensor.openweathermap_weekly_summary') }}
@@ -438,10 +526,12 @@ sensor:
           {% endif -%}
       
       press_in:
+        unique_id: dec20c80-722c-459c-9827-3ad127aff500
         unit_of_measurement: in
         value_template: "{{ (states('sensor.aqara_server_pressure') | float(none) * 0.02953) | round(2, default=none) }}"      
       
       pws_url:
+        unique_id: edaa3913-ff04-44f4-a159-70b0ee3abf3e
         value_template: !secret pws_url
 
 input_boolean:
