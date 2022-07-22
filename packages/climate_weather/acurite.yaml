@@ -1,32 +1,39 @@
 mqtt:
   sensor:
     - name: AcuRite Outside Temperature
+      unique_id: d5ba1970-5a44-49d4-a2d1-bd79bfcf69cb
       state_topic: rtl_433/7044/temperature_C
       unit_of_measurement: "°C"
       device_class: temperature
 
     - name: AcuRite Outside Humidity
+      unique_id: 63744a2d-c5dd-4662-b450-6b6a515a2c20
       state_topic: rtl_433/7044/humidity
       unit_of_measurement: "%"
 
     - name: AcuRite Cumulative Rain
+      unique_id: 621f29e5-3b02-414f-9ab6-82466871aa68
       state_topic: rtl_433/2142/rain_mm
       unit_of_measurement: "mm"
 
     - name: AcuRite WS Wind Speed
+      unique_id: e2f40f00-6ef9-4459-a95b-47cdc42a46a7
       state_topic: rtl_433/2241/wind_avg_km_h
       unit_of_measurement: "mph"
       value_template: "{{ (value | float * 0.621371)| round(2) }}"
 
     - name: AcuRite WS Wind Direction
+      unique_id: dfb1ddff-0f11-46c3-982f-a2cb37aab5d9
       state_topic: rtl_433/2241/wind_dir_deg
       unit_of_measurement: "°"
 
   binary_sensor:
     - name: AcuRite Thermometer Battery Low
+      unique_id: ed401637-508c-470e-b3b3-cc6e019e1c0a
       state_topic: rtl_433/7044/battery_ok
       value_template: "{{ value | int (0) == 0}}"
 
-    - name: AcuRite Thermometer Battery Low
+    - name: AcuRite Rain Gauge Battery Low
+      unique_id: b094f359-af12-413c-96bb-dde16c20fd1e
       state_topic: rtl_433/2142/battery_ok
       value_template: "{{ value | int (0) == 0}}"
