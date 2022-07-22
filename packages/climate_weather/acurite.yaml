@@ -13,6 +13,15 @@ mqtt:
       state_topic: rtl_433/2142/rain_mm
       unit_of_measurement: "mm"
 
+    - name: AcuRite WS Wind Speed
+      state_topic: rtl_433/2241/wind_avg_km_h
+      unit_of_measurement: "mph"
+      value_template: "{{ (value | float * 0.621371)| round(2) }}"
+
+    - name: AcuRite WS Wind Direction
+      state_topic: rtl_433/2241/wind_dir_deg
+      unit_of_measurement: "°"
+
   binary_sensor:
     - name: AcuRite Thermometer Battery Low
       state_topic: rtl_433/7044/battery_ok

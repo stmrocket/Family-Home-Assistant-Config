@@ -436,6 +436,13 @@ sensor:
           {% else -%}
           {{ states('sensor.openweathermap_current_weather_alerts') }}  {{ states('sensor.openweathermap_weekly_summary') }}
           {% endif -%}
+      
+      press_in:
+        unit_of_measurement: in
+        value_template: "{{ (states('sensor.aqara_server_pressure') | float(none) * 0.02953) | round(2, default=none) }}"      
+      
+      pws_url:
+        value_template: !secret pws_url
 
 input_boolean:
   is_raining:
@@ -696,6 +703,10 @@ input_text:
     name: Last Year High Temp Date
   temp_low_date_last_year:
     name: Last Year Low Temp Date
+
+rest_command:
+  update_wunderground:
+    url: "{{ states('sensor.pws_url') }}tempf={{ states('sensor.acurite_outside_temperature') }}&humidity={{ states('sensor.acurite_outside_humidity') }}&dewptf={{ states('sensor.thermal_comfort_dewpoint') }}&baromin={{ states('sensor.press_in') }}&rainin={{ states('sensor.rain_rate') }}&dailyrainin={{ states('sensor.rain_day') }}&winddir={{ states('sensor.acurite_ws_wind_direction') }}&windspeedmph={{ states('sensor.acurite_ws_wind_speed') }}&action=updateraw"
 
 automation:
   - alias: Update Temperature Records
@@ -1041,3 +1052,11 @@ automation:
         entity_id: input_text.temp_low_date_year
         data_template:
           value: "{{ now() }}"
+
+  - alias: Update Wunderground
+    id: ce26d7db-e1e3-4783-a3c4-ac2901dc8d13
+    trigger:
+      - platform: time_pattern
+        minutes: "*"
+    action:
+      - service: rest_command.update_wunderground
