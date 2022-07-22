@@ -28,6 +28,7 @@ sensor:
   - platform: template
     sensors:
       garage_entry_lock_status:
+        unique_id: c319a93f-ac23-4d10-9b7b-bd215e537124
         friendly_name: Garage Entry Lock Status
         value_template: "{{ states('input_text.garage_entry_lock_status') }}"
 

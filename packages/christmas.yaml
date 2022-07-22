@@ -1,24 +1,23 @@
-switch:
+mqtt:
+  switch:
+    - name: "Christmas Tree"
+      unique_id: a2a76d1f-ff61-414d-a04d-daae35d443ea
+      state_topic: "christmas/indoor/tree/stat/POWER"
+      command_topic: "christmas/indoor/tree/cmnd/POWER"
+      availability_topic: "christmas/indoor/tree/tele/LWT"
+      qos: 1
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+      payload_not_available: "Offline"
 
-  - platform: mqtt
-    name: "Christmas Tree"
-    state_topic: "christmas/indoor/tree/stat/POWER"
-    command_topic: "christmas/indoor/tree/cmnd/POWER"
-    availability_topic: "christmas/indoor/tree/tele/LWT"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-
-sensor:
-
-  - platform: mqtt
-    state_topic: "christmas/indoor/tree/tele/STATE"
-    name: "Chriatmas Tree Signal"
-    unit_of_measurement: "%"
-    value_template: "{{value_json['Wifi'].RSSI }}"
-    availability_topic: "christmas/indoor/tree/tele/LWT"
-    qos: 1
-    payload_available: "Online"
-    payload_not_available: "Offline" 
+  sensor:
+    - name: "Chriatmas Tree Signal"
+      unique_id: 768fd9b4-364c-4b03-ad60-925cc69df653
+      state_topic: "christmas/indoor/tree/tele/STATE"
+      unit_of_measurement: "%"
+      value_template: "{{value_json['Wifi'].RSSI }}"
+      availability_topic: "christmas/indoor/tree/tele/LWT"
+      qos: 1
+      payload_available: "Online"
+      payload_not_available: "Offline" 

@@ -1,6 +1,7 @@
 mqtt:
   light:
     - name: "Dining Armoire LEDs"
+      unique_id: c57e12f9-c7c7-4fbb-9418-40c241392687
       state_topic: "h801/dining/tele/current"
       command_topic: "h801/dining/command/set/w1/power"
       brightness_state_topic: "h801/dining/tele/current"
@@ -23,6 +24,7 @@ mqtt:
     #Driver Status Messages
 
     - name: "Dining Armoire LEDs Version"
+      unique_id: 12aa9e9a-6d83-4550-9380-8a7948cf81fa
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['espVersion']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -30,6 +32,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs Uptime"
+      unique_id: 6b563b34-618b-4b95-9c43-719968d5b446
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['espUptime']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -37,6 +40,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs RSSI"
+      unique_id: a6c7bc44-47c8-4380-acf0-83fa6b796342
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['signalStrength']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -44,6 +48,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs IP"
+      unique_id: db71bb50-3430-4285-91d5-c719dd1eb273
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['bridgeIP']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -51,6 +56,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs Free Heap"
+      unique_id: 045cb1da-8ab1-4326-98ca-277652eb39bc
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['heapFree']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -58,6 +64,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs Heap Fragmentation"
+      unique_id: 4a080194-45ec-4072-be6a-9cb1e7f67659
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['heapFragmentation']}}"
       availability_topic: "h801/dining/tele/LWT"
@@ -65,6 +72,7 @@ mqtt:
       payload_not_available: "Offline"
 
     - name: "Dining Armoire LEDs Core Version"
+      unique_id: 46478a24-d040-4fcf-974c-c8e5be28674b
       state_topic: "h801/dining/tele/status"
       value_template: "{{value_json['espCore']}}"
       availability_topic: "h801/dining/tele/LWT"

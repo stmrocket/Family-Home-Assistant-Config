@@ -28,6 +28,7 @@ sensor:
   - platform: template
     sensors:
       front_door_lock_status:
+        unique_id: b968e52d-88c6-4e08-9550-3d5bdd8c4e6a
         friendly_name: Front Door Lock Status
         value_template: "{{ states('input_text.front_door_lock_status') }}"
 

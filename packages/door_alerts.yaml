@@ -12,19 +12,23 @@ timer:
 template:
   - binary_sensor:
     - name: Front Door Status
+      unique_id: 1a7ff7f2-1134-4d72-90c6-10238de5d2b2
       state: "{{ not is_state('sensor.elk_front_door', 'Normal') }}"
       device_class: door
     
     - name: Back Door Status
+      unique_id: b4ac6167-b0e8-4f8a-99b4-89c41889887c
       state: "{{ not is_state('sensor.elk_back_door', 'Normal') }}"
       device_class: door
     
     - name: Garage Entry Status
+      unique_id: bffc8a9a-06df-4ade-80d2-520686d40751
       state: "{{ not is_state('sensor.elk_garage_entry', 'Normal') }}"
       device_class: door
 
 automation:
   - alias: Start Front Door Alert Timer When Door Open
+    id: 8e046181-6edd-4356-b7d5-3f8ed70df1c1
     trigger:
       - platform: state
         entity_id: sensor.elk_front_door
@@ -34,6 +38,7 @@ automation:
         entity_id: timer.front_door_dho
 
   - alias: Start Back Door Alert Timer When Door Open
+    id: da2fdce5-0820-4428-8a5f-84f735fb768a
     trigger:
       - platform: state
         entity_id: sensor.elk_back_door
@@ -43,6 +48,7 @@ automation:
         entity_id: timer.back_door_dho
 
   - alias: Start Garage Entry Alert Timer When Door Open
+    id: b4cc6522-12e1-4b2a-b65a-2148ae1aad10
     trigger:
       - platform: state
         entity_id: sensor.elk_garage_entry
@@ -52,6 +58,7 @@ automation:
         entity_id: timer.garage_entry_dho
 
   - alias: Cancel Front Door Alert Timer When Door Open
+    id: 5dabaa11-d4e7-45bb-a6f6-57b5e237e6bc
     trigger:
       - platform: state
         entity_id: sensor.elk_front_door
@@ -61,6 +68,7 @@ automation:
         entity_id: timer.front_door_dho
 
   - alias: Cancel Back Door Alert Timer When Door Open
+    id: 3d08fe25-ca53-42db-833e-b30ef14658e4
     trigger:
       - platform: state
         entity_id: sensor.elk_back_door
@@ -70,6 +78,7 @@ automation:
         entity_id: timer.back_door_dho
 
   - alias: Cancel Garage Entry Alert Timer When Door Open
+    id: 42549bef-bb19-4fb2-ace3-4ee31a28dc90
     trigger:
       - platform: state
         entity_id: sensor.elk_garage_entry
@@ -79,6 +88,7 @@ automation:
         entity_id: timer.garage_entry_dho
 
   - alias: Announce Front Door Alert When Timer Ends
+    id: 9b8f662f-bbfc-41b4-9249-ef276e778233
     trigger:
       - platform: event
         event_type: timer.finished
@@ -93,6 +103,7 @@ automation:
         entity_id: timer.front_door_dho
 
   - alias: Announce Back Door Alert When Timer Ends
+    id: 1c7c7a14-96d0-43af-8a9c-285b63e9fb25
     trigger:
       - platform: event
         event_type: timer.finished
@@ -107,6 +118,7 @@ automation:
         entity_id: timer.back_door_dho
 
   - alias: Announce Garage Entry Alert When Timer Ends
+    id: 626da9af-6737-4dbf-9bf6-4d18f003b194
     trigger:
       - platform: event
         event_type: timer.finished

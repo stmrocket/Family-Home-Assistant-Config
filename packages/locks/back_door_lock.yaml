@@ -28,6 +28,7 @@ sensor:
   - platform: template
     sensors:
       back_door_lock_status:
+        unique_id: 362f3e49-3cc0-431c-ab58-6fd22361d2e3
         friendly_name: Back Door Lock Status
         value_template: "{{ states('input_text.back_door_lock_status') }}"
 

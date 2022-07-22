@@ -1,70 +1,35 @@
-camera:
-  - platform: mjpeg
-    name: Front Porch
-    still_image_url: !secret front_porch_still
-    mjpeg_url: !secret front_porch_stream
-    verify_ssl: false
+mqtt:
+  camera:
+    - name: Back Porch Last Person
+      unique_id: c9bf3e80-680b-4772-9b1b-fd0bd4ff49ce
+      topic: frigate/back_porch/person/snapshot
 
-  - platform: mjpeg
-    name: Back Porch
-    still_image_url: !secret back_porch_still
-    mjpeg_url: !secret back_porch_stream
-    verify_ssl: false
+    - name: Front Porch Last Person
+      unique_id: 56f71d01-6797-4603-8bae-9241e813333d
+      topic: frigate/front_porch/person/snapshot
 
-  - platform: mjpeg
-    name: Den
-    still_image_url: !secret den_still
-    mjpeg_url: !secret den_stream
-    verify_ssl: false
+    - name: Driveway Last Person
+      unique_id: 95a94115-9feb-4905-8751-d1cb5bea0fc0
+      topic: frigate/driveway/person/snapshot
 
-  - platform: mjpeg
-    name: Driveway
-    still_image_url: !secret driveway_still
-    mjpeg_url: !secret driveway_stream
-    verify_ssl: false
+  binary_sensor:
+    - name: Back Porch Person
+      unique_id: c78b97a8-1c6f-4a6f-8f3f-06b69516015b
+      state_topic: frigate/back_porch/person
+      device_class: motion
+      availability_topic: frigate/available
 
-  - platform: mjpeg
-    name: Garage
-    still_image_url: !secret garage_still
-    mjpeg_url: !secret garage_stream
-    verify_ssl: false
+    - name: Front Porch Person
+      unique_id: 892840aa-41a3-4a9b-a26b-aa7e359b4311
+      state_topic: frigate/front_porch/person
+      device_class: motion
+      availability_topic: frigate/available
 
-  - platform: mjpeg
-    name: Foyer
-    still_image_url: !secret foyer_still
-    mjpeg_url: !secret foyer_stream
-    verify_ssl: false
-
-  - platform: mqtt
-    name: Back Porch Last Person
-    topic: frigate/back_porch/person/snapshot
-
-  - platform: mqtt
-    name: Front Porch Last Person
-    topic: frigate/front_porch/person/snapshot
-
-  - platform: mqtt
-    name: Driveway Last Person
-    topic: frigate/driveway/person/snapshot
-
-binary_sensor:
-  - platform: mqtt
-    name: Back Porch Person
-    state_topic: frigate/back_porch/person
-    device_class: motion
-    availability_topic: frigate/available
-
-  - platform: mqtt
-    name: Front Porch Person
-    state_topic: frigate/front_porch/person
-    device_class: motion
-    availability_topic: frigate/available
-
-  - platform: mqtt
-    name: Driveway Person
-    state_topic: frigate/driveway/person
-    device_class: motion
-    availability_topic: frigate/available
+    - name: Driveway Person
+      unique_id: 52313cb8-e546-4e84-aa6f-968fdcc0d8e2
+      state_topic: frigate/driveway/person
+      device_class: motion
+      availability_topic: frigate/available
 
 sensor:
   - platform: rest
@@ -80,46 +45,70 @@ sensor:
   - platform: template
     sensors:
       frigate_back_porch_detection_fps: 
+        unique_id: 65ed3764-e31f-4dde-9210-f816cc6fbfff
         value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["detection_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_back_porch_fps: 
+        unique_id: 7f215346-6ae8-46a4-be4a-aee1e2c95b35
         value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["fps"] }}'
         unit_of_measurement: 'FPS'
-      frigate_back_porch_skipped_fps: 
+
+      frigate_back_porch_skipped_fps:
+        unique_id:  8cc0b7ff-8a60-4c0f-bc33-5eeef9f58baa
         value_template: '{{ states.sensor.frigate_debug.attributes["back_porch"]["skipped_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_front_porch_detection_fps: 
+        unique_id: 18a0657f-7b88-4680-8892-0664a1d611e1
         value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["detection_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_front_porch_fps: 
+        unique_id: f168c382-cf9b-488e-8973-da69707996f2
         value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_front_porch_skipped_fps: 
+        unique_id: 4f6f6e64-c731-4dd2-945b-cbaedafc3e8b
         value_template: '{{ states.sensor.frigate_debug.attributes["front_porch"]["skipped_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_driveway_detection_fps: 
+        unique_id: 60fcd5fc-b626-4c09-a057-a5ab5ca1e9db
         value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["detection_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_driveway_fps: 
+        unique_id: 150999d8-30ff-40f5-8dad-9979789143e2
         value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_driveway_skipped_fps: 
+        unique_id: 011a9335-a24e-4832-9f81-53294430274a
         value_template: '{{ states.sensor.frigate_debug.attributes["driveway"]["skipped_fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_coral_fps: 
+        unique_id: f83c4431-d923-466e-bf25-511bc68d9341
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["fps"] }}'
         unit_of_measurement: 'FPS'
+
       frigate_coral_inference:
+        unique_id: 4fa7c476-8829-440e-a557-9971be71995d
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["inference_speed"] }}' 
         unit_of_measurement: 'ms'   
+
       frigate_coral_queue_length:
+        unique_id: 0da8e248-733f-4f6a-b35e-999c711a2e23
         value_template: '{{ states.sensor.frigate_debug.attributes["coral"]["detection_queue"] }}' 
-        unit_of_measurement: 'frames'      
+        unit_of_measurement: 'frames'   
+
       frigate_processing_frame:
+        unique_id: 6d436b87-1601-4da6-ab0f-8833122018ce
         value_template: '{{ (states.sensor.frigate_debug.attributes["front_porch"]["frame_info"]["read"] + states.sensor.frigate_debug.attributes["back_porch"]["frame_info"]["read"]) / 2}}'
 
 input_boolean:
-
   frigate_enabled:
     name: Enable Frigate
     icon: mdi:cctv
