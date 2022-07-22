@@ -2,6 +2,7 @@ switch:
   - platform: template
     switches:
       manual_timer_lights:
+        unique_id: 7b7397f2-a092-445f-a719-247afe7221ca
         friendly_name: "Manual Timer Lights"
         value_template: "{{ is_state('input_boolean.timer_lights', 'on') or is_state('input_boolean.manual_timer_lights', 'on') }}"
         turn_on:

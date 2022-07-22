@@ -14,8 +14,8 @@ binary_sensor:
 
   - platform: template
     sensors:
-
       git_update_ready:
+        unique_id: 3c8f8afa-78fc-4c90-92a6-fd7556d2582e
         friendly_name: "Update Ready"
         value_template: "{{ not states.input_text.prev_git_version.state == states.sensor.family_home_assistant_config.state }}"
 

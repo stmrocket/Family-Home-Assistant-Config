@@ -2,6 +2,7 @@ sensor:
   - platform: template
     sensors:
       washer_status_combined:
+        unique_id: c0f73c39-684f-4645-b2e8-8fe5df9d8c72
         friendly_name: Washer Status Combined
         value_template: >-
           {% if is_state('sensor.washer', 'off') -%}
@@ -16,6 +17,7 @@ sensor:
             Error
           {% endif -%}
       dryer_status_combined:
+        unique_id: b5aed9f1-d96c-4456-a4f5-4e9e471c5eda
         friendly_name: Dryer Status Combined
         value_template: >-
           {% if is_state('sensor.dryer', 'off') -%}
@@ -30,8 +32,10 @@ sensor:
             Error
           {% endif -%}    
       washer_time_remaining:
+        unique_id: ea882627-a85c-4e98-a6cb-9e544522f02e
         friendly_name: Washer Remaining Time
         value_template: "{{ state_attr('sensor.washer', 'remain_time')[:-3] }}" 
       dryer_time_remaining:
+        unique_id: cab1b545-35ef-480d-823b-3d90d1b471af
         friendly_name: Dryer Remaining Time
         value_template: "{{ state_attr('sensor.dryer', 'remain_time')[:-3] }}" 

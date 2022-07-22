@@ -2,6 +2,7 @@ switch:
   - platform: template
     switches:
       irrigation_program_3_days:
+        unique_id: 2d97d512-ec38-41c2-9fec-eb2c8f775910
         friendly_name: "Irrigation Schedule Every 3 Days Enabled"
         value_template: "{{ is_state('switch.rm_every_3_days_enabled', 'on') }}"
         turn_on:
@@ -11,6 +12,7 @@ switch:
           entity_id: switch.rm_every_3_days_enabled
 
       irrigation_program_2_days:
+        unique_id: 5499572b-2c0d-4a49-965d-2a1eab7efe83
         friendly_name: "Irrigation Schedule Every 2 Days Enabled"
         value_template: "{{ is_state('switch.rm_every_2_days_enabled', 'on') }}"
         turn_on:
@@ -20,6 +22,7 @@ switch:
           entity_id: switch.rm_every_2_days_enabled
 
       irrigation_program_restriction:
+        unique_id: c456b85f-071b-4706-99cb-028808aa7d30
         friendly_name: "Irrigation Schedule Watering Restriction"
         value_template: "{{ is_state('switch.rm_twice_weekly', 'on') }}"
         turn_on:
@@ -29,6 +32,7 @@ switch:
           entity_id: switch.rm_twice_weekly_enabled
 
       irrigation_run_program:
+        unique_id: b53d46d7-c4d6-41ec-b84e-72fc37812014
         friendly_name: "Run Irrigation Program"
         value_template: "{{ is_state('switch.rm_every_2_days','on') or is_state('switch.rm_every_3_days','on') or is_state('switch.rm_twice_weekly','on') }}"
         turn_on:
@@ -42,18 +46,27 @@ binary_sensor:
   - platform: template
     sensors:
       rm_zone_1_watering:
+        unique_id: 0f99a107-7e5c-42f6-91dd-77d9032bee00
         friendly_name: "Zone 1 watering"
         value_template: "{{ is_state_attr('switch.rm_front_yard','status','Running') }}"
+
       rm_zone_2_watering:
+        unique_id: 0f0bae98-379b-408e-a71a-8d3485ecb933
         friendly_name: "Zone 2 watering"
         value_template: "{{ is_state_attr('switch.rm_flower_beds','status','Running') }}"
+
       rm_zone_3_watering:
+        unique_id: ff88cb19-2013-4514-b6b3-5c4312169a4f
         friendly_name: "Zone 3 watering"
         value_template: "{{ is_state_attr('switch.rm_left_side','status','Running') }}"
+
       rm_zone_4_watering:
+        unique_id: 0b419ecd-f354-4d1f-a03c-29ed17b40044
         friendly_name: "Zone 4 watering"
         value_template: "{{ is_state_attr('switch.rm_back_yard','status','Running') }}"
+
       rm_zone_5_watering:
+        unique_id: fdbd1d85-6a7e-4f17-b082-8c33f8c6015c
         friendly_name: "Zone 5 watering"
         value_template: "{{ is_state_attr('switch.rm_right_side','status','Running') }}"
 
@@ -61,6 +74,7 @@ sensor:
   - platform: template
     sensors:
       program_every_3_days_status:
+        unique_id: 0ce632eb-31a7-49bd-b025-f77ce827a043
         friendly_name: Irrigation Schedule Every 3 Days Status
         value_template: >-
           {% if is_state('switch.rm_every_3_days_enabled', 'on') and is_state('switch.rm_every_3_days', 'off') -%}
@@ -70,7 +84,9 @@ sensor:
           {% else -%}
             disabled
           {% endif -%}
+          
       program_every_2_days_status:
+        unique_id: 3197572e-1f2b-4400-8353-9f592c08f31d
         friendly_name: Irrigation Schedule Every 2 Days Status
         value_template: >-
           {% if is_state('switch.rm_every_2_days_enabled', 'on') and is_state('switch.rm_every_2_days', 'off') -%}
@@ -80,7 +96,9 @@ sensor:
           {% else -%}
             disabled
           {% endif -%}
+
       program_restriction_status:
+        unique_id: 00c8108d-8fea-401a-acc6-5384bc6be223
         friendly_name: Irrigation Schedule Restriction Status
         value_template: >-
           {% if is_state('switch.rm_twice_weekly_enabled', 'on') and is_state('switch.rm_twice_weekly', 'off') -%}

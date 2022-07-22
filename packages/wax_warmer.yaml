@@ -1,14 +1,15 @@
-switch:
-  - platform: mqtt
-    name: "Wax Warmer"
-    state_topic: "warmer/stat/POWER"
-    command_topic: "warmer/cmnd/POWER"
-    availability_topic: "warmer/tele/LWT"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-    payload_available: "Online"
-    payload_not_available: "Offline"
+mqtt:
+  switch:
+    - name: "Wax Warmer"
+      unique_id: fe265fcb-89b2-4e3f-9728-26557d8b21c3
+      state_topic: "warmer/stat/POWER"
+      command_topic: "warmer/cmnd/POWER"
+      availability_topic: "warmer/tele/LWT"
+      qos: 1
+      payload_on: "ON"
+      payload_off: "OFF"
+      payload_available: "Online"
+      payload_not_available: "Offline"
     
 automation:
   - alias: Turn On Wax Warmer
