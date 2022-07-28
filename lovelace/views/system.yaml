@@ -1574,4 +1574,12 @@ cards:
               action: more-info
             hold_action:
               action: more-info
+          - type: "custom:button-card"
+            color_type: icon
+            color: rgb(255, 255, 255)
+            icon: mdi:account-voice
+            name: Speech
+            tap_action:
+              action: call-service
+              service: script.reset_speech
           - type: "custom:gap-card"

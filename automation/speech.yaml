@@ -194,3 +194,15 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.elk_speech
+
+- alias: Power Cycle Speech Board
+  id: 440a383a-c932-4c25-b5cc-088c437b87e0
+  trigger:
+    - platform: time
+      at: "02:30:00"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.speech_power
+    - delay: "00:00:20"
+    - service: switch.turn_off
+      entity_id: switch.speech_power
