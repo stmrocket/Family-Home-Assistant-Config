@@ -180,6 +180,19 @@ cards:
       - type: horizontal-stack
         cards:
           - type: "custom:button-card"
+            entity: switch.desk
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:desktop-classic
+            name: Desk
+            hold_action:
+              action: more-info
+          - type: "custom:gap-card"
+          - type: "custom:gap-card"
+          - type: "custom:gap-card"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
             entity: sensor.craft_harmony_activity
             color_type: icon
             state:
