@@ -47,6 +47,7 @@ smart_home:
       - input_boolean.elk_stay_off
       - input_boolean.elk_away_on
       - switch.manual_timer_lights
+      - switch.desk
 
     exclude_domains:
       - automation

@@ -1,0 +1,58 @@
+- alias: Craft Room Desk On from Keypad
+  id: 7bd20c30-c45a-4e99-bd6d-bf021e42c40c
+  trigger:
+    - platform: state
+      entity_id: switch.craft_room_desk
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.desk
+      state: "off"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.desk
+
+- alias: Craft Room Desk Off from Keypad
+  id: 9fe1f5ce-b6b9-4a47-95d0-13f11df1afa2
+  trigger:
+    - platform: state
+      entity_id: switch.craft_room_desk
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.desk
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.desk
+
+- alias: Craft Room Desk Keypad On
+  id: fae0e3e6-be44-4988-b0a3-7ec27b40f9ea
+  trigger:
+    - platform: state
+      entity_id: switch.desk
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.craft_room_desk
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.craft_room_desk
+
+- alias: Craft Room Desk Keypad Off
+  id: 79129d9a-dd87-40dc-8fe2-083b39f528bc
+  trigger:
+    - platform: state
+      entity_id: switch.desk
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.craft_room_desk
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.craft_room_desk
