@@ -7,16 +7,20 @@ cover:
         friendly_name: Garage Door
         value_template: "{{ not is_state('sensor.elk_garage_door', 'Normal') }}"
         open_cover:
-          service: script.toggle_garage_door
+          service: switch.turn_on
+          entity_id: switch.garage_door_opener
         close_cover:
-          service: script.toggle_garage_door
+          service: switch.turn_on
+          entity_id: switch.garage_door_opener
 
-script:
-  toggle_garage_door:
-    sequence:
+automation:
+  - alias: Trigger Garage Door Opener From Elk
+    id: d2d3f74b-1fd2-45b8-b563-ac0d4fbd8691
+    trigger:    
+      - platform: state
+        entity_id: switch.garage_door
+        from: 'off'
+        to: 'on'
+    action:
       - service: switch.turn_on
-        entity_id: switch.garage_door
-      - delay:
-          seconds: 2
-      - service: switch.turn_off
-        entity_id: switch.garage_door
+        entity_id: switch.garage_door_opener
