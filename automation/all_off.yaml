@@ -50,6 +50,9 @@
         - switch.master_closet_light
         - switch.watch_shop_fan
         - switch.wax_warmer
+        - switch.stove_light
+        - switch.stove_fan
+        - switch.desk
     - choose: # When timer lights are off:
       - conditions:
         - condition: state
