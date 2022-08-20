@@ -1,0 +1,58 @@
+- alias: Stove Fan On from Keypad
+  id: 8379e3c5-09b5-4c4c-abbe-e8905272653d
+  trigger:
+    - platform: state
+      entity_id: switch.range_fan
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.stove_fan
+      state: "off"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.stove_fan
+
+- alias: Stove Fan Off from Keypad
+  id: dc174729-df4d-4891-ac56-4f15f1236171
+  trigger:
+    - platform: state
+      entity_id: switch.range_fan
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.stove_fan
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.stove_fan
+
+- alias: Stove Fan Keypad On
+  id: 624e4204-c123-4236-a05b-c117403332f5
+  trigger:
+    - platform: state
+      entity_id: switch.stove_fan
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.range_fan
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.range_fan
+
+- alias: Stove Fan Keypad Off
+  id: 1ba70abe-5a7e-41d4-84f4-822970a25bde
+  trigger:
+    - platform: state
+      entity_id: switch.stove_fan
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.range_fan
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.range_fan

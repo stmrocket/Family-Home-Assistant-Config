@@ -1,0 +1,58 @@
+- alias: Stove Light On from Keypad
+  id: 3ce75b06-8ec2-44a9-b1de-5b95531c8a40
+  trigger:
+    - platform: state
+      entity_id: switch.range_lights
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.stove_light
+      state: "off"
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.stove_light
+
+- alias: Stove Light Off from Keypad
+  id: c20ed3ba-ca2e-4fe5-b64a-a75b8be3bf14
+  trigger:
+    - platform: state
+      entity_id: switch.range_lights
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.stove_light
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.stove_light
+
+- alias: Stove Light Keypad On
+  id: 2678f9dd-7e6a-4bf8-ab9e-36f88e79e144
+  trigger:
+    - platform: state
+      entity_id: switch.stove_light
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.range_lights
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.range_lights
+
+- alias: Stove Light Keypad Off
+  id: 4cb0c3cf-c953-4b6f-aec9-78e280107827
+  trigger:
+    - platform: state
+      entity_id: switch.stove_light
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.range_lights
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.range_lights

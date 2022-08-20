@@ -48,6 +48,8 @@ smart_home:
       - input_boolean.elk_away_on
       - switch.manual_timer_lights
       - switch.desk
+      - switch.stove_fan
+      - switch.stove_light
 
     exclude_domains:
       - automation
