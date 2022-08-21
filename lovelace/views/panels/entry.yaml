@@ -253,14 +253,19 @@ cards:
           icon: mdi:thermostat-box
           step_size: 1
           decimals: 0
-          sensors:
-            - attribute: current_humidity
-              name: Humidity
-              unit: "%"
-            - entity: sensor.hvac_system_state
-              name: State
+          layout:
+            step: row
+            header: false
+            control: false
           hide:
             state: true
           control:
             - hvac:
                 mode: none
+          sensors:
+            - attribute: current_humidity
+              name: Humidity
+              unit: '%'
+            - entity: sensor.hvac_system_state
+              name: State
+          header: false
