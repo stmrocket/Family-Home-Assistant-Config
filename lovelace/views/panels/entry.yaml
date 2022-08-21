@@ -248,19 +248,19 @@ cards:
               hold_action:
                 action: more-info
 
-      - type: custom:simple-thermostat
-        entity: climate.thermostat
-        icon: mdi:thermostat-box
-        step_size: 1
-        decimals: 0
-        sensors:
-          - attribute: current_humidity
-            name: Humidity
-            unit: "%"
-          - entity: sensor.hvac_system_state
-            name: State
-        hide:
-          state: true
-        control:
-          - hvac:
-              mode: none
+        - type: custom:simple-thermostat
+          entity: climate.thermostat
+          icon: mdi:thermostat-box
+          step_size: 1
+          decimals: 0
+          sensors:
+            - attribute: current_humidity
+              name: Humidity
+              unit: "%"
+            - entity: sensor.hvac_system_state
+              name: State
+          hide:
+            state: true
+          control:
+            - hvac:
+                mode: none
