@@ -27,6 +27,16 @@ mqtt:
       state_topic: rtl_433/2241/wind_dir_deg
       unit_of_measurement: "°"
 
+    - name: AcuRite Karen Freezer Temperature
+      unique_id: 0a35deaf-3f15-4846-b2a9-b6acb3024d79
+      state_topic: rtl_433/56964/temperature_F
+      unit_of_measurement: "°F"
+
+    - name: AcuRite Scott Freezer Temperature
+      unique_id: 2a340db9-90a8-46c3-8184-f70381736461
+      state_topic: rtl_433/57203/temperature_F
+      unit_of_measurement: "°F"
+
   binary_sensor:
     - name: AcuRite Thermometer Battery Low
       unique_id: ed401637-508c-470e-b3b3-cc6e019e1c0a
