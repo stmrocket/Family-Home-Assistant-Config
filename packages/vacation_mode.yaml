@@ -8,6 +8,114 @@ automation:
       - service: input_boolean.turn_on
         entity_id: input_boolean.vacation_mode
 
+  - alias: Notify Front Door Unlocked by Leena
+    id: 68ff3127-39e5-4c68-af8e-ee67b5288c6d
+    trigger:
+    - platform: state
+      entity_id: lock.front_door
+      from: locked
+      to: unlocked
+    - platform: state
+      entity_id: sensor.front_door_lock_status
+      to: "Unlocked (User 3)"
+    condition:
+      - condition: state
+        entity_id: sensor.front_door_lock_status
+        state: "Unlocked (User 3)"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Door Unlocked
+        message: The front door has been unlocked by Leena.
+
+  - alias: Notify Back Door Unlocked by Leena
+    id: 6e24bb79-ca10-4130-b36e-08e5d3032c60
+    trigger:
+    - platform: state
+      entity_id: lock.back_door
+      from: locked
+      to: unlocked
+    - platform: state
+      entity_id: sensor.back_door_lock_status
+      to: "Unlocked (User 3)"
+    condition:
+      - condition: state
+        entity_id: sensor.back_door_lock_status
+        state: "Unlocked (User 3)"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Door Unlocked
+        message: The back door has been unlocked by Leena.
+
+  - alias: Notify Alarm Disarmed by Leena
+    id: 47c99c56-602a-4695-9219-f8ecc9c3f0aa
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.house
+      to: disarmed
+    condition:
+      - condition: state
+        entity_id: alarm_control_panel.house
+        attribute: changed_by
+        state: "Leena"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Door Unlocked
+        message: The back door has been unlocked by Leena.
+
+  - alias: Notify Alarm Armed in Vacation Mode
+    id: 426c952b-9cfd-48d7-9dc7-eb95c2de7c20
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.house
+      from: arming
+      to: armed_away
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Alarm Armed
+        message: The alarm has been armed.
+
+  - alias: Notify Front Door Locked in Vacation Mode
+    id: dca7807d-8998-4788-a8d8-366ba41e1a0e
+    trigger:
+    - platform: state
+      entity_id: lock.front_door
+      from: unlocked
+      to: locked
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Door Locked
+        message: The front door has been locked.
+
+  - alias: Notify Back Door Locked in Vacation Mode
+    id: e5a92712-590d-495b-9626-123dbe022d06
+    trigger:
+    - platform: state
+      entity_id: lock.back_door
+      from: unlocked
+      to: locked
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      service: notify.mobile_app_hd1907
+      data:
+        title: Door Locked
+        message: The back door has been locked.
+
   - alias: Vacation Mode Off
     id: d24d2f8f-2821-41c9-90c7-042c54a223e4
     trigger:
@@ -250,7 +358,7 @@ sensor:
     duration: 00:00:30
 
   - platform: history_stats
-    name: Replay Master Shower Light
+    name: Replay Master Toilet Light
     entity_id: light.master_toilet_light
     state: "on"
     type: count

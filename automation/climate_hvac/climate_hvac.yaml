@@ -35,6 +35,10 @@
     entity_id: alarm_control_panel.house
     from: pending
     to: disarmed
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: "off"
   action:
   - service: climate.set_temperature
     data:
