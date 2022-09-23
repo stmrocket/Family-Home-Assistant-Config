@@ -27,18 +27,23 @@ cards:
     cards:      
       - type: entities
         show_header_toggle: false
-        title: RAIN
+        title: Rain
         entities:
           - entity: sensor.rain_day
             name: Rain Today
+            icon: mdi:calendar-today
           - entity: sensor.rain_week
             name: Rain This Week
+            icon: mdi:calendar-range
           - entity: sensor.rain_month
             name: Rain This Month
+            icon: mdi:calendar-month
           - entity: sensor.rain_year
             name: Rain This Year
+            icon: mdi:sort-calendar-ascending
           - entity: sensor.last_rain_date
             name: Last Rainfall
+            icon: mdi:calendar-today
           - type: divider
           - input_boolean.rain_enabled
           - entity: input_number.rain_disable_time
@@ -49,7 +54,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: entities
-        title: HISTORIC WEATHER
+        title: Historic Weather
         entities:
           - type: custom:multiple-entity-row
             entity: sensor.rain_last_month_1
