@@ -37,7 +37,7 @@ cards:
             name: Rain This Year
           - entity: sensor.last_rain_date
             name: Last Rainfall
-          - divider
+          - type: divider
           - input_boolean.rain_enabled
           - entity: input_number.rain_disable_time
             name: Delay
