@@ -50,6 +50,45 @@ cards:
             name: Delay
           - entity: timer.rain_disable
             name: Time Remaining
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.acurite_karen_freezer_temperature
+            name: Karen's Freezer
+            height: 74
+            line_width: 2
+            font_size: 65
+            hours_to_show: 24
+            points_per_hour: 10
+            show:
+              icon: false
+              extrema: true
+              fill: false
+            color_thresholds:
+              - value: 0
+                color: "#e74c3c"
+              - value: -1
+                color: "#1db954"
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.acurite_scott_freezer_temperature
+            name: Scott's Freezer
+            height: 74
+            line_width: 2
+            font_size: 65
+            hours_to_show: 24
+            points_per_hour: 10
+            show:
+              icon: false
+              extrema: true
+              fill: false
+            color_thresholds:
+              - value: 0
+                color: "#e74c3c"
+              - value: -1
+                color: "#1db954"
 
   - type: vertical-stack
     cards:
