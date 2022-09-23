@@ -19,6 +19,8 @@ cards:
   - type: vertical-stack
     cards:   
       - !include /config/lovelace/cards/weather.yaml
+      - type: custom:gap-card
+        height: 100
 
 
   - type: vertical-stack
@@ -43,8 +45,6 @@ cards:
             name: Delay
           - entity: timer.rain_disable
             name: Time Remaining
-      - type: custom:gap-card
-        height: 300
 
   - type: vertical-stack
     cards:
