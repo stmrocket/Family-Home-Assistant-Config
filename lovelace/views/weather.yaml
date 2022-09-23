@@ -25,7 +25,7 @@ cards:
     cards:      
       - type: entities
         show_header_toggle: false
-        title: Rain
+        title: RAIN
         entities:
           - entity: sensor.rain_day
             name: Rain Today
@@ -43,10 +43,13 @@ cards:
             name: Delay
           - entity: timer.rain_disable
             name: Time Remaining
+      - type: custom:gap-card
+        height: 100
 
   - type: vertical-stack
     cards:
       - type: entities
+        title: HISTORIC WEATHER
         entities:
           - type: custom:multiple-entity-row
             entity: sensor.rain_last_month_1
