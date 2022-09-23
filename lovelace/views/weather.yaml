@@ -44,7 +44,7 @@ cards:
           - entity: timer.rain_disable
             name: Time Remaining
       - type: custom:gap-card
-        height: 100
+        height: 300
 
   - type: vertical-stack
     cards:
