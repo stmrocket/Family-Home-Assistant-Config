@@ -1,0 +1,242 @@
+#############################################################################################################################################
+#                                                                                                                                           #
+#                                                                 VIEW 5 - Media                                                            #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+id: 3
+icon: mdi:weather-pouring
+title: Media
+# popup_cards:
+#   !include /config/lovelace/popup/popup_media.yaml
+cards:
+  #################################################################
+  #                                                               #
+  #                      Media  - Gmusic Status                   #
+  #                                                               #
+  #################################################################
+
+  - type: vertical-stack
+    cards:   
+      - !include /config/lovelace/cards/weather.yaml
+
+
+  - type: vertical-stack
+    cards:      
+      - type: entities
+        show_header_toggle: false
+        title: Rain
+        entities:
+          - entity: sensor.rain_day
+            name: Rain Today
+          - entity: sensor.rain_week
+            name: Rain This Week
+          - entity: sensor.rain_month
+            name: Rain This Month
+          - entity: sensor.rain_year
+            name: Rain This Year
+          - entity: sensor.last_rain_date
+            name: Last Rainfall
+          - divider
+          - input_boolean.rain_enabled
+          - entity: input_number.rain_disable_time
+            name: Delay
+          - entity: timer.rain_disable
+            name: Time Remaining
+
+  - type: vertical-stack
+    cards:
+      - type: entities
+        entities:
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: January
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_1
+                name: Low
+              - entity: sensor.temp_high_month_1
+                name: High
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_1
+                name: Previous
+              - entity: sensor.rain_month_1
+                name: Current
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: February
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_2
+                name: false
+              - entity: sensor.temp_high_month_2
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_2
+                name: false
+              - entity: sensor.rain_month_2
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: March
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_3
+                name: false
+              - entity: sensor.temp_high_month_3
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_3
+                name: false
+              - entity: sensor.rain_month_3
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: April
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_4
+                name: false
+              - entity: sensor.temp_high_month_4
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_4
+                name: false
+              - entity: sensor.rain_month_4
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: May
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_5
+                name: false
+              - entity: sensor.temp_high_month_5
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_5
+                name: false
+              - entity: sensor.rain_month_5
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: June
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_6
+                name: false
+              - entity: sensor.temp_high_month_6
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_6
+                name: false
+              - entity: sensor.rain_month_6
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: July
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_7
+                name: false
+              - entity: sensor.temp_high_month_7
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_7
+                name: false
+              - entity: sensor.rain_month_7
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: August
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_8
+                name: false
+              - entity: sensor.temp_high_month_8
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_8
+                name: false
+              - entity: sensor.rain_month_8
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: September
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_9
+                name: false
+              - entity: sensor.temp_high_month_9
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_9
+                name: false
+              - entity: sensor.rain_month_9
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: October
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_10
+                name: false
+              - entity: sensor.temp_high_month_10
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_10
+                name: false
+              - entity: sensor.rain_month_10
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: November
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_11
+                name: false
+              - entity: sensor.temp_high_month_11
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_11
+                name: false
+              - entity: sensor.rain_month_11
+                name: false
+          - type: custom:multiple-entity-row
+            entity: sensor.rain_last_month_1
+            name: December
+            icon: mdi:water
+            show_state: false
+            entities:
+              - entity: sensor.temp_low_month_12
+                name: false
+              - entity: sensor.temp_high_month_12
+                name: false
+              - entity: sensor.blank
+                name: false
+              - entity: sensor.rain_last_month_12
+                name: false
+              - entity: sensor.rain_month_12
+                name: false

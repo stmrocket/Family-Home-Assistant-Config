@@ -14,4 +14,5 @@ views:
   - !include /config/lovelace/views/home.yaml
   - !include /config/lovelace/views/rooms.yaml
   - !include /config/lovelace/views/media.yaml
+  - !include /config/lovelace/views/weather.yaml
   - !include /config/lovelace/views/system.yaml
