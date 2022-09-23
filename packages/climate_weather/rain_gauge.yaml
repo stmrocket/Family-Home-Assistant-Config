@@ -741,7 +741,18 @@ input_number:
   rain_last_month_12:
     min: 0
     max: 100000
-    mode: box
+    mode: box  
+  
+  rain_disable_time:
+    name: Rain Gauge Disable Time
+    min: 1
+    max: 24
+    step: 1
+    unit_of_measurement: h
+
+input_boolean:
+  rain_enabled:
+    name: Rain Gauge Enabled
 
 input_text:
   last_rain:
@@ -751,6 +762,10 @@ timer:
   rainfall:
     name: Rainfall Timer
     duration: "00:10:00"
+
+  rain_disable:
+    name: Rain Gauge Auto-restart Timer
+    icon: mdi:timer-outline
 
 automation:
   - alias: Count Rainfall
@@ -762,7 +777,7 @@ automation:
       - choose:
         - conditions:
           - condition: template
-            value_template: "{{ ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) > 0) and ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) < 38) }}"
+            value_template: "{{ ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) > 0) and ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) < 38) and is_state('input_boolean.rain_disabled', 'on') }}"
           sequence:
             - service: input_number.set_value
               entity_id: input_number.rain_minute
@@ -1085,3 +1100,44 @@ automation:
         data_template:
           entity_id: alarm_control_panel.house
           clear: 0
+
+  - alias: Start Reset Timer When Rain Gauge Disabled
+    id: 121dd221-5335-4280-94c7-174e2aab9c84
+    trigger:
+      - platform: state
+        entity_id: input_boolean.rain_enabled
+        to: 'off'
+    action:
+      - service: timer.start
+        data_template:
+          entity_id: timer.rain_disable
+          duration: "{{ states('input_number.rain_disable_time') | int * 3600}}"
+
+  - alias: Restart Rain Gauge When Restart Timer Expires
+    id: 5843a1ac-abc2-4ee1-a242-d5921d82ff54
+    trigger:
+      - event_data:
+          entity_id: timer.rain_disable
+        event_type: timer.finished
+        platform: event
+    condition:
+      - condition: state
+        entity_id: input_boolean.rain_enabled
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.rain_enabled
+
+  - alias: Cancel Rain Gauge Timer if Rain Gauge Manually Enabled
+    id: 219f6e1e-261a-447c-b5c8-84acf5e2cc7e
+    trigger:
+      - platform: state
+        entity_id: input_boolean.rain_enabled
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.rain_disable
+        state: 'active'
+    action:
+      - service: timer.cancel
+        entity_id: timer.rain_disable
