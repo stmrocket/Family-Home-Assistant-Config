@@ -777,7 +777,7 @@ automation:
       - choose:
         - conditions:
           - condition: template
-            value_template: "{{ ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) > 0) and ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) < 38) and is_state('input_boolean.rain_disabled', 'on') }}"
+            value_template: "{{ ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) > 0) and ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) < 38) and is_state('input_boolean.rain_enabled', 'on') }}"
           sequence:
             - service: input_number.set_value
               entity_id: input_number.rain_minute
