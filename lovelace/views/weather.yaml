@@ -22,7 +22,7 @@ cards:
       - type: glance
         columns: 4
         show_name: true
-        show_state: false
+        show_icon: false
         entities:
           - entity: sensor.acurite_outside_temperature
             name: Outside
