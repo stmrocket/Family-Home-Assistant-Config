@@ -19,8 +19,29 @@ cards:
   - type: vertical-stack
     cards:   
       - !include /config/lovelace/cards/weather.yaml
+      - type: glance
+        columns: 4
+        show_name: true
+        show_state: false
+        entities:
+          - entity: sensor.acurite_outside_temperature
+            name: Outside
+          - entity: sensor.atc_garage_temperature
+            name: Garage
+          - entity: sensor.atc_den_temperature
+            name: Den
+          - entity: sensor.atc_pantry_temperature
+            name: Pantry
+          - entity: sensor.atc_master_bedroom_temperature
+            name: Master
+          - entity: sensor.atc_guest_bedroom_temperature
+            name: Guest
+          - entity: sensor.atc_craft_room_temperature
+            name: Craft
+          - entity: sensor.atc_watch_shop_temperature
+            name: Watch
       - type: custom:gap-card
-        height: 100
+        height: 1
 
 
   - type: vertical-stack
