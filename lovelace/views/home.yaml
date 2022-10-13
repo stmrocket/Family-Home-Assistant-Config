@@ -254,7 +254,11 @@ cards:
                 color: rgb(228, 94, 101)
                 name: Error
             tap_action:
-              action: more-info
+              action: fire-dom-event
+              browser_mod:
+                service: script.popup_pooper
+                data:
+                  browser_id: THIS
           - type: custom:button-card
             entity: sensor.washer_status_combined
             color_type: icon
