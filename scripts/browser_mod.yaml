@@ -290,8 +290,7 @@ popup_supervisor:
 popup_pooper:
   sequence:
     - service: browser_mod.popup
-      data_template:
-        browser_id: 6fa8e1e3-61e516e1
+      data:
         title: Litter Robot
         content:
           type: vertical-stack
