@@ -222,10 +222,6 @@ notify:
     vapid_prv_key: !secret vapid_private
     vapid_email: !secret vapid_email
 
-browser_mod:
-  disable:
-    - all
-
 rest_command:
   wake_remote:
     url: "{{states('sensor.webhook_wake')}}"
