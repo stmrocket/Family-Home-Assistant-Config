@@ -271,6 +271,7 @@ popup_supervisor:
   sequence:
     - service: browser_mod.popup
       data:
+        browser_id: "{{browser_id}}"
         title: Supervisor
         content:
           type: entities
@@ -290,6 +291,7 @@ popup_pooper:
   sequence:
     - service: browser_mod.popup
       data:
+        browser_id: "{{browser_id}}"
         title: Litter Robot
         content:
           type: vertical-stack
