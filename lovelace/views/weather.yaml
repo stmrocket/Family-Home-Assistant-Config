@@ -6,9 +6,7 @@
 
 id: 3
 icon: mdi:weather-pouring
-title: Media
-# popup_cards:
-#   !include /config/lovelace/popup/popup_media.yaml
+title: Weather
 cards:
   #################################################################
   #                                                               #
