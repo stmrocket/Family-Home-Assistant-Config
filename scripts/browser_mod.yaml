@@ -291,7 +291,7 @@ popup_pooper:
   sequence:
     - service: browser_mod.popup
       data_template:
-        browser_id: {{browser_id}}
+        browser_id: "{{browser_id}}"
         title: Litter Robot
         card:
           type: vertical-stack
