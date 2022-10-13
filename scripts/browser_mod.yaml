@@ -517,7 +517,7 @@ popup_hvac_filter:
     - service: browser_mod.popup
       data:
         browser_id: "{{browser_id}}"
-        title: WAN In
+        title: Furnace Filter
         style: |
           --popup-background-color: #383C45;
         content:
