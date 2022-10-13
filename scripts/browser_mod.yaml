@@ -293,7 +293,7 @@ popup_pooper:
       data_template:
         browser_id: 6fa8e1e3-61e516e1
         title: Litter Robot
-        card:
+        content:
           type: vertical-stack
           cards:
             - type: entities
