@@ -270,10 +270,9 @@ popup_addons:
 popup_supervisor:
   sequence:
     - service: browser_mod.popup
-      data_template:
-        deviceID: ["{{ ','.join(deviceID) }}"]
+      data:
         title: Supervisor
-        card:
+        content:
           type: entities
           show_header_toggle: false
           entities:
