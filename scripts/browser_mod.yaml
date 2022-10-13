@@ -1,12 +1,10 @@
 popup_automation_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Automation Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.automation_count
@@ -16,12 +14,10 @@ popup_automation_count:
 popup_binary_sensor_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Binary Sensor Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.binary_sensor_count
@@ -31,12 +27,10 @@ popup_binary_sensor_count:
 popup_switch_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Switch Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.switch_count
@@ -46,12 +40,10 @@ popup_switch_count:
 popup_fan_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Fan Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.fan_count
@@ -61,12 +53,10 @@ popup_fan_count:
 popup_lights_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Light Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.lights_count
@@ -76,12 +66,10 @@ popup_lights_count:
 popup_tracker_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Device Tracker Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.tracker_count
@@ -91,12 +79,10 @@ popup_tracker_count:
 popup_media_player_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Media Player Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.media_player_count
@@ -106,12 +92,10 @@ popup_media_player_count:
 popup_script_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Script Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.script_count
@@ -121,12 +105,10 @@ popup_script_count:
 popup_sensor_count:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Sensor Count Settings
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.sensor_count
@@ -136,12 +118,10 @@ popup_sensor_count:
 popup_github:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: GitHub Updater
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: vertical-stack
           cards:
             - type: horizontal-stack
@@ -220,12 +200,10 @@ popup_github:
 popup_hacs:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: HACS
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: "custom:list-card"
           entity: sensor.hacs
           feed_attribute: repositories
@@ -237,12 +215,10 @@ popup_hacs:
 popup_washer:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Washer
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.washer_state
@@ -259,12 +235,10 @@ popup_washer:
 popup_dryer:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Dryer
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           entities:
             - entity: sensor.dryer_state
@@ -281,12 +255,10 @@ popup_dryer:
 popup_addons:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Add-Ons
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: "custom:list-card"
           entity: sensor.supervisor_updates
           feed_attribute: addons
@@ -298,12 +270,10 @@ popup_addons:
 popup_supervisor:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        deviceID: ["{{ ','.join(deviceID) }}"]
         title: Supervisor
-        style: |
-          --popup-background-color: #383C45;
-        content:
+        card:
           type: entities
           show_header_toggle: false
           entities:
@@ -320,11 +290,9 @@ popup_supervisor:
 popup_pooper:
   sequence:
     - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
+      data_template:
+        browser_id: 6fa8e1e3-61e516e1
         title: Litter Robot
-        style: |
-          --popup-background-color: #383C45;
         content:
           type: vertical-stack
           cards:
@@ -469,79 +437,3 @@ popup_pooper:
                     service_data:
                       topic: "pooper/command/wait"
                       payload: "15"
-
-popup_wan_in:
-  sequence:
-    - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
-        title: WAN In
-        style: |
-          --popup-background-color: #383C45;
-        content:
-          type: entities
-          entities:
-            - entity: sensor.wan_in_mbps
-              name: Current
-              icon: mdi:transfer-down
-            - entity: sensor.wan_in_daily
-              name: Daily
-              icon: mdi:harddisk
-            - entity: sensor.wan_in_monthly
-              name: Monthly
-              icon: mdi:harddisk
-
-popup_wan_out:
-  sequence:
-    - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
-        title: WAN In
-        style: |
-          --popup-background-color: #383C45;
-        content:
-          type: entities
-          entities:
-            - entity: sensor.wan_out_mbps
-              name: Current
-              icon: mdi:transfer-up
-            - entity: sensor.wan_out_daily
-              name: Daily
-              icon: mdi:harddisk
-            - entity: sensor.wan_out_monthly
-              name: Monthly
-              icon: mdi:harddisk
-
-popup_hvac_filter:
-  sequence:
-    - service: browser_mod.popup
-      data:
-        browser_id: "{{browser_id}}"
-        title: Furnace Filter
-        style: |
-          --popup-background-color: #383C45;
-        content:
-          - type: "custom:hui-entities-card"
-            entities:
-              - entity: sensor.furnace_filter_last_replaced
-              - entity: sensor.furnace_filter_life
-              - entity: sensor.average_total_runtime_week
-              - entity: sensor.furnace_filter_days_remaining
-              - entity: input_number.replacement_threshold
-              - type: "custom:restriction-card"
-                row: true
-                restrictions:
-                  confirm: true
-                  text: "Reset filter timer?"
-                card:
-                  entity: script.furnace_filter_date
-                  name: Reset Filter
-              - entity: sensor.furnace_last_bleached
-              - type: "custom:restriction-card"
-                row: true
-                restrictions:
-                  confirm: true
-                  text: "Reset bleach timer?"
-                card:
-                  entity: script.furnace_bleach_date
-                  name: Reset Bleach

@@ -7,6 +7,8 @@
 id: 4
 icon: mdi:server-network
 title: System Status
+popup_cards:
+  !include /config/lovelace/popup/popup_system.yaml
 cards:
   #################################################################
   #                                                               #
@@ -94,12 +96,6 @@ cards:
                   bar-card-divider {
                     display: none;
                   }
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_wan_in
-                    data:
-                      browser_id: THIS
 
               - type: custom:bar-card
                 name: WAN OUT
@@ -156,12 +152,6 @@ cards:
                   bar-card-divider {
                     display: none;
                   }
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_wan_out
-                    data:
-                      browser_id: THIS
 
       #################################################################
       #                                                               #
@@ -710,13 +700,8 @@ cards:
                     bar-card-divider {
                       display: none;
                     }
-                  
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_automation_count
-                    data:
-                      browser_id: THIS
+                  tap_action:
+                    action: more-info
 
               - type: "custom:config-template-card"
                 entities:
@@ -781,11 +766,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_binary_sensor_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
               - type: "custom:config-template-card"
                 entities:
                   - sensor.switch_count
@@ -849,11 +830,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_switch_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
           - type: horizontal-stack
             cards:
@@ -920,11 +897,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_fan_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
               - type: "custom:config-template-card"
                 entities:
@@ -989,11 +962,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_lights_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
               - type: "custom:config-template-card"
                 entities:
@@ -1058,11 +1027,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_tracker_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
           - type: horizontal-stack
             cards:
@@ -1129,11 +1094,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_media_player_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
               - type: "custom:config-template-card"
                 entities:
@@ -1198,11 +1159,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_script_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
 
               - type: "custom:config-template-card"
                 entities:
@@ -1267,11 +1224,7 @@ cards:
                       display: none;
                     }
                   tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_sensor_count
-                    data:
-                      browser_id: THIS
+                    action: more-info
       - type: custom:gap-card
         height: 100
   #################################################################
@@ -1310,11 +1263,7 @@ cards:
                     color: rgb(255, 255, 255)
                 name: GitHub
                 tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_github
-                    data:
-                      browser_id: THIS
+                  action: more-info
               - type: "custom:button-card"
                 entity: sensor.hacs
                 color_type: icon
@@ -1327,11 +1276,7 @@ cards:
                     color: rgb(255, 255, 255)
                 name: HACS
                 tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_hacs
-                    data:
-                      browser_id: THIS
+                  action: more-info
 
               - type: "custom:button-card"
                 entity: binary_sensor.updater_addons
@@ -1344,11 +1289,7 @@ cards:
                     color: rgb(255, 255, 255)
                 name: Add-Ons
                 tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_addons
-                    data:
-                      browser_id: THIS
+                  action: more-info
 
               - type: "custom:button-card"
                 entity: binary_sensor.updater
@@ -1376,11 +1317,7 @@ cards:
                     color: rgb(255, 255, 255)
                 name: Supervisor
                 tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_supervisor
-                    data:
-                      browser_id: THIS
+                  action: more-info
 
       #################################################################
       #                                                               #
@@ -1634,11 +1571,9 @@ cards:
                 color: rgb(255, 255, 255)
                 name: OK
             tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: script.popup_hvac_filter
-                    data:
-                      browser_id: THIS
+              action: more-info
+            hold_action:
+              action: more-info
           - type: "custom:button-card"
             color_type: icon
             color: rgb(255, 255, 255)

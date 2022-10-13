@@ -7,6 +7,7 @@
 id: 8
 icon: mdi:castle
 title: Home
+popup_cards: !include /config/lovelace/popup/popup_home.yaml
 cards:
   #################################################################
   #                                                               #
@@ -85,11 +86,7 @@ cards:
                 color: rgb(228, 94, 101)
                 name: Error
             tap_action:
-              action: fire-dom-event
-              browser_mod:
-                service: script.popup_pooper
-                data:
-                  browser_id: THIS
+              action: more-info
           - type: custom:button-card
             entity: sensor.washer_status_combined
             color_type: icon
