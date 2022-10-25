@@ -775,6 +775,7 @@ timer:
 automation:
   - alias: Count Rainfall
     id: 8ce7d087-5228-4f91-814e-daf2593793bc
+    mode: queued
     trigger:
       - platform: state
         entity_id: sensor.acurite_cumulative_rain
