@@ -37,6 +37,11 @@ mqtt:
       state_topic: rtl_433/57203/temperature_F
       unit_of_measurement: "°F"
 
+    - name: AcuRite WS Cumulative Rain
+      unique_id: 71ebb5b8-0d3f-498b-b035-cea331d4dd3a
+      state_topic: rtl_433/2241/rain_in
+      unit_of_measurement: "in"
+
   binary_sensor:
     - name: AcuRite Thermometer Battery Low
       unique_id: ed401637-508c-470e-b3b3-cc6e019e1c0a
