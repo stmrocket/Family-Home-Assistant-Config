@@ -46,9 +46,27 @@ mqtt:
     - name: AcuRite Thermometer Battery Low
       unique_id: ed401637-508c-470e-b3b3-cc6e019e1c0a
       state_topic: rtl_433/7044/battery_ok
-      value_template: "{{ value | int (0) == 0}}"
+      payload_on: 0
+      payload_off: 1
+      device_class: battery
 
     - name: AcuRite Rain Gauge Battery Low
       unique_id: b094f359-af12-413c-96bb-dde16c20fd1e
       state_topic: rtl_433/2142/battery_ok
-      value_template: "{{ value | int (0) == 0}}"
+      payload_on: 0
+      payload_off: 1
+      device_class: battery
+
+    - name: AcuRite Karen Freezer Battery Low
+      unique_id: ea8f4fea-1ac5-4141-95a6-7bc745a81903
+      state_topic: rtl_433/56964/battery_ok
+      payload_on: 0
+      payload_off: 1
+      device_class: battery
+
+    - name: AcuRite Scott Freezer Battery Low
+      unique_id: 2311dda0-cc68-4980-ad84-4effe93b76b2
+      state_topic: rtl_433/57203/battery_ok
+      payload_on: 0
+      payload_off: 1
+      device_class: battery
