@@ -482,7 +482,7 @@ cards:
 
                       - type: custom:bar-card
                         name: Disk (CCTV)
-                        entity: sensor.synology_volume_used_volume_3
+                        entity: sensor.jinx_volume_3_volume_used
                         decimal: 1
                         entity_row: true
                         positions:
