@@ -190,6 +190,63 @@ cards:
                   - type: custom:stack-in-card
                     cards:
                       - type: custom:bar-card
+                        name: CPU
+                        entity: sensor.synology_cpu_load_total
+                        decimal: 1
+                        entity_row: true
+                        positions:
+                          icon: "off"
+                          name: inside
+                          value: inside
+                        padding: 4px
+                        card_style:
+                          border-radius: 5px
+                        max: 100
+                        severity:
+                          - from: 0
+                            to: 50
+                            color: "#1db954"
+                          - from: 51
+                            to: 75
+                            color: "#bf9540"
+                          - from: 76
+                            to: 100
+                            color: "#ff0000"
+                        style: |-
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
+                            margin-left: auto;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
+                          }
+                          bar-card-divider {
+                            display: none;
+                          }
+
+                      - type: custom:bar-card
                         name: Disk (Files)
                         entity: sensor.synology_volume_used_volume_1
                         decimal: 1
@@ -210,6 +267,66 @@ cards:
                             to: 94
                             color: "#bf9540"
                           - from: 95
+                            to: 100
+                            color: "#ff0000"
+                        style: |-
+                          .contentbar-direction-right {
+                            flex-direction: column;
+                          }
+                          .min-direction-right {
+                            margin: 0px;
+                            margin-bottom: -20px;
+                            bottom: 10px;
+                          }
+                            bar-card-value {
+                            margin: 0px;
+                            font-size: 13px;
+                            margin-left: auto;
+                            margin-right: auto;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;
+                          }
+                          bar-card-name {
+                            margin: 0px;
+                            margin-top: 5px;
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-shadow: 1px 1px #0005;              
+                          }
+                          bar-card-max {
+                            margin: 0px;
+                            margin-left: auto;
+                            margin-top: -20px;
+                            top: 10px;
+                          }
+                          bar-card-divider {
+                            display: none;
+                          }
+
+                  - type: custom:stack-in-card
+                    cards:
+
+                      - type: custom:bar-card
+                        name: RAM
+                        entity: sensor.synology_memory_usage_real
+                        decimal: 1
+                        entity_row: true
+                        positions:
+                          icon: "off"
+                          name: inside
+                          value: inside
+                        padding: 4px
+                        card_style:
+                          border-radius: 5px
+                        max: 100
+                        severity:
+                          - from: 0
+                            to: 50
+                            color: "#1db954"
+                          - from: 51
+                            to: 75
+                            color: "#bf9540"
+                          - from: 76
                             to: 100
                             color: "#ff0000"
                         style: |-
@@ -305,9 +422,10 @@ cards:
 
                   - type: custom:stack-in-card
                     cards:
+
                       - type: custom:bar-card
-                        name: CPU
-                        entity: sensor.synology_cpu_load_total
+                        name: Temperature
+                        entity: sensor.jinx_temperature
                         decimal: 1
                         entity_row: true
                         positions:
@@ -317,17 +435,17 @@ cards:
                         padding: 4px
                         card_style:
                           border-radius: 5px
-                        max: 100
+                        max: 200
                         severity:
                           - from: 0
-                            to: 50
+                            to: 130
                             color: "#1db954"
-                          - from: 51
-                            to: 75
+                          - from: 131
+                            to: 140
                             color: "#bf9540"
-                          - from: 76
-                            to: 100
-                            color: "#ff0000"
+                          - from: 141
+                            to: 150
+                            color: "#bf4040"
                         style: |-
                           .contentbar-direction-right {
                             flex-direction: column;
@@ -363,8 +481,8 @@ cards:
                           }
 
                       - type: custom:bar-card
-                        name: RAM
-                        entity: sensor.synology_memory_usage_real
+                        name: Disk (CCTV)
+                        entity: sensor.synology_volume_used_volume_3
                         decimal: 1
                         entity_row: true
                         positions:
@@ -377,12 +495,12 @@ cards:
                         max: 100
                         severity:
                           - from: 0
-                            to: 50
+                            to: 79
                             color: "#1db954"
-                          - from: 51
-                            to: 75
+                          - from: 80
+                            to: 94
                             color: "#bf9540"
-                          - from: 76
+                          - from: 95
                             to: 100
                             color: "#ff0000"
                         style: |-
