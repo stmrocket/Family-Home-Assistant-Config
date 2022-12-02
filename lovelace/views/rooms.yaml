@@ -23,6 +23,7 @@ cards:
       - !include /config/lovelace/cards/rooms/guest_bed.yaml
       - !include /config/lovelace/cards/rooms/guest_bath.yaml
       - !include /config/lovelace/cards/rooms/half_bath.yaml
+      - !include /config/lovelace/cards/rooms/christmas.yaml
   - type: vertical-stack
     cards:
       - !include /config/lovelace/cards/rooms/utility.yaml
