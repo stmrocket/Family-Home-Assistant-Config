@@ -11,8 +11,10 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.output_178
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: input_boolean.elk_night_on
 
 - alias: Elk Night Mode Off from Trigger
@@ -28,8 +30,10 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.output_177
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: input_boolean.elk_night_off  
 
 - alias: Elk Stay Mode On from Trigger
@@ -45,8 +49,10 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.output_177
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: input_boolean.elk_stay_on
 
 - alias: Elk Stay Mode Off from Trigger
@@ -62,8 +68,10 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.output_180
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: input_boolean.elk_stay_off      
 
 - alias: Elk Away Mode On from Trigger
@@ -79,8 +87,10 @@
       value_template: "{{ not is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.output_179
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: input_boolean.elk_away_on    
 
 - alias: Elk Clear Trigger if State Disallowed
@@ -110,6 +120,7 @@
         value_template: "{{ is_state('alarm_control_panel.house', 'armed_away') }}"
   action:
     - service: input_boolean.turn_off
+      continue_on_error: true
       entity_id: 
         - input_boolean.elk_night_on   
         - input_boolean.elk_night_off
