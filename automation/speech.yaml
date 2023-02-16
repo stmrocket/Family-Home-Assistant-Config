@@ -202,7 +202,9 @@
       at: "02:30:00"
   action:
     - service: switch.turn_on
+      continue_on_error: true
       entity_id: switch.speech_power
     - delay: "00:00:20"
     - service: switch.turn_off
+      continue_on_error: true
       entity_id: switch.speech_power

@@ -28,6 +28,7 @@ script:
   update_config_restart:
     sequence:
       - service: input_text.set_value
+        continue_on_error: true
         data_template:
           entity_id: input_text.prev_git_version
           value: "{{ states.sensor.family_home_assistant_config.state | string }}"
@@ -37,6 +38,7 @@ script:
   update_config:
     sequence:
       - service: input_text.set_value
+        continue_on_error: true
         data_template:
           entity_id: input_text.prev_git_version
           value: "{{ states.sensor.family_home_assistant_config.state | string }}"
@@ -45,6 +47,7 @@ script:
   clear_config_update_flag:
     sequence:
       - service: input_text.set_value
+        continue_on_error: true
         data_template:
           entity_id: input_text.prev_git_version
           value: "{{ states.sensor.family_home_assistant_config.state | string }}"

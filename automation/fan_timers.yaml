@@ -11,7 +11,7 @@
       entity_id: switch.guest_bath_fan
 
 - alias: Half Bathroom Fan Auto Off
-  id: 3c3c8dca-17a4-4de4-9f8c-6c39b3465073
+  id: bc5628d3-c2f4-4af0-acb1-b9551fcc238e
   trigger:
     - platform: state
       entity_id: light.half_bath_light

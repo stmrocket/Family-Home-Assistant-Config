@@ -69,11 +69,13 @@
         minutes: 5
   action:
     - service: climate.set_hvac_mode
+      continue_on_error: true
       data:
         hvac_mode: 'off'
       target:
         entity_id: climate.thermostat
     - service: switch.turn_off
+      continue_on_error: true
       entity_id: switch.den_fan
 
 - alias: HVAC On When Back Door Closed

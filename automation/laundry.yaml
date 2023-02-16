@@ -19,10 +19,12 @@
         state: 'armed_home'
   action:
     - service: notify.browser
+      continue_on_error: true
       data:
         message: The dryer has stopped.
         title: Laundry Update
     - service: mqtt.publish
+      continue_on_error: true
       data:
         topic: parrot/command/set/play
         payload: 3,1
@@ -44,10 +46,12 @@
         state: 'armed_home'
   action:
     - service: notify.browser
+      continue_on_error: true
       data:
         message: The washer has stopped.
         title: Laundry Update
     - service: mqtt.publish
+      continue_on_error: true
       data:
         topic: parrot/command/set/play
         payload: 3,3

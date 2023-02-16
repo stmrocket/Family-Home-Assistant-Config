@@ -1,32 +1,35 @@
 - alias: Timer Lights On Main Evenings
   id: 1207cc71-9c00-4b49-9ee8-95a88c89a1be
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '-00:30:00'   
+    - platform: sun
+      event: sunset
+      offset: '-00:30:00'   
   action:
-  - service: switch.turn_on
-    entity_id: 
-      - switch.guest_room_lamp
-      - switch.craft_room_table_lamp
-      - switch.den_curio_cabinet
-      - switch.master_bedroom_lamp
-  - service: light.turn_on
-    entity_id:
-      - light.watch_shop_lamp
-      - light.craft_room_floor_lamp
-      - light.entry_lamp
-      - light.den_table_lamp
-      - light.dining_armoire_leds
-  - service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.timer_lights
+    - service: switch.turn_on
+      continue_on_error: true
+      entity_id: 
+        - switch.guest_room_lamp
+        - switch.craft_room_table_lamp
+        - switch.den_curio_cabinet
+        - switch.master_bedroom_lamp
+    - service: light.turn_on
+      continue_on_error: true
+      entity_id:
+        - light.watch_shop_lamp
+        - light.craft_room_floor_lamp
+        - light.entry_lamp
+        - light.den_table_lamp
+        - light.dining_armoire_leds
+    - service: input_boolean.turn_on
+      continue_on_error: true
+      data:
+        entity_id: input_boolean.timer_lights
 
 - alias: Timer Lights Off Main Night Away
   id: 852f6cf2-ed7a-4ce8-8942-0e56c973c4a6
   trigger:
-  - platform: time
-    at: '23:30:00'
+    - platform: time
+      at: '23:30:00'
   condition:
     - condition: and
       conditions:
@@ -37,66 +40,73 @@
           entity_id: input_boolean.vacation_mode
           state: "off"
   action:
-  - service: switch.turn_off
-    entity_id: 
-      - switch.guest_room_lamp
-      - switch.craft_room_table_lamp
-      - switch.den_curio_cabinet
-      - switch.master_bedroom_lamp
-  - service: light.turn_off
-    entity_id:
-      - light.watch_shop_lamp
-      - light.craft_room_floor_lamp
-      - light.entry_lamp
-      - light.den_table_lamp
-      - light.dining_armoire_leds
-  - service: input_boolean.turn_off
-    data:
+    - service: switch.turn_off
+      continue_on_error: true
       entity_id: 
-        - input_boolean.timer_lights
-        - input_boolean.manual_timer_lights
+        - switch.guest_room_lamp
+        - switch.craft_room_table_lamp
+        - switch.den_curio_cabinet
+        - switch.master_bedroom_lamp
+    - service: light.turn_off
+      continue_on_error: true
+      entity_id:
+        - light.watch_shop_lamp
+        - light.craft_room_floor_lamp
+        - light.entry_lamp
+        - light.den_table_lamp
+        - light.dining_armoire_leds
+    - service: input_boolean.turn_off
+      continue_on_error: true
+      data:
+        entity_id: 
+          - input_boolean.timer_lights
+          - input_boolean.manual_timer_lights
 
 - alias: Timer Lights On Outside
   id: f5639c10-7d8f-46fc-8a34-6cbcb6357acb
   trigger:
-  - platform: sun
-    event: sunset
-    offset: '-00:30:00'
+    - platform: sun
+      event: sunset
+      offset: '-00:30:00'
   action:
-  - service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.outside_timer_lights
-  - service: switch.turn_on
-    data:
-      entity_id: switch.outside_lights
+    - service: input_boolean.turn_on
+      continue_on_error: true
+      data:
+        entity_id: input_boolean.outside_timer_lights
+    - service: switch.turn_on
+      continue_on_error: true
+      data:
+        entity_id: switch.outside_lights
 
 - alias: Timer Lights Off Outside
   id: 9fa15f7d-6bd3-4cf4-9405-35a555974e6e
   trigger:
-  - platform: sun
-    event: sunrise
+    - platform: sun
+      event: sunrise
   action:
-  - service: input_boolean.turn_off
-    data:
-      entity_id: input_boolean.outside_timer_lights
-  - service: switch.turn_off
-    data:
-      entity_id: switch.outside_lights
+    - service: input_boolean.turn_off
+      continue_on_error: true
+      data:
+        entity_id: input_boolean.outside_timer_lights
+    - service: switch.turn_off
+      continue_on_error: true
+      data:
+        entity_id: switch.outside_lights
 
 - alias: Christmas Lights On
   id: 7b933f59-ee4c-45fe-a26c-c50aafb4a7bb
   trigger:
-  - platform: sun
-    event: sunset  
+    - platform: sun
+      event: sunset  
   action:
-  - service: switch.turn_on
-    entity_id: switch.christmas_outlets
+    - service: switch.turn_on
+      entity_id: switch.christmas_outlets
 
 - alias: Christmas Lights Off
   id: 87e03159-71a3-4978-9cee-5d0c65102900
   trigger:
-  - platform: time
-    at: '23:00:00'
+    - platform: time
+      at: '23:00:00'
   action:
-  - service: switch.turn_off
-    entity_id: switch.christmas_outlets
+    - service: switch.turn_off
+      entity_id: switch.christmas_outlets

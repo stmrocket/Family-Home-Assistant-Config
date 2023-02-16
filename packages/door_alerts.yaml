@@ -96,6 +96,7 @@ automation:
           entity_id: timer.front_door_dho
     action:
       - service: mqtt.publish
+        continue_on_error: true
         data:
           topic: parrot/command/set/play
           payload: 1,7
@@ -111,6 +112,7 @@ automation:
           entity_id: timer.back_door_dho
     action:
       - service: mqtt.publish
+        continue_on_error: true
         data:
           topic: parrot/command/set/play
           payload: 1,2
@@ -126,6 +128,7 @@ automation:
           entity_id: timer.garage_entry_dho
     action:
       - service: mqtt.publish
+        continue_on_error: true
         data:
           topic: parrot/command/set/play
           payload: 1,10
