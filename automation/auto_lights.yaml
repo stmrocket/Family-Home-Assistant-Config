@@ -46,11 +46,13 @@
       to: Violated
   action:
     - service: scene.create
+      continue_on_error: true
       data:
         scene_id: linen_closet_restore
         snapshot_entities:
           - light.back_hall_light
     - service: light.turn_on
+      continue_on_error: true
       entity_id: light.back_hall_light
 
 - alias: Auto Linen Closet Light Off
