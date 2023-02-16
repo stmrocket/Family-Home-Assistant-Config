@@ -1,4 +1,3 @@
-
 - alias: All Off Main
   id: a29b6284-c1cf-4b82-935c-9b4d2fa224c1
   trigger:
@@ -20,6 +19,7 @@
         state: armed_night        
   action:
     - service: light.turn_off
+      continue_on_error: true
       entity_id:
         - light.back_porch_light
         - light.back_hall_light
@@ -33,6 +33,7 @@
         - light.master_toilet_light
         - light.front_hall_light
     - service: switch.turn_off
+      continue_on_error: true
       entity_id:
         - switch.back_yard_lights
         - switch.back_porch_fan
@@ -60,12 +61,14 @@
           state: 'off'
         sequence:
           - service: switch.turn_off
+            continue_on_error: true
             entity_id: 
               - switch.guest_room_lamp
               - switch.craft_room_table_lamp
               - switch.den_curio_cabinet
               - switch.master_bedroom_lamp
           - service: light.turn_off
+            continue_on_error: true
             entity_id:
               - light.watch_shop_lamp
               - light.craft_room_floor_lamp
@@ -79,6 +82,7 @@
           state: 'off'
         sequence:
           - service: switch.turn_off
+            continue_on_error: true
             data:
               entity_id: switch.outside_lights
     - choose: # When armed away
@@ -88,12 +92,14 @@
           state: armed_away
         sequence:
           - service: light.turn_off
+            continue_on_error: true
             entity_id:
               - light.guest_room_light
               - light.guest_bath_light
               - light.master_bedroom_light
               - light.master_bathroom_lights
           - service: switch.turn_off
+            continue_on_error: true
             entity_id:
               - switch.guest_room_fan
               - switch.guest_bath_fan
@@ -106,10 +112,12 @@
           state: armed_night
         sequence:
           - service: switch.turn_off
+            continue_on_error: true
             entity_id: 
               - switch.craft_room_table_lamp
               - switch.den_curio_cabinet
           - service: light.turn_off
+            continue_on_error: true
             entity_id:
               - light.watch_shop_lamp
               - light.craft_room_floor_lamp
@@ -117,6 +125,7 @@
               - light.den_table_lamp
               - light.dining_armoire_leds
           - service: input_boolean.turn_off
+            continue_on_error: true
             data:
               entity_id: 
                 - input_boolean.timer_lights
@@ -131,10 +140,12 @@
           state: "off"
         sequence:
           - service: light.turn_off
+            continue_on_error: true
             entity_id:
               - light.guest_room_light
               - light.guest_bath_light
           - service: switch.turn_off
+            continue_on_error: true
             entity_id:
               - switch.guest_room_lamp
               - switch.guest_room_fan
