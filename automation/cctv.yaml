@@ -10,14 +10,17 @@
       state: 'on'
   action:
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.back_porch
         filename: /config/www/cctv/back_porch_full.jpg
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.back_porch_last_person
         filename: /config/www/cctv/back_porch_person.jpg
     - service: notify.cctv_email
+      continue_on_error: true
       data:
         title: "CCTV Alarm: Back Porch - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
         message: "A person was detected on the back porch camera at {{now().strftime('%H:%M:%S') }}."
@@ -38,14 +41,17 @@
       state: 'on'
   action:
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.front_porch
         filename: /config/www/cctv/front_porch_full.jpg
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.front_porch_last_person
         filename: /config/www/cctv/front_porch_person.jpg
     - service: notify.cctv_email
+      continue_on_error: true
       data:
         title: "CCTV Alarm: Front Porch - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
         message: "A person was detected on the front porch camera at {{now().strftime('%H:%M:%S') }}."
@@ -66,14 +72,17 @@
       state: 'on'
   action:
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.driveway
         filename: /config/www/cctv/driveway_full.jpg
     - service: camera.snapshot
+      continue_on_error: true
       data:
         entity_id: camera.driveway_last_person
         filename: /config/www/cctv/driveway_person.jpg
     - service: notify.cctv_email
+      continue_on_error: true
       data:
         title: "CCTV Alarm: Driveway - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
         message: "A person was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}."

@@ -5,6 +5,7 @@
       minutes: "/15"
   action:
     - service: homeassistant.update_entity
+      continue_on_error: true
       entity_id:
         - sensor.automation_count
         - sensor.binary_sensor_count
