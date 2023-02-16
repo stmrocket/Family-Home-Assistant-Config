@@ -72,6 +72,7 @@ automation:
         state: "on"
     action:
       - service: light.turn_off
+        continue_on_error: true
         entity_id:
           - light.back_porch_light
           - light.back_hall_light
@@ -87,6 +88,7 @@ automation:
           - light.master_shower_light
           - light.master_toilet_light
       - service: switch.turn_off
+        continue_on_error: true
         entity_id:
           - switch.back_yard_lights
           - switch.kitchen_lights

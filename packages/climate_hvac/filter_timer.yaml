@@ -7,10 +7,12 @@ automation:
         at: "00:00:01"
     action:
       - service: homeassistant.update_entity
+        continue_on_error: true
         entity_id:
           - sensor.hvac_runtime_yesterday
           - sensor.hvac_runtime_today
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.hvac_runtime
         data_template:
           value: "{{ ((states('sensor.furnace_filter_life') | float(none)) + (states('sensor.hvac_runtime_yesterday') | float(none))) | round(1, default=none) }}"
@@ -180,26 +182,32 @@ script:
     alias: Furnace filter change date
     sequence:
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.furnace_filter
         data_template:
           value: "{{ now() }}"
       - service: homeassistant.update_entity
+        continue_on_error: true
         entity_id: sensor.hvac_runtime_before_last_filter_change
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.hvac_runtime
         data_template:
           value: >
             {% set active = (states('sensor.hvac_runtime_before_last_filter_change') | float(none)) %}
             {{ 0 - active }}
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.beginning_filter_dp
         data:
           value: 0
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.maximum_filter_dp
         data:
           value: 0
       - service: input_boolean.turn_on
+        continue_on_error: true
         entity_id: input_boolean.record_beginning_dp
 
   furnace_bleach_date:

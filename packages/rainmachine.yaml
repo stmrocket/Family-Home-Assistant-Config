@@ -113,28 +113,34 @@ script:
   rainmachine_program_1_on:
     sequence:
       - service: switch.turn_off
+        continue_on_error: true
         entity_id: 
           - switch.rm_every_2_days_enabled
           - switch.rm_twice_weekly_enabled
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.rm_every_3_days_enabled
 
   rainmachine_program_2_on:
     sequence:
       - service: switch.turn_off
+        continue_on_error: true
         entity_id: 
           - switch.rm_every_3_days_enabled
           - switch.rm_twice_weekly_enabled
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.rm_every_2_days_enabled
 
   rainmachine_program_restriction_on:
     sequence:
       - service: switch.turn_off
+        continue_on_error: true
         entity_id: 
           - switch.rm_every_2_days_enabled
           - switch.rm_every_3_days_enabled
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.rm_twice_weekly_enabled
 
   rainmachine_start_program:
@@ -146,6 +152,7 @@ script:
                 state: "on"
             sequence:
               - service: rainmachine.start_program
+                continue_on_error: true
                 data:
                   entity_id: switch.rm_every_3_days
           - conditions:
@@ -154,6 +161,7 @@ script:
                 state: "on"
             sequence:
               - service: rainmachine.start_program
+                continue_on_error: true
                 data:
                   entity_id: switch.rm_every_2_days
           - conditions:
@@ -162,6 +170,7 @@ script:
                 state: "on"
             sequence:
               - service: rainmachine.start_program
+                continue_on_error: true
                 data:
                   entity_id: switch.rm_twice_weekly
 
@@ -174,10 +183,12 @@ script:
                 state: "off"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: 
                   - switch.rm_every_2_days_enabled
                   - switch.rm_twice_weekly_enabled
               - service: switch.turn_on
+                continue_on_error: true
                 entity_id: switch.rm_every_3_days_enabled
           - conditions:
               - condition: state
@@ -185,6 +196,7 @@ script:
                 state: "on"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: switch.rm_every_3_days_enabled
 
   rainmachine_program_2_tap:
@@ -196,10 +208,12 @@ script:
                 state: "off"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: 
                   - switch.rm_every_3_days_enabled
                   - switch.rm_twice_weekly_enabled
               - service: switch.turn_on
+                continue_on_error: true
                 entity_id: switch.rm_every_2_days_enabled
           - conditions:
               - condition: state
@@ -207,6 +221,7 @@ script:
                 state: "on"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: switch.rm_every_2_days_enabled
 
   rainmachine_program_restriction_tap:
@@ -218,10 +233,12 @@ script:
                 state: "off"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: 
                   - switch.rm_every_3_days_enabled
                   - switch.rm_every_2_days_enabled
               - service: switch.turn_on
+                continue_on_error: true
                 entity_id: switch.rm_twice_weekly_enabled
           - conditions:
               - condition: state
@@ -229,4 +246,5 @@ script:
                 state: "on"
             sequence:
               - service: switch.turn_off
+                continue_on_error: true
                 entity_id: switch.rm_twice_weekly_enabled

@@ -786,48 +786,57 @@ automation:
             value_template: "{{ ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) > 0) and ((states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) < 38) and is_state('input_boolean.rain_enabled', 'on') }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_minute
               data_template:
                 value: "{{ states('input_number.rain_minute') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_hour
               data_template:
                 value: "{{ states('input_number.rain_hour') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_day
               data_template:
                 value: "{{ states('input_number.rain_day') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_week
               data_template:
                 value: "{{ states('input_number.rain_week') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_month
               data_template:
                 value: "{{ states('input_number.rain_month') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_year
               data_template:
                 value: "{{ states('input_number.rain_year') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.rain_total
               data_template:
                 value: "{{ states('input_number.rain_total') | float(none) + (states('sensor.acurite_cumulative_rain') | float(none) - states('input_number.last_rain_report') | float(none)) }}"
               
 
             - service: input_number.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   input_number.rain_month_{{ now().month }}
                 value: "{{ states('input_number.rain_month') | float(none) }}"
 
             - service: input_number.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   {% if  now().minute < 10 -%}
@@ -838,14 +847,17 @@ automation:
                 value: "{{ ((states('input_number.rain_minute') | float(none)) / 25.4) | round(2, default=none) }}"
 
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.last_rain
               data_template:
                 value: "{{ now() }}"
 
             - service: input_boolean.turn_on
+              continue_on_error: true
               entity_id: input_boolean.is_raining
 
             - service: timer.start
+              continue_on_error: true
               entity_id: timer.rainfall
 
       - service: input_number.set_value
@@ -861,6 +873,7 @@ automation:
         seconds: "0"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         data_template:
           entity_id: >
             {% if now().minute == 0 -%}
@@ -872,10 +885,12 @@ automation:
             {% endif -%}
           value: "{{ states('sensor.rain_minute') }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_minute
         data_template:
           value: "{{ states('input_number.rain_minute') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_minute
         data:
           value: 0
@@ -889,10 +904,12 @@ automation:
         seconds: "0"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_hour
         data_template:
           value: "{{ states('input_number.rain_hour') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_hour
         data:
           value: 0
@@ -904,10 +921,12 @@ automation:
         at: "00:00:00"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_day
         data_template:
           value: "{{ states('input_number.rain_day') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_day
         data:
           value: 0
@@ -922,10 +941,12 @@ automation:
         value_template: "{{ now().weekday() == 0 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_week
         data_template:
           value: "{{ states('input_number.rain_week') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_week
         data:
           value: 0
@@ -940,10 +961,12 @@ automation:
         value_template: "{{ now().day == 1 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month
         data_template:
           value: "{{ states('input_number.rain_month') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_month
         data:
           value: 0
@@ -960,58 +983,72 @@ automation:
         value_template: "{{ now().day == 1 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_year
         data_template:
           value: "{{ states('input_number.rain_year') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_1
         data_template:
           value: "{{ states('input_number.rain_month_1') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_2
         data_template:
           value: "{{ states('input_number.rain_month_2') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_3
         data_template:
           value: "{{ states('input_number.rain_month_3') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_4
         data_template:
           value: "{{ states('input_number.rain_month_4') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_5
         data_template:
           value: "{{ states('input_number.rain_month_5') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_6
         data_template:
           value: "{{ states('input_number.rain_month_6') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_7
         data_template:
           value: "{{ states('input_number.rain_month_7') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_8
         data_template:
           value: "{{ states('input_number.rain_month_8') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_9
         data_template:
           value: "{{ states('input_number.rain_month_9') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_10
         data_template:
           value: "{{ states('input_number.rain_month_10') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_11
         data_template:
           value: "{{ states('input_number.rain_month_11') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.rain_last_month_12
         data_template:
           value: "{{ states('input_number.rain_month_12') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: 
           - input_number.rain_year
           - input_number.rain_month_1
@@ -1051,8 +1088,10 @@ automation:
         platform: event
     action:
       - service: input_boolean.turn_off
+        continue_on_error: true
         entity_id: input_boolean.is_raining
       - service: browser_mod.toast
+        continue_on_error: true
         data:
           message: "It has stopped raining."
           duration: 3000

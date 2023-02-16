@@ -811,10 +811,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) > states('input_number.temp_high_overall') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_high_overall
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_high_date_overall
               data_template:
                 value: "{{ now() }}"
@@ -824,10 +826,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) < states('input_number.temp_low_overall') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_low_overall
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_low_date_overall
               data_template:
                 value: "{{ now() }}"
@@ -837,10 +841,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) > states('input_number.temp_high_day') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_high_day
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_high_date_day
               data_template:
                 value: "{{ now() }}"
@@ -850,10 +856,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) < states('input_number.temp_low_day') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_low_day
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_low_date_day
               data_template:
                 value: "{{ now() }}"
@@ -863,10 +871,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) > states('input_number.temp_high_week') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_high_week
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_high_date_week
               data_template:
                 value: "{{ now() }}"
@@ -876,10 +886,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) < states('input_number.temp_low_week') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_low_week
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_low_date_week
               data_template:
                 value: "{{ now() }}"
@@ -889,19 +901,23 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) > states('input_number.temp_high_month') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_high_month
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_number.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   input_number.temp_high_month_{{ now().month }}
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_high_date_month
               data_template:
                 value: "{{ now() }}"
             - service: input_text.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   input_text.temp_high_date_month_{{ now().month }}
@@ -912,19 +928,23 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) < states('input_number.temp_low_month') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_low_month
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_number.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   input_number.temp_low_month_{{ now().month }}
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_low_date_month
               data_template:
                 value: "{{ now() }}"
             - service: input_text.set_value
+              continue_on_error: true
               data_template:
                 entity_id: >
                   input_text.temp_low_date_month_{{ now().month }}
@@ -935,10 +955,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) > states('input_number.temp_high_year') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_high_year
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_high_date_year
               data_template:
                 value: "{{ now() }}"
@@ -948,10 +970,12 @@ automation:
             value_template: "{{ states('sensor.acurite_outside_temperature') | float(none) < states('input_number.temp_low_year') | float(none) }}"
           sequence:
             - service: input_number.set_value
+              continue_on_error: true
               entity_id: input_number.temp_low_year
               data_template:
                 value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
             - service: input_text.set_value
+              continue_on_error: true
               entity_id: input_text.temp_low_date_year
               data_template:
                 value: "{{ now() }}"
@@ -963,34 +987,42 @@ automation:
         at: "00:00:00"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_last_day
         data_template:
           value: "{{ states('input_number.temp_high_day') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_last_day
         data_template:
           value: "{{ states('input_number.temp_low_day') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_day
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_day
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_last_day
         data_template:
           value: "{{ states('input_text.temp_high_date_day') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_last_day
         data_template:
           value: "{{ states('input_text.temp_low_date_day') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_day
         data_template:
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_day
         data_template:
           value: "{{ now() }}"
@@ -1005,34 +1037,42 @@ automation:
         value_template: "{{ now().weekday() == 0 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_last_week
         data_template:
           value: "{{ states('input_number.temp_high_week') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_last_week
         data_template:
           value: "{{ states('input_number.temp_low_week') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_week
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_week
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_last_week
         data_template:
           value: "{{ states('input_text.temp_high_date_week') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_last_week
         data_template:
           value: "{{ states('input_text.temp_low_date_week') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_week
         data_template:
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_week
         data_template:
           value: "{{ now() }}"
@@ -1047,53 +1087,65 @@ automation:
         value_template: "{{ now().day == 1 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_last_month
         data_template:
           value: "{{ states('input_number.temp_high_month') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_last_month
         data_template:
           value: "{{ states('input_number.temp_low_month') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_month
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_month
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_last_month
         data_template:
           value: "{{ states('input_text.temp_high_date_month') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_last_month
         data_template:
           value: "{{ states('input_text.temp_low_date_month') | string(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         data_template:
           entity_id: >
             input_number.temp_high_month_{{ now().month }}
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         data_template:
           entity_id: >
             input_number.temp_low_month_{{ now().month }}
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_month
         data_template:
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_month
         data_template:
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         data_template:
           entity_id: >
             input_text.temp_high_date_month_{{ now().month }}
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         data_template:
           entity_id: >
             input_text.temp_low_date_month_{{ now().month }}
@@ -1111,34 +1163,42 @@ automation:
         value_template: "{{ now().day == 1 }}"
     action:
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_last_year
         data_template:
           value: "{{ states('input_number.temp_high_year') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_last_year
         data_template:
           value: "{{ states('input_number.temp_low_year') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_high_year
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_number.set_value
+        continue_on_error: true
         entity_id: input_number.temp_low_year
         data_template:
           value: "{{ states('sensor.acurite_outside_temperature') | float(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_last_year
         data_template:
           value: "{{ states('input_text.temp_high_date_year') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_last_year
         data_template:
           value: "{{ states('input_text.temp_low_date_year') | string(none) }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_high_date_year
         data_template:
           value: "{{ now() }}"
       - service: input_text.set_value
+        continue_on_error: true
         entity_id: input_text.temp_low_date_year
         data_template:
           value: "{{ now() }}"

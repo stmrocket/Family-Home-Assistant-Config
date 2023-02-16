@@ -2,6 +2,7 @@ script:
   tablets_on:
     sequence:
       - service: light.turn_on
+        continue_on_error: true
         entity_id:
           - light.craft_tablet_screen
           - light.den_tablet_screen
@@ -11,6 +12,7 @@ script:
   tablets_off:
     sequence:
       - service: light.turn_off
+        continue_on_error: true
         entity_id:
           - light.craft_tablet_screen
           - light.den_tablet_screen
@@ -20,6 +22,7 @@ script:
   tablets_reload:
     sequence:
       - service: button.press
+        continue_on_error: true
         entity_id:
           - button.craft_tablet_load_start_url
           - button.den_tablet_load_start_url
@@ -29,6 +32,7 @@ script:
   tablets_restart:
     sequence:
       - service: button.press
+        continue_on_error: true
         entity_id:
           - button.craft_tablet_reboot_device
           - button.den_tablet_reboot_device

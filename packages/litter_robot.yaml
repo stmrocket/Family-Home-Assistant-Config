@@ -178,14 +178,18 @@ script:
   litter_robot_empty:
     sequence:
       - service: input_number.set_value
+        continue_on_error: true
         data_template:
           entity_id: input_number.litter_robot_cycle_count
           value: "{{ states('input_number.litter_robot_cycle_count') | int(none) + states('counter.litter_robot_cycle_count') | int(none) }}"
       - service: input_number.increment
+        continue_on_error: true
         entity_id: input_number.litter_robot_empty_count
       - service: counter.reset
+        continue_on_error: true
         entity_id: counter.litter_robot_cycle_count
       - service: mqtt.publish
+        continue_on_error: true
         data_template:
           topic: "pooper/command/empty"
           payload: "{{ states('sensor.litter_robot_average_cycle_capacity') }}"
