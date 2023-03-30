@@ -1,0 +1,43 @@
+input_boolean:
+  watch_cleaner_run:
+    name: Watch Cleaner Running
+    initial: off
+    icon: mdi:play-circle
+automation:
+
+  - alias: Watch Cleaner Running
+    id: 2c938a1e-7fa5-47ae-a655-ae72b599513d
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.watch_cleaner_energy_power
+        above: 100
+        for:
+          seconds: 2
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.watch_cleaner_run
+
+  - alias: Watch Cleaner Idle
+    id: a81e9a45-24ed-4826-be24-47c0f7166503
+    trigger:
+      - platform: numeric_state
+        entity_id: sensor.watch_cleaner_energy_power
+        below: 5
+        for:
+          seconds: 5
+    condition:
+      - condition: state
+        entity_id: sensor.watch_cleaner_energy_power
+        state: "on"
+    action:
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.watch_cleaner_run
+      - service: notify.alexa_media
+        data:
+          message: "The watch cleaner has stopped."
+          data:
+            type: announce
+            method: all
+          target:
+            - media_player.alexa_watch
+            - media_player.alexa_kitchen
