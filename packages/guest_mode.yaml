@@ -1,3 +1,9 @@
+input_boolean:
+  guest_phone_connected:
+    name: Guest Room Phone Connected
+    initial: off
+    icon: mdi:power-socket
+
 # Sensors
 mqtt:
   sensor:
@@ -132,7 +138,9 @@ automation:
         state: "off"
     action:
       - service: input_boolean.turn_on
-        entity_id: input_boolean.guest_mode
+        entity_id: 
+          - input_boolean.guest_mode
+          - input_boolean.guest_phone_connected
 
   - alias: Guest Mode Off from Charger
     id: ec212bad-7e87-4560-82f9-148ca9020175
@@ -145,6 +153,9 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.guest_mode
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.guest_phone_connected
         state: "on"
     action:
       - service: input_boolean.turn_off
