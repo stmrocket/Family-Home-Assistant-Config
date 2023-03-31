@@ -3,6 +3,7 @@ input_boolean:
     name: Watch Cleaner Running
     initial: off
     icon: mdi:play-circle
+
 automation:
 
   - alias: Watch Cleaner Running
