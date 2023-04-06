@@ -28,7 +28,7 @@ automation:
           seconds: 5
     condition:
       - condition: state
-        entity_id: sensor.watch_cleaner_energy_power
+        entity_id: input_boolean.watch_cleaner_run
         state: "on"
     action:
       - service: input_boolean.turn_off
