@@ -1,7 +1,6 @@
 input_boolean:
   watch_cleaner_run:
     name: Watch Cleaner Running
-    initial: off
     icon: mdi:play-circle
 
 automation:
