@@ -16,6 +16,8 @@ input_boolean:
   hvac_geofence:
     name: In HVAC Geofence
     icon: mdi:crosshairs-gps
+  hvac_guest_mode:
+    name: HVAC Change in Gueat Mode
 
 #################################################################
 #                                                               #
@@ -118,3 +120,167 @@ sensor:
     type: time
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
+
+automation:
+  - alias: HVAC Night
+    id: ddd83345-0437-4afd-b1d7-5df3b1f41b05
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: disarmed
+        to: armed_night
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_home
+        to: armed_night
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat
+          target_temp_high: 75
+          target_temp_low: 62
+      - service: input_boolean.turn_off
+        entity_id: hvac_guest_mode
+
+  - alias: HVAC When Home
+    id: a290c27e-bc4a-4e40-876f-4dd7662593e9
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_night
+        to: disarmed
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_away
+        to: disarmed
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: pending
+        to: disarmed
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat
+          target_temp_high: 78
+          target_temp_low: 69
+      - service: input_boolean.turn_off
+        entity_id: hvac_guest_mode
+
+  - alias: HVAC When Waking Up With Guests
+    id: ed9cb387-b984-47e6-bd31-fcfda7f36ace
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_night
+        to: armed_home
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: "on"
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.hvac_guest_mode
+
+  - alias: HVAC When Waking Up Without Guests
+    id: 6cb3c69b-2e7d-4bcf-9e36-10bef104197a
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_night
+        to: armed_home
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: "off"
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat
+          target_temp_high: 78
+          target_temp_low: 69
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.hvac_guest_mode
+
+  - alias: HVAC When Exiting Guest Mode or Awake
+    id: a290c27e-bc4a-4e40-876f-4dd7662593e9
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        from: armed_home
+        to: disarmed
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.hvac_guest_mode
+        state: "on"
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat
+          target_temp_high: 78
+          target_temp_low: 69
+      - service: input_boolean.turn_off
+        entity_id: hvac_guest_mode
+
+  - alias: HVAC When Away
+    id: bd12cdfd-77bc-41d3-aa19-562b9115993f
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        to: armed_away
+    action:
+      - service: climate.set_temperature
+        data:
+          entity_id: climate.thermostat
+          target_temp_high: 82
+          target_temp_low: 62
+      - service: input_boolean.turn_off
+        entity_id: hvac_guest_mode
+
+  - alias: HVAC Off When Back Door Open
+    id: 05dfec06-a230-4874-88bb-4bac4d1fdfc5
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_back_door
+        to: Violated
+        for:
+          minutes: 5
+    action:
+      - service: climate.set_hvac_mode
+        continue_on_error: true
+        data:
+          hvac_mode: 'off'
+        target:
+          entity_id: climate.thermostat
+      - service: switch.turn_off
+        continue_on_error: true
+        entity_id: switch.den_fan
+
+  - alias: HVAC On When Back Door Closed
+    id: 8f9c905f-b015-4371-a286-beb6061317ae
+    trigger:
+      - platform: state
+        entity_id: sensor.elk_back_door
+        to: Normal
+    condition:
+      - condition: state
+        entity_id: climate.thermostat
+        state: 'off'
+    action:
+      - service: climate.set_hvac_mode
+        data:
+          hvac_mode: 'auto'
+        target:
+          entity_id: climate.thermostat    
