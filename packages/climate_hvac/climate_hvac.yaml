@@ -212,7 +212,7 @@ automation:
         entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Exiting Guest Mode or Awake
-    id: a290c27e-bc4a-4e40-876f-4dd7662593e9
+    id: 4265ec19-8060-4e9d-aae7-faef6a4b9843
     trigger:
       - platform: state
         entity_id: alarm_control_panel.house
