@@ -123,7 +123,7 @@ sensor:
 
 automation:
   - alias: HVAC Night
-    id: ddd83345-0437-4afd-b1d7-5df3b1f41b05
+    id: c8f44bcc-f9bc-4cd2-b9ba-f7a5810ec029
     trigger:
       - platform: state
         entity_id: alarm_control_panel.house
@@ -143,7 +143,7 @@ automation:
         entity_id: hvac_guest_mode
 
   - alias: HVAC When Home
-    id: a290c27e-bc4a-4e40-876f-4dd7662593e9
+    id: b04a4cf4-5a5f-4af2-a473-d691fba74a23
     trigger:
       - platform: state
         entity_id: alarm_control_panel.house
@@ -212,7 +212,7 @@ automation:
         entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Exiting Guest Mode or Awake
-    id: 4265ec19-8060-4e9d-aae7-faef6a4b9843
+    id: 0ddca4f7-a1da-4093-bef1-09ea361bd5e6
     trigger:
       - platform: state
         entity_id: alarm_control_panel.house
@@ -235,7 +235,7 @@ automation:
         entity_id: hvac_guest_mode
 
   - alias: HVAC When Away
-    id: bd12cdfd-77bc-41d3-aa19-562b9115993f
+    id: 9e746040-d9f1-4756-8359-f4256906e67d
     trigger:
       - platform: state
         entity_id: alarm_control_panel.house
