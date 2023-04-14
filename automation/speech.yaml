@@ -172,6 +172,17 @@
       data:
         topic: parrot/command/set/play
         payload: 4,1
+    - service: browser_mod.popup
+      data:  
+        auto_close: true
+        timeout: 30000
+        content:
+          type: horizontal-stack
+          cards:
+            - type: picture-entity
+              show_state: false
+              show_name: false        
+              entity: camera.front_porch
 
 - alias: Disable Speech at Night if Dad Home
   id: a2eaf102-55ee-4ed9-9893-a4cc4e9c4764
