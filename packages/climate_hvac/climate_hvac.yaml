@@ -140,7 +140,7 @@ automation:
           target_temp_high: 75
           target_temp_low: 62
       - service: input_boolean.turn_off
-        entity_id: hvac_guest_mode
+        entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Home
     id: b04a4cf4-5a5f-4af2-a473-d691fba74a23
@@ -168,7 +168,7 @@ automation:
           target_temp_high: 78
           target_temp_low: 69
       - service: input_boolean.turn_off
-        entity_id: hvac_guest_mode
+        entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Waking Up With Guests
     id: ed9cb387-b984-47e6-bd31-fcfda7f36ace
@@ -232,7 +232,7 @@ automation:
           target_temp_high: 78
           target_temp_low: 69
       - service: input_boolean.turn_off
-        entity_id: hvac_guest_mode
+        entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Away
     id: 9e746040-d9f1-4756-8359-f4256906e67d
@@ -247,7 +247,7 @@ automation:
           target_temp_high: 82
           target_temp_low: 62
       - service: input_boolean.turn_off
-        entity_id: hvac_guest_mode
+        entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC Off When Back Door Open
     id: 05dfec06-a230-4874-88bb-4bac4d1fdfc5
