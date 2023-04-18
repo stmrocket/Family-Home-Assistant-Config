@@ -143,3 +143,364 @@ notify:
     recipient:
       - !secret karen_email
     sender_name: Home Assistant  
+
+automation:
+  - alias: CCTV Back Porch Person Detected
+    id: 641facf2-d96b-4b21-bcf6-807d7241e7bc
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_porch_person_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_porch
+          filename: /config/www/cctv/back_porch_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_porch_person
+          filename: /config/www/cctv/back_porch_person.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Back Porch - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A person was detected on the back porch camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/back_porch_person.jpg
+              - /config/www/cctv/back_porch_full.jpg                    
+
+  - alias: CCTV Front Porch Person Detected
+    id: 4e8fd441-c425-4ace-83f1-93bed955805a
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_porch_person_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.front_porch
+          filename: /config/www/cctv/front_porch_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.front_porch_person
+          filename: /config/www/cctv/front_porch_person.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Front Porch - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A person was detected on the front porch camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/front_porch_person.jpg
+              - /config/www/cctv/front_porch_full.jpg                        
+
+  - alias: CCTV Back Yard Person Detected
+    id: 46d20618-fd93-4e74-81ae-23ba2e04e684
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_yard_person_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_yard
+          filename: /config/www/cctv/back_yard_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_yard_person
+          filename: /config/www/cctv/back_yard_person.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Back Yard - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A person was detected on the back yard camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/back_yard_person.jpg
+              - /config/www/cctv/back_yard_full.jpg                       
+
+  - alias: CCTV Driveway Person Detected
+    id: 767fe3ac-cc69-4418-a916-4072ab2c32c7
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.driveway_person
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.driveway
+          filename: /config/www/cctv/driveway_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.driveway_last_person
+          filename: /config/www/cctv/driveway_person.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Driveway - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A person was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/driveway_person.jpg
+              - /config/www/cctv/driveway_full.jpg                
+
+  - alias: CCTV Garage Person Detected
+    id: f3885461-01df-439f-9e12-ddf9fcbac3ef
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_person_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.garage
+          filename: /config/www/cctv/garage_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.garage_person
+          filename: /config/www/cctv/garage_person.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Garage - Person Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A person was detected on the garage camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/garage_person.jpg
+              - /config/www/cctv/garage_full.jpg
+
+              
+  - alias: CCTV Back Porch Cat Detected
+    id: 3d79e5dc-47da-44dd-9fc0-8d5dd6f26c7b
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_porch_cat_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_porch
+          filename: /config/www/cctv/back_porch_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_porch_cat
+          filename: /config/www/cctv/back_porch_cat.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Back Porch - Cat Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A cat was detected on the back porch camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/back_porch_cat.jpg
+              - /config/www/cctv/back_porch_full.jpg                    
+
+  - alias: CCTV Front Porch Cat Detected
+    id: 9861d2dc-4c3f-49ec-8fd7-5e2c336ade4e
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.front_porch_cat_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.front_porch
+          filename: /config/www/cctv/front_porch_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.front_porch_cat
+          filename: /config/www/cctv/front_porch_cat.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Front Porch - Cat Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A cat was detected on the front porch camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/front_porch_cat.jpg
+              - /config/www/cctv/front_porch_full.jpg                        
+
+  - alias: CCTV Back Yard Cat Detected
+    id: 0d8f045d-fd20-44c4-8530-155a59bc1027
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.back_yard_cat_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_yard
+          filename: /config/www/cctv/back_yard_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.back_yard_cat
+          filename: /config/www/cctv/back_yard_cat.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Back Yard - Cat Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A cat was detected on the back yard camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/back_yard_cat.jpg
+              - /config/www/cctv/back_yard_full.jpg                       
+
+  - alias: CCTV Driveway Cat Detected
+    id: 1aa29b35-1717-4d9d-82ce-8c86296d8e00
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.driveway_cat
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.driveway
+          filename: /config/www/cctv/driveway_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.driveway_last_cat
+          filename: /config/www/cctv/driveway_cat.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Driveway - Cat Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A cat was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/driveway_cat.jpg
+              - /config/www/cctv/driveway_full.jpg                
+
+  - alias: CCTV Garage Cat Detected
+    id: 5f0435d8-e26e-423d-b8b6-2c4779f0d6fc
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.garage_cat_occupancy
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'on'
+    action:
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.garage
+          filename: /config/www/cctv/garage_full.jpg
+      - service: camera.snapshot
+        continue_on_error: true
+        data:
+          entity_id: camera.garage_cat
+          filename: /config/www/cctv/garage_cat.jpg
+      - service: notify.cctv_email
+        continue_on_error: true
+        data:
+          title: "CCTV Alarm: Garage - Cat Detected {{now().strftime('%Y-%m-%d %H:%M:%S') }}"
+          message: "A cat was detected on the garage camera at {{now().strftime('%H:%M:%S') }}."
+          data: 
+            images:
+              - /config/www/cctv/garage_cat.jpg
+              - /config/www/cctv/garage_full.jpg
+
+  - alias: Start Reset Timer When Frigate Disabled
+    id: bcc9dc5d-53ec-4636-95c1-87ca54871508
+    trigger:
+      - platform: state
+        entity_id: input_boolean.frigate_enabled
+        to: 'off'
+    action:
+      - service: timer.start
+        data_template:
+          entity_id: timer.frigate_disable
+          duration: "{{ states('input_number.frigate_disable_time') | int * 3600}}"
+
+  - alias: Restart Frigate When Restart Timer Expires
+    id: 5fbef51f-fe90-44a9-ac8c-33a3b8d0294a
+    trigger:
+      - event_data:
+          entity_id: timer.frigate_disable
+        event_type: timer.finished
+        platform: event
+    condition:
+      - condition: state
+        entity_id: input_boolean.frigate_enabled
+        state: 'off'
+    action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.frigate_enabled
+
+  - alias: Cancel Frigate Timer if Frigate Manually Enabled
+    id: fd0a5cbc-0e50-4563-8abf-60b5613380fb
+    trigger:
+      - platform: state
+        entity_id: input_boolean.frigate_enabled
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: timer.frigate_disable
+        state: 'active'
+    action:
+      - service: timer.cancel
+        entity_id: timer.frigate_disable
+
+  - alias: Clean Up Temporary Camera Images
+    id: 42487410-b73b-45a5-a877-513ee4f8d6be
+    trigger:
+      - platform: time
+        at: '00:00:00'
+    action:
+      - service: shell_command.clear_temp_images
