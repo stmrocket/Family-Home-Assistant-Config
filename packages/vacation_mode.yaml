@@ -302,3 +302,28 @@ sensor:
     start: >
       {{ as_timestamp(now(), none) - (7*86400) }}
     duration: 00:00:30
+
+script:
+  timer_lights_off:
+    sequence:
+      - service: switch.turn_off
+        continue_on_error: true
+        entity_id: 
+          - switch.guest_room_lamp
+          - switch.craft_room_table_lamp
+          - switch.den_curio_cabinet
+          - switch.master_bedroom_lamp
+      - service: light.turn_off
+        continue_on_error: true
+        entity_id:
+          - light.watch_shop_lamp
+          - light.craft_room_floor_lamp
+          - light.entry_lamp
+          - light.den_table_lamp
+          - light.dining_armoire_leds
+      - service: input_boolean.turn_off
+        continue_on_error: true
+        data:
+          entity_id: 
+            - input_boolean.timer_lights
+            - input_boolean.manual_timer_lights
