@@ -98,6 +98,8 @@ automation:
           - switch.den_lights
           - switch.foyer_lights
           - switch.drop_zone_light
+      - service: script.turn_on
+        entity_id: script.timer_lights_off
 
 input_boolean:
   vacation_mode:
