@@ -18,25 +18,25 @@ cards:
 #                                                               #
 #################################################################
 
-      - type: vertical-stack
-        cards:
-          - !include /config/lovelace/cards/weather.yaml  
+  - type: vertical-stack
+    cards:
+      - !include /config/lovelace/cards/weather.yaml  
 
 #################################################################
 #                                                               #
 #                        Home - CCTV                            #
 #                                                               #
 ################################################################# 
-          - type: glance
-            columns: 4
-            show_name: true
-            show_state: false
-            entities:
-                - entity: camera.front_porch
-                - entity: camera.driveway
-                - entity: camera.back_porch
-                - entity: camera.back_yard
-          - type: 'custom:gap-card'
+      - type: glance
+        columns: 4
+        show_name: true
+        show_state: false
+        entities:
+            - entity: camera.front_porch
+            - entity: camera.driveway
+            - entity: camera.back_porch
+            - entity: camera.back_yard
+      - type: 'custom:gap-card'
             
 
 #################################################################
@@ -44,427 +44,429 @@ cards:
 #                         Home - Media                          #
 #                                                               #
 ################################################################# 
-      - type: vertical-stack
-        cards:  
-        - type: 'custom:mm2-clock-card'
-          timezone: America/Chicago
-          displaySeconds: false
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: sensor.litter_robot_status_short
-              color_type: icon
-              icon: mdi:cat
-              state:
-                - value: "Ready"
-                  color: rgb(255, 255, 255)
-                  name: '[[[ return `Ready - ${states[''sensor.litter_robot_drawer_level''].state}%` ]]]'
-                - value: "Clean"
-                  color: rgb(255, 255, 255)
-                  name: Clean
-                - value: "Drawer 2"
-                  color: rgb(255, 255, 255)
-                  name: Drawer 2
-                - value: "Drawer 1"
-                  color: rgb(255, 255, 255)
-                  name: Drawer 1
-                - value: "Sensor"
-                  color: rgb(228, 94, 101)
-                  name: Sensor
-                - value: "Timing"
-                  color: rgb(255, 255, 255)
-                  name: Timing
-                - value: "Bonnet"
-                  color: rgb(228, 94, 101)
-                  name: Bonnet
-                - value: "Paused"
-                  color: rgb(228, 94, 101)
-                  name: Paused
-                - value: "Off"
-                  color: rgb(255, 255, 255)
-                  name: "Off"
-                - value: "Full"
-                  color: rgb(228, 94, 101)
-                  name: Full
-                - value: "Error"
-                  color: rgb(228, 94, 101)
-                  name: Error
-              tap_action:
-              action: fire-dom-event
-              browser_mod:
-                service: browser_mod.popup
-                data:
-                  title: Litter Robot
-                  content:
-                    type: custom:vertical-stack-in-card
-                    cards:
-                      - type: entities
-                        entities:
-                          - entity: sensor.litter_robot_status_short
-                            name: Status
-                            icon: mdi:cat
-                          - entity: counter.litter_robot_cycle_count
-                            name: Cycle Count
-                            icon: mdi:toilet
-                          - entity: sensor.litter_robot_average_cycle_capacity
-                            name: Average Drawer Capacity
-                            icon: mdi:trash-can-outline
-
-                      - type: horizontal-stack
+  - type: vertical-stack
+    cards:  
+      - type: 'custom:mm2-clock-card'
+        timezone: America/Chicago
+        displaySeconds: false
+      - type: horizontal-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: sensor.litter_robot_status_short
+                color_type: icon
+                icon: mdi:cat
+                state:
+                  - value: "Ready"
+                    color: rgb(255, 255, 255)
+                    name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
+                  - value: "Clean"
+                    color: rgb(255, 255, 255)
+                    name: Clean
+                  - value: "Drawer 2"
+                    color: rgb(255, 255, 255)
+                    name: Drawer 2
+                  - value: "Drawer 1"
+                    color: rgb(255, 255, 255)
+                    name: Drawer 1
+                  - value: "Sensor"
+                    color: rgb(228, 94, 101)
+                    name: Sensor
+                  - value: "Timing"
+                    color: rgb(255, 255, 255)
+                    name: Timing
+                  - value: "Bonnet"
+                    color: rgb(228, 94, 101)
+                    name: Bonnet
+                  - value: "Paused"
+                    color: rgb(228, 94, 101)
+                    name: Paused
+                  - value: "Off"
+                    color: rgb(255, 255, 255)
+                    name: "Off"
+                  - value: "Full"
+                    color: rgb(228, 94, 101)
+                    name: Full
+                  - value: "Error"
+                    color: rgb(228, 94, 101)
+                    name: Error
+                tap_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    service: browser_mod.popup
+                    data:
+                      title: Litter Robot
+                      content:
+                        type: custom:vertical-stack-in-card
                         cards:
-                          - type: "custom:button-card"
-                            entity: switch.litter_robot_power
-                            color_type: icon
-                            state:
-                              - value: "on"
-                                color: rgb(228, 94, 101)
-                              - value: "off"
+                          - type: entities
+                            entities:
+                              - entity: sensor.litter_robot_status_short
+                                name: Status
+                                icon: mdi:cat
+                              - entity: counter.litter_robot_cycle_count
+                                name: Cycle Count
+                                icon: mdi:toilet
+                              - entity: sensor.litter_robot_average_cycle_capacity
+                                name: Average Drawer Capacity
+                                icon: mdi:trash-can-outline
+
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:button-card"
+                                entity: switch.litter_robot_power
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                icon: mdi:power
+                                name: Power
+
+                              - type: "custom:button-card"
+                                color_type: icon
                                 color: rgb(255, 255, 255)
-                            icon: mdi:power
-                            name: Power
+                                icon: mdi:trash-can
+                                name: Empty
+                                tap_action:
+                                  action: call-service
+                                  service: script.litter_robot_empty
 
-                          - type: "custom:button-card"
-                            color_type: icon
-                            color: rgb(255, 255, 255)
-                            icon: mdi:trash-can
-                            name: Empty
-                            tap_action:
-                              action: call-service
-                              service: script.litter_robot_empty
-
-                          - type: "custom:button-card"
-                            color_type: icon
-                            color: rgb(255, 255, 255)
-                            icon: mdi:reload
-                            name: Cycle
-                            tap_action:
-                              action: call-service
-                              service: mqtt.publish
-                              service_data:
-                                topic: "pooper/command/clean"
-
-                      - type: horizontal-stack
-                        cards:
-                          - type: "custom:button-card"
-                            entity: switch.litter_robot_lock
-                            color_type: icon
-                            state:
-                              - value: "on"
-                                color: rgb(228, 94, 101)
-                                icon: mdi:lock
-                              - value: "off"
+                              - type: "custom:button-card"
+                                color_type: icon
                                 color: rgb(255, 255, 255)
-                                icon: mdi:lock-open
-                            name: Lock
+                                icon: mdi:reload
+                                name: Cycle
+                                tap_action:
+                                  action: call-service
+                                  service: mqtt.publish
+                                  service_data:
+                                    topic: "pooper/command/clean"
 
-                          - type: "custom:button-card"
-                            entity: switch.litter_robot_light
-                            color_type: icon
-                            state:
-                              - value: "on"
-                                color: rgb(228, 94, 101)
-                                icon: mdi:lightbulb-on-outline
-                              - value: "off"
-                                color: rgb(255, 255, 255)
-                                icon: mdi:lightbulb-outline
-                            name: Light
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:button-card"
+                                entity: switch.litter_robot_lock
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                    icon: mdi:lock
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                    icon: mdi:lock-open
+                                name: Lock
 
-                          - type: "custom:button-card"
-                            entity: switch.litter_robot_sleep_mode
-                            color_type: icon
-                            state:
-                              - value: "on"
-                                color: rgb(228, 94, 101)
-                                icon: mdi:sleep
-                              - value: "off"
-                                color: rgb(255, 255, 255)
-                                icon: mdi:sleep-off
-                            name: Sleep
+                              - type: "custom:button-card"
+                                entity: switch.litter_robot_light
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                    icon: mdi:lightbulb-on-outline
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                    icon: mdi:lightbulb-outline
+                                name: Light
 
-                      - type: horizontal-stack
-                        cards:
-                          - type: "custom:button-card"
-                            entity: sensor.litter_robot_cycle_wait_time
-                            color_type: icon
-                            icon: mdi:timer-outline
-                            state:
-                              - value: "3"
-                                color: rgb(228, 94, 101)
-                              - operator: "!="
-                                value: "3"
-                                color: rgb(255, 255, 255)
-                            name: 3 Min.
-                            tap_action:
-                              action: call-service
-                              service: mqtt.publish
-                              service_data:
-                                topic: "pooper/command/wait"
-                                payload: "3"
+                              - type: "custom:button-card"
+                                entity: switch.litter_robot_sleep_mode
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                    icon: mdi:sleep
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                    icon: mdi:sleep-off
+                                name: Sleep
 
-                          - type: "custom:button-card"
-                            entity: sensor.litter_robot_cycle_wait_time
-                            color_type: icon
-                            icon: mdi:timer-outline
-                            state:
-                              - value: "7"
-                                color: rgb(228, 94, 101)
-                              - operator: "!="
-                                value: "7"
-                                color: rgb(255, 255, 255)
-                            name: 7 Min.
-                            tap_action:
-                              action: call-service
-                              service: mqtt.publish
-                              service_data:
-                                topic: "pooper/command/wait"
-                                payload: "7"
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:button-card"
+                                entity: sensor.litter_robot_cycle_wait_time
+                                color_type: icon
+                                icon: mdi:timer-outline
+                                state:
+                                  - value: "3"
+                                    color: rgb(228, 94, 101)
+                                  - operator: "!="
+                                    value: "3"
+                                    color: rgb(255, 255, 255)
+                                name: 3 Min.
+                                tap_action:
+                                  action: call-service
+                                  service: mqtt.publish
+                                  service_data:
+                                    topic: "pooper/command/wait"
+                                    payload: "3"
 
-                          - type: "custom:button-card"
-                            entity: sensor.litter_robot_cycle_wait_time
-                            color_type: icon
-                            icon: mdi:timer-outline
-                            state:
-                              - value: "15"
-                                color: rgb(228, 94, 101)
-                              - operator: "!="
-                                value: "15"
-                                color: rgb(255, 255, 255)
-                            name: 15 Min.
-                            tap_action:
-                              action: call-service
-                              service: mqtt.publish
-                              service_data:
-                                topic: "pooper/command/wait"
-                                payload: "15"             
-            
-            - type: custom:button-card
-              entity: sensor.washer_status_combined
-              color_type: icon
-              icon: mdi:washing-machine
-              state:
-                - value: "Off"
-                  color: rgb(255, 255, 255)
-                  name: "Off"
-                - operator: default
-                  color: rgb(228, 94, 101)
-                  name: "[[[ return `${states['sensor.washer_time_remaining'].state}` ]]]"
-              tap_action:
-                action: none
-            - type: custom:button-card
-              entity: sensor.dryer_status_combined
-              color_type: icon
-              icon: mdi:tumble-dryer
-              state:
-                - value: "Off"
-                  color: rgb(255, 255, 255)
-                  name: "Off"
-                - operator: default
-                  color: rgb(228, 94, 101)
-                  name: "[[[ return `${states['sensor.dryer_time_remaining'].state}` ]]]"
-              tap_action:
-                action: none
-            - type: "custom:button-card"
-              entity: alarm_control_panel.house
-              color_type: icon
-              state:
-                - value: "disarmed"
-                  color: rgb(255, 255, 255)
-                  name: Disarmed
-                  icon: mdi:shield-off
-                - value: "armed_home"
-                  color: rgb(228, 94, 101)
-                  name: Stay
-                  icon: mdi:shield-home
-                - value: "armed_night"
-                  color: rgb(228, 94, 101)
-                  name: Night
-                  icon: mdi:shield-moon
-                - value: "armed_away"
-                  color: rgb(228, 94, 101)
-                  name: Away
-                  icon: mdi:shield-lock                
-              tap_action:
-                action: more-info            
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: switch.den_lights
-              color_type: icon
-              color: rgb(228, 94, 101)
-              state:
-                - value: "on"
-                  icon: mdi:lightbulb-on-outline
-                - value: "off"
-                  icon: mdi:lightbulb-outline
-              name: Light
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.den_fan
-              color_type: icon
-              color: rgb(228, 94, 101)
-              state:
-                - value: "on"
-                  icon: mdi:fan
-                - value: "off"
-                  icon: mdi:fan-off
-              name: Fan
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.den_curio_cabinet
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Curio
-              hold_action:
-                action: more-info
-            - type: "custom:button-card"
-              entity: switch.den_table_lamp
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:lamp
-              name: Table
-              hold_action:
-                action: more-info
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: switch.wax_warmer
-              color_type: icon
-              color: rgb(228, 94, 101)
-              icon: mdi:fire
-              name: Wax Warmer
-              hold_action:
-                action: more-info
-            - type: "custom:gap-card"
-            - type: "custom:gap-card"
-            - type: "custom:gap-card"
-        - type: horizontal-stack
-          cards:
-            - type: "custom:button-card"
-              entity: sensor.den_harmony_activity
-              color_type: icon
-              state:
-                - value: "PowerOff"
-                  color: rgb(228, 94, 101)
-                - value: "PowerOff"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:remote-tv-off
-              name: "Off"
-              tap_action:
-                action: call-service
-                service: remote.turn_off
-                service_data:
-                  entity_id: remote.den_harmony
+                              - type: "custom:button-card"
+                                entity: sensor.litter_robot_cycle_wait_time
+                                color_type: icon
+                                icon: mdi:timer-outline
+                                state:
+                                  - value: "7"
+                                    color: rgb(228, 94, 101)
+                                  - operator: "!="
+                                    value: "7"
+                                    color: rgb(255, 255, 255)
+                                name: 7 Min.
+                                tap_action:
+                                  action: call-service
+                                  service: mqtt.publish
+                                  service_data:
+                                    topic: "pooper/command/wait"
+                                    payload: "7"
 
-            - type: "custom:button-card"
-              entity: sensor.den_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch PVR"
-                  color: rgb(228, 94, 101)
-                - value: "Watch PVR"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:kodi
-              name: Kodi
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.den_harmony
-                  activity: "Watch PVR"
+                              - type: "custom:button-card"
+                                entity: sensor.litter_robot_cycle_wait_time
+                                color_type: icon
+                                icon: mdi:timer-outline
+                                state:
+                                  - value: "15"
+                                    color: rgb(228, 94, 101)
+                                  - operator: "!="
+                                    value: "15"
+                                    color: rgb(255, 255, 255)
+                                name: 15 Min.
+                                tap_action:
+                                  action: call-service
+                                  service: mqtt.publish
+                                  service_data:
+                                    topic: "pooper/command/wait"
+                                    payload: "15"
+              
+              - type: custom:button-card
+                entity: sensor.washer_status_combined
+                color_type: icon
+                icon: mdi:washing-machine
+                state:
+                  - value: "Off"
+                    color: rgb(255, 255, 255)
+                    name: "Off"
+                  - operator: default
+                    color: rgb(228, 94, 101)
+                    name: "[[[ return `${states['sensor.washer_time_remaining'].state}` ]]]"
+                tap_action:
+                  action: none
+              - type: custom:button-card
+                entity: sensor.dryer_status_combined
+                color_type: icon
+                icon: mdi:tumble-dryer
+                state:
+                  - value: "Off"
+                    color: rgb(255, 255, 255)
+                    name: "Off"
+                  - operator: default
+                    color: rgb(228, 94, 101)
+                    name: "[[[ return `${states['sensor.dryer_time_remaining'].state}` ]]]"
+                tap_action:
+                  action: none
+              - type: "custom:button-card"
+                entity: alarm_control_panel.house
+                color_type: icon
+                state:
+                  - value: "disarmed"
+                    color: rgb(255, 255, 255)
+                    name: Disarmed
+                    icon: mdi:shield-off
+                  - value: "armed_home"
+                    color: rgb(228, 94, 101)
+                    name: Stay
+                    icon: mdi:shield-home
+                  - value: "armed_night"
+                    color: rgb(228, 94, 101)
+                    name: Night
+                    icon: mdi:shield-moon
+                  - value: "armed_away"
+                    color: rgb(228, 94, 101)
+                    name: Away
+                    icon: mdi:shield-lock                
+                tap_action:
+                  action: more-info            
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: switch.den_lights
+                color_type: icon
+                color: rgb(228, 94, 101)
+                state:
+                  - value: "on"
+                    icon: mdi:lightbulb-on-outline
+                  - value: "off"
+                    icon: mdi:lightbulb-outline
+                name: Light
+                hold_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: switch.den_fan
+                color_type: icon
+                color: rgb(228, 94, 101)
+                state:
+                  - value: "on"
+                    icon: mdi:fan
+                  - value: "off"
+                    icon: mdi:fan-off
+                name: Fan
+                hold_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: switch.den_curio_cabinet
+                color_type: icon
+                color: rgb(228, 94, 101)
+                icon: mdi:lamp
+                name: Curio
+                hold_action:
+                  action: more-info
+              - type: "custom:button-card"
+                entity: switch.den_table_lamp
+                color_type: icon
+                color: rgb(228, 94, 101)
+                icon: mdi:lamp
+                name: Table
+                hold_action:
+                  action: more-info
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: switch.wax_warmer
+                color_type: icon
+                color: rgb(228, 94, 101)
+                icon: mdi:fire
+                name: Wax Warmer
+                hold_action:
+                  action: more-info
+              - type: "custom:gap-card"
+              - type: "custom:gap-card"
+              - type: "custom:gap-card"
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "PowerOff"
+                    color: rgb(228, 94, 101)
+                  - value: "PowerOff"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:remote-tv-off
+                name: "Off"
+                tap_action:
+                  action: call-service
+                  service: remote.turn_off
+                  service_data:
+                    entity_id: remote.den_harmony
 
-            - type: "custom:button-card"
-              entity: sensor.den_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch Roku"
-                  color: rgb(228, 94, 101)
-                - value: "Watch Roku"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:youtube-tv
-              name: Roku
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.den_harmony
-                  activity: "Watch Roku"
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch PVR"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch PVR"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:kodi
+                name: Kodi
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Watch PVR"
 
-            - type: "custom:button-card"
-              entity: sensor.den_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch ChromeCast"
-                  color: rgb(228, 94, 101)
-                - value: "Watch ChromeCast"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:cast
-              name: Cast
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.den_harmony
-                  activity: "ChromeCast"
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch Roku"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch Roku"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:youtube-tv
+                name: Roku
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Watch Roku"
 
-            - type: "custom:button-card"
-              entity: sensor.den_harmony_activity
-              color_type: icon
-              state:
-                - value: "Watch a Movie"
-                  color: rgb(228, 94, 101)
-                - value: "Watch a Movie"
-                  operator: "!="
-                  color: rgb(255, 255, 255)
-              icon: mdi:disc
-              name: Blu-Ray
-              tap_action:
-                action: call-service
-                service: remote.turn_on
-                service_data:
-                  entity_id: remote.den_harmony
-                  activity: "Blu-Ray"
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch ChromeCast"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch ChromeCast"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:cast
+                name: Cast
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "ChromeCast"
 
-        - type: conditional
-          conditions:
-            - entity: sensor.den_harmony_activity
-              state: "Watch PVR"
-            - entity: media_player.den_kodi
-              state_not: "idle"
-            - entity: media_player.den_kodi
-              state_not: "off"
-          card:
-            type: 'custom:mini-media-player'
-            entity: media_player.den_kodi_harmony
-            icon: mdi:blank
-            artwork: cover
-            group: true
-            info: scroll
-            volume_stateless: true
-            hide:
-              name: true
-              power: true
+              - type: "custom:button-card"
+                entity: sensor.den_harmony_activity
+                color_type: icon
+                state:
+                  - value: "Watch a Movie"
+                    color: rgb(228, 94, 101)
+                  - value: "Watch a Movie"
+                    operator: "!="
+                    color: rgb(255, 255, 255)
+                icon: mdi:disc
+                name: Blu-Ray
+                tap_action:
+                  action: call-service
+                  service: remote.turn_on
+                  service_data:
+                    entity_id: remote.den_harmony
+                    activity: "Blu-Ray"
 
-        - type: conditional
-          conditions:
-            - entity: sensor.den_harmony_activity
-              state: "Watch Roku"
-            - entity: media_player.roku_living_room
-              state_not: "home"
-          card:
-            type: 'custom:mini-media-player'
-            entity: media_player.den_roku_harmony
-            icon: mdi:blank
-            artwork: cover
-            group: true
-            info: scroll
-            volume_stateless: true
-            hide:
-              name: true
-              power: true
+          - type: conditional
+            conditions:
+              - entity: sensor.den_harmony_activity
+                state: "Watch PVR"
+              - entity: media_player.den_kodi
+                state_not: "idle"
+              - entity: media_player.den_kodi
+                state_not: "off"
+            card:
+              type: 'custom:mini-media-player'
+              entity: media_player.den_kodi_harmony
+              icon: mdi:blank
+              artwork: cover
+              group: true
+              info: scroll
+              volume_stateless: true
+              hide:
+                name: true
+                power: true
+
+          - type: conditional
+            conditions:
+              - entity: sensor.den_harmony_activity
+                state: "Watch Roku"
+              - entity: media_player.roku_living_room
+                state_not: "home"
+            card:
+              type: 'custom:mini-media-player'
+              entity: media_player.den_roku_harmony
+              icon: mdi:blank
+              artwork: cover
+              group: true
+              info: scroll
+              volume_stateless: true
+              hide:
+                name: true
+                power: true
