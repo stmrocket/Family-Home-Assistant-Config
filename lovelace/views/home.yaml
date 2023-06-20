@@ -395,7 +395,7 @@ cards:
                     cards:
                       - type: custom:valetudo-map-card
                         vacuum: valetudo_loyalwhiteoryx
-                        title: Crookshanks
+                        title: EEK
                       - type: entities
                         show_header_toggle: false
                         entities:
