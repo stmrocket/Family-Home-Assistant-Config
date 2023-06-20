@@ -165,7 +165,7 @@ script:
     sequence:
     - service: mqtt.publish
       data:
-        topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+        topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
         payload_template: '{"segment_ids": {{ states("sensor.manual_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
 
 automation:
@@ -195,7 +195,7 @@ automation:
           sequence:
             - service: mqtt.publish
               data:
-                topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+                topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
                 payload: '{"segment_ids": {{ states("sensor.weekday_1_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
             - service: input_boolean.turn_on
               entity_id: input_boolean.vacuum_weekday_select
@@ -206,7 +206,7 @@ automation:
           sequence:
             - service: mqtt.publish
               data:
-                topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+                topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
                 payload: '{"segment_ids": {{ states("sensor.weekday_2_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
             - service: input_boolean.turn_off
               entity_id: input_boolean.vacuum_weekday_select
