@@ -1,0 +1,224 @@
+mqtt:
+  sensor:
+    - name: Manual Vacuum Sequence
+      unique_id: 21b1c59f-c09b-4a39-aa32-a8fee55ff90d
+      state_topic: vacschedule/manual
+    - name: Weekday 1 Vacuum Sequence
+      unique_id: 257caf0a-9d88-4067-9693-c634a6321948
+      state_topic: vacschedule/week1
+    - name: Weekday 2 Vacuum Sequence
+      unique_id: a873272e-dc06-436b-b18c-47be09109095
+      state_topic: vacschedule/week2
+
+sensor:
+  - platform: template
+    sensors:
+      next_vacuum_cycle:
+        unique_id: 416e12b3-6871-43a1-bc6e-82c7e91fdc1b
+        friendly_name: Next Vacuum Cycle
+        value_template: >-
+          {% if is_state("input_boolean.vacuum_weekday_select", "on") -%}
+            Day 2
+          {%- else -%}
+            Day 1
+          {%- endif %}
+
+input_boolean:
+  vacuum_auto:
+    name: Schedule Enabled
+    icon: mdi:timer-outline
+  vacuum_weekday_select:
+    name: Vacuum Weekday Program Select
+    icon: mdi:calendar-week
+  vacuum_cycle_initiated:
+    name: Daily Vacuum Cycle Initiated
+    icon: mdi:clock-check
+  vacuum_manual_foyer:
+    name: Foyer
+    icon: mdi:door-open
+  vacuum_manual_guest_bedroom:
+    name: Guest Bedroom
+    icon: mdi:bed-empty
+  vacuum_manual_guest_bathroom:
+    name: Guest Bathroom
+    icon: mdi:toilet
+  vacuum_manual_watch_shop:
+    name: Watch Shop
+    icon: mdi:watch
+  vacuum_manual_half_bathroom:
+    name: Half Bathroom
+    icon: mdi:toilet
+  vacuum_manual_craft_room:
+    name: Craft Room
+    icon: mdi:email-open-heart-outline
+  vacuum_manual_den:
+    name: Den
+    icon: mdi:sofa
+  vacuum_manual_kitchen:
+    name: Kitchen
+    icon: mdi:silverware-fork-knife
+  vacuum_manual_drop_zone:
+    name: Drop Zone
+    icon: mdi:foot-print
+  vacuum_manual_laundry_room:
+    name: Laundry Room
+    icon: mdi:hanger
+  vacuum_manual_pantry:
+    name: Pantry
+    icon: mdi:cupboard
+  vacuum_manual_master_bedroom:
+    name: Master Bedroom
+    icon: mdi:bed-empty
+  vacuum_manual_master_bathroom:
+    name: Master Bathroom
+    icon: mdi:toilet
+  vacuum_manual_master_closet:
+    name: Master Bathroom
+    icon: mdi:hanger
+  vacuum_weekday_1_foyer:
+    name: Foyer
+    icon: mdi:door-open
+  vacuum_weekday_1_guest_bedroom:
+    name: Guest Bedroom
+    icon: mdi:bed-empty
+  vacuum_weekday_1_guest_bathroom:
+    name: Guest Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_1_watch_shop:
+    name: Watch Shop
+    icon: mdi:watch
+  vacuum_weekday_1_half_bathroom:
+    name: Half Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_1_craft_room:
+    name: Craft Room
+    icon: mdi:email-open-heart-outline
+  vacuum_weekday_1_den:
+    name: Den
+    icon: mdi:sofa
+  vacuum_weekday_1_kitchen:
+    name: Kitchen
+    icon: mdi:silverware-fork-knife
+  vacuum_weekday_1_drop_zone:
+    name: Drop Zone
+    icon: mdi:foot-print
+  vacuum_weekday_1_laundry_room:
+    name: Laundry Room
+    icon: mdi:hanger
+  vacuum_weekday_1_pantry:
+    name: Pantry
+    icon: mdi:cupboard
+  vacuum_weekday_1_master_bedroom:
+    name: Master Bedroom
+    icon: mdi:bed-empty
+  vacuum_weekday_1_master_bathroom:
+    name: Master Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_1_master_closet:
+    name: Master Bathroom
+    icon: mdi:hanger
+  vacuum_weekday_2_foyer:
+    name: Foyer
+    icon: mdi:door-open
+  vacuum_weekday_2_guest_bedroom:
+    name: Guest Bedroom
+    icon: mdi:bed-empty
+  vacuum_weekday_2_guest_bathroom:
+    name: Guest Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_2_watch_shop:
+    name: Watch Shop
+    icon: mdi:watch
+  vacuum_weekday_2_half_bathroom:
+    name: Half Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_2_craft_room:
+    name: Craft Room
+    icon: mdi:email-open-heart-outline
+  vacuum_weekday_2_den:
+    name: Den
+    icon: mdi:sofa
+  vacuum_weekday_2_kitchen:
+    name: Kitchen
+    icon: mdi:silverware-fork-knife
+  vacuum_weekday_2_drop_zone:
+    name: Drop Zone
+    icon: mdi:foot-print
+  vacuum_weekday_2_laundry_room:
+    name: Laundry Room
+    icon: mdi:hanger
+  vacuum_weekday_2_pantry:
+    name: Pantry
+    icon: mdi:cupboard
+  vacuum_weekday_2_master_bedroom:
+    name: Master Bedroom
+    icon: mdi:bed-empty
+  vacuum_weekday_2_master_bathroom:
+    name: Master Bathroom
+    icon: mdi:toilet
+  vacuum_weekday_2_master_closet:
+    name: Master Bathroom
+    icon: mdi:hanger
+    
+script:
+  vacuum_clean_segments:
+    sequence:
+    - service: mqtt.publish
+      data:
+        topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+        payload_template: '{"segment_ids": {{ states("sensor.manual_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
+
+automation:
+  - alias: Start Vacuum from Schedule
+    id: dd45d34f-0fb7-4ad2-88c9-788290b8ba02
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.house
+        to: armed_away
+        for: "00:01:00"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacuum_auto
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.vacuum_cycle_initiated
+        state: "off"
+    action:
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.vacuum_weekday_select
+            state: "off"
+          sequence:
+            - service: mqtt.publish
+              data:
+                topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+                payload: '{"segment_ids": {{ states("sensor.weekday_1_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.vacuum_weekday_select
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.vacuum_weekday_select
+            state: "on"
+          sequence:
+            - service: mqtt.publish
+              data:
+                topic: valetudo/crookshanks/MapSegmentationCapability/clean/set
+                payload: '{"segment_ids": {{ states("sensor.weekday_2_vacuum_sequence")}}, "iterations": 1, "customOrder": true}'
+            - service: input_boolean.turn_off
+              entity_id: input_boolean.vacuum_weekday_select
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.vacuum_cycle_initiated
+  
+  - alias: Clear Daily Vacuum Run Indicator
+    id: c8c14781-6bae-499c-963b-e7ceb52e2680
+    trigger:
+      - platform: time
+        at: "00:00:00"
+    action:
+      - service: input_boolean.turn_off        
+        entity_id: input_boolean.vacuum_cycle_initiated
+    
