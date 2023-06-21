@@ -406,7 +406,7 @@ cards:
                           - type: custom:button-card
                             tap_action:
                               action: call-service
-                              service: script.vacuum_clean_segments
+                              service: script.vacuum_run_daily_clean
                               confirmation: true
                             entity: script.vacuum_run_daily_clean
                             name: Run Daily Cleaning
