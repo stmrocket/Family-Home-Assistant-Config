@@ -51,14 +51,14 @@ cards:
           displaySeconds: false
         - type: horizontal-stack
           cards:
-            - type: "custom:button-card"
+            - type: custom:button-card
               entity: sensor.litter_robot_status_short
               color_type: icon
               icon: mdi:cat
               state:
                 - value: "Ready"
                   color: rgb(255, 255, 255)
-                  name: '[[[ return `Ready - ${states[''sensor.litter_robot_drawer_level''].state}%` ]]]'
+                  name: "[[[ return `Ready - ${states['sensor.litter_robot_drawer_level'].state}%` ]]]"
                 - value: "Clean"
                   color: rgb(255, 255, 255)
                   name: Clean
@@ -139,14 +139,14 @@ cards:
                               name: Cycle
                               tap_action:
                                 action: call-service
-                                service: mqtt.publish
+                                service: vacuum.start
                                 service_data:
-                                  topic: "pooper/command/clean"
+                                  entity_id: vacuum.the_pooper_litter_box_litter_box
 
                         - type: horizontal-stack
                           cards:
                             - type: "custom:button-card"
-                              entity: switch.litter_robot_lock
+                              entity: switch.the_pooper_litter_box_panel_lockout
                               color_type: icon
                               state:
                                 - value: "on"
@@ -158,7 +158,7 @@ cards:
                               name: Lock
 
                             - type: "custom:button-card"
-                              entity: switch.litter_robot_light
+                              entity: switch.the_pooper_litter_box_night_light_mode
                               color_type: icon
                               state:
                                 - value: "on"
@@ -170,7 +170,7 @@ cards:
                               name: Light
 
                             - type: "custom:button-card"
-                              entity: switch.litter_robot_sleep_mode
+                              entity: binary_sensor.the_pooper_litter_box_sleeping
                               color_type: icon
                               state:
                                 - value: "on"
@@ -184,7 +184,7 @@ cards:
                         - type: horizontal-stack
                           cards:
                             - type: "custom:button-card"
-                              entity: sensor.litter_robot_cycle_wait_time
+                              entity: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
                               color_type: icon
                               icon: mdi:timer-outline
                               state:
@@ -196,13 +196,13 @@ cards:
                               name: 3 Min.
                               tap_action:
                                 action: call-service
-                                service: mqtt.publish
+                                service: select.select_option
                                 service_data:
-                                  topic: "pooper/command/wait"
-                                  payload: "3"
+                                  entity_id: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
+                                  option: "3"
 
                             - type: "custom:button-card"
-                              entity: sensor.litter_robot_cycle_wait_time
+                              entity: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
                               color_type: icon
                               icon: mdi:timer-outline
                               state:
@@ -214,13 +214,13 @@ cards:
                               name: 7 Min.
                               tap_action:
                                 action: call-service
-                                service: mqtt.publish
+                                service: select.select_option
                                 service_data:
-                                  topic: "pooper/command/wait"
-                                  payload: "7"
+                                  entity_id: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
+                                  option: "7"
 
                             - type: "custom:button-card"
-                              entity: sensor.litter_robot_cycle_wait_time
+                              entity: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
                               color_type: icon
                               icon: mdi:timer-outline
                               state:
@@ -232,10 +232,10 @@ cards:
                               name: 15 Min.
                               tap_action:
                                 action: call-service
-                                service: mqtt.publish
+                                service: select.select_option
                                 service_data:
-                                  topic: "pooper/command/wait"
-                                  payload: "15"                   
+                                  entity_id: select.the_pooper_litter_box_clean_cycle_wait_time_minutes
+                                  option: "15"                 
             
             - type: custom:button-card
               entity: sensor.washer_status_combined
