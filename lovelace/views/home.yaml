@@ -397,6 +397,12 @@ cards:
                       - type: entities
                         show_header_toggle: false
                         entities:
+                          - type: comditional
+                            conditions:
+                              - entity: vacuum.valetudo_loyalwhiteoryx
+                                state: "error"
+                            row:
+                              entity: sensor.valetudo_loyalwhiteoryx_error
                           - entity: input_boolean.vacuum_auto
                           - entity: sensor.next_vacuum_cycle
                             name: Next Schedule
