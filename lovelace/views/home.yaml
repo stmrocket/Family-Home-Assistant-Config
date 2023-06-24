@@ -397,7 +397,7 @@ cards:
                       - type: entities
                         show_header_toggle: false
                         entities:
-                          - type: comditional
+                          - type: conditional
                             conditions:
                               - entity: vacuum.valetudo_loyalwhiteoryx
                                 state: "error"
