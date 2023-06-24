@@ -1,0 +1,57 @@
+- alias: Fountain On from Keypad
+  id: 1d5ffa58-55c9-4c97-8694-aed368971d7d
+  trigger:
+    - platform: state
+      entity_id: switch.fountain
+      from: "off"
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.fountain_control
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.fountain_control
+
+- alias: Fountain Off from Keypad
+  id: 3d99b9b3-5e4a-445a-a24c-7ad5c783144a
+  trigger:
+    - platform: state
+      entity_id: switch.fountain
+      from: "on"
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.fountain_control
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.fountain_control
+
+- alias: Fountain Keypad On
+  id: b129b99f-dddb-4751-a53a-faeca84c7831
+  trigger:
+    - platform: state
+      entity_id: switch.fountain_control
+      to: "on"
+  condition:
+    - condition: state
+      entity_id: switch.fountain
+      state: "off"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.fountain
+
+- alias: Fountain Keypad Off
+  id: 7da57d51-eebe-40c2-8f30-ea6730ac4db2
+  trigger:
+    - platform: state
+      entity_id: switch.fountain_control
+      to: "off"
+  condition:
+    - condition: state
+      entity_id: switch.fountain
+      state: "on"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.fountain

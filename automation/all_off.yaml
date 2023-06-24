@@ -54,6 +54,7 @@
         - switch.stove_light
         - switch.stove_fan
         - switch.desk
+        - switch.fountain
     - choose: # When timer lights are off:
       - conditions:
         - condition: state

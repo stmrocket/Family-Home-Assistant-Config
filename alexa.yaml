@@ -50,6 +50,7 @@ smart_home:
       - switch.desk
       - switch.stove_fan
       - switch.stove_light
+      - switch.fountain
 
     exclude_domains:
       - automation
