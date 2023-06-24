@@ -5,41 +5,41 @@ sensor:
         unique_id: 712ed244-df40-4cbf-8c4c-a34415cdbd76
         friendly_name: Short Litter Robot Status
         value_template: >-
-          {% if  is_state('binary_sensor.the_pooper_litter_box_sleep_mode', 'on') -%}
+          {% if  is_state('binary_sensor.the_pooper_sleep_mode', 'on') -%}
             Sleep
-          {% elif is_state('sensor.the_pooper_litter_box_status_code', 'rdy') -%}
+          {% elif is_state('sensor.the_pooper_status_code', 'rdy') -%}
             Ready
-          {% elif is_state('sensor.the_pooper_litter_box_status_code', 'ccc') -%}
+          {% elif is_state('sensor.the_pooper_status_code', 'ccc') -%}
             Done
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'ccp') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'ccp') -%}
             Clean
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'df2') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'df2') -%}
             Drawer 2
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'df1') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'df1') -%}
             Drawer 1
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'csf') or is_state('sensor.the_pooper_litter_box_status_code', 'csi') or is_state('sensor.the_pooper_litter_box_status_code', 'scf') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'csf') or is_state('sensor.the_pooper_status_code', 'csi') or is_state('sensor.the_pooper_status_code', 'scf') -%}
             Sensor
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'cst') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'cst') -%}
             Timing
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'br') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'br') -%}
             Bonnet  
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'p') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'p') -%}
             Paused 
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'pd') or is_state('sensor.the_pooper_litter_box_status_code', 'spf') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'pd') or is_state('sensor.the_pooper_status_code', 'spf') -%}
             Pinch
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'cd') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'cd') -%}
             Cat
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'ec') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'ec') -%}
             Empty
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'off') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'off') -%}
             Off 
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'offline') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'offline') -%}
             Offline
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'otf') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'otf') -%}
             Torque 
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'dfs') or is_state('sensor.the_pooper_litter_box_status_code', 'sdf') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'dfs') or is_state('sensor.the_pooper_status_code', 'sdf') -%}
             Full
-          {% elif  is_state('sensor.the_pooper_litter_box_status_code', 'dhf') or is_state('sensor.the_pooper_litter_box_status_code', 'dpf') or is_state('sensor.the_pooper_litter_box_status_code', 'hpf') -%}
+          {% elif  is_state('sensor.the_pooper_status_code', 'dhf') or is_state('sensor.the_pooper_status_code', 'dpf') or is_state('sensor.the_pooper_status_code', 'hpf') -%}
             Position
           {% else -%}
             Error
@@ -84,13 +84,13 @@ switch:
     switches:
       litter_robot_power:
         unique_id: fe30cd02-cb59-4796-9153-38a5fba01174
-        value_template: "{{ not is_state('sensor.the_pooper_litter_box_status_code', 'on') }}"
+        value_template: "{{ not is_state('sensor.the_pooper_status_code', 'on') }}"
         turn_on:
           service: vacuum.turn_on
-          entity_id: vacuum.the_pooper_litter_box_litter_box
+          entity_id: vacuum.the_pooper_litter_box
         turn_off:
           service: vacuum.turn_off
-          entity_id: vacuum.the_pooper_litter_box_litter_box
+          entity_id: vacuum.the_pooper_litter_box
 
 script:
   litter_robot_empty:
@@ -104,14 +104,14 @@ script:
       - service: counter.reset
         entity_id: counter.litter_robot_cycle_count
       - service: button.press
-        entity_id: button.the_pooper_litter_box_reset_waste_drawer
+        entity_id: button.the_pooper_reset_waste_drawer
 
 automation:
   - alias: Update Litter Robot Cycle Count
     id: 2d36b31b-1d8d-4089-8d98-ebe94c4b443d
     trigger:
       - platform: state
-        entity_id: sensor.the_pooper_litter_box_status_code
+        entity_id: sensor.the_pooper_status_code
         to: "ccc"
     action:
       - service: counter.increment
