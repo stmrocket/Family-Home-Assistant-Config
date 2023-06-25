@@ -42,6 +42,16 @@ mqtt:
       state_topic: rtl_433/2241/rain_in
       unit_of_measurement: "in"
 
+    - name: AcuRite Indoor Fridge Temperature
+      unique_id: 3a74b5a4-72db-4754-a2e5-473a26f7d236
+      state_topic: rtl_433/53547/temperature_F
+      unit_of_measurement: "°F"
+
+    - name: AcuRite Indoor Freezer Temperature
+      unique_id: b3dce4a0-b507-4364-9f1b-7689672f0a9b
+      state_topic: rtl_433/53432/temperature_F
+      unit_of_measurement: "°F"
+
   binary_sensor:
     - name: AcuRite Thermometer Battery Low
       unique_id: ed401637-508c-470e-b3b3-cc6e019e1c0a
@@ -67,6 +77,20 @@ mqtt:
     - name: AcuRite Scott Freezer Battery Low
       unique_id: 2311dda0-cc68-4980-ad84-4effe93b76b2
       state_topic: rtl_433/57203/battery_ok
+      payload_on: "0"
+      payload_off: "1"
+      device_class: battery
+
+    - name: AcuRite Indoor Fridge Battery Low
+      unique_id: 457a8353-7f28-407c-88e1-ec4f6629f87f
+      state_topic: rtl_433/53547/battery_ok
+      payload_on: "0"
+      payload_off: "1"
+      device_class: battery
+
+    - name: AcuRite Indoor Freezer Battery Low
+      unique_id: 802aca31-b01d-46d5-b55b-66f2c34bfa0d
+      state_topic: rtl_433/53432/battery_ok
       payload_on: "0"
       payload_off: "1"
       device_class: battery

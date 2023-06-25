@@ -17,27 +17,45 @@ cards:
   - type: vertical-stack
     cards:   
       - !include /config/lovelace/cards/weather.yaml
-      - type: glance
-        columns: 4
-        show_name: true
-        show_icon: false
-        entities:
-          - entity: sensor.acurite_outside_temperature
-            name: Outside
-          - entity: sensor.atc_garage_temperature
-            name: Garage
-          - entity: sensor.atc_den_temperature
-            name: Den
-          - entity: sensor.atc_pantry_temperature
-            name: Pantry
-          - entity: sensor.atc_master_bedroom_temperature
-            name: Master
-          - entity: sensor.atc_guest_bedroom_temperature
-            name: Guest
-          - entity: sensor.atc_craft_room_temperature
-            name: Craft
-          - entity: sensor.atc_watch_shop_temperature
-            name: Watch
+      - type: horizontal-stack
+        cards:
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.acurite_indoor_fridge_temperature
+            name: Kitchen Fridge
+            height: 74
+            line_width: 2
+            font_size: 65
+            hours_to_show: 24
+            points_per_hour: 10
+            show:
+              icon: false
+              extrema: true
+              fill: false
+            color_thresholds:
+              - value: 35
+                color: "#e74c3c"
+              - value: 34
+                color: "#1db954"
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.acurite_indoor_freezer_temperature
+            name: Kitchen Freezer
+            height: 74
+            line_width: 2
+            font_size: 65
+            hours_to_show: 24
+            points_per_hour: 10
+            show:
+              icon: false
+              extrema: true
+              fill: false
+            color_thresholds:
+              - value: 0
+                color: "#e74c3c"
+              - value: -1
+                color: "#1db954"
       - type: custom:gap-card
         height: 1
 
@@ -306,3 +324,24 @@ cards:
                 name: false
               - entity: sensor.rain_month_12
                 name: false
+      - type: glance
+        columns: 4
+        show_name: true
+        show_icon: false
+        entities:
+          - entity: sensor.acurite_outside_temperature
+            name: Outside
+          - entity: sensor.atc_garage_temperature
+            name: Garage
+          - entity: sensor.atc_den_temperature
+            name: Den
+          - entity: sensor.atc_pantry_temperature
+            name: Pantry
+          - entity: sensor.atc_master_bedroom_temperature
+            name: Master
+          - entity: sensor.atc_guest_bedroom_temperature
+            name: Guest
+          - entity: sensor.atc_craft_room_temperature
+            name: Craft
+          - entity: sensor.atc_watch_shop_temperature
+            name: Watch
