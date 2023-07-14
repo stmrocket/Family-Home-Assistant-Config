@@ -24,7 +24,7 @@ switch:
       irrigation_program_restriction:
         unique_id: c456b85f-071b-4706-99cb-028808aa7d30
         friendly_name: "Irrigation Schedule Watering Restriction"
-        value_template: "{{ is_state('switch.rm_twice_weekly', 'on') }}"
+        value_template: "{{ is_state('switch.rm_twice_weekly_enabled', 'on') }}"
         turn_on:
           service: script.rainmachine_program_restriction_on
         turn_off:
