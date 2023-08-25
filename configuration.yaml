@@ -101,8 +101,6 @@ lovelace:
     - url: /hacsfiles/lovelace-valetudo-map-card/valetudo-map-card.js
       type: module
 
-# Discover some devices automatically
-discovery:
 sensor:
   #Template Sensors
   - platform: template
