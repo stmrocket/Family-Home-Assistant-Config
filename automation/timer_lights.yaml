@@ -92,21 +92,3 @@
       continue_on_error: true
       data:
         entity_id: switch.outside_lights
-
-- alias: Christmas Lights On
-  id: 7b933f59-ee4c-45fe-a26c-c50aafb4a7bb
-  trigger:
-    - platform: sun
-      event: sunset  
-  action:
-    - service: switch.turn_on
-      entity_id: switch.christmas_outlets
-
-- alias: Christmas Lights Off
-  id: 87e03159-71a3-4978-9cee-5d0c65102900
-  trigger:
-    - platform: time
-      at: '23:00:00'
-  action:
-    - service: switch.turn_off
-      entity_id: switch.christmas_outlets
