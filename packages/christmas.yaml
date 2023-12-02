@@ -1,26 +1,20 @@
-mqtt:
-  switch:
-    - name: "Christmas Tree"
-      unique_id: a2a76d1f-ff61-414d-a04d-daae35d443ea
-      state_topic: "christmas/indoor/tree/stat/POWER"
-      command_topic: "christmas/indoor/tree/cmnd/POWER"
-      availability_topic: "christmas/indoor/tree/tele/LWT"
-      qos: 1
-      payload_on: "ON"
-      payload_off: "OFF"
-      payload_available: "Online"
-      payload_not_available: "Offline"
-
-  sensor:
-    - name: "Chriatmas Tree Signal"
-      unique_id: 768fd9b4-364c-4b03-ad60-925cc69df653
-      state_topic: "christmas/indoor/tree/tele/STATE"
-      unit_of_measurement: "%"
-      value_template: "{{value_json['Wifi'].RSSI }}"
-      availability_topic: "christmas/indoor/tree/tele/LWT"
-      qos: 1
-      payload_available: "Online"
-      payload_not_available: "Offline" 
+switch:
+  - platform: template
+    switches:
+      indoor_christmas:
+        unique_id: a37d4c37-0a83-47f6-9389-164dfc4d954b
+        friendly_name: "Indoor Christmas Decor"
+        value_template: "{{ is_state('switch.christmas_1', 'on') or is_state('switch.christmas_2', 'on') or is_state('switch.christmas_3', 'on') or is_state('switch.christmas_4', 'on') or is_state('switch.christmas_5', 'on') }}"
+        turn_on:
+          service: mqtt.publish
+          data:
+            topic: cmnd/decorations/power
+            payload: "ON"
+        turn_off:
+          service: mqtt.publish
+          data:
+            topic: cmnd/decorations/power
+            payload: "OFF"
 
 automation:
   - alias: Indoor Christmas On When Home
@@ -35,7 +29,7 @@ automation:
     action:
     - service: switch.turn_on
       data:
-        entity_id: switch.christmas_tree
+        entity_id: switch.indoor_christmas
 
   - alias: Indoor Christmas Off When Away or Asleep
     id: 63914fe0-40f3-4124-b94c-15abc036a79a
@@ -49,7 +43,7 @@ automation:
     action:
     - service: switch.turn_off
       data:
-        entity_id: switch.christmas_tree
+        entity_id: switch.indoor_christmas
 
   - alias: Christmas Lights On
     id: 7b933f59-ee4c-45fe-a26c-c50aafb4a7bb
