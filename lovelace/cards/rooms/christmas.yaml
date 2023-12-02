@@ -1,7 +1,7 @@
 # Christmas
 type: conditional
 conditions:
-  - entity: switch.christmas_tree
+  - entity: switch.christmas_1
     state_not: "unavailable"
   - entity: switch.christmas_tree
     state_not: "unknown"
