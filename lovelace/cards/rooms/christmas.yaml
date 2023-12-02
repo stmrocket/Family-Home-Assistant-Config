@@ -3,7 +3,7 @@ type: conditional
 conditions:
   - entity: switch.christmas_1
     state_not: "unavailable"
-  - entity: switch.christmas_tree
+  - entity: switch.christmas_1
     state_not: "unknown"
 card:
   type: custom:stack-in-card
