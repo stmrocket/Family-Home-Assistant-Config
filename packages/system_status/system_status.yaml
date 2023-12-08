@@ -11,11 +11,6 @@
 #################################################################
 
 binary_sensor:
-  - platform: ping
-    name: WAN Ping
-    host: !secret ping_ip
-    count: 4
-    scan_interval: 600
 
   - platform: template
     sensors:
