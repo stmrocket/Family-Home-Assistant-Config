@@ -1,23 +1,23 @@
 script:
   tablets_on:
     sequence:
-      - service: light.turn_on
+      - service: switch.turn_on
         continue_on_error: true
         entity_id:
-          - light.craft_tablet_screen
-          - light.den_tablet_screen
-          - light.entry_tablet_screen
-          - light.kitchen_tablet_screen
+          - switch.craft_tablet_screen
+          - switch.den_tablet_screen
+          - switch.entry_tablet_screen
+          - switch.kitchen_tablet_screen
 
   tablets_off:
     sequence:
-      - service: light.turn_off
+      - service: switch.turn_off
         continue_on_error: true
         entity_id:
-          - light.craft_tablet_screen
-          - light.den_tablet_screen
-          - light.entry_tablet_screen
-          - light.kitchen_tablet_screen
+          - switch.craft_tablet_screen
+          - switch.den_tablet_screen
+          - switch.entry_tablet_screen
+          - switch.kitchen_tablet_screen
 
   tablets_reload:
     sequence:
