@@ -192,7 +192,7 @@ elkm1:
   keypad:
     exclude: [5-16]
   output:
-    include: [3, 9, 10, 177-180]
+    include: [3, 8, 9, 10, 177-180]
   task:
     enabled: false
   thermostat:
