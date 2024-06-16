@@ -19,6 +19,16 @@ timer:
     
 shell_command:
   clear_temp_images: bash /config/bin/clean_up_temp_images.sh
+  back_porch_person_snapshot: 'wget -q 10.20.10.21:5000/api/back_porch/person/snapshot.jpg -O /config/www/cctv/back_porch_person.jpg'
+  back_yard_person_snapshot: 'wget -q 10.20.10.21:5000/api/back_yard/person/snapshot.jpg -O /config/www/cctv/back_yard_person.jpg'
+  driveway_person_snapshot: 'wget -q 10.20.10.21:5000/api/driveway/person/snapshot.jpg -O /config/www/cctv/driveway_person.jpg'
+  front_porch_person_snapshot: 'wget -q 10.20.10.21:5000/api/front_porch/person/snapshot.jpg -O /config/www/cctv/front_porch_person.jpg'
+  garage_person_snapshot: 'wget -q 10.20.10.21:5000/api/garage/person/snapshot.jpg -O /config/www/cctv/garage_person.jpg'
+  back_porch_cat_snapshot: 'wget -q 10.20.10.21:5000/api/back_porch/cat/snapshot.jpg -O /config/www/cctv/back_porch_cat.jpg'
+  back_yard_cat_snapshot: 'wget -q 10.20.10.21:5000/api/back_yard/cat/snapshot.jpg -O /config/www/cctv/back_yard_cat.jpg'
+  driveway_cat_snapshot: 'wget -q 10.20.10.21:5000/api/driveway/cat/snapshot.jpg -O /config/www/cctv/driveway_cat.jpg'
+  front_porch_cat_snapshot: 'wget -q 10.20.10.21:5000/api/front_porch/cat/snapshot.jpg -O /config/www/cctv/front_porch_cat.jpg'
+  garage_cat_snapshot: 'wget -q 10.20.10.21:5000/api/garage/cat/snapshot.jpg -O /config/www/cctv/garage_cat.jpg'
 
 notify:
   - platform: smtp
@@ -46,16 +56,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_porch
-          filename: /config/www/cctv/back_porch_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_porch_person
-          filename: /config/www/cctv/back_porch_person.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.back_porch_person_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -64,7 +67,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/back_porch_person.jpg
-              - /config/www/cctv/back_porch_full.jpg                    
+            html: >
+              A person was detected on the back porch camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:back_porch_person.jpg" style="width:98%; height:auto; border:none;" />                 
 
   - alias: CCTV Front Porch Person Detected
     id: 4e8fd441-c425-4ace-83f1-93bed955805a
@@ -77,16 +83,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.front_porch
-          filename: /config/www/cctv/front_porch_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.front_porch_person
-          filename: /config/www/cctv/front_porch_person.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.front_porch_person_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -95,7 +94,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/front_porch_person.jpg
-              - /config/www/cctv/front_porch_full.jpg                        
+            html: >
+              A person was detected on the front porch camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:front_porch_person.jpg" style="width:98%; height:auto; border:none;" />                             
 
   - alias: CCTV Back Yard Person Detected
     id: 46d20618-fd93-4e74-81ae-23ba2e04e684
@@ -108,16 +110,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_yard
-          filename: /config/www/cctv/back_yard_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_yard_person
-          filename: /config/www/cctv/back_yard_person.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.back_yard_person_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -126,7 +121,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/back_yard_person.jpg
-              - /config/www/cctv/back_yard_full.jpg                       
+            html: >
+              A person was detected on the back yard camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:back_yard_person.jpg" style="width:98%; height:auto; border:none;" />                            
 
   - alias: CCTV Driveway Person Detected
     id: 767fe3ac-cc69-4418-a916-4072ab2c32c7
@@ -139,16 +137,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.driveway
-          filename: /config/www/cctv/driveway_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.driveway_last_person
-          filename: /config/www/cctv/driveway_person.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.driveway_person_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -157,7 +148,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/driveway_person.jpg
-              - /config/www/cctv/driveway_full.jpg                
+            html: >
+              A person was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:driveway_person.jpg" style="width:98%; height:auto; border:none;" />                    
 
   - alias: CCTV Garage Person Detected
     id: f3885461-01df-439f-9e12-ddf9fcbac3ef
@@ -170,16 +164,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.garage
-          filename: /config/www/cctv/garage_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.garage_person
-          filename: /config/www/cctv/garage_person.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.garage_person_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -188,7 +175,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/garage_person.jpg
-              - /config/www/cctv/garage_full.jpg
+            html: >
+              A person was detected on the garage camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:garage_person.jpg" style="width:98%; height:auto; border:none;" />        
 
               
   - alias: CCTV Back Porch Cat Detected
@@ -202,16 +192,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_porch
-          filename: /config/www/cctv/back_porch_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_porch_cat
-          filename: /config/www/cctv/back_porch_cat.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.back_porch_cat_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -220,7 +203,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/back_porch_cat.jpg
-              - /config/www/cctv/back_porch_full.jpg                    
+            html: >
+              A cat was detected on the back porch camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:back_porch_cat.jpg" style="width:98%; height:auto; border:none;" />                          
 
   - alias: CCTV Front Porch Cat Detected
     id: 9861d2dc-4c3f-49ec-8fd7-5e2c336ade4e
@@ -233,16 +219,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.front_porch
-          filename: /config/www/cctv/front_porch_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.front_porch_cat
-          filename: /config/www/cctv/front_porch_cat.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.front_porch_cat_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -251,7 +230,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/front_porch_cat.jpg
-              - /config/www/cctv/front_porch_full.jpg                        
+            html: >
+              A cat was detected on the front porch camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:front_porch_cat.jpg" style="width:98%; height:auto; border:none;" />                       
 
   - alias: CCTV Back Yard Cat Detected
     id: 0d8f045d-fd20-44c4-8530-155a59bc1027
@@ -264,16 +246,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_yard
-          filename: /config/www/cctv/back_yard_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.back_yard_cat
-          filename: /config/www/cctv/back_yard_cat.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.back_yard_cat_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -282,7 +257,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/back_yard_cat.jpg
-              - /config/www/cctv/back_yard_full.jpg                       
+            html: >
+              A cat was detected on the back yard camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:back_yard_cat.jpg" style="width:98%; height:auto; border:none;" />                        
 
   - alias: CCTV Driveway Cat Detected
     id: 1aa29b35-1717-4d9d-82ce-8c86296d8e00
@@ -295,16 +273,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.driveway
-          filename: /config/www/cctv/driveway_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.driveway_last_cat
-          filename: /config/www/cctv/driveway_cat.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.driveway_cat_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -313,7 +284,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/driveway_cat.jpg
-              - /config/www/cctv/driveway_full.jpg                
+            html: >
+              A cat was detected on the driveway camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:driveway_cat.jpg" style="width:98%; height:auto; border:none;" />                 
 
   - alias: CCTV Garage Cat Detected
     id: 5f0435d8-e26e-423d-b8b6-2c4779f0d6fc
@@ -326,16 +300,9 @@ automation:
         entity_id: input_boolean.frigate_enabled
         state: 'on'
     action:
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.garage
-          filename: /config/www/cctv/garage_full.jpg
-      - service: camera.snapshot
-        continue_on_error: true
-        data:
-          entity_id: camera.garage_cat
-          filename: /config/www/cctv/garage_cat.jpg
+      - delay:
+          seconds: 1
+      - service: shell_command.garage_cat_snapshot
       - service: notify.cctv_email
         continue_on_error: true
         data:
@@ -344,7 +311,10 @@ automation:
           data: 
             images:
               - /config/www/cctv/garage_cat.jpg
-              - /config/www/cctv/garage_full.jpg
+            html: >
+              A cat was detected on the garage camera at {{now().strftime('%H:%M:%S') }}.
+              <br>
+              <img src="cid:garage_cat.jpg" style="width:98%; height:auto; border:none;" />   
 
   - alias: Start Reset Timer When Frigate Disabled
     id: bcc9dc5d-53ec-4636-95c1-87ca54871508
