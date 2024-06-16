@@ -83,7 +83,7 @@ media_player:
   - platform: universal
     name: Craft Roku Harmony
     children:
-      - media_player.craft_room_roku_roku
+      - media_player.craft_room_roku
     commands:
       volume_up:
         service: remote.send_command

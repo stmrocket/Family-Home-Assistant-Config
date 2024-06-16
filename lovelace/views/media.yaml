@@ -300,7 +300,7 @@ cards:
             conditions:
               - entity: sensor.craft_harmony_activity
                 state: "Watch Roku"
-              - entity: media_player.craft_room_roku_roku
+              - entity: media_player.craft_room_roku
                 state_not: "home"
             card:
               type: 'custom:mini-media-player'
