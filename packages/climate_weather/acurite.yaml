@@ -44,12 +44,12 @@ mqtt:
 
     - name: AcuRite Indoor Fridge Temperature
       unique_id: 3a74b5a4-72db-4754-a2e5-473a26f7d236
-      state_topic: rtl_433/53547/temperature_F
+      state_topic: rtl_433/64643/temperature_F
       unit_of_measurement: "°F"
 
     - name: AcuRite Indoor Freezer Temperature
       unique_id: b3dce4a0-b507-4364-9f1b-7689672f0a9b
-      state_topic: rtl_433/53432/temperature_F
+      state_topic: rtl_433/63502/temperature_F
       unit_of_measurement: "°F"
 
   binary_sensor:
