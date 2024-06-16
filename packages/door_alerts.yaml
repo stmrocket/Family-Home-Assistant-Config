@@ -9,6 +9,17 @@ timer:
     name: Garage Entry Alert Timer
     duration: "00:05:00"
 
+input_boolean:
+  front_door_alert_type:
+    name: Front Door Alert Type
+    icon: mdi:timer-outline   
+  back_door_alert_type:
+    name: Back Door Alert Type
+    icon: mdi:timer-outline   
+  garage_entry_alert_type:
+    name: Garage Entry Alert Type
+    icon: mdi:timer-outline    
+
 template:
   - binary_sensor:
     - name: Front Door Status
@@ -66,6 +77,8 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.front_door_dho
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.front_door_alert_type
 
   - alias: Cancel Back Door Alert Timer When Door Open
     id: 3d08fe25-ca53-42db-833e-b30ef14658e4
@@ -76,6 +89,8 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.back_door_dho
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.back_door_alert_type
 
   - alias: Cancel Garage Entry Alert Timer When Door Open
     id: 42549bef-bb19-4fb2-ace3-4ee31a28dc90
@@ -86,6 +101,8 @@ automation:
     action:
       - service: timer.cancel
         entity_id: timer.garage_entry_dho
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.garage_entry_alert_type
 
   - alias: Announce Front Door Alert When Timer Ends
     id: 9b8f662f-bbfc-41b4-9249-ef276e778233
@@ -95,11 +112,35 @@ automation:
         event_data:
           entity_id: timer.front_door_dho
     action:
-      - service: mqtt.publish
-        continue_on_error: true
-        data:
-          topic: parrot/command/set/play
-          payload: 1,7
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.front_door_alert_type
+            state: "off"
+          sequence:
+            - service: mqtt.publish
+              continue_on_error: true
+              data:
+                topic: parrot/command/set/play
+                payload: 1,7
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.front_door_alert_type
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.front_door_alert_type
+            state: "on"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.entry_siren
+            - delay: 10
+            - service: switch.turn_off
+              entity_id: switch.entry_siren
+            - service: notify.mobile_app_hd1907
+              data:
+                title: Door Alert
+                message: The front door has been left open.
+            - service: input_boolean.turn_off
+              entity_id: input_boolean.front_door_alert_type
       - service: timer.start
         entity_id: timer.front_door_dho
 
@@ -111,11 +152,35 @@ automation:
         event_data:
           entity_id: timer.back_door_dho
     action:
-      - service: mqtt.publish
-        continue_on_error: true
-        data:
-          topic: parrot/command/set/play
-          payload: 1,2
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.back_door_alert_type
+            state: "off"
+          sequence:
+            - service: mqtt.publish
+              continue_on_error: true
+              data:
+                topic: parrot/command/set/play
+                payload: 1,2
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.back_door_alert_type
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.back_door_alert_type
+            state: "on"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.entry_siren
+            - delay: 10
+            - service: switch.turn_off
+              entity_id: switch.entry_siren
+            - service: notify.mobile_app_hd1907
+              data:
+                title: Door Alert
+                message: The back door has been left open.
+            - service: input_boolean.turn_off
+              entity_id: input_boolean.back_door_alert_type
       - service: timer.start
         entity_id: timer.back_door_dho
 
@@ -127,10 +192,34 @@ automation:
         event_data:
           entity_id: timer.garage_entry_dho
     action:
-      - service: mqtt.publish
-        continue_on_error: true
-        data:
-          topic: parrot/command/set/play
-          payload: 1,10
+      - choose:
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.garage_entry_alert_type
+            state: "off"
+          sequence:
+            - service: mqtt.publish
+              continue_on_error: true
+              data:
+                topic: parrot/command/set/play
+                payload: 1,10
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.garage_entry_alert_type
+        - conditions:
+          - condition: state
+            entity_id: input_boolean.garage_entry_alert_type
+            state: "on"
+          sequence:
+            - service: switch.turn_on
+              entity_id: switch.entry_siren
+            - delay: 10
+            - service: switch.turn_off
+              entity_id: switch.entry_siren
+            - service: notify.mobile_app_hd1907
+              data:
+                title: Door Alert
+                message: The garage entry has been left open.
+            - service: input_boolean.turn_off
+              entity_id: input_boolean.garage_entry_alert_type
       - service: timer.start
         entity_id: timer.garage_entry_dho
