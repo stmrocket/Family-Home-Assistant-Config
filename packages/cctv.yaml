@@ -130,7 +130,7 @@ automation:
     id: 767fe3ac-cc69-4418-a916-4072ab2c32c7
     trigger:
       - platform: state
-        entity_id: binary_sensor.driveway_person
+        entity_id: binary_sensor.driveway_person_occupancy
         to: 'on'
     condition:
       - condition: state
@@ -266,7 +266,7 @@ automation:
     id: 1aa29b35-1717-4d9d-82ce-8c86296d8e00
     trigger:
       - platform: state
-        entity_id: binary_sensor.driveway_cat
+        entity_id: binary_sensor.driveway_cat_occupancy
         to: 'on'
     condition:
       - condition: state
