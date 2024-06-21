@@ -23,11 +23,10 @@
       data:
         message: The dryer has stopped.
         title: Laundry Update
-    - service: mqtt.publish
-      continue_on_error: true
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 3,1
+        folder: 3
+        file: 1
 
 - alias: 'Announce Washer Finished'
   id: 2de2b07e-f754-4667-a620-de035f87cc61
@@ -50,8 +49,7 @@
       data:
         message: The washer has stopped.
         title: Laundry Update
-    - service: mqtt.publish
-      continue_on_error: true
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 3,3
+        folder: 3
+        file: 3
