@@ -100,6 +100,8 @@ lovelace:
       type: module
     - url: /hacsfiles/lovelace-valetudo-map-card/valetudo-map-card.js
       type: module
+    - url: /hacsfiles/platinum-weather-card/platinum-weather-card.js
+      type: module
 
 sensor:
   #Template Sensors
