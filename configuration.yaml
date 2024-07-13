@@ -222,9 +222,3 @@ rest_command:
   wake_remote:
     url: "{{states('sensor.webhook_wake')}}"
     method: post
-
-device_tracker:
-  - platform: aruba
-    host: !secret aruba_host
-    username: !secret aruba_user
-    password: !secret aruba_pass
