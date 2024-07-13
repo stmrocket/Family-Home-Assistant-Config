@@ -118,11 +118,10 @@ automation:
             entity_id: input_boolean.front_door_alert_type
             state: "off"
           sequence:
-            - service: mqtt.publish
-              continue_on_error: true
+            - service: esphome.elkspeak_dfplayer_play_folder
               data:
-                topic: parrot/command/set/play
-                payload: 1,7
+                folder: 1
+                file: 7
             - service: input_boolean.turn_on
               entity_id: input_boolean.front_door_alert_type
         - conditions:
@@ -158,11 +157,10 @@ automation:
             entity_id: input_boolean.back_door_alert_type
             state: "off"
           sequence:
-            - service: mqtt.publish
-              continue_on_error: true
+            - service: esphome.elkspeak_dfplayer_play_folder
               data:
-                topic: parrot/command/set/play
-                payload: 1,2
+                folder: 1
+                file: 2
             - service: input_boolean.turn_on
               entity_id: input_boolean.back_door_alert_type
         - conditions:
@@ -198,11 +196,10 @@ automation:
             entity_id: input_boolean.garage_entry_alert_type
             state: "off"
           sequence:
-            - service: mqtt.publish
-              continue_on_error: true
+            - service: esphome.elkspeak_dfplayer_play_folder
               data:
-                topic: parrot/command/set/play
-                payload: 1,10
+                folder: 1
+                file: 10
             - service: input_boolean.turn_on
               entity_id: input_boolean.garage_entry_alert_type
         - conditions:

@@ -9,10 +9,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 1,7
+        folder: 1
+        file: 7
 
 - alias: Elk Speak Back Door
   id: fd4f76b2-f24c-4e6a-b3ff-50f1e9fc5759
@@ -25,10 +25,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 1,2
+        folder: 1
+        file: 2
 
 - alias: Elk Speak Garage Door
   id: 6945273c-ae6f-45aa-b99f-f5c71726ee29
@@ -41,10 +41,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 1,9
+        folder: 1
+        file: 9
 
 - alias: Elk Speak Garage Entry
   id: 74a00540-b7f9-4cf2-87cd-4673042418d0
@@ -56,10 +56,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 1,10
+        folder: 1
+        file: 10
 
 - alias: Elk Speak Armed Stay
   id: 85ccbd29-b857-4ef3-888d-3f8a38f8d901
@@ -77,10 +77,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,12
+        folder: 2
+        file: 12
 
 - alias: Elk Speak Armed Away
   id: 054c3121-c453-45a5-8279-8c1036c6a01b
@@ -94,15 +94,15 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,5
+        folder: 2
+        file: 5
     - delay: "00:00:48"
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,13
+        folder: 2
+        file: 13
 
 - alias: Elk Speak Armed Vacation
   id: 08bb2dee-574d-4e46-a206-84bb7da159e4
@@ -114,16 +114,15 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,14
+        folder: 2
+        file: 14
     - delay: "00:00:48"
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,13
-
+        folder: 2
+        file: 13
 - alias: Elk Speak Armed Night
   id: d06423ff-1f43-402f-9227-29065ccbb0c6
   trigger:
@@ -140,10 +139,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,9
+        folder: 2
+        file: 9
 
 - alias: Elk Speak Disarmed
   id: 585db9cd-f804-4a97-9497-83864244f61e
@@ -156,10 +155,10 @@
       entity_id: input_boolean.elk_speech
       state: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 2,2
+        folder: 2
+        file: 2
 
 - alias: Doorbell Alert
   id: e6b77810-e307-45ce-96d2-8ef3961aafb8
@@ -168,10 +167,10 @@
       topic: amcrest2mqtt/Z05919E169440/doorbell
       payload: "on"
   action:
-    - service: mqtt.publish
+    - service: esphome.elkspeak_dfplayer_play_folder
       data:
-        topic: parrot/command/set/play
-        payload: 4,1
+        folder: 4
+        file: 1
     - service: browser_mod.popup
       data:  
         auto_close: true
@@ -205,17 +204,3 @@
   action:
     - service: input_boolean.turn_on
       entity_id: input_boolean.elk_speech
-
-- alias: Power Cycle Speech Board
-  id: 440a383a-c932-4c25-b5cc-088c437b87e0
-  trigger:
-    - platform: time
-      at: "02:30:00"
-  action:
-    - service: switch.turn_on
-      continue_on_error: true
-      entity_id: switch.speech_power
-    - delay: "00:00:20"
-    - service: switch.turn_off
-      continue_on_error: true
-      entity_id: switch.speech_power
