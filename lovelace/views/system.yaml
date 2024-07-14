@@ -2150,11 +2150,9 @@ cards:
                               entity: script.furnace_bleach_date
                               name: Reset Bleach
           - type: "custom:button-card"
+            entity: input_boolean.elk_speech
             color_type: icon
             color: rgb(255, 255, 255)
             icon: mdi:account-voice
             name: Speech
-            tap_action:
-              action: call-service
-              service: script.reset_speech
           - type: "custom:gap-card"

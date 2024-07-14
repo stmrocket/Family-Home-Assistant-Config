@@ -2,11 +2,11 @@
   id: 1b92d6b5-aa22-48f1-9dc4-66661bbdfc7b
   trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       from: disarmed
       to: armed_night
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       from: armed_home
       to: armed_night
   action:
@@ -16,10 +16,10 @@
   id: 63a211c7-b83d-49f6-afdd-7c0f9c11176f
   trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       to: disarmed
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       from: armed_night
       to: armed_home
   action:
@@ -29,7 +29,7 @@
   id: 85ff81d4-cc3f-491b-a8d3-79aadc40302c
   trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       to: armed_away
   action:
     - service: script.tablets_off
@@ -43,7 +43,7 @@
       to: "on"
   condition:
     - condition: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       state: armed_night
   action:
     - service: light.turn_on

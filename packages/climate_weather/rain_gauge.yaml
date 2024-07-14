@@ -1102,25 +1102,25 @@ automation:
       - platform: state
         entity_id: sensor.rain_day
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         to: disarmed
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: arming
         to: armed_home
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: arming
         to: armed_night
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_night
         to: armed_home
         for: "00:01:00"
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
@@ -1132,7 +1132,7 @@ automation:
     action:
       - service: elkm1.alarm_display_message
         data_template:
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           line1: 'Rain: {{ states("sensor.rain_day") }}"'
 
   - alias: Clear Rainfall on Elk Keypads
@@ -1143,7 +1143,7 @@ automation:
     action:
       - service: elkm1.alarm_display_message
         data_template:
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           clear: 0
 
   - alias: Start Reset Timer When Rain Gauge Disabled

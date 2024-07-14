@@ -200,7 +200,7 @@ automation:
     id: dd45d34f-0fb7-4ad2-88c9-788290b8ba02
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         to: armed_away
         for: "00:01:00"
     condition:

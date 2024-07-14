@@ -24,17 +24,17 @@ template:
   - binary_sensor:
     - name: Front Door Status
       unique_id: 1a7ff7f2-1134-4d72-90c6-10238de5d2b2
-      state: "{{ not is_state('sensor.elk_front_door', 'Normal') }}"
+      state: "{{ not is_state('sensor.elkm1_front_door', 'Normal') }}"
       device_class: door
     
     - name: Back Door Status
       unique_id: b4ac6167-b0e8-4f8a-99b4-89c41889887c
-      state: "{{ not is_state('sensor.elk_back_door', 'Normal') }}"
+      state: "{{ not is_state('sensor.elkm1_back_door_2', 'Normal') }}"
       device_class: door
     
     - name: Garage Entry Status
       unique_id: bffc8a9a-06df-4ade-80d2-520686d40751
-      state: "{{ not is_state('sensor.elk_garage_entry', 'Normal') }}"
+      state: "{{ not is_state('sensor.elkm1_garage_entry', 'Normal') }}"
       device_class: door
 
 automation:
@@ -42,7 +42,7 @@ automation:
     id: 8e046181-6edd-4356-b7d5-3f8ed70df1c1
     trigger:
       - platform: state
-        entity_id: sensor.elk_front_door
+        entity_id: sensor.elkm1_front_door
         to: Violated
     action:
       - service: timer.start
@@ -52,7 +52,7 @@ automation:
     id: da2fdce5-0820-4428-8a5f-84f735fb768a
     trigger:
       - platform: state
-        entity_id: sensor.elk_back_door
+        entity_id: sensor.elkm1_back_door_2
         to: Violated
     action:
       - service: timer.start
@@ -62,7 +62,7 @@ automation:
     id: b4cc6522-12e1-4b2a-b65a-2148ae1aad10
     trigger:
       - platform: state
-        entity_id: sensor.elk_garage_entry
+        entity_id: sensor.elkm1_garage_entry
         to: Violated
     action:
       - service: timer.start
@@ -72,7 +72,7 @@ automation:
     id: 5dabaa11-d4e7-45bb-a6f6-57b5e237e6bc
     trigger:
       - platform: state
-        entity_id: sensor.elk_front_door
+        entity_id: sensor.elkm1_front_door
         to: Normal
     action:
       - service: timer.cancel
@@ -84,7 +84,7 @@ automation:
     id: 3d08fe25-ca53-42db-833e-b30ef14658e4
     trigger:
       - platform: state
-        entity_id: sensor.elk_back_door
+        entity_id: sensor.elkm1_back_door_2
         to: Normal
     action:
       - service: timer.cancel
@@ -96,7 +96,7 @@ automation:
     id: 42549bef-bb19-4fb2-ace3-4ee31a28dc90
     trigger:
       - platform: state
-        entity_id: sensor.elk_garage_entry
+        entity_id: sensor.elkm1_garage_entry
         to: Normal
     action:
       - service: timer.cancel
@@ -130,10 +130,10 @@ automation:
             state: "on"
           sequence:
             - service: switch.turn_on
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - delay: 10
             - service: switch.turn_off
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - service: notify.mobile_app_hd1907
               data:
                 title: Door Alert
@@ -169,10 +169,10 @@ automation:
             state: "on"
           sequence:
             - service: switch.turn_on
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - delay: 10
             - service: switch.turn_off
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - service: notify.mobile_app_hd1907
               data:
                 title: Door Alert
@@ -208,10 +208,10 @@ automation:
             state: "on"
           sequence:
             - service: switch.turn_on
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - delay: 10
             - service: switch.turn_off
-              entity_id: switch.entry_siren
+              entity_id: switch.elkm1_output_207
             - service: notify.mobile_app_hd1907
               data:
                 title: Door Alert

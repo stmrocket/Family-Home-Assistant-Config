@@ -2,7 +2,7 @@
   id: a29b6284-c1cf-4b82-935c-9b4d2fa224c1
   trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       attribute: arm_up_state
       from: armed_and_exit_timer_running
       to: 
@@ -12,10 +12,10 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         state: armed_away
       - condition: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         state: armed_night        
   action:
     - service: light.turn_off
@@ -89,7 +89,7 @@
     - choose: # When armed away
       - conditions:
         - condition: state
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           state: armed_away
         sequence:
           - service: light.turn_off
@@ -109,7 +109,7 @@
     - choose: # When armed night
       - conditions:
         - condition: state
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           state: armed_night
         sequence:
           - service: switch.turn_off
@@ -134,7 +134,7 @@
     - choose: # When armed night and not in Guest Mode
       - conditions:
         - condition: state
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           state: armed_night
         - condition: state
           entity_id: input_boolean.guest_mode

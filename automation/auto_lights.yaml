@@ -1,15 +1,15 @@
 - alias: Auto Attic Light
   id: 5a8ba10b-9e1a-4634-908b-7b6eb05f0fc2
   trigger:
-    - entity_id: sensor.elk_attic_trapdoor
+    - entity_id: sensor.elkm1_attic_trapdoor
       platform: state
       to: Violated
-    - entity_id: sensor.elk_attic_trapdoor
+    - entity_id: sensor.elkm1_attic_trapdoor
       platform: state
       to: Normal
   action:
     - service_template: >
-        {% if states('sensor.elk_attic_trapdoor') == "Violated" %}
+        {% if states('sensor.elkm1_attic_trapdoor') == "Violated" %}
           light.turn_on
         {% else %}
           light.turn_off
@@ -19,7 +19,7 @@
 - alias: Master Closet Light Auto On
   id: 7eb4d327-5962-406d-932c-ea13cc15dd3e
   trigger:
-    - entity_id: sensor.elk_closet_motion
+    - entity_id: sensor.elkm1_closet_motion
       platform: state
       to: Violated
   action:
@@ -29,7 +29,7 @@
 - alias: Master Closet Light Auto Off
   id: e2a21bb9-de5e-4cd6-8389-ac91023387a8
   trigger:
-    - entity_id: sensor.elk_closet_motion
+    - entity_id: sensor.elkm1_closet_motion
       platform: state
       to: Normal
       for:
@@ -41,7 +41,7 @@
 - alias: Auto Linen Closet Light On
   id: f0b8a508-5210-446f-bf99-4a8e7137a7da
   trigger:
-    - entity_id: sensor.elk_linen_closet
+    - entity_id: sensor.elkm1_linen_closet
       platform: state
       to: Violated
   action:
@@ -58,7 +58,7 @@
 - alias: Auto Linen Closet Light Off
   id: 07470e78-7eb4-4fa7-a8fd-0c4f55dad8e5
   trigger:
-    - entity_id: sensor.elk_linen_closet
+    - entity_id: sensor.elkm1_linen_closet
       platform: state
       to: Normal
   action:
@@ -68,15 +68,15 @@
 - alias: Auto Pantry Light
   id: 1975c1a5-cd5c-4581-9f99-ca49dc68b9ba
   trigger:
-    - entity_id: sensor.elk_pantry_door
+    - entity_id: sensor.elkm1_pantry_door
       platform: state
       to: Violated
-    - entity_id: sensor.elk_pantry_door
+    - entity_id: sensor.elkm1_pantry_door
       platform: state
       to: Normal
   action:
     - service_template: >
-        {% if states('sensor.elk_pantry_door') == "Violated" %}
+        {% if states('sensor.elkm1_pantry_door') == "Violated" %}
           light.turn_on
         {% else %}
           light.turn_off

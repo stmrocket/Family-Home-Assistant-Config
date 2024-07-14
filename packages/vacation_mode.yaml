@@ -3,7 +3,7 @@ automation:
     id: 367daa48-3126-4dea-bad5-89b76b6814b6
     trigger:
       - platform: template
-        value_template: "{{ is_state_attr('alarm_control_panel.house', 'armed_status', 'armed_to_vacation') }}"
+        value_template: "{{ is_state_attr('alarm_control_panel.elkm1_house', 'armed_status', 'armed_to_vacation') }}"
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.vacation_mode
@@ -12,11 +12,11 @@ automation:
     id: 47c99c56-602a-4695-9219-f8ecc9c3f0aa
     trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       to: disarmed
     condition:
       - condition: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         attribute: changed_by
         state: "Leena"
     action:
@@ -29,7 +29,7 @@ automation:
     id: 426c952b-9cfd-48d7-9dc7-eb95c2de7c20
     trigger:
     - platform: state
-      entity_id: alarm_control_panel.house
+      entity_id: alarm_control_panel.elkm1_house
       from: arming
       to: armed_away
     condition:

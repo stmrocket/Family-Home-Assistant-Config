@@ -63,23 +63,23 @@ automation:
   - alias: Lock Garage Entry When Leaving or Going to Bed
     id: fcf8f279-8cd8-41f0-af95-b7fa06b48265
     trigger:
-      - entity_id: alarm_control_panel.house
+      - entity_id: alarm_control_panel.elkm1_house
         from: arming
         platform: state
         to: armed_night
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
         to: armed_night
         for: "00:01:00"
-      - entity_id: alarm_control_panel.house
+      - entity_id: alarm_control_panel.elkm1_house
         from: arming
         platform: state
         to: armed_away
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
@@ -97,7 +97,7 @@ automation:
   - alias: Garage Entry Lock Timer Trigger
     id: b3d5062b-a651-425c-ab31-41c49e692318
     trigger:
-      - entity_id: sensor.elk_garage_entry
+      - entity_id: sensor.elkm1_garage_entry
         from: Normal
         to: Violated
         platform: state
@@ -118,10 +118,10 @@ automation:
         platform: event
     condition:
       - condition: state
-        entity_id: sensor.elk_garage_entry
+        entity_id: sensor.elkm1_garage_entry
         state: Normal
       - condition: state
-        entity_id: sensor.elk_garage_door
+        entity_id: sensor.elkm1_garage_door
         state: Violated
       - condition: state
         entity_id: lock.garage_entry

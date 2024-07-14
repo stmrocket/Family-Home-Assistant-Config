@@ -82,10 +82,10 @@ automation:
       - condition: or
         conditions:
           - condition: state
-            entity_id: alarm_control_panel.house
+            entity_id: alarm_control_panel.elkm1_house
             state: armed_night
           - condition: state
-            entity_id: alarm_control_panel.house
+            entity_id: alarm_control_panel.elkm1_house
             state: armed_away
     action:
       - service: switch.turn_off

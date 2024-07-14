@@ -63,22 +63,22 @@ automation:
     id: e8f75c21-4ae5-4411-9773-c38c5e2019e1
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: arming
         to: armed_night
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
         to: armed_night
         for: "00:01:00"
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: arming
         to: armed_away
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
@@ -96,7 +96,7 @@ automation:
     id: 95633cc9-3d10-4816-b934-2b3d0b5aaa3a
     trigger:
       - platform: state
-        entity_id: sensor.elk_front_door
+        entity_id: sensor.elkm1_front_door
         from: Normal
         to: Violated
       - platform: state
@@ -116,7 +116,7 @@ automation:
           entity_id: timer.front_door
     condition:
       - condition: state
-        entity_id: sensor.elk_front_door
+        entity_id: sensor.elkm1_front_door
         state: Normal
       - condition: state
         entity_id: lock.front_door
@@ -129,12 +129,12 @@ automation:
     id: 7c586818-9c1a-4d6a-8608-216403f37331
     trigger:
       - platform: state
-        entity_id: sensor.elk_front_door
+        entity_id: sensor.elkm1_front_door
         from: Violated
         to: Normal
     condition:
       - condition: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         attribute: arm_up_state
         state: armed_and_exit_timer_running
     action:

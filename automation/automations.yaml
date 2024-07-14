@@ -38,7 +38,7 @@
     - condition: not
       conditions:
         - condition: state
-          entity_id: alarm_control_panel.house
+          entity_id: alarm_control_panel.elkm1_house
           state: armed_away
     - condition: time
       after: '19:00:00'

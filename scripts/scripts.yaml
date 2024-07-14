@@ -36,11 +36,3 @@ reset_all_entity_counters:
       data_template:
         entity_id: input_number.sensor_count_expected
         value: "{{ states('sensor.sensor_count') | float }}"
-
-reset_speech:
-  sequence:
-    - service: switch.turn_on
-      entity_id: switch.speech_power
-    - delay: "00:00:20"
-    - service: switch.turn_off
-      entity_id: switch.speech_power

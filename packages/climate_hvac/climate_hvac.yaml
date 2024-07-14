@@ -126,11 +126,11 @@ automation:
     id: c8f44bcc-f9bc-4cd2-b9ba-f7a5810ec029
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: disarmed
         to: armed_night
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_home
         to: armed_night
     action:
@@ -146,15 +146,15 @@ automation:
     id: b04a4cf4-5a5f-4af2-a473-d691fba74a23
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_night
         to: disarmed
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_away
         to: disarmed
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: pending
         to: disarmed
     condition:
@@ -174,7 +174,7 @@ automation:
     id: ed9cb387-b984-47e6-bd31-fcfda7f36ace
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_night
         to: armed_home
     condition:
@@ -192,7 +192,7 @@ automation:
     id: 6cb3c69b-2e7d-4bcf-9e36-10bef104197a
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_night
         to: armed_home
     condition:
@@ -215,7 +215,7 @@ automation:
     id: 0ddca4f7-a1da-4093-bef1-09ea361bd5e6
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         from: armed_home
         to: disarmed
       - platform: state
@@ -238,7 +238,7 @@ automation:
     id: 9e746040-d9f1-4756-8359-f4256906e67d
     trigger:
       - platform: state
-        entity_id: alarm_control_panel.house
+        entity_id: alarm_control_panel.elkm1_house
         to: armed_away
     action:
       - service: climate.set_temperature
@@ -253,7 +253,7 @@ automation:
     id: 05dfec06-a230-4874-88bb-4bac4d1fdfc5
     trigger:
       - platform: state
-        entity_id: sensor.elk_back_door
+        entity_id: sensor.elkm1_back_door_2
         to: Violated
         for:
           minutes: 5
@@ -272,7 +272,7 @@ automation:
     id: 8f9c905f-b015-4371-a286-beb6061317ae
     trigger:
       - platform: state
-        entity_id: sensor.elk_back_door
+        entity_id: sensor.elkm1_back_door_2
         to: Normal
     condition:
       - condition: state
