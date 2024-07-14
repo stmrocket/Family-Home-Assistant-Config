@@ -2155,6 +2155,8 @@ cards:
             color: rgb(228, 94, 101)
             icon: mdi:account-voice
             name: Speech
+            tap_action:
+              action: more-info
             hold_action:
               action: more-info
           - type: "custom:gap-card"
