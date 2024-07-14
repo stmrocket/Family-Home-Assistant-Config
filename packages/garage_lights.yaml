@@ -1,5 +1,5 @@
 timer:
-  garage:
+  garage_light:
     name: Garage Light Timer
     duration: "00:10:00"  
 
