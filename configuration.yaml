@@ -202,7 +202,7 @@ elkm1:
   plc:
     enabled: false
   zone:
-    include: [1-32]
+    include: [1-33]
 
 #Alexa
 api:
