@@ -20,10 +20,21 @@ automation:
     condition:
       - condition: state
         entity_id: light.garage_lights
-        state: "on"
+        state: "off"
     action:
       - service: light.turn_on
         entity_id: light.garage_lights
+
+  - alias: Start Timer if Garage Light Manually Turned On
+    id: d9dc3827-6bbc-4bed-a693-a5e67c8434fd
+    trigger:
+      - platform: state
+        entity_id: light.garage_lights
+        from: "off"
+        to: "on"
+    action:
+      - service: timer.start
+        entity_id: timer.garage_light
 
   - alias: Garage Light Timer Reset
     id: 5e443c22-e068-4b69-aea5-bbd90f83468c
