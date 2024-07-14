@@ -1,0 +1,58 @@
+timer:
+  garage:
+    name: Garage Light Timer
+    duration: "00:10:00"  
+
+automation:
+  - alias: Garage Light Auto On
+    id: a3e639d7-3a4c-46c2-9edf-467a0b8a0a8c
+    trigger:
+      - platform: template
+        value_template: "{{ is_state_attr('sensor.elkm1_garage_entry', 'physical_status', 'open') }}"
+      - platform: state
+        entity_id: sensor.elkm1_garage_motion
+        from: Normal
+        to: Violated
+      - platform: state
+        entity_id: sensor.elkm1_garage_door
+        from: Normal
+        to: Violated
+    condition:
+      - condition: state
+        entity_id: light.garage_lights
+        state: "on"
+    action:
+      - service: light.turn_on
+        entity_id: light.garage_lights
+
+  - alias: Garage Light Timer Reset
+    id: 5e443c22-e068-4b69-aea5-bbd90f83468c
+    trigger:
+      - platform: template
+        value_template: "{{ is_state_attr('sensor.elkm1_garage_entry', 'physical_status', 'open') }}"
+      - platform: state
+        entity_id: sensor.elkm1_garage_motion
+        from: Normal
+        to: Violated
+      - platform: state
+        entity_id: sensor.elkm1_garage_door
+        from: Normal
+        to: Violated
+    condition:
+      - condition: state
+        entity_id: light.garage_lights
+        state: "on"
+    action:
+      - service: timer.start
+        entity_id: timer.garage_light
+
+  - alias: Garage Light Auto Off
+    id: 80b85874-480e-4adf-b2d1-11aa0b52a820
+    trigger:
+      - event_data:
+          entity_id: timer.garage_light
+        event_type: timer.finished
+        platform: event
+    action:
+      - service: light.turn_off
+        entity_id: light.garage_lights
