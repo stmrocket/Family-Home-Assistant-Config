@@ -182,6 +182,28 @@ automation: !include_dir_merge_list automation
 script: !include_dir_merge_named scripts
 zone: !include zones.yaml
 
+#Elk M1 Integration
+elkm1:
+  host: !secret elk_host
+  username: !secret elk_user
+  password: !secret elk_pass
+  area:
+    exclude: [2-8]
+  counter:
+    enabled: false
+  keypad:
+    exclude: [5-16]
+  output:
+    include: [3, 8-10, 177-180, 207]
+  task:
+    enabled: false
+  thermostat:
+    enabled: false
+  plc:
+    enabled: false
+  zone:
+    include: [1-33]
+
 #Alexa
 api:
 alexa: !include alexa.yaml
