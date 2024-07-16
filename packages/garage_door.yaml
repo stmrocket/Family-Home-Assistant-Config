@@ -18,7 +18,7 @@ automation:
     id: d2d3f74b-1fd2-45b8-b563-ac0d4fbd8691
     trigger:    
       - platform: state
-        entity_id: switch.garage_door
+        entity_id: switch.elkm1_garage_door
         from: 'off'
         to: 'on'
     action:
