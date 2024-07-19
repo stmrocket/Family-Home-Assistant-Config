@@ -34,7 +34,7 @@ template:
     
     - name: Garage Entry Status
       unique_id: bffc8a9a-06df-4ade-80d2-520686d40751
-      state: "{{ not is_state('sensor.elkm1_garage_entry', 'Normal') }}"
+      state: "{{ not is_state('sensor.elkm1_garage_entry', 'Normal') and not is_state('sensor.elkm1_garage_entry', 'Bypassed') }}"
       device_class: door
 
 automation:
