@@ -41,6 +41,8 @@ smart_home:
       - switch.outside_lights
       - switch.watch_shop_fan
       - switch.warmer
+      - switch.sound_machine_master
+      - switch.sound_machine_guest
       - input_boolean.elk_night_on
       - input_boolean.elk_night_off
       - input_boolean.elk_stay_on
@@ -82,3 +84,7 @@ smart_home:
       name: Wax Warmer
     switch.manual_timer_lights:
       name: Timer Lights
+    switch.sound_machine_master:
+      name: Sound Machine
+    switch.sound_machine_guest:
+      name: Guest Sound Machine

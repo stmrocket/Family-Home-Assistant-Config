@@ -31,24 +31,29 @@
   id: 03759759-c2c7-4d9e-80c7-594b998b615a
   trigger:
     - platform: state
-      entity_id: light.master_lamp
-      from: 'on'
-      to: 'off'
-  condition:
-    - condition: not
-      conditions:
-        - condition: state
-          entity_id: alarm_control_panel.elkm1_house
-          state: armed_away
-    - condition: time
-      after: '19:00:00'
-      before: '02:00:00'
+      entity_id: alarm_control_panel.elkm1_house
+      from: disarmed
+      to: armed_night
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      from: armed_home
+      to: armed_night
   action:
-    - service: media_player.play_media
-      data:
-        entity_id: media_player.alexa_master
-        media_content_id: "Bedtime Sounds"
-        media_content_type: "routine"
+    - service: esphome.sound_machine_master_dfplayer_play_bedtime
+
+- alias: Turn Off Sound Machine
+  id: c7b2bf10-f9f0-4ba9-9f53-21c9297ad4da
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      from: armed_night
+      to: armed_home
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      from: armed_night
+      to: disarmed
+  action:
+    - service: esphome.esphome.sound_machine_master_dfplayer_stop
 
 - alias: Record HA Shutdown Time
   id: ec7e8067-739b-45c1-b950-017fa7de9b2c

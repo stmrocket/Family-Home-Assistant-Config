@@ -1,0 +1,17 @@
+switch:
+  - platform: template
+    switches:
+      sound_machine_master:
+        unique_id: 99f4cf35-f134-4138-b09d-8af200d8f204
+        friendly_name: "Master Sound Machine"
+        turn_on:
+          service: esphome.sound_machine_master_dfplayer_play_bedtime
+        turn_off:
+          service: esphome.sound_machine_master_dfplayer_stop
+      sound_machine_guest:
+        unique_id: 05687b2b-9bc3-4b2c-a0e0-73cce72c5285
+        friendly_name: "Guest Sound Machine"
+        turn_on:
+          service: esphome.sound_machine_guest_dfplayer_play_bedtime
+        turn_off:
+          service: esphome.sound_machine_guest_dfplayer_stop
