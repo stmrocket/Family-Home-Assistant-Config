@@ -126,10 +126,6 @@ input_boolean:
     name: Dryer Finished
     icon: mdi:stop-circle
 
-  guest_mode:
-    name: Guest Mode
-    icon: mdi:timer-outline
-
   timer_lights:
     name: Timer Lights
     icon: mdi:lightbulb
