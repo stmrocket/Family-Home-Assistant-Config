@@ -1,0 +1,159 @@
+input_boolean:
+  karen_mode:
+    name: Karen Mode
+    icon: mdi:timer-outline
+
+script:
+  good_night:
+    sequence:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: "armed_home"
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: "disarmed"
+      - service: light.turn_off
+        entity_id:
+          - light.master_bedroom_light
+          - light.master_bathroom_lights
+      - service: switch.turn_off
+        entity_id:
+          - switch.master_bedroom_lamp
+          - switch.master_toilet_fan
+      - service: switch.turn_on
+        entity_id:
+          - switch.master_bedroom_fan
+          - switch.sound_machine_master
+      - choose:
+          - conditions:
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: person.karen
+                  state: "not_home"
+                - condition: state
+                  entity_id: person.scott
+                  state: "not_home"
+                - condition: state
+                  entity_id: person.scott
+                  state: "farm"
+                - condition: state
+                  entity_id: person.scott
+                  state: "cabin"
+            sequence:              
+              - service: switch.turn_on
+                entity_id: switch.elkm1_output_178
+          - conditions:
+            - condition: or
+              conditions:
+                - condition: state
+                  entity_id: person.karen
+                  state: "home"
+                - condition: state
+                  entity_id: person.karen
+                  state: "bcs"
+            sequence:              
+              - service: input_boolean.turn_on
+                entity_id: input_boolean.karen_mode
+
+  good_morning:
+    sequence:
+      - condition: state
+        entity_id: alarm_control_panel.elkm1_house
+        state: "armed_night"
+      - service: switch.turn_on
+        entity_id: switch.elkm1_output_177
+      - service: switch.turn_off
+        entity_id:
+          - switch.master_bedroom_fan
+          - switch.sound_machine_master
+      - condition: state
+        entity_id: sun.sun
+        state: "below_horizon"
+      - service: switch.turn_on
+        entity_id: switch.master_bedroom_lamp
+
+  going_to_bed:
+    sequence:
+      - service: switch.turn_on
+        entity_id:
+          - switch.guest_room_fan
+          - switch.sound_machine_guest
+          - switch.elkm1_output_178
+      - service: switch.turn_off
+        entity_id:
+          - switch.guest_room_lamp
+          - switch.guest_bath_fan
+      - service: light.turn_off
+        entity_id:
+          - light.guest_room_light
+          - light.guest_bath_light
+
+  getting_up:
+    sequence:
+      - service: switch.turn_off
+        entity_id:
+          - switch.guest_room_fan
+          - switch.sound_machine_guest
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.karen_mode
+      - condition: state
+        entity_id: sun.sun
+        state: "below_horizon"
+      - service: switch.turn_on
+        entity_id: switch.guest_room_lamp
+
+automation:  
+  - alias: Master Bedroom Button Pressed
+    id: 06b6fedb-12b4-4119-b1e7-c20e54670e33
+    trigger:
+      - platform: state
+        entity_id: sensor.master_bedroom_button
+        to: "single"
+    action: 
+      - service: script.good_night
+      - service: script.good_morning
+
+  - alias: Karen Mode Off
+    id: 515b290d-89f6-43a4-9e94-c398f64131d6
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.karen_7t_is_charging
+        from: "on"
+        to: "off"
+        id: unplug
+      - platform: time
+        at: "09:00:00"
+        id: time
+    action:
+      - choose:
+          - conditions:
+              - condition: trigger
+                id: unplug
+              - condition: time
+                after: "03:00:00"
+                before: "09:00:00"
+            sequence:
+              - service: input_boolean.turn_off
+                entity_id: input_boolean.karen_mode
+          - conditions:
+              - condition: trigger
+                id: time
+            sequence:
+              - service: input_boolean.turn_off
+                entity_id: input_boolean.karen_mode
+
+  - alias: Bedroom Lamps Off at Sunrise
+    id: 15129094-0769-448d-a6e6-06546b6f2f5c
+    trigger:
+      - platform: sun
+        event: sunrise
+    action:
+      - service: switch.turn_off
+        continue_on_error: true
+        data:
+          entity_id: 
+            - switch.master_bedroom_lamp
+            - switch.guest_room_lamp

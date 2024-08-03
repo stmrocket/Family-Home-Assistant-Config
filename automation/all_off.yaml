@@ -131,13 +131,16 @@
               entity_id: 
                 - input_boolean.timer_lights
                 - input_boolean.manual_timer_lights
-    - choose: # When armed night and not in Guest Mode
+    - choose: # When armed night and not in Guest Mode or Karen Mode
       - conditions:
         - condition: state
           entity_id: alarm_control_panel.elkm1_house
           state: armed_night
         - condition: state
           entity_id: input_boolean.guest_mode
+          state: "off"
+        - condition: state
+          entity_id: input_boolean.karen_mode
           state: "off"
         sequence:
           - service: light.turn_off

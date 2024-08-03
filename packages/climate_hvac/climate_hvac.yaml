@@ -1,17 +1,3 @@
-#################################################################
-#                                                               #
-#                    Packages/climate_hvac                      #
-#                                                               #
-#################################################################
-
-
-
-#################################################################
-#                                                               #
-#                         Input_Boolean                         #
-#                                                               #
-#################################################################
-
 input_boolean:
   hvac_geofence:
     name: In HVAC Geofence
@@ -19,20 +5,7 @@ input_boolean:
   hvac_guest_mode:
     name: HVAC Change in Gueat Mode
 
-#################################################################
-#                                                               #
-#                       Binary Sensors                          #
-#                                                               #
-#################################################################
-
 binary_sensor:
-
-####################################################
-#                                                  #
-#            Binary Sensor - Template              #
-#                                                  #
-####################################################
-
   - platform: template
     sensors:
 
@@ -51,23 +24,9 @@ binary_sensor:
         friendly_name: "HVAC System Cool Call"
         value_template: '{{states.climate.thermostat.attributes.hvac_action | string == "cooling" }}'    
 
-#################################################################
-#                                                               #
-#                            Sensors                            #
-#                                                               #
-#################################################################
-
 sensor:
-
-####################################################
-#                                                  #
-#                Sensor - Template                 #
-#                                                  #
-####################################################
-
   - platform: template
     sensors:
-
       hvac_system_state:
         unique_id: 8388a82f-3c13-4866-a9d0-d209ea80fb99
         friendly_name: "HVAC System Current State"
@@ -90,12 +49,6 @@ sensor:
           {{ ((states.sensor.hvac_system_fan_runtime.state | float) +
           (states.sensor.hvac_system_heat_runtime.state | float) +
           (states.sensor.hvac_system_cool_runtime.state | float)) | round(2) }}
-      
-####################################################
-#                                                  #
-#                Sensor - History                  #
-#                                                  #
-####################################################
 
   - platform: history_stats
     name: HVAC System Fan Runtime
@@ -147,10 +100,6 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
-        from: armed_night
-        to: disarmed
-      - platform: state
-        entity_id: alarm_control_panel.elkm1_house
         from: armed_away
         to: disarmed
       - platform: state
@@ -170,69 +119,39 @@ automation:
       - service: input_boolean.turn_off
         entity_id: input_boolean.hvac_guest_mode
 
-  - alias: HVAC When Waking Up With Guests
-    id: ed9cb387-b984-47e6-bd31-fcfda7f36ace
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.elkm1_house
-        from: armed_night
-        to: armed_home
-    condition:
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: "off"
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: "on"
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.hvac_guest_mode
-
-  - alias: HVAC When Waking Up Without Guests
+  - alias: HVAC When Waking
     id: 6cb3c69b-2e7d-4bcf-9e36-10bef104197a
     trigger:
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
         from: armed_night
-        to: armed_home
+        to: armed_home      
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: armed_night
+        to: disarmed
+      - platform: state
+        entity_id: input_boolean.karen_mode
+        to: "off"
     condition:
       - condition: state
         entity_id: input_boolean.vacation_mode
         state: "off"
       - condition: state
-        entity_id: input_boolean.guest_mode
+        entity_id: input_boolean.karen_mode
         state: "off"
-    action:
-      - service: climate.set_temperature
-        data:
-          entity_id: climate.thermostat
-          target_temp_high: 78
-          target_temp_low: 69
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.hvac_guest_mode
-
-  - alias: HVAC When Exiting Guest Mode or Awake
-    id: 0ddca4f7-a1da-4093-bef1-09ea361bd5e6
-    trigger:
-      - platform: state
-        entity_id: alarm_control_panel.elkm1_house
-        from: armed_home
-        to: disarmed
-      - platform: state
-        entity_id: input_boolean.guest_mode
-        to: "off"
-    condition:
       - condition: state
-        entity_id: input_boolean.hvac_guest_mode
-        state: "on"
+        entity_id: alarm_control_panel.elkm1_house
+        state: armed_home
+      - condition: state
+        entity_id: alarm_control_panel.elkm1_house
+        state: disarmed
     action:
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat
           target_temp_high: 78
           target_temp_low: 69
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.hvac_guest_mode
 
   - alias: HVAC When Away
     id: 9e746040-d9f1-4756-8359-f4256906e67d
