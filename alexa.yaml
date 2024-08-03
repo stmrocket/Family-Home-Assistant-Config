@@ -53,6 +53,7 @@ smart_home:
       - switch.stove_fan
       - switch.stove_light
       - switch.fountain
+      - input_boolean.elk_speech
 
     exclude_domains:
       - automation
@@ -88,3 +89,5 @@ smart_home:
       name: Sound Machine
     switch.sound_machine_guest:
       name: Guest Sound Machine
+    input_boolean.elk_speech:
+      name: Speech
