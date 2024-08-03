@@ -54,6 +54,10 @@ smart_home:
       - switch.stove_light
       - switch.fountain
       - input_boolean.elk_speech
+      - script.good_night
+      - script.good_morning
+      - script.going_to_bed
+      - script.getting_up
 
     exclude_domains:
       - automation
