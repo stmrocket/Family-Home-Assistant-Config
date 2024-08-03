@@ -60,7 +60,7 @@ automation:
     id: daa97cf1-a4b8-4d85-bb8e-06413f61c433
     trigger:
       - platform: state
-        entity_id: device_tracker.shawn7t
+        entity_id: person.shawn
         to: home
     action:
       - service: input_boolean.turn_on
@@ -70,7 +70,7 @@ automation:
     id: 75430558-7b75-4855-8610-8c7bbb7a4c12
     trigger:
       - platform: state
-        entity_id: device_tracker.shawn7t
+        entity_id: person.shawn
         to: not_home
     condition:
       - condition: state
