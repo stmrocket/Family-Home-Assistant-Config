@@ -46,10 +46,10 @@ automation:
     id: d24d2f8f-2821-41c9-90c7-042c54a223e4
     trigger:
       - platform: state
-        entity_id: person.karen_mccoy
+        entity_id: person.karen
         to: "home"
       - platform: state
-        entity_id: person.scott_mccoy
+        entity_id: person.scott
         to: "home"
     condition:
       - condition: state
