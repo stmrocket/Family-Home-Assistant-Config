@@ -15,14 +15,17 @@ script:
             entity_id: alarm_control_panel.elkm1_house
             state: "disarmed"
       - service: light.turn_off
+        continue_on_error: true
         entity_id:
           - light.master_bedroom_light
           - light.master_bathroom_lights
       - service: switch.turn_off
+        continue_on_error: true
         entity_id:
           - switch.master_bedroom_lamp
           - switch.master_toilet_fan
       - service: switch.turn_on
+        continue_on_error: true
         entity_id:
           - switch.master_bedroom_fan
           - switch.sound_machine_master
@@ -44,6 +47,7 @@ script:
                   state: "cabin"
             sequence:              
               - service: switch.turn_on
+                continue_on_error: true
                 entity_id: switch.elkm1_output_178
           - conditions:
             - condition: or
@@ -64,8 +68,10 @@ script:
         entity_id: alarm_control_panel.elkm1_house
         state: "armed_night"
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.elkm1_output_177
       - service: switch.turn_off
+        continue_on_error: true
         entity_id:
           - switch.master_bedroom_fan
           - switch.sound_machine_master
@@ -73,20 +79,24 @@ script:
         entity_id: sun.sun
         state: "below_horizon"
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.master_bedroom_lamp
 
   going_to_bed:
     sequence:
       - service: switch.turn_on
+        continue_on_error: true
         entity_id:
           - switch.guest_room_fan
           - switch.sound_machine_guest
           - switch.elkm1_output_178
       - service: switch.turn_off
+        continue_on_error: true
         entity_id:
           - switch.guest_room_lamp
           - switch.guest_bath_fan
       - service: light.turn_off
+        continue_on_error: true
         entity_id:
           - light.guest_room_light
           - light.guest_bath_light
@@ -94,6 +104,7 @@ script:
   getting_up:
     sequence:
       - service: switch.turn_off
+        continue_on_error: true
         entity_id:
           - switch.guest_room_fan
           - switch.sound_machine_guest
@@ -103,6 +114,7 @@ script:
         entity_id: sun.sun
         state: "below_horizon"
       - service: switch.turn_on
+        continue_on_error: true
         entity_id: switch.guest_room_lamp
 
 automation:  
