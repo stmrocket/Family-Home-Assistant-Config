@@ -43,4 +43,4 @@ automation:
         from: armed_night
         to: disarmed
     action:
-      - service: esphome.esphome.sound_machine_master_dfplayer_stop      
+      - service: esphome.sound_machine_master_dfplayer_stop      
