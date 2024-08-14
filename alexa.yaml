@@ -59,23 +59,6 @@ smart_home:
       - script.going_to_bed
       - script.getting_up
 
-    exclude_domains:
-      - automation
-      - script
-      - alert
-      - fan
-      - group
-      - light
-      - scene
-      - sensor
-      - switch
-      - cover
-      - binary_sensor
-      - media_player
-      - input_boolean
-      - climate
-      - input_number   
-
   entity_config:
     light.guest_bath_light:
       name: Guest Bathroom Light
