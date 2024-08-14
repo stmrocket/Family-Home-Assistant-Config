@@ -1,6 +1,7 @@
 smart_home:
   filter:
     include_entities:
+      #Light
       - light.back_yard_lights
       - light.back_hall_light
       - light.back_porch_light
@@ -17,6 +18,7 @@ smart_home:
       - light.master_shower_light
       - light.master_toilet_light
       - light.watch_shop_light
+      #Switch
       - switch.christmas_outlets
       - switch.back_porch_fan
       - switch.craft_room_desk
@@ -41,19 +43,21 @@ smart_home:
       - switch.outside_lights
       - switch.watch_shop_fan
       - switch.warmer
+      - switch.desk
+      - switch.manual_timer_lights
+      - switch.stove_fan
+      - switch.stove_light
+      - switch.fountain
       - switch.sound_machine_master
       - switch.sound_machine_guest
+      #Input Boolean
       - input_boolean.elk_night_on
       - input_boolean.elk_night_off
       - input_boolean.elk_stay_on
       - input_boolean.elk_stay_off
       - input_boolean.elk_away_on
-      - switch.manual_timer_lights
-      - switch.desk
-      - switch.stove_fan
-      - switch.stove_light
-      - switch.fountain
       - input_boolean.elk_speech
+      #Script
       - script.good_night
       - script.good_morning
       - script.going_to_bed
