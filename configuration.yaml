@@ -102,6 +102,8 @@ lovelace:
       type: module
     - url: /local/custom_ui/platinum-weather-card/platinum-weather-card.js
       type: module
+    - url: /hacsfiles/frigate-hass-card/frigate-hass-card.js
+      type: module
 
 sensor:
   #Template Sensors
