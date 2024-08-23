@@ -548,13 +548,107 @@ cards:
             elements:
               - entity: sensor.blank
                 hold-action: none
-                prefix: "Hass.io"
+                prefix: "HASS"
                 style:
                   bottom: 20%
                   font-size: 150%
                   left: 5%
                   transform: initial
-                tap_action: none
+                tap_action: 
+                  action: fire-dom-event
+                  browser_mod:
+                    service: browser_mod.popup
+                    data:
+                      title: GitHub Updater
+                      content:
+                        type: custom:vertical-stack-in-card
+                        cards:
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:button-card"
+                                entity: binary_sensor.git_update_ready
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                icon: mdi:github
+                                name: Pull
+                                tap_action:
+                                  action: call-service
+                                  service: script.update_config
+
+                              - type: "custom:button-card"
+                                entity: binary_sensor.git_update_ready
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                icon: mdi:github
+                                name: Restart
+                                tap_action:
+                                  action: call-service
+                                  service: script.update_config_restart
+
+                              - type: "custom:button-card"
+                                entity: binary_sensor.git_update_ready
+                                color_type: icon
+                                state:
+                                  - value: "on"
+                                    color: rgb(228, 94, 101)
+                                  - value: "off"
+                                    color: rgb(255, 255, 255)
+                                icon: mdi:equal
+                                name: Clear
+                                tap_action:
+                                  action: call-service
+                                  service: script.clear_config_update_flag
+
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:button-card"
+                                color_type: icon
+                                color: rgb(255, 255, 255)
+                                icon: mdi:robot
+                                name: Automations
+                                tap_action:
+                                  action: call-service
+                                  service: automation.reload
+
+                              - type: "custom:button-card"
+                                color_type: icon
+                                color: rgb(255, 255, 255)
+                                icon: mdi:script-text
+                                name: Scripts
+                                tap_action:
+                                  action: call-service
+                                  service: script.reload
+
+                              - type: "custom:button-card"
+                                color_type: icon
+                                color: rgb(255, 255, 255)
+                                icon: mdi:tools
+                                name: Reload
+                                tap_action:
+                                  action: call-service
+                                  service: homeassistant.reload_all
+                          - type: horizontal-stack
+                            cards:
+                              - type: "custom:gap-card"
+
+                              - type: "custom:button-card"
+                                color_type: icon
+                                color: rgb(255, 255, 255)
+                                icon: mdi:web
+                                name: Tablets
+                                tap_action:
+                                  action: call-service
+                                  service: script.tablets_reload
+
+                              - type: "custom:gap-card"
                 hold_action: none
                 double_tap_action:
                   action: call-service
@@ -756,7 +850,7 @@ cards:
             cards:
               - type: "custom:config-template-card"
                 entities:
-                  - sensor.automation_count
+                  - sensor.automations
                   - sensor.automation_count_low
                   - sensor.automation_count_high
                   - input_number.automation_count_expected
@@ -821,400 +915,7 @@ cards:
 
               - type: "custom:config-template-card"
                 entities:
-                  - sensor.binary_sensor_count
-                  - sensor.binary_sensor_count_high
-                  - sensor.binary_sensor_count_low
-                  - input_number.binary_sensor_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Binary Sensors
-                  entity: sensor.binary_sensor_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.binary_sensor_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.binary_sensor_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.binary_sensor_count_expected'].state}
-                      to: ${states['input_number.binary_sensor_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.binary_sensor_count_expected'].state + 1}
-                      to: ${states['sensor.binary_sensor_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.switch_count
-                  - sensor.switch_count_high
-                  - sensor.switch_count_low
-                  - input_number.switch_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Switches
-                  entity: sensor.switch_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.switch_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.switch_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.switch_count_expected'].state}
-                      to: ${states['input_number.switch_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.switch_count_expected'].state + 1}
-                      to: ${states['sensor.switch_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-          - type: horizontal-stack
-            cards:
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.fan_count
-                  - sensor.fan_count_high
-                  - sensor.fan_count_low
-                  - input_number.fan_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Fans
-                  entity: sensor.fan_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.fan_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.fan_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.fan_count_expected'].state}
-                      to: ${states['input_number.fan_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.fan_count_expected'].state + 1}
-                      to: ${states['sensor.fan_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.lights_count
-                  - sensor.light_count_high
-                  - sensor.light_count_low
-                  - input_number.light_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Lights
-                  entity: sensor.lights_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.lights_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.light_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.light_count_expected'].state}
-                      to: ${states['input_number.light_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.light_count_expected'].state + 1}
-                      to: ${states['sensor.light_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.tracker_count
-                  - sensor.tracked_device_count_high
-                  - sensor.tracked_device_count_low
-                  - input_number.tracked_device_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Tracked Devices
-                  entity: sensor.tracker_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.tracker_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.tracked_device_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.tracked_device_count_expected'].state}
-                      to: ${states['input_number.tracked_device_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.tracked_device_count_expected'].state + 1}
-                      to:: ${states['sensor.tracked_device_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-          - type: horizontal-stack
-            cards:
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.media_player_count
-                  - sensor.media_player_count_high
-                  - sensor.media_player_count_low
-                  - input_number.media_player_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Media Players
-                  entity: sensor.media_player_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.media_player_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.media_player_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.media_player_count_expected'].state}
-                      to: ${states['input_number.media_player_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.media_player_count_expected'].state + 1}
-                      to: ${states['sensor.media_player_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.script_count
+                  - sensor.scripts
                   - sensor.script_count_high
                   - sensor.script_count_low
                   - input_number.script_count_expected
@@ -1276,71 +977,6 @@ cards:
                     }
                   tap_action:
                     action: more-info
-
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.sensor_count
-                  - sensor.sensor_count_high
-                  - sensor.sensor_count_low
-                  - input_number.sensor_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Sensors
-                  entity: sensor.sensor_count
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.sensor_count'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.sensor_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.sensor_count_expected'].state}
-                      to: ${states['input_number.sensor_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.sensor_count_expected'].state + 1}
-                      to: ${states['sensor.sensor_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
       - type: custom:gap-card
         height: 100
       - type: custom:popup-card
@@ -1354,66 +990,6 @@ cards:
             - input_number.automation_count_expected
                         
       - type: custom:popup-card
-        entity: sensor.binary_sensor_count
-        title: Binary Sensor Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.binary_sensor_count
-              name: Current Binary Sensors
-            - input_number.binary_sensor_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.switch_count
-        title: Switch Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.switch_count
-              name: Current Switches
-            - input_number.switch_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.fan_count
-        title: Fan Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.fan_count
-              name: Current Fans
-            - input_number.fan_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.lights_count
-        title: Light Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.lights_count
-              name: Current Lights
-            - input_number.light_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.tracker_count
-        title: Device Tracker Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.tracker_count
-              name: Current Device Trackers
-            - input_number.tracked_device_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.media_player_count
-        title: Media Player Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.media_player_count
-              name: Current Media Players
-            - input_number.media_player_count_expected
-                        
-      - type: custom:popup-card
         entity: sensor.script_count
         title: Script Count Settings
         card:
@@ -1422,16 +998,6 @@ cards:
             - entity: sensor.script_count
               name: Current Scripts
             - input_number.script_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.sensor_count
-        title: Sensor Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.sensor_count
-              name: Current Sensors
-            - input_number.sensor_count_expected
                         
       - type: custom:popup-card
         entity: sensor.wan_in_mbps
@@ -1463,400 +1029,7 @@ cards:
               icon: mdi:harddisk
             - entity: sensor.wan_out_monthly
               name: Monthly
-              icon: mdi:harddisk           
-  #################################################################
-  #                                                               #
-  #                      Home - GitHub                            #
-  #                                                               #
-  #################################################################
-  - type: vertical-stack
-    cards:
-      - type: custom:stack-in-card
-        cards:
-          - type: picture-elements
-            image: /local/lovelace/room.png
-            elements:
-              - entity: sensor.blank
-                hold-action: none
-                prefix: Updates
-                style:
-                  bottom: 20%
-                  font-size: 150%
-                  left: 5%
-                  transform: initial
-                tap_action: none
-                hold_action: none
-                type: state-label
-          - type: horizontal-stack
-            cards:
-              - type: "custom:button-card"
-                entity: binary_sensor.git_update_ready
-                color_type: icon
-                icon: mdi:github
-                state:
-                  - value: "on"
-                    color: rgb(228, 94, 101)
-                  - value: "off"
-                    color: rgb(255, 255, 255)
-                name: GitHub
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: GitHub Updater
-                      content:
-                        type: custom:vertical-stack-in-card
-                        cards:
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:github
-                                name: Pull
-                                tap_action:
-                                  action: call-service
-                                  service: script.update_config
-
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:github
-                                name: Restart
-                                tap_action:
-                                  action: call-service
-                                  service: script.update_config_restart
-
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:equal
-                                name: Clear
-                                tap_action:
-                                  action: call-service
-                                  service: script.clear_config_update_flag
-
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:robot
-                                name: Automations
-                                tap_action:
-                                  action: call-service
-                                  service: automation.reload
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:script-text
-                                name: Scripts
-                                tap_action:
-                                  action: call-service
-                                  service: script.reload
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:tools
-                                name: Reload
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.reload_all
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:gap-card"
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:web
-                                name: Tablets
-                                tap_action:
-                                  action: call-service
-                                  service: script.tablets_reload
-
-                              - type: "custom:gap-card"
-                hold_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: GitHub Updater
-                      content:
-                        type: custom:vertical-stack-in-card
-                        cards:
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:github
-                                name: Pull
-                                tap_action:
-                                  action: call-service
-                                  service: script.update_config
-
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:github
-                                name: Restart
-                                tap_action:
-                                  action: call-service
-                                  service: script.update_config_restart
-
-                              - type: "custom:button-card"
-                                entity: binary_sensor.git_update_ready
-                                color_type: icon
-                                state:
-                                  - value: "on"
-                                    color: rgb(228, 94, 101)
-                                  - value: "off"
-                                    color: rgb(255, 255, 255)
-                                icon: mdi:equal
-                                name: Clear
-                                tap_action:
-                                  action: call-service
-                                  service: script.clear_config_update_flag
-
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:robot
-                                name: Automations
-                                tap_action:
-                                  action: call-service
-                                  service: automation.reload
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:script-text
-                                name: Scripts
-                                tap_action:
-                                  action: call-service
-                                  service: script.reload
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:tools
-                                name: Reload
-                                tap_action:
-                                  action: call-service
-                                  service: homeassistant.reload_all
-                          - type: horizontal-stack
-                            cards:
-                              - type: "custom:gap-card"
-
-                              - type: "custom:button-card"
-                                color_type: icon
-                                color: rgb(255, 255, 255)
-                                icon: mdi:web
-                                name: Tablets
-                                tap_action:
-                                  action: call-service
-                                  service: script.tablets_reload
-
-                              - type: "custom:gap-card"
-              - type: "custom:button-card"
-                entity: sensor.hacs
-                color_type: icon
-                icon: mdi:package
-                state:
-                  - value: 0
-                    operator: ">"
-                    color: rgb(228, 94, 101)
-                  - value: 0
-                    color: rgb(255, 255, 255)
-                name: HACS
-                tap_action: 
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: HACS
-                      content:
-                        type: "custom:list-card"
-                        entity: sensor.hacs
-                        feed_attribute: repositories
-                        columns:
-                          - { field: display_name, title: "Name" }
-                          - { field: installed_version, title: "Installed" }
-                          - { field: available_version, title: "Latest" }
-                hold_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: HACS
-                      content:
-                        type: "custom:list-card"
-                        entity: sensor.hacs
-                        feed_attribute: repositories
-                        columns:
-                          - { field: display_name, title: "Name" }
-                          - { field: installed_version, title: "Installed" }
-                          - { field: available_version, title: "Latest" }
-
-              - type: "custom:button-card"
-                entity: binary_sensor.updater_addons
-                color_type: icon
-                icon: mdi:docker
-                state:
-                  - value: "on"
-                    color: rgb(228, 94, 101)
-                  - value: "off"
-                    color: rgb(255, 255, 255)
-                name: Add-Ons
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: Add-Ons
-                      content:
-                        type: "custom:list-card"
-                        entity: sensor.supervisor_updates
-                        feed_attribute: addons
-                        columns:
-                          - { field: name, title: "Name" }
-                          - { field: version, title: "Installed" }
-                          - { field: version_latest, title: "Latest" }
-                hold_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: Add-Ons
-                      content:
-                        type: "custom:list-card"
-                        entity: sensor.supervisor_updates
-                        feed_attribute: addons
-                        columns:
-                          - { field: name, title: "Name" }
-                          - { field: version, title: "Installed" }
-                          - { field: version_latest, title: "Latest" }
-
-              - type: "custom:button-card"
-                entity: update.home_assistant_core_update
-                color_type: icon
-                icon: mdi:home-assistant
-                state:
-                  - value: "on"
-                    color: rgb(228, 94, 101)
-                  - value: "off"
-                    color: rgb(255, 255, 255)
-                name: Core
-                tap_action:
-                  action: more-info
-                hold_action:
-                  action: more-info
-
-              - type: "custom:button-card"
-                entity: binary_sensor.updater_supervisor
-                color_type: icon
-                icon: mdi:server
-                state:
-                  - value: "on"
-                    color: rgb(228, 94, 101)
-                  - value: "off"
-                    color: rgb(255, 255, 255)
-                name: Supervisor
-                tap_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: Supervisor
-                      content:
-                        type: entities
-                        show_header_toggle: false
-                        entities:
-                          - entity: sensor.supervisor_updates
-                            type: custom:multiple-entity-row
-                            name: Version
-                            show_state: false
-                            entities:
-                              - attribute: current_version
-                                name: Installed
-                              - attribute: newest_version
-                                name: Available
-                hold_action:
-                  action: fire-dom-event
-                  browser_mod:
-                    service: browser_mod.popup
-                    data:
-                      title: Supervisor
-                      content:
-                        type: entities
-                        show_header_toggle: false
-                        entities:
-                          - entity: sensor.supervisor_updates
-                            type: custom:multiple-entity-row
-                            name: Version
-                            show_state: false
-                            entities:
-                              - attribute: current_version
-                                name: Installed
-                              - attribute: newest_version
-                                name: Available
-
-      #################################################################
-      #                                                               #
-      #                       Config - Zigbee2MQTT                    #
-      #                                                               #
-      #################################################################
-
-      - type: entities
-        show_header_toggle: false
-        title: Zigbee2MQTT
-        entities:
-          - entity: input_boolean.zigbee_permit_join
-          - entity: timer.zigbee_permit_join
-          - entity: sensor.bridge_state
-
-      - type: entities
-        show_header_toggle: false
-        title: CCTV
-        entities:
-          - input_boolean.frigate_enabled
-          - entity: input_number.frigate_disable_time
-            name: Delay
-          - entity: timer.frigate_disable
-            name: Time Remaining
-      - type: custom:gap-card
-        height: 100
+              icon: mdi:harddisk   
 
   - type: vertical-stack
     cards:
@@ -2047,13 +1220,15 @@ cards:
                 hold_action:
                   action: more-info
 
-      - type: 'custom:our-groceries-card'
-        title: Shopping Lists
-        show_header: false
-        entity: sensor.our_groceries
-        show_crossed_off: true
-        sort_by_name: true
-        hide_empty_lists: false
+      - type: entities
+        show_header_toggle: false
+        title: CCTV
+        entities:
+          - input_boolean.frigate_enabled
+          - entity: input_number.frigate_disable_time
+            name: Delay
+          - entity: timer.frigate_disable
+            name: Time Remaining
 
       - type: horizontal-stack
         cards:

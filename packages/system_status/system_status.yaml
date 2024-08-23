@@ -1,40 +1,3 @@
-#################################################################
-#                                                               #
-#                    Packages/Core Network                      #
-#                                                               #
-#################################################################
-
-#################################################################
-#                                                               #
-#                       Binary Sensors                          #
-#                                                               #
-#################################################################
-
-binary_sensor:
-
-  - platform: template
-    sensors:
-      # True if there's an update available for supervisor
-      updater_supervisor:
-        unique_id: b6b9826f-5bb1-47b1-88b6-0b6df5711760
-        friendly_name: "Updater - Supervisor"
-        device_class: problem
-        value_template: "{{ state_attr('sensor.supervisor_updates', 'update_available') }}"
-        availability_template: "{{ (states('sensor.supervisor_updates') | int(-1)) > -1 }}"
-
-      # True if there's updates available for any addons
-      updater_addons:
-        unique_id: 06f7637f-7f24-4f89-b616-3d54e996af5e
-        friendly_name: "Updater - Addons"
-        device_class: problem
-        value_template: "{{ states('sensor.supervisor_updates') | int > 0 }}"
-
-#################################################################
-#                                                               #
-#                           Sensors                             #
-#                                                               #
-#################################################################
-
 sensor:
 
   ####################################################
@@ -203,136 +166,6 @@ sensor:
         value_template: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2, default=none) }}"
         unit_of_measurement: "ms"
 
-      sensor_count:
-        unique_id: 64694f83-3c08-4f80-aca8-61d8e2a6bb31
-        friendly_name: "Number of Sensors"
-        value_template: >
-          {%- set domains = ['sensor'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      automation_count:
-        unique_id: 1bf14f9d-49cb-4794-8266-d70497cb9038
-        friendly_name: "Number of Automations"
-        value_template: >
-          {%- set domains = ['automation'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      script_count:
-        unique_id: 0d5d1a74-bd84-4d5a-be95-91209cd36039
-        friendly_name: "Number of Scripts"
-        value_template: >
-          {%- set domains = ['script'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      switch_count:
-        unique_id: 4ed70466-f90b-4c10-8746-9307df3d8043
-        friendly_name: "Number of Switches"
-        value_template: >
-          {%- set domains = ['switch'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      binary_sensor_count:
-        unique_id: 9fa3715b-b593-44dc-849a-b875a7a9122b
-        friendly_name: "Number of Binary Sensors"
-        value_template: >
-          {%- set domains = ['binary_sensor'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      lights_count:
-        unique_id: 9ef3008e-8a84-4923-8537-0e7b157d1134
-        friendly_name: "Number of Lights"
-        value_template: >
-          {%- set domains = ['light'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      tracker_count:
-        unique_id: a9deeeb6-79c9-4721-b3a5-a76f874b969a
-        friendly_name: "Number of Devices"
-        value_template: >
-          {%- set domains = ['device_tracker'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      camera_count:
-        unique_id: 6b5045f0-bd19-48f4-8e88-965d6a2018fa
-        friendly_name: "Number of Devices"
-        value_template: >
-          {%- set domains = ['camera'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      fan_count:
-        unique_id: 96761abe-022b-4de7-9d70-c79f23443038
-        friendly_name: "Number of Devices"
-        value_template: >
-          {%- set domains = ['fan'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
-      media_player_count:
-        unique_id: f8618745-ef5e-471a-9f92-a86e6b3636c3
-        friendly_name: "Number of Devices"
-        value_template: >
-          {%- set domains = ['media_player'] -%}
-          {%- for domain in domains -%}
-            {%- for item in states[domain] -%}
-              {% if loop.first %}
-                {{loop.length}}
-              {% endif %}
-            {%- endfor -%}
-          {%- endfor -%}
-
       automation_count_high:
         unique_id: 6827e069-14fb-42db-ba79-3610bbd3f86c
         friendly_name: "Automation Count High Limit"
@@ -343,66 +176,6 @@ sensor:
         friendly_name: "Automation Count Low Limit"
         value_template: "{{ states.input_number.automation_count_expected.state |int - 1}}"
 
-      binary_sensor_count_high:
-        unique_id: 1d498ab1-9a01-4f56-8864-f7d30c7136f0
-        friendly_name: "Binary Sensor Count High Limit"
-        value_template: "{{ states.input_number.binary_sensor_count_expected.state |int + 150}}"
-
-      binary_sensor_count_low:
-        unique_id: df413681-f7e6-4f77-a2cb-8f7e98bc0a77
-        friendly_name: "Binary Sensor Count Low Limit"
-        value_template: "{{ states.input_number.binary_sensor_count_expected.state |int - 1}}"
-
-      switch_count_high:
-        unique_id: bb5b916a-65c3-4cf2-ae9c-2ebc5aa93d06
-        friendly_name: "Switch Count High Limit"
-        value_template: "{{ states.input_number.switch_count_expected.state |int + 150}}"
-
-      switch_count_low:
-        unique_id: 876375ad-aa92-4e72-9d4f-a064db0d67ab
-        friendly_name: "Switch Count Low Limit"
-        value_template: "{{ states.input_number.switch_count_expected.state |int - 1}}"
-
-      fan_count_high:
-        unique_id: 0ff97181-d059-4916-a80e-384d85272aae
-        friendly_name: "Fan Count High Limit"
-        value_template: "{{ states.input_number.fan_count_expected.state |int + 150}}"
-
-      fan_count_low:
-        unique_id: 109c15f4-2dd8-4a0d-85e5-d9c500bcd4f8
-        friendly_name: "Fan Count Low Limit"
-        value_template: "{{ states.input_number.fan_count_expected.state |int - 1}}"
-
-      light_count_high:
-        unique_id: e4b4e8c9-6369-4468-b2d6-f9071c704051
-        friendly_name: "Light Count High Limit"
-        value_template: "{{ states.input_number.light_count_expected.state |int + 150}}"
-
-      light_count_low:
-        unique_id: 1e677378-74f2-4c9a-a21c-7b1a1f17a60a
-        friendly_name: "Light Count Low Limit"
-        value_template: "{{ states.input_number.light_count_expected.state |int - 1}}"
-
-      tracked_device_count_high:
-        unique_id: c5fcc645-b64a-46da-8506-e6d2114e4c6d
-        friendly_name: "Tracked Device Count High Limit"
-        value_template: "{{ states.input_number.tracked_device_count_expected.state |int + 150}}"
-
-      tracked_device_count_low:
-        unique_id: 3edb3837-fd82-47d2-a23b-6d15a5440773
-        friendly_name: "Tracked Device Count Low Limit"
-        value_template: "{{ states.input_number.tracked_device_count_expected.state |int - 1}}"
-
-      media_player_count_high:
-        unique_id: a504ec5e-2106-4acf-b157-64223f45f125
-        friendly_name: "Media Player Count High Limit"
-        value_template: "{{ states.input_number.media_player_count_expected.state |int + 150}}"
-
-      media_player_count_low:
-        unique_id: 9de872ed-96d6-48b5-bfc0-f2940820f3dc
-        friendly_name: "Media Player Count Low Limit"
-        value_template: "{{ states.input_number.media_player_count_expected.state |int - 1}}"
-
       script_count_high:
         unique_id: b5825d3d-f3a6-4384-9722-18ae97c37d3d
         friendly_name: "Script Count High Limit"
@@ -412,16 +185,6 @@ sensor:
         unique_id: 43fe0164-1cee-42e3-b29b-f5d6d3e84e6e
         friendly_name: "Script Count Low Limit"
         value_template: "{{ states.input_number.script_count_expected.state |int - 1}}"
-
-      sensor_count_high:
-        unique_id: 39d5c935-9f8f-429a-ada7-f145ffc3e0d3
-        friendly_name: "Sensor Count High Limit"
-        value_template: "{{ states.input_number.sensor_count_expected.state |int + 150}}"
-
-      sensor_count_low:
-        unique_id: 1a225536-dfc4-470d-8b80-1a00d7447984
-        friendly_name: "Sensor Count Low Limit"
-        value_template: "{{ states.input_number.sensor_count_expected.state |int - 1}}"
 
       hass_uptime:
         unique_id: 297ab0a7-a58e-4c34-bfd3-cca5472e28b1
@@ -498,20 +261,6 @@ sensor:
                 {%- endif -%}
               {%- endif -%}
 
-
-  # Sensor to track available updates for supervisor & addons
-command_line:
-  - sensor:
-      name: Supervisor updates
-      command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"update_available":.data.update_available,"addons":[.data.addons[] | select(.update_available)]}'''
-      value_template: "{{ value_json.addons | length }}"
-      unit_of_measurement: pending update(s)
-      json_attributes:
-        - update_available
-        - newest_version
-        - current_version
-        - addons
-
 mqtt:
   sensor:
   - name: "HA Shutdown"
@@ -529,43 +278,8 @@ input_number:
     min: 0
     max: 5000
     mode: box
-  binary_sensor_count_expected:
-    name: Expected Binary Sensors
-    min: 0
-    max: 5000
-    mode: box
-  switch_count_expected:
-    name: Expected Switches
-    min: 0
-    max: 5000
-    mode: box
-  fan_count_expected:
-    name: Expected Fans
-    min: 0
-    max: 5000
-    mode: box
-  light_count_expected:
-    name: Expected Lights
-    min: 0
-    max: 5000
-    mode: box
-  tracked_device_count_expected:
-    name: Expected Tracked Devices
-    min: 0
-    max: 5000
-    mode: box
-  media_player_count_expected:
-    name: Expected Media Players
-    min: 0
-    max: 5000
-    mode: box
   script_count_expected:
     name: Expected Scripts
-    min: 0
-    max: 5000
-    mode: box
-  sensor_count_expected:
-    name: Expected Sensors
     min: 0
     max: 5000
     mode: box
@@ -594,3 +308,15 @@ utility_meter:
   wan_out_daily:
     source: sensor.wan_upload_gb
     cycle: daily       
+
+script:
+  reset_all_entity_counters:
+    sequence:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.automation_count_expected
+          value: "{{ states('sensor.automation_count') | float }}"
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.script_count_expected
+          value: "{{ states('sensor.script_count') | float }}"    
