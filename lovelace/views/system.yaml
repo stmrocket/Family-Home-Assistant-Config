@@ -977,8 +977,6 @@ cards:
                     }
                   tap_action:
                     action: more-info
-      - type: custom:gap-card
-        height: 10
       - type: custom:popup-card
         entity: sensor.automationd
         title: Automation Count Settings
