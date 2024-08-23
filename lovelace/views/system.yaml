@@ -839,11 +839,8 @@ cards:
                   bar-card-divider {
                     display: none;
                   }
-                      
-          - type: horizontal-stack
-            cards:
-              - type: "custom:gap-card"
-                height: 10
+          - type: "custom:gap-card"
+            height: 10
           - type: horizontal-stack
             cards:
               - type: "custom:config-template-card"
