@@ -1,22 +1,3 @@
-- alias: Refresh Entity Counters
-  id: 81b799f7-10d4-40c7-96c2-255ec5f4020b
-  trigger:
-    - platform: time_pattern
-      minutes: "/15"
-  action:
-    - service: homeassistant.update_entity
-      continue_on_error: true
-      entity_id:
-        - sensor.automation_count
-        - sensor.binary_sensor_count
-        - sensor.switch_count
-        - sensor.fan_count
-        - sensor.lights_count
-        - sensor.tracker_count
-        - sensor.media_player_count
-        - sensor.script_count
-        - sensor.sensor_count
-
 - alias: "Set Theme to Midnight"
   id: 5fbf01bf-84c0-46af-8177-b09e96dad69c
   trigger:

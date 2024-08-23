@@ -857,7 +857,7 @@ cards:
                 card:
                   type: custom:bar-card
                   name: Automations
-                  entity: sensor.automation_count
+                  entity: sensor.automations
                   entity_row: true
                   positions:
                     icon: "off"
@@ -866,7 +866,7 @@ cards:
                   padding: 4px
                   card_style:
                     border-radius: 5px
-                  max: ${states['sensor.automation_count'].state}
+                  max: ${states['sensor.automations'].state}
                   severity:
                     - from: 0
                       to: ${states['sensor.automation_count_low'].state}
@@ -922,7 +922,7 @@ cards:
                 card:
                   type: custom:bar-card
                   name: Scripts
-                  entity: sensor.script_count
+                  entity: sensor.scripts
                   entity_row: true
                   positions:
                     icon: "off"
@@ -931,7 +931,7 @@ cards:
                   padding: 4px
                   card_style:
                     border-radius: 5px
-                  max: ${states['sensor.script_count'].state}
+                  max: ${states['sensor.scripts'].state}
                   severity:
                     - from: 0
                       to: ${states['sensor.script_count_low'].state}
@@ -980,22 +980,22 @@ cards:
       - type: custom:gap-card
         height: 100
       - type: custom:popup-card
-        entity: sensor.automation_count
+        entity: sensor.automationd
         title: Automation Count Settings
         card:
           type: entities
           entities:
-            - entity: sensor.automation_count
+            - entity: sensor.automationd
               name: Current Automations
             - input_number.automation_count_expected
                         
       - type: custom:popup-card
-        entity: sensor.script_count
+        entity: sensor.scripts
         title: Script Count Settings
         card:
           type: entities
           entities:
-            - entity: sensor.script_count
+            - entity: sensor.scripts
               name: Current Scripts
             - input_number.script_count_expected
                         

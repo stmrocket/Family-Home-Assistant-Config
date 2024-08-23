@@ -315,8 +315,8 @@ script:
       - service: input_number.set_value
         data_template:
           entity_id: input_number.automation_count_expected
-          value: "{{ states('sensor.automation_count') | float }}"
+          value: "{{ states('sensor.automations') | float }}"
       - service: input_number.set_value
         data_template:
           entity_id: input_number.script_count_expected
-          value: "{{ states('sensor.script_count') | float }}"    
+          value: "{{ states('sensor.scripts') | float }}"    
