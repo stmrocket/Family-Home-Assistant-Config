@@ -15,10 +15,9 @@ cards:
         tap_action: none
         hold_action: 
           action: call-service
-          service: mqtt.publish
+          service: script.vacuum_clean_room
           service_data:
-            topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
-            payload: '{"segment_ids": ["1", "3"], "iterations": 1, "customOrder": true}'
+            room: master_bath
         type: state-label
 
   - type: horizontal-stack
@@ -65,7 +64,10 @@ cards:
         icon: mdi:door
         name: Closet Light
         hold_action:
-          action: more-info
+          action: call-service
+          service: script.vacuum_clean_room
+          service_data:
+            room: master_closet
 
   - type: horizontal-stack
     cards:

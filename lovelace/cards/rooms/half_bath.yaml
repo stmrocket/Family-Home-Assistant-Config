@@ -15,10 +15,9 @@ cards:
         tap_action: none
         hold_action: 
           action: call-service
-          service: mqtt.publish
+          service: script.vacuum_clean_room
           service_data:
-            topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
-            payload: '{"segment_ids": ["9"], "iterations": 1, "customOrder": true}'
+            room: half_bath
         type: state-label
   - type: horizontal-stack
     cards:

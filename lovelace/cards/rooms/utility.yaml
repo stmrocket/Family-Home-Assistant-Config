@@ -38,12 +38,7 @@ cards:
           left: 5%
           transform: initial
         tap_action: none
-        hold_action: 
-          action: call-service
-          service: mqtt.publish
-          service_data:
-            topic: valetudo/loyalwhiteoryx/MapSegmentationCapability/clean/set
-            payload: '{"segment_ids": ["5", "2", "10"], "iterations": 1, "customOrder": true}'
+        hold_action: none
         type: state-label
   - type: horizontal-stack
     cards:
@@ -58,7 +53,10 @@ cards:
             icon: mdi:lightbulb-outline
         name: Drop Zone
         hold_action:
-          action: more-info
+          action: call-service
+          service: script.vacuum_clean_room
+          service_data:
+            room: drop_zone
       - type: custom:button-card
         entity: light.garage_lights
         color_type: icon
@@ -82,7 +80,10 @@ cards:
             icon: mdi:lightbulb-outline
         name: Laundry
         hold_action:
-          action: more-info
+          action: call-service
+          service: script.vacuum_clean_room
+          service_data:
+            room: laundry
       - type: custom:gap-card
 
       
