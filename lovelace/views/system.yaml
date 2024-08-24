@@ -649,6 +649,16 @@ cards:
                                   service: script.tablets_reload
 
                               - type: "custom:gap-card"
+                          - type: glance
+                            entities:
+                              - entity: sensor.automations
+                                name: Automations
+                              - entity: sensor.scripts
+                                name: Scripts
+                              - entity: sensor.sensors
+                                name: Sensors
+                              - entity: sensor.switches
+                                name: Switches
                 hold_action: none
                 double_tap_action:
                   action: call-service
@@ -839,158 +849,8 @@ cards:
                   bar-card-divider {
                     display: none;
                   }
-          - type: horizontal-stack
-            cards:
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.automations
-                  - sensor.automation_count_low
-                  - sensor.automation_count_high
-                  - input_number.automation_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Automations
-                  entity: sensor.automations
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.automations'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.automation_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.automation_count_expected'].state}
-                      to: ${states['input_number.automation_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.automation_count_expected'].state + 1}
-                      to: ${states['sensor.automation_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
-
-              - type: "custom:config-template-card"
-                entities:
-                  - sensor.scripts
-                  - sensor.script_count_high
-                  - sensor.script_count_low
-                  - input_number.script_count_expected
-                card:
-                  type: custom:bar-card
-                  name: Scripts
-                  entity: sensor.scripts
-                  entity_row: true
-                  positions:
-                    icon: "off"
-                    name: inside
-                    value: inside
-                  padding: 4px
-                  card_style:
-                    border-radius: 5px
-                  max: ${states['sensor.scripts'].state}
-                  severity:
-                    - from: 0
-                      to: ${states['sensor.script_count_low'].state}
-                      color: "#bf4040"
-                    - from: ${states['input_number.script_count_expected'].state}
-                      to: ${states['input_number.script_count_expected'].state}
-                      color: "#1db954"
-                    - from: ${states['input_number.script_count_expected'].state + 1}
-                      to: ${states['sensor.script_count_high'].state}
-                      color: "#bf9540"
-                  style: |-
-                    .contentbar-direction-right {
-                      flex-direction: column;
-                    }
-                    .min-direction-right {
-                      margin: 0px;
-                      margin-bottom: -20px;
-                      bottom: 10px;
-                    }
-                      bar-card-value {
-                      margin: 0px;
-                      font-size: 13px;
-                      margin-left: auto;
-                      margin-right: auto;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;
-                    }
-                    bar-card-name {
-                      margin: 0px;
-                      margin-top: 5px;
-                      font-size: 14px;
-                      font-weight: bold;
-                      text-shadow: 1px 1px #0005;              
-                    }
-                    bar-card-max {
-                      margin: 0px;
-                      margin-left: auto;
-                      margin-top: -20px;
-                      top: 10px;
-                    }
-                    bar-card-divider {
-                      display: none;
-                    }
-                  tap_action:
-                    action: more-info
       - type: custom:gap-card
         height: 100
-      - type: custom:popup-card
-        entity: sensor.automationd
-        title: Automation Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.automationd
-              name: Current Automations
-            - input_number.automation_count_expected
-                        
-      - type: custom:popup-card
-        entity: sensor.scripts
-        title: Script Count Settings
-        card:
-          type: entities
-          entities:
-            - entity: sensor.scripts
-              name: Current Scripts
-            - input_number.script_count_expected
                         
       - type: custom:popup-card
         entity: sensor.wan_in_mbps

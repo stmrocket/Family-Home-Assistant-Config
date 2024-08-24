@@ -166,26 +166,6 @@ sensor:
         value_template: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2, default=none) }}"
         unit_of_measurement: "ms"
 
-      automation_count_high:
-        unique_id: 6827e069-14fb-42db-ba79-3610bbd3f86c
-        friendly_name: "Automation Count High Limit"
-        value_template: "{{ states.input_number.automation_count_expected.state |int + 150}}"
-
-      automation_count_low:
-        unique_id: 5e680c12-d343-4f86-9861-8b030c4b97f7
-        friendly_name: "Automation Count Low Limit"
-        value_template: "{{ states.input_number.automation_count_expected.state |int - 1}}"
-
-      script_count_high:
-        unique_id: b5825d3d-f3a6-4384-9722-18ae97c37d3d
-        friendly_name: "Script Count High Limit"
-        value_template: "{{ states.input_number.script_count_expected.state |int + 150}}"
-
-      script_count_low:
-        unique_id: 43fe0164-1cee-42e3-b29b-f5d6d3e84e6e
-        friendly_name: "Script Count Low Limit"
-        value_template: "{{ states.input_number.script_count_expected.state |int - 1}}"
-
       hass_uptime:
         unique_id: 297ab0a7-a58e-4c34-bfd3-cca5472e28b1
         friendly_name: Home Assistant Uptime
@@ -267,23 +247,6 @@ mqtt:
     unique_id: 9555470d-8491-4c37-a6fb-14e4b61f6697
     state_topic: "hass/restart"
 
-####################################################
-#                                                  #
-#                  NUMERIC INPUT                   #
-#                                                  #
-####################################################
-input_number:
-  automation_count_expected:
-    name: Expected Automations
-    min: 0
-    max: 5000
-    mode: box
-  script_count_expected:
-    name: Expected Scripts
-    min: 0
-    max: 5000
-    mode: box
-
 #################################################################
 #                                                               #
 #                         System Health                         #
@@ -307,16 +270,4 @@ utility_meter:
     
   wan_out_daily:
     source: sensor.wan_upload_gb
-    cycle: daily       
-
-script:
-  reset_all_entity_counters:
-    sequence:
-      - service: input_number.set_value
-        data_template:
-          entity_id: input_number.automation_count_expected
-          value: "{{ states('sensor.automations') | float }}"
-      - service: input_number.set_value
-        data_template:
-          entity_id: input_number.script_count_expected
-          value: "{{ states('sensor.scripts') | float }}"    
+    cycle: daily        
