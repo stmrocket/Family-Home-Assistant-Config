@@ -1188,3 +1188,269 @@ cards:
             hold_action:
               action: more-info
           - type: "custom:gap-card"
+  - type: vertical-stack
+    cards:
+      - type: custom:stack-in-card
+        cards:
+          - type: picture-elements
+            image: /local/lovelace/room.png
+            elements:
+              - entity: sensor.adguard_dummy
+                hold-action: none
+                prefix: AdGuard
+                style:
+                  bottom: 20%
+                  font-size: 150%
+                  left: 5%
+                  transform: initial
+                tap_action:
+                  action: fire-dom-event
+                  browser_mod:
+                    service: browser_mod.popup
+                    data:
+                      title: AdGuard Ststus
+                      content:
+                        type: custom:vertical-stack-in-card
+                        cards:
+                          - type: entities
+                            entities:
+                              - entity: sensor.adguard_main_dns_queries_today
+                                name: Queries Today
+                                unit: false
+                              - entity: sensor.adguard_main_dns_queries_blocked_today
+                                name: Blocked Queries Today
+                                unit: false
+                              - entity: sensor.adguard_main_dns_block_ratio
+                                name: Block Ratio
+                              - entity: sensor.adguard_main_average_processing_speed
+                                name: DNS Processing Speed
+                                show_state: false
+                hold_action: none
+                type: state-label
+
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.adguard_queries_daily
+                    show_state: true
+                    show_legend: false
+                    show_graph: false
+                  - entity: sensor.adguard_main_dns_queries_last_hour
+                    aggregate_func: max
+                    show_state: false
+                    show_legend: false
+                    show_points: false
+                name: Requested
+                #height: 46
+                line_width: 2
+                font_size: 65
+                hours_to_show: 24
+                points_per_hour: 1
+                show:
+                  icon: false
+
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.adguard_blocked_daily
+                    show_state: true
+                    show_legend: false
+                    show_graph: false
+                  - entity: sensor.adguard_main_dns_queries_blocked_last_hour
+                    aggregate_func: max
+                    color: "#e45e65"
+                    show_state: false
+                    show_legend: false
+                    show_points: false
+                name: Blocked
+                #height: 46
+                line_width: 2
+                font_size: 65
+                hours_to_show: 24
+                points_per_hour: 1
+                show:
+                  icon: false
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:gap-card"
+                height: 10
+          - type: horizontal-stack
+            cards:
+              - type: "custom:button-card"
+                entity: switch.adguard_main_protection
+                lock:
+                  enabled: true
+                  unlock: hold
+                color_type: icon
+                state:
+                  - value: "on"
+                    icon: mdi:lock
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    icon: mdi:lock-open
+                    color: rgb(255, 255, 255)
+                name: "Master"
+
+              - type: "custom:button-card"
+                entity: switch.adguard_main_filtering
+                lock:
+                  enabled: true
+                  unlock: hold
+                color_type: icon
+                state:
+                  - value: "on"
+                    icon: mdi:lock
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    icon: mdi:lock-open
+                    color: rgb(255, 255, 255)
+                name: "Filter"
+
+              - type: "custom:button-card"
+                entity: switch.adguard_main_parental_control
+                lock:
+                  enabled: true
+                  unlock: hold
+                color_type: icon
+                icon: mdi:human-male-boy
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: "Parent"
+
+              - type: "custom:button-card"
+                entity: switch.adguard_main_safe_search
+                lock:
+                  enabled: true
+                  unlock: hold
+                color_type: icon
+                icon: mdi:search-web
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: "Search"
+
+              - type: "custom:button-card"
+                entity: switch.adguard_main_safe_browsing
+                lock:
+                  enabled: true
+                  unlock: hold
+                color_type: icon
+                icon: mdi:web
+                state:
+                  - value: "on"
+                    color: rgb(228, 94, 101)
+                  - value: "off"
+                    color: rgb(255, 255, 255)
+                name: "Web"
+
+      - type: horizontal-stack
+        cards:
+          - type: "custom:gap-card"
+          - type: "custom:button-card"
+            color_type: icon
+            color: rgb(255, 255, 255)
+            icon: mdi:alarm
+            name: "Shawn"
+            lock:
+              enabled: true
+              unlock: hold
+            tap_action:
+              action: call-service
+              service: rest_command.wake_remote         
+          - type: "custom:button-card"
+            entity: sensor.furnace_service_required
+            color_type: icon
+            icon: mdi:air-filter
+            state:
+              - value: "Filter"
+                color: rgb(228, 94, 101)
+                name: Replace
+              - value: "Bleach"
+                color: rgb(228, 94, 101)
+                name: Bleach
+              - value: "OK"
+                color: rgb(255, 255, 255)
+                name: OK
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  title: HVAC Filter Status
+                  content:
+                    type: custom:vertical-stack-in-card
+                    cards:
+                      - type: "custom:hui-entities-card"
+                        entities:
+                          - entity: sensor.furnace_filter_last_replaced
+                          - entity: sensor.furnace_filter_life
+                          - entity: sensor.average_total_runtime_week
+                          - entity: sensor.furnace_filter_days_remaining
+                          - entity: input_number.replacement_threshold
+                          - type: "custom:restriction-card"
+                            row: true
+                            restrictions:
+                              confirm: true
+                              text: "Reset filter timer?"
+                            card:
+                              entity: script.furnace_filter_date
+                              name: Reset Filter
+                          - entity: sensor.furnace_last_bleached
+                          - type: "custom:restriction-card"
+                            row: true
+                            restrictions:
+                              confirm: true
+                              text: "Reset bleach timer?"
+                            card:
+                              entity: script.furnace_bleach_date
+                              name: Reset Bleach
+            hold_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  title: HVAC Filter Status
+                  content:
+                    type: custom:vertical-stack-in-card
+                    cards:
+                      - type: "custom:hui-entities-card"
+                        entities:
+                          - entity: sensor.furnace_filter_last_replaced
+                          - entity: sensor.furnace_filter_life
+                          - entity: sensor.average_total_runtime_week
+                          - entity: sensor.furnace_filter_days_remaining
+                          - entity: input_number.replacement_threshold
+                          - type: "custom:restriction-card"
+                            row: true
+                            restrictions:
+                              confirm: true
+                              text: "Reset filter timer?"
+                            card:
+                              entity: script.furnace_filter_date
+                              name: Reset Filter
+                          - entity: sensor.furnace_last_bleached
+                          - type: "custom:restriction-card"
+                            row: true
+                            restrictions:
+                              confirm: true
+                              text: "Reset bleach timer?"
+                            card:
+                              entity: script.furnace_bleach_date
+                              name: Reset Bleach
+          - type: "custom:button-card"
+            entity: input_boolean.elk_speech
+            color_type: icon
+            color: rgb(228, 94, 101)
+            icon: mdi:account-voice
+            name: Speech
+            tap_action:
+              action: more-info
+            hold_action:
+              action: more-info
+          - type: "custom:gap-card"
