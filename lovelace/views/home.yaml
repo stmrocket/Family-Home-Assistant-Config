@@ -45,7 +45,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Driveway
                   content:
                     type: custom:frigate-card
                     cameras:
@@ -56,7 +56,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Back Yard
                   content:
                     type: custom:frigate-card
                     cameras:
@@ -67,7 +67,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Back Porch
                   content:
                     type: custom:frigate-card
                     cameras:
@@ -78,7 +78,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Garage
                   content:
                     type: custom:frigate-card
                     cameras:
@@ -89,7 +89,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Foyer
                   content:
                     type: custom:frigate-card
                     cameras:
@@ -100,7 +100,7 @@ cards:
               browser_mod:
                 service: browser_mod.popup
                 data:
-                  title: Front Porch
+                  title: Den
                   content:
                     type: custom:frigate-card
                     cameras:
