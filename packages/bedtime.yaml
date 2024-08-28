@@ -128,6 +128,16 @@ automation:
       - service: script.good_night
       - service: script.good_morning
 
+  - alias: Guest Bedroom Button Pressed
+    id: 72dd4b8d-6c9a-431e-9e69-516813900d9b
+    trigger:
+      - platform: state
+        entity_id: sensor.guest_bedroom_button
+        to: "single"
+    action: 
+      - service: script.going_to_bed
+      - service: script.getting_up
+
   - alias: Karen Mode Off
     id: 515b290d-89f6-43a4-9e94-c398f64131d6
     trigger:
