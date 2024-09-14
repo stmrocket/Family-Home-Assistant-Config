@@ -20,7 +20,7 @@ entity_pop: sensor.openweathermap_current_pop
 entity_pop_1: sensor.openweathermap_day_1_pop
 entity_pos: sensor.openweathermap_current_precip_forecast
 entity_pos_1: sensor.openweathermap_day_1_precip_forecast
-entity_pressure: sensor.aqara_server_pressure
+entity_pressure: sensor.server_climate_pressure
 entity_summary: sensor.openweathermap_current_summary
 entity_sun: sun.sun
 entity_temperature: sensor.acurite_outside_temperature

@@ -528,7 +528,7 @@ sensor:
       press_in:
         unique_id: dec20c80-722c-459c-9827-3ad127aff500
         unit_of_measurement: in
-        value_template: "{{ (states('sensor.aqara_server_pressure') | float(none) * 0.02953) | round(2, default=none) }}"      
+        value_template: "{{ (states('sensor.server_climate_pressure') | float(none) * 0.02953) | round(2, default=none) }}"      
       
       pws_url:
         unique_id: edaa3913-ff04-44f4-a159-70b0ee3abf3e
