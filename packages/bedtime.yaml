@@ -30,7 +30,7 @@ script:
           - switch.master_bedroom_fan
           - switch.sound_machine_master
       - choose:
-          - conditions:
+        - conditions:
             - condition: or
               conditions:
                 - condition: state
@@ -45,22 +45,22 @@ script:
                 - condition: state
                   entity_id: person.scott
                   state: "cabin"
-            sequence:              
-              - service: switch.turn_on
-                continue_on_error: true
-                entity_id: switch.elkm1_output_178
-          - conditions:
-            - condition: or
-              conditions:
-                - condition: state
-                  entity_id: person.karen
-                  state: "home"
-                - condition: state
-                  entity_id: person.karen
-                  state: "bcs"
-            sequence:              
-              - service: input_boolean.turn_on
-                entity_id: input_boolean.karen_mode
+          sequence:              
+            - service: switch.turn_on
+              continue_on_error: true
+              entity_id: switch.elkm1_output_178
+        - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: person.karen
+                state: "home"
+              - condition: state
+                entity_id: person.karen
+                state: "bcs"
+          sequence:              
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.karen_mode
 
   good_morning:
     sequence:
@@ -84,6 +84,14 @@ script:
 
   going_to_bed:
     sequence:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: "armed_home"
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: "disarmed"      
       - service: switch.turn_on
         continue_on_error: true
         entity_id:
@@ -100,9 +108,49 @@ script:
         entity_id:
           - light.guest_room_light
           - light.guest_bath_light
+      - condition: state
+        entity_id: switch.master_bedroom_lamp
+        state: "on"
+      - service: light.turn_off
+        continue_on_error: true
+        entity_id:
+          - light.master_bedroom_light
+          - light.master_bathroom_lights
+      - service: switch.turn_off
+        continue_on_error: true
+        entity_id:
+          - switch.master_bedroom_lamp
+          - switch.master_toilet_fan
+      - service: switch.turn_off
+        continue_on_error: true
+        entity_id:
+          - switch.master_bedroom_fan
+      
 
   getting_up:
     sequence:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: "armed_night"
+          - condition: state
+            entity_id: input_boolean.karen_mode
+            state: "on"    
+      - choose:
+        - conditions:
+            - condition: state
+              entity_id: alarm_control_panel.elkm1_house
+              state: "armed_night"
+          sequence:
+            - service: switch.turn_on
+              continue_on_error: true
+              entity_id: switch.elkm1_output_177
+            - service: switch.turn_off
+              continue_on_error: true
+              entity_id:
+                - switch.master_bedroom_fan
+                - switch.sound_machine_master
       - service: switch.turn_off
         continue_on_error: true
         entity_id:
@@ -122,7 +170,7 @@ automation:
     id: 06b6fedb-12b4-4119-b1e7-c20e54670e33
     trigger:
       - platform: state
-        entity_id: sensor.master_bedroom_button
+        entity_id: sensor.master_bedroom_button_action
         to: "single"
     action: 
       - service: script.good_night
@@ -132,7 +180,7 @@ automation:
     id: 72dd4b8d-6c9a-431e-9e69-516813900d9b
     trigger:
       - platform: state
-        entity_id: sensor.guest_bedroom_button
+        entity_id: sensor.guest_bedroom_button_action
         to: "single"
     action: 
       - service: script.going_to_bed
@@ -145,6 +193,7 @@ automation:
         entity_id: binary_sensor.karen_7t_is_charging
         from: "on"
         to: "off"
+        for: "00:01:00"
         id: unplug
       - platform: time
         at: "09:00:00"
