@@ -34,21 +34,6 @@
   action:
     - service: script.tablets_off
 
-- alias: Tablet Early Morning
-  id: 7bdf3dd9-80b8-4264-b07b-3d9d6c0cf69c
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.den_motion_occupancy
-      from: "off"
-      to: "on"
-  condition:
-    - condition: state
-      entity_id: alarm_control_panel.elkm1_house
-      state: armed_night
-  action:
-    - service: light.turn_on
-      entity_id: light.den_tablet_screen
-
 - alias: Reload Tablets When HA Starts
   id: b05068bb-8447-408b-8cef-1557cdafa888
   trigger:
