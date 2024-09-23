@@ -34,7 +34,7 @@ script:
       - service: button.press
         continue_on_error: true
         entity_id:
-          - button.craft_tablet_reboot_device
-          - button.den_tablet_reboot_device
-          - button.entry_tablet_reboot_device
-          - button.kitchen_tablet_reboot_device
+          - button.craft_tablet_restart_device
+          - button.den_tablet_restart_device
+          - button.entry_tablet_restart_device
+          - button.kitchen_tablet_restart_device
