@@ -6,14 +6,6 @@ input_boolean:
 script:
   good_night:
     sequence:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.elkm1_house
-            state: "armed_home"
-          - condition: state
-            entity_id: alarm_control_panel.elkm1_house
-            state: "disarmed"
       - service: light.turn_off
         continue_on_error: true
         entity_id:
@@ -64,9 +56,6 @@ script:
 
   good_morning:
     sequence:
-      - condition: state
-        entity_id: alarm_control_panel.elkm1_house
-        state: "armed_night"
       - service: switch.turn_on
         continue_on_error: true
         entity_id: switch.elkm1_output_177
@@ -83,15 +72,7 @@ script:
         entity_id: switch.master_bedroom_lamp
 
   going_to_bed:
-    sequence:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.elkm1_house
-            state: "armed_home"
-          - condition: state
-            entity_id: alarm_control_panel.elkm1_house
-            state: "disarmed"      
+    sequence:   
       - service: switch.turn_on
         continue_on_error: true
         entity_id:
@@ -129,14 +110,6 @@ script:
 
   getting_up:
     sequence:
-      - condition: or
-        conditions:
-          - condition: state
-            entity_id: alarm_control_panel.elkm1_house
-            state: "armed_night"
-          - condition: state
-            entity_id: input_boolean.karen_mode
-            state: "on"    
       - choose:
         - conditions:
             - condition: state
@@ -173,8 +146,24 @@ automation:
         entity_id: sensor.master_bedroom_button_action
         to: "single"
     action: 
-      - service: script.good_night
-      - service: script.good_morning
+      - choose:
+          - conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: alarm_control_panel.elkm1_house
+                    state: "armed_home"
+                  - condition: state
+                    entity_id: alarm_control_panel.elkm1_house
+                    state: "disarmed"
+            sequence:
+              - service: script.good_night
+          - conditions:
+              - condition: state
+                entity_id: alarm_control_panel.elkm1_house
+                state: "armed_night"
+            sequence:
+              - service: script.good_morning
 
   - alias: Guest Bedroom Button Pressed
     id: 72dd4b8d-6c9a-431e-9e69-516813900d9b
@@ -183,8 +172,19 @@ automation:
         entity_id: sensor.guest_bedroom_button_action
         to: "single"
     action: 
-      - service: script.going_to_bed
-      - service: script.getting_up
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: switch.guest_room_lamp
+                state: "on"
+            sequence:
+              - service: script.going_to_bed
+          - conditions:
+              - condition: state
+                entity_id: switch.guest_room_lamp
+                state: "off"
+            sequence:
+              - service: script.getting_up
 
   - alias: Karen Mode Off
     id: 515b290d-89f6-43a4-9e94-c398f64131d6
