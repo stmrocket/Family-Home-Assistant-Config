@@ -193,6 +193,9 @@ automation:
     trigger:
       - platform: time
         at: "22:00:00"
+      - platform: state
+        entity_id: input_boolean.karen_mode
+        to: "on"
     condition:
       - condition: state
         entity_id: person.scott
@@ -205,7 +208,7 @@ automation:
     id: 7f4d76a0-b434-4e01-866f-1c31b5715a55
     trigger:
       - platform: time
-        at: "07:30:00"
+        at: "09:00:00"
       - platform: state
         entity_id: input_boolean.karen_mode
         to: "off"
