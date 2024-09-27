@@ -315,11 +315,6 @@ automation:
               A cat was detected on the garage camera at {{now().strftime('%H:%M:%S') }}.
               <br>
               <img src="cid:garage_cat.jpg" style="width:98%; height:auto; border:none;" />  
-      
-      - service: camera.snapshot
-        data:
-          entity_id: camera.garage
-          filename: /config/www/cctv/tmp/garage_{{ now ().year }}_{{ now ().month }}_{{ now ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg
 
       - service: notify.mobile_app_hd1907
         data:
