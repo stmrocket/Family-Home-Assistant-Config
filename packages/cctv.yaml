@@ -315,6 +315,12 @@ automation:
               A cat was detected on the garage camera at {{now().strftime('%H:%M:%S') }}.
               <br>
               <img src="cid:garage_cat.jpg" style="width:98%; height:auto; border:none;" />  
+      
+      - service: camera.snapshot
+        data:
+          entity_id: camera.garage
+          filename: /config/www/cctv/tmp/garage_{{ now ().year }}_{{ now ().month }}_{{ now ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg
+
       - service: notify.mobile_app_hd1907
         data_template:
           title: Cats!
@@ -323,12 +329,12 @@ automation:
           data:
             ttl: 0
             priority: high
-            image: "{{ states('sensor.external_url') }}/local/cctv/garage_cat.jpg"
+            image: "{{ states('sensor.external_url') }}/local/cctv/tmp/garage_{{ now ().year }}_{{ now ().month }}_{{ now ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg"
             data:
               actions:
                 - action: URI
                   title: "Open Image"
-                  uri: "{{ states('sensor.external_url') }}local/cctv/garage_cat.jpg.jpg"
+                  uri: "{{ states('sensor.external_url') }}/local/cctv/tmp/garage_{{ now ().year }}_{{ now ().month }}_{{ now ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg"
 
   - alias: Start Reset Timer When Frigate Disabled
     id: bcc9dc5d-53ec-4636-95c1-87ca54871508
