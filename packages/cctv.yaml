@@ -324,11 +324,11 @@ automation:
       - service: notify.mobile_app_hd1907
         data_template:
           title: Cats!
-          notification_icon: mdi:cat
           message: A cat has been detected in the garage.
           data:
             ttl: 0
             priority: high
+            notification_icon: mdi:cat
             image: "{{ states('sensor.external_url') }}/local/cctv/tmp/garage_{{ now ().year }}_{{ now ().month }}_{{ now ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg"
             data:
               actions:
