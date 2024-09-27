@@ -117,6 +117,10 @@ sensor:
       webhook_wake:
         value_template: !secret webhook_wake
 
+      external_url:
+        unique_id: a0227421-19d4-43ba-b788-db5b8b78053b
+        value_template: !secret ext_url
+
 #Input Booleans
 
 input_boolean:
