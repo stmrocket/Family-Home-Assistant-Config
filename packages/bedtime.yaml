@@ -49,7 +49,7 @@ script:
                 state: "home"
               - condition: state
                 entity_id: person.karen
-                state: "bcs"
+                state: "BCS"
           sequence:              
             - service: input_boolean.turn_on
               entity_id: input_boolean.karen_mode
