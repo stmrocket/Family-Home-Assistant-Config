@@ -18,11 +18,6 @@
         entity_id: alarm_control_panel.elkm1_house
         state: 'armed_home'
   action:
-    - service: notify.browser
-      continue_on_error: true
-      data:
-        message: The dryer has stopped.
-        title: Laundry Update
     - service: esphome.elkspeak_dfplayer_play_folder
       data:
         folder: 3
@@ -44,11 +39,6 @@
         entity_id: alarm_control_panel.elkm1_house
         state: 'armed_home'
   action:
-    - service: notify.browser
-      continue_on_error: true
-      data:
-        message: The washer has stopped.
-        title: Laundry Update
     - service: esphome.elkspeak_dfplayer_play_folder
       data:
         folder: 3
