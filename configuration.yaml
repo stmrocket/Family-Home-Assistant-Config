@@ -210,14 +210,6 @@ alexa: !include alexa.yaml
 
 ffmpeg:
 
-#Notification Services
-notify:
-  - platform: html5
-    name: browser
-    vapid_pub_key: !secret vapid_public
-    vapid_prv_key: !secret vapid_private
-    vapid_email: !secret vapid_email
-
 rest_command:
   wake_remote:
     url: "{{states('sensor.webhook_wake')}}"
