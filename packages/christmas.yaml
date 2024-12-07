@@ -95,12 +95,6 @@ automation:
       - service: mqtt.publish
         data:
           topic: cmnd/allir/irsend
-          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x1FE48B7"}'
-      - delay:
-          seconds: 10
-      - service: mqtt.publish
-        data:
-          topic: cmnd/allir/irsend
           payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FFA25D"}'
 
   - alias: Candles On at When Returning After Dark
@@ -115,12 +109,6 @@ automation:
         after: sunset
         after_offset: "00:30:00"
     action:
-      - service: mqtt.publish
-        data:
-          topic: cmnd/allir/irsend
-          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x1FE48B7"}'
-      - delay:
-          seconds: 10
       - service: mqtt.publish
         data:
           topic: cmnd/allir/irsend
