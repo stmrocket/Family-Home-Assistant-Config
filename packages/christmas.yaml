@@ -44,6 +44,10 @@ automation:
     - service: switch.turn_off
       data:
         entity_id: switch.indoor_christmas
+    - service: mqtt.publish
+      data:
+        topic: cmnd/allir/irsend
+        payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FF629D"}'
 
   - alias: Christmas Lights On
     id: 7b933f59-ee4c-45fe-a26c-c50aafb4a7bb
@@ -70,3 +74,54 @@ automation:
         entity_id: switch.christmas_outlets
       - service: switch.turn_on
         entity_id: switch.outside_lights
+
+  - alias: Candles On at Dark When Home
+    id: c11f19c4-c6d8-4e70-b07d-c14ab6804f63
+    trigger:
+      - platform: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        below: -3
+    condition:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: armed_home
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: disarmed
+    action:
+      - service: mqtt.publish
+        data:
+          topic: cmnd/allir/irsend
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x1FE48B7"}'
+      - delay:
+          seconds: 10
+      - service: mqtt.publish
+        data:
+          topic: cmnd/allir/irsend
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FFA25D"}'
+
+  - alias: Candles On at When Returning After Dark
+    id: 23e950df-a5c1-4ca7-8c7d-e87d4c619cde
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: pending
+        to: disarmed
+    condition:
+      - condition: sun
+        after: sunset
+        after_offset: "00:30:00"
+    action:
+      - service: mqtt.publish
+        data:
+          topic: cmnd/allir/irsend
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x1FE48B7"}'
+      - delay:
+          seconds: 10
+      - service: mqtt.publish
+        data:
+          topic: cmnd/allir/irsend
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FFA25D"}'
