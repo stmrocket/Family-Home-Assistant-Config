@@ -174,9 +174,14 @@ automation:
     action: 
       - choose:
           - conditions:
-              - condition: state
-                entity_id: switch.guest_room_lamp
-                state: "on"
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: switch.guest_room_lamp
+                    state: "on"
+                  - condition: state
+                    entity_id: input_boolean.christmas_show
+                    state: "on"
             sequence:
               - service: script.going_to_bed
           - conditions:

@@ -16,46 +16,88 @@ switch:
             topic: cmnd/decorations/power
             payload: "OFF"
 
+input_boolean:
+  christmas_show:
+    name: Christmas Show
+
 automation:
-  - alias: Indoor Christmas On When Home
+  - alias: Indoor Christmas On When Returning Home
     id: 1a134ab1-f2c9-4c89-90c1-f8ca73da8b46
     trigger:
-    - platform: state
-      entity_id: alarm_control_panel.elkm1_house
-      to: disarmed
-    - platform: state
-      entity_id: alarm_control_panel.elkm1_house
-      to: armed_home
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: armed_away
+        to: disarmed
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: pending
+        to: disarmed
     action:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.indoor_christmas
+      - service: switch.turn_on
+        data:
+          entity_id: switch.indoor_christmas
+
+  - alias: Indoor Christmas On When Waking
+    id: 9f094618-2257-44f8-9f6b-139b1087a67a
+    trigger:
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: armed_night
+        to: armed_home      
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        from: armed_night
+        to: disarmed
+      - platform: state
+        entity_id: input_boolean.karen_mode
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+      - condition: state
+        entity_id: input_boolean.karen_mode
+        state: "off"
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: armed_home
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: disarmed
+    action:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.indoor_christmas
 
   - alias: Indoor Christmas Off When Away or Asleep
     id: 63914fe0-40f3-4124-b94c-15abc036a79a
     trigger:
-    - platform: state
-      entity_id: alarm_control_panel.elkm1_house
-      to: armed_away
-    - platform: state
-      entity_id: alarm_control_panel.elkm1_house
-      to: armed_night
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        to: armed_away
+      - platform: state
+        entity_id: alarm_control_panel.elkm1_house
+        to: armed_night
     action:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.indoor_christmas
-    - service: mqtt.publish
-      data:
-        topic: cmnd/allir/irsend
-        payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FF629D"}'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.indoor_christmas
+      - service: mqtt.publish
+        data:
+          topic: cmnd/allir/irsend
+          payload: '{"Protocol":"NEC","Bits":32,"Data":"0x00FF629D"}'
 
-  - alias: Christmas Lights On
+  - alias: Christmas Show On
     id: 7b933f59-ee4c-45fe-a26c-c50aafb4a7bb
     trigger:
       - platform: mqtt
         topic: christmas/show
         payload: "ON"
     action:
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.christmas_show
       - service: switch.turn_off
         entity_id: 
           - switch.outside_lights
@@ -63,17 +105,27 @@ automation:
       - service: switch.turn_on
         entity_id: switch.christmas_outlets
 
-  - alias: Christmas Lights Off
+  - alias: Christmas Show Off
     id: 87e03159-71a3-4978-9cee-5d0c65102900
     trigger:
       - platform: mqtt
         topic: christmas/show
         payload: "OFF"
-    action:
+    action:      
+      - service: input_boolean.turn_off
+        entity_id: input_boolean.christmas_show
       - service: switch.turn_off
         entity_id: switch.christmas_outlets
       - service: switch.turn_on
         entity_id: switch.outside_lights
+      - condition: not
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: armed_night
+      - service: switch.turn_on
+        entity_id: switch.guest_room_lamp
+
 
   - alias: Candles On at Dark When Home
     id: c11f19c4-c6d8-4e70-b07d-c14ab6804f63
