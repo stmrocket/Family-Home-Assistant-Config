@@ -148,6 +148,9 @@ automation:
           - condition: state
             entity_id: alarm_control_panel.elkm1_house
             state: disarmed
+          - condition: state
+            entity_id: alarm_control_panel.elkm1_house
+            state: arming
     action:
       - service: climate.set_temperature
         data:
