@@ -72,7 +72,7 @@ sensor:
         unique_id: a4ac7a02-5480-4e19-a41f-e2bf83a7225a
         friendly_name: Garage Entry Status
         value_template: >-
-          {% if is_state('binary_sensor.v', 'on') -%}
+          {% if is_state('binary_sensor.garage_entry_status', 'on') -%}
             open
           {% elif  is_state('lock.garage_entry', 'locked') -%}
             locked
