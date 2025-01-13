@@ -37,6 +37,51 @@ template:
       state: "{{ not is_state('sensor.elkm1_garage_entry', 'Normal') and not is_state('sensor.elkm1_garage_entry', 'Bypassed') }}"
       device_class: door
 
+sensor:
+  - platform: template
+    sensors:
+      front_door_status:
+        unique_id: 76302391-0863-4bc2-97da-1ba80ce0ac7e
+        friendly_name: Front Door Status
+        value_template: >-
+          {% if is_state('binary_sensor.front_door_status', 'on') -%}
+            open
+          {% elif  is_state('lock.front_door', 'locked') -%}
+            locked
+          {% elif is_state('lock.front_door', 'unlocked') -%}
+            unlocked
+          {% else -%}
+            error
+          {% endif -%}
+
+      back_door_status:
+        unique_id: cf6d8f26-827c-499d-9ce6-3ba0d2ae0140
+        friendly_name: Back Door Status
+        value_template: >-
+          {% if is_state('binary_sensor.back_door_status', 'on') -%}
+            open
+          {% elif  is_state('lock.back_door', 'locked') -%}
+            locked
+          {% elif is_state('lock.back_door', 'unlocked') -%}
+            unlocked
+          {% else -%}
+            error
+          {% endif -%}
+
+      garage_entry_status:
+        unique_id: a4ac7a02-5480-4e19-a41f-e2bf83a7225a
+        friendly_name: Garage Entry Status
+        value_template: >-
+          {% if is_state('binary_sensor.v', 'on') -%}
+            open
+          {% elif  is_state('lock.garage_entry', 'locked') -%}
+            locked
+          {% elif is_state('lock.garage_entry', 'unlocked') -%}
+            unlocked
+          {% else -%}
+            error
+          {% endif -%}
+
 automation:
   - alias: Start Front Door Alert Timer When Door Open
     id: 8e046181-6edd-4356-b7d5-3f8ed70df1c1

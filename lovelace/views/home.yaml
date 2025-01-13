@@ -620,15 +620,21 @@ cards:
             hold_action:
               action: more-info
           - type: "custom:button-card"
-            entity: lock.front_door
+            entity: sensor.front_door_status
             color_type: icon
             state:
+              - value: "open"
+                color: rgb(255, 255, 255)
+                icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
                 icon: mdi:lock
               - value: "unlocked"
                 color: rgb(228, 94, 101)
                 icon: mdi:lock-open
+              - value: "error"
+                color: rgb(228, 94, 101)
+                icon: mdi:alert-circle
             name: Front
             tap_action:
               action: call-service
@@ -637,17 +643,24 @@ cards:
                 entity_id: lock.front_door
             hold_action:
               action: more-info
+              entity: lock.front_door
 
           - type: "custom:button-card"
-            entity: lock.garage_entry
+            entity: sesor.garage_entry_status
             color_type: icon
             state:
+              - value: "open"
+                color: rgb(255, 255, 255)
+                icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
                 icon: mdi:lock
               - value: "unlocked"
                 color: rgb(228, 94, 101)
                 icon: mdi:lock-open
+              - value: "error"
+                color: rgb(228, 94, 101)
+                icon: mdi:alert-circle
             name: Garage
             tap_action:
               action: call-service
@@ -656,17 +669,24 @@ cards:
                 entity_id: lock.garage_entry
             hold_action:
               action: more-info
+              entity: lock.garage_entry
 
           - type: "custom:button-card"
-            entity: lock.back_door
+            entity: sensor.back_door_status
             color_type: icon
             state:
+              - value: "open"
+                color: rgb(255, 255, 255)
+                icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
                 icon: mdi:lock
               - value: "unlocked"
                 color: rgb(228, 94, 101)
                 icon: mdi:lock-open
+              - value: "error"
+                color: rgb(228, 94, 101)
+                icon: mdi:alert-circle
             name: Back
             tap_action:
               action: call-service
@@ -675,6 +695,7 @@ cards:
                 entity_id: lock.back_door
             hold_action:
               action: more-info
+              entity: lock.back_door
 
       #################################################################
       #                                                               #
