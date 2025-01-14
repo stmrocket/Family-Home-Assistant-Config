@@ -624,7 +624,7 @@ cards:
             color_type: icon
             state:
               - value: "open"
-                color: rgb(255, 255, 255)
+                color: rgb(228, 94, 101)
                 icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
@@ -650,7 +650,7 @@ cards:
             color_type: icon
             state:
               - value: "open"
-                color: rgb(255, 255, 255)
+                color: rgb(228, 94, 101)
                 icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
@@ -676,7 +676,7 @@ cards:
             color_type: icon
             state:
               - value: "open"
-                color: rgb(255, 255, 255)
+                color: rgb(228, 94, 101)
                 icon: mdi:door-open
               - value: "locked"
                 color: rgb(255, 255, 255)
