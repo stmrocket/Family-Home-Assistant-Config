@@ -18,7 +18,7 @@ alert:
     message: "The garage entry lock battery is low."
     done_message: "The garage entry lock battery has been replaced."
     notifiers:
-      - mobile_app_karen_7t
+      - mobile_app_karen_n30
 
 input_text:
   garage_entry_lock_status:

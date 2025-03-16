@@ -195,7 +195,7 @@ automation:
     id: 515b290d-89f6-43a4-9e94-c398f64131d6
     trigger:
       - platform: state
-        entity_id: binary_sensor.karen_7t_is_charging
+        entity_id: binary_sensor.karen_n30_is_charging
         from: "on"
         to: "off"
         for: "00:01:00"
