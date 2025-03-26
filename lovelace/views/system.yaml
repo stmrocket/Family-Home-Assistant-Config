@@ -1104,7 +1104,7 @@ cards:
                   browser_mod:
                     service: browser_mod.popup
                     data:
-                      title: AdGuard Ststus
+                      title: AdGuard Status
                       content:
                         type: custom:vertical-stack-in-card
                         cards:
