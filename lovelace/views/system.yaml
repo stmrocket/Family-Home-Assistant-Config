@@ -21,6 +21,7 @@ cards:
           - type: custom:mini-graph-card
             entities:
               - sensor.wan_ping_round_trip_time_average
+            name: WAN Ping
             height: 20
             line_width: 2
             font_size: 70
