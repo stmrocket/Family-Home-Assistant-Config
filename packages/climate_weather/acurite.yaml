@@ -29,12 +29,12 @@ mqtt:
 
     - name: AcuRite Karen Freezer Temperature
       unique_id: 0a35deaf-3f15-4846-b2a9-b6acb3024d79
-      state_topic: rtl_433/56964/temperature_F
+      state_topic: rtl_433/52064/temperature_F
       unit_of_measurement: "°F"
 
     - name: AcuRite Scott Freezer Temperature
       unique_id: 2a340db9-90a8-46c3-8184-f70381736461
-      state_topic: rtl_433/57203/temperature_F
+      state_topic: rtl_433/53459/temperature_F
       unit_of_measurement: "°F"
 
     - name: AcuRite WS Cumulative Rain
