@@ -32,11 +32,8 @@
         minutes: 5
   condition:
     - condition: state
-      entity_id: switch.shower_light_and_fan
-      state: "off"
-    - condition: state
-      entity_id: switch.master_bath_fans
+      entity_id: switch.master_take_shower
       state: "off"
   action:
     - service: switch.turn_off
-      entity_id: switch.master_bathroom_fan
+      entity_id: switch.master_toilet_fan
