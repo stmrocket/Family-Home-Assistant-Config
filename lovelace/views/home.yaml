@@ -703,9 +703,54 @@ cards:
       #                                                               #
       #################################################################
       - type: alarm-panel
-        name: House Alarm
         states:
           - arm_home
           - arm_away
           - arm_night
         entity: alarm_control_panel.elkm1_house
+        card_mod:
+          style:
+            .: |
+              ha-card {
+              border-radius: 20px 20px 20px 20px;
+              border-bottom: hidden;
+              --keypad-font-size:2.5rem;
+              --mdc-typography-button-font-size: 1.3rem;
+              --mdc-button-outline-color: rgba(0, 0, 0, 0);
+              --ha-font-size-l: 1.5rem;
+              --mdc-theme-primary: white;
+              }
+                #keypad {
+                  width: 30%;
+                  max-width: 500px !important;
+                }
+                #keypad mwc-button {
+                  border-radius: 5px;
+                }
+                mwc-button.numberkey {
+                  border-color: rgba(255,255,255,0.5);
+                  border-width: 2px;
+                  border-style: solid;
+                }
+                #keypad mwc-button:hover {
+                  background: rgba(255,255,255,0.5);
+                }
+                #keypad mwc-button {
+                  padding: 15px !important;
+                  margin: 4px;
+                  width: 10%;
+                  box-sizing: border-box;
+                  height: 68px;           
+                }
+              :host {
+                --mdc-typography-button-font-size: 20px;
+                    }          
+            ha-chip:
+              $: |
+                div:nth-child(1) {
+                    {% if is_state("alarm_control_panel.610", "disarmed") %}
+                      background-color: green;
+                    {% else %}
+                      background-color:darkred;
+                    {% endif %} 
+                  }
