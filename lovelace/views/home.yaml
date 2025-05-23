@@ -708,6 +708,7 @@ cards:
           - arm_away
           - arm_night
         entity: alarm_control_panel.elkm1_house
+        name: House
         card_mod:
           style:
             .: |
