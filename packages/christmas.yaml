@@ -26,7 +26,9 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
-        from: armed_away
+        from: 
+          - armed_away
+          - armed_vacation
         to: disarmed
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
@@ -76,7 +78,9 @@ automation:
     trigger:
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
-        to: armed_away
+        to: 
+          - armed_away
+          - armed_vacation
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
         to: armed_night

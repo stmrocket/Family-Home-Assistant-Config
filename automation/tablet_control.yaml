@@ -30,7 +30,9 @@
   trigger:
     - platform: state
       entity_id: alarm_control_panel.elkm1_house
-      to: armed_away
+      to: 
+        - armed_away
+        - armed_vacation
   action:
     - service: script.tablets_off
 

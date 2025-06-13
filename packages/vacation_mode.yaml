@@ -31,7 +31,7 @@ automation:
     - platform: state
       entity_id: alarm_control_panel.elkm1_house
       from: arming
-      to: armed_away
+      to: armed_vacation
     condition:
       - condition: state
         entity_id: input_boolean.vacation_mode

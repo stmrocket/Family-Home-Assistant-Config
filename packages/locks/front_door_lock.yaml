@@ -76,13 +76,17 @@ automation:
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
         from: arming
-        to: armed_away
+        to: 
+          - armed_away
+          - armed_vacation
       - platform: state
         entity_id: alarm_control_panel.elkm1_house
         from: 
           - disarmed
           - armed_home
-        to: armed_away
+        to: 
+          - armed_away
+          - armed_vacation
         for: "00:01:00"
     condition:
       - condition: state
