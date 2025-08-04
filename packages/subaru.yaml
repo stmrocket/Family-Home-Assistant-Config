@@ -1,0 +1,162 @@
+sensor:
+  - platform: template
+    sensors:
+      outback_oil_life:
+        unique_id: 79438bf6-ddd5-4392-a8ce-c6e8af9f56cd
+        friendly_name: outback Oil Remaining Life
+        unit_of_measurement: "%"
+        value_template: "{{ (((states('input_number.outback_oil_threshold') | int(0) - states('sensor.outback_oil_distance') | int(0)) / states('input_number.outback_oil_threshold') | int(0)) * 100) | round (0, default=none)}}"
+
+      outback_tire_life:
+        unique_id: d07aa3f7-4e55-4e1d-82e8-13190c870dae
+        friendly_name: outback Tire Rotation Remaining Life
+        unit_of_measurement: "%"
+        value_template: "{{ (((states('input_number.outback_tire_threshold') | int(0) - states('sensor.outback_tire_distance') | int(0)) / states('input_number.outback_tire_threshold') | int(0)) * 100) | round (0, default=none)}}"
+
+      outback_mileage_yesterday:
+        unique_id: 71cf4ec1-e380-4954-9891-701627d3602d
+        friendly_name: outback Mileage Yesterday
+        unit_of_measurement: "mi"
+        value_template: "{{ state_attr('sensor.outback_mileage_daily','last_period') | round (0, default=none) }}"
+
+      outback_mileage_last_week:
+        unique_id: 7e3232cf-b9dd-49bb-9e18-52e3c85ea3ec
+        friendly_name: outback Mileage Last Week
+        unit_of_measurement: "mi"
+        value_template: "{{ state_attr('sensor.outback_mileage_weekly','last_period') | round (0, default=none) }}"
+        
+      outback_mileage_last_month:
+        unique_id: e5fc4334-f2ca-4fad-af77-05144ae79d24
+        friendly_name: outback Mileage Last month
+        unit_of_measurement: "mi"
+        value_template: "{{ state_attr('sensor.outback_mileage_monthly','last_period') | round (0, default=none) }}"
+
+      outback_mileage_last_year:      
+        unique_id: e61e2b36-9be4-4a04-95c5-9b7d0e98bf88
+        friendly_name: outback Mileage Last year
+        unit_of_measurement: "mi"
+        value_template: "{{ state_attr('sensor.outback_mileage_yearly','last_period') | round (0, default=none) }}"
+
+template:
+  - sensor:
+      - name: outback Oil Distance
+        unique_id: 4bf99b0b-7c57-4a56-b71a-83c6be8b4f3c
+        unit_of_measurement: "mi"
+        state: "{{ (states('sensor.outback_odometer') | int(0) - states('input_number.outback_last_oil') | int(0)) | round (0, default=none)}}"
+
+      - name: outback Tire Distance
+        unique_id: 4863941c-246a-4d71-a81d-d5e686628862
+        unit_of_measurement: "mi"
+        state: "{{ (states('sensor.outback_odometer') | int(0) - states('input_number.outback_last_tire') | int(0)) | round (0, default=none)}}"
+
+input_number:
+  outback_last_oil:
+    name: Last Oil Change Mileage
+    min: 0
+    max: 200000
+    unit_of_measurement: mi
+  outback_last_tire:
+    name: Last Tire Rotation Mileage
+    min: 0
+    max: 200000
+    unit_of_measurement: mi
+  outback_oil_threshold:
+    name: Oil Change Threshold
+    min: 0
+    max: 20000
+    unit_of_measurement: mi
+  outback_tire_threshold:
+    name: Tire Rotation Threshold
+    min: 0
+    max: 20000
+    unit_of_measurement: mi
+
+input_text:
+  outback_last_oil:
+    name: Last Oil Change Date
+  outback_last_tire:
+    name: Last Tire Rotation Date
+
+utility_meter:
+  outback_mileage_daily:
+    source: sensor.outback_odometer
+    cycle: daily
+
+  outback_mileage_weekly:
+    source: sensor.outback_odometer
+    cycle: weekly
+
+  outback_mileage_monthly:
+    source: sensor.outback_odometer
+    cycle: monthly
+
+  outback_mileage_yearly:
+    source: sensor.outback_odometer
+    cycle: yearly
+
+script:
+  reset_outback_oil:
+    alias: Reset outback Oil Life
+    sequence:
+      - service: input_text.set_value
+        entity_id: input_text.outback_last_oil
+        data_template:
+          value: "{{ now() }}"
+      - service: input_number.set_value
+        entity_id: input_number.outback_last_oil
+        data_template:
+          value: >
+            {{ states('sensor.outback_odometer') | float(none) }}
+
+  reset_outback_tires:
+    alias: Reset outback Tire Rotation
+    sequence:
+      - service: input_text.set_value
+        entity_id: input_text.outback_last_tire
+        data_template:
+          value: "{{ now() }}"
+      - service: input_number.set_value
+        entity_id: input_number.outback_last_tire
+        data_template:
+          value: >
+            {{ states('sensor.outback_odometer') | float(none) }}
+
+  alexa_unlock_outback:
+    alias: Alexa Unlock outback
+    sequence:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: armed_home
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: disarmed
+      - service: lock.unlock
+        entity_id: lock.outback_door_locks
+
+  alexa_lock_outback:
+    alias: Alexa Lock outback
+    sequence:
+      - service: lock.lock
+        entity_id: lock.outback_door_locks
+
+  alexa_start_outback:
+    alias: Alexa Start outback
+    sequence:
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: armed_home
+          - condition: state
+            entity_id: alarm_control_panel.house
+            state: disarmed
+      - service: button.press
+        entity_id: button.outback_remote_start
+
+  alexa_stop_outback:
+    alias: Alexa Stop outback
+    sequence:
+      - service: button.press
+        entity_id: button.outback_remote_stop
