@@ -1136,6 +1136,8 @@ cards:
                                   service: button.press
                                   service_data:
                                     entity_id: button.crosstrek_remote_stop
+                          - type: horizontal-stack
+                            cards:
                               - type: custom:button-card
                                 color: rgb(255, 255, 255)
                                 icon: mdi:oil
@@ -1154,7 +1156,7 @@ cards:
                               - select.outback_climate_preset
 
                 hold-action: none
-                prefix: outback
+                prefix: Outback
                 style:
                   bottom: '-5%'
                   font-size: 150%
