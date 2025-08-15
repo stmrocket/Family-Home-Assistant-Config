@@ -58,6 +58,9 @@ automation:
     action:
       - service: input_boolean.turn_off
         entity_id: input_boolean.vacation_mode
+      - service: switch.turn_off
+        entity_id:
+          - switch.presence_simulation
 
   - alias: Vacation Replay Lights Off in Morning
     id: 8757403b-1145-471c-be4d-bc48a9bbb12d
@@ -102,6 +105,23 @@ automation:
           - switch.den_lights
           - switch.foyer_lights
           - switch.drop_zone_light
+
+  - alias: Enable presence Simulation at Night
+    id: dab68903-0a0c-486e-86de-c50dc31754a3
+    trigger:
+      - platform: state
+        entity_id: input_boolean.outside_timer_lights
+        from: "off"
+        to: "on"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
+      - service: switch.turn_on
+        continue_on_error: true
+        entity_id:
+          - switch.presence_simulation
 
   - alias: Trigger Timer Light Shutdown
     id: 09a08b51-bccd-45a2-9454-0b482e5b7bc3
