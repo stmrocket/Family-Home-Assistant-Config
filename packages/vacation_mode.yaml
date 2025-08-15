@@ -71,6 +71,10 @@ automation:
         entity_id: input_boolean.vacation_mode
         state: "on"
     action:
+      - service: switch.turn_off
+        continue_on_error: true
+        entity_id:
+          - switch.presence_simulation
       - service: light.turn_off
         continue_on_error: true
         entity_id:
@@ -98,6 +102,24 @@ automation:
           - switch.den_lights
           - switch.foyer_lights
           - switch.drop_zone_light
+
+  - alias: Trigger Timer Light Shutdown
+    id: 09a08b51-bccd-45a2-9454-0b482e5b7bc3
+    trigger:
+      - platform: state
+        entity_id: input_boolean.timer_lights_trigger
+        from: "on"
+        to: "off"
+      #Remove next trigger once history is built for input_boolean.timer_lights_trigger.  This is a workaround for the short-term and will cause incorrect frontend indications if left on forever...
+      - platform: state 
+        entity_id: input_boolean.timer_lights
+        from: "on"
+        to: "off"
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "on"
+    action:
       - service: script.turn_on
         entity_id: script.timer_lights_off
 
@@ -105,205 +127,9 @@ input_boolean:
   vacation_mode:
     name: Vacation Mode
     icon: mdi:airplane
-
-sensor:
-  - platform: history_stats
-    name: Replay Back Porch Light
-    entity_id: light.back_porch_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Back Yard Light
-    entity_id: switch.back_yard_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Kitchen Can Lights
-    entity_id: switch.kitchen_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Kitchen Island Lights
-    entity_id: switch.kitchen_island_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Kitchen Undercabinet Lights
-    entity_id: switch.kitchen_undercabinet_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Dining Room Light
-    entity_id: switch.dining_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Back Hall Light
-    entity_id: light.back_hall_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Front Hall Light
-    entity_id: light.front_hall_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Den Lights
-    entity_id: switch.den_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Foyer Lights
-    entity_id: switch.foyer_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Watch Shop Light
-    entity_id: light.watch_shop_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Guest Bedroom Light
-    entity_id: light.guest_room_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Guest Bathroom Light
-    entity_id: light.guest_bath_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Half Bathroom Light
-    entity_id: light.half_bath_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Drop Zone Light
-    entity_id: switch.drop_zone_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Laundry Room Light
-    entity_id: light.laundry_room_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Craft Room Light
-    entity_id: light.craft_room_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Master Bedroom Light
-    entity_id: light.master_bedroom_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Master Sink Lights
-    entity_id: light.master_bathroom_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Master Shower Light
-    entity_id: light.master_shower_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Master Toilet Light
-    entity_id: light.master_toilet_light
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
-
-  - platform: history_stats
-    name: Replay Timer Lamps
-    entity_id: input_boolean.timer_lights
-    state: "on"
-    type: count
-    start: >
-      {{ as_timestamp(now(), none) - (7*86400) }}
-    duration: 00:00:30
+  timer_lights_trigger:
+    name: Timer Light trigger
+    icon: mdi:timer-alert
 
 script:
   timer_lights_off:
@@ -329,3 +155,4 @@ script:
           entity_id: 
             - input_boolean.timer_lights
             - input_boolean.manual_timer_lights
+            - input_boolean.timer_lights_trigger

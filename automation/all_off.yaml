@@ -133,6 +133,7 @@
               entity_id: 
                 - input_boolean.timer_lights
                 - input_boolean.manual_timer_lights
+                - input_boolean.timer_lights_trigger
     - choose: # When armed night and not in Guest Mode or Karen Mode
       - conditions:
         - condition: state
