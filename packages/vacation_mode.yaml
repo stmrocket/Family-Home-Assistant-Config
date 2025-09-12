@@ -7,6 +7,8 @@ automation:
     action:
       - service: input_boolean.turn_on
         entity_id: input_boolean.vacation_mode
+      - service: button.press
+        entity_id: button.docker_vm_frigate_away
 
   - alias: Notify Alarm Disarmed by Leena
     id: 47c99c56-602a-4695-9219-f8ecc9c3f0aa
@@ -61,6 +63,8 @@ automation:
       - service: switch.turn_off
         entity_id:
           - switch.presence_simulation
+      - service: button.press
+        entity_id: button.docker_vm_frigate_home
 
   - alias: Vacation Replay Lights Off in Morning
     id: 8757403b-1145-471c-be4d-bc48a9bbb12d
@@ -105,6 +109,8 @@ automation:
           - switch.den_lights
           - switch.foyer_lights
           - switch.drop_zone_light
+      - service: script.turn_on
+        entity_id: script.timer_lights_off
 
   - alias: Enable presence Simulation at Night
     id: dab68903-0a0c-486e-86de-c50dc31754a3
