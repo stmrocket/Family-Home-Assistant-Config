@@ -209,6 +209,6 @@ automation:
     action:
       - service: climate.set_hvac_mode
         data:
-          hvac_mode: 'auto'
+          hvac_mode: 'heat/cool'
         target:
           entity_id: climate.thermostat    
