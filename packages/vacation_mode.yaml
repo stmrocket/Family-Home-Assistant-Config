@@ -22,7 +22,7 @@ automation:
         attribute: changed_by
         state: "Leena"
     action:
-      service: notify.mobile_app_hd1907
+      service: notify.mobile_app_karen_n30
       data:
         title: Alarm Disarmed
         message: The alarm has been disarmed by Leena.
@@ -39,7 +39,7 @@ automation:
         entity_id: input_boolean.vacation_mode
         state: "on"
     action:
-      service: notify.mobile_app_hd1907
+      service: notify.mobile_app_karen_n30
       data:
         title: Alarm Armed
         message: The alarm has been armed.

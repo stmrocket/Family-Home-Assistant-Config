@@ -179,7 +179,7 @@ automation:
             - delay: 10
             - service: switch.turn_off
               entity_id: switch.elkm1_output_207
-            - service: notify.mobile_app_hd1907
+            - service: notify.mobile_app_karen_n30
               data:
                 title: Door Alert
                 message: The front door has been left open.
@@ -218,7 +218,7 @@ automation:
             - delay: 10
             - service: switch.turn_off
               entity_id: switch.elkm1_output_207
-            - service: notify.mobile_app_hd1907
+            - service: notify.mobile_app_karen_n30
               data:
                 title: Door Alert
                 message: The back door has been left open.
@@ -257,7 +257,7 @@ automation:
             - delay: 10
             - service: switch.turn_off
               entity_id: switch.elkm1_output_207
-            - service: notify.mobile_app_hd1907
+            - service: notify.mobile_app_karen_n30
               data:
                 title: Door Alert
                 message: The garage entry has been left open.

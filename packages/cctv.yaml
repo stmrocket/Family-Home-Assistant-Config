@@ -316,7 +316,7 @@ automation:
               <br>
               <img src="cid:garage_cat.jpg" style="width:98%; height:auto; border:none;" />  
 
-      - service: notify.mobile_app_hd1907
+      - service: notify.mobile_app_karen_n30
         data:
           title: Cats!
           message: A cat has been detected in the garage.
