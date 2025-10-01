@@ -127,10 +127,10 @@ script:
       - condition: or
         conditions:
           - condition: state
-            entity_id: alarm_control_panel.alarm_control_panel.elkm1_house
+            entity_id: alarm_control_panel.elkm1_house
             state: armed_home
           - condition: state
-            entity_id: alarm_control_panel.alarm_control_panel.elkm1_house
+            entity_id: alarm_control_panel.elkm1_house
             state: disarmed
       - service: lock.unlock
         entity_id: lock.outback_door_locks
@@ -147,10 +147,10 @@ script:
       - condition: or
         conditions:
           - condition: state
-            entity_id: alarm_control_panel.alarm_control_panel.elkm1_house
+            entity_id: alarm_control_panel.elkm1_house
             state: armed_home
           - condition: state
-            entity_id: alarm_control_panel.alarm_control_panel.elkm1_house
+            entity_id: alarm_control_panel.elkm1_house
             state: disarmed
       - service: button.press
         entity_id: button.outback_remote_start
