@@ -1,0 +1,39 @@
+- alias: Picture Frame On When Home
+  id: 2dbcf63e-f127-450f-9ab8-600dcec0a024
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      to: disarmed
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      to: armed_home
+  action:
+    - service: switch.turn_on
+      entity_id: 
+        - switch.picture_frame
+
+- alias: Picture Frame Off When Away or Asleep
+  id: c2ef907b-cde8-421e-8361-32f18bc27a20
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      from: arming
+      to: 
+        - armed_away
+        - armed_vacation
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      from: 
+        - disarmed
+        - armed_home
+      to: 
+        - armed_away
+        - armed_vacation
+      for: "00:01:00"
+    - platform: state
+      entity_id: alarm_control_panel.elkm1_house
+      to: armed_night
+  action:
+    - service: switch.turn_off
+      entity_id: 
+        - switch.picture_frame
