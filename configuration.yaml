@@ -19,8 +19,8 @@ lovelace:
   dashboards:
     lovelace-tablet:
       mode: yaml
-      filename: lovelace-den.yaml
-      title: Den Tablet View
+      filename: lovelace-tablet.yaml
+      title: Tablet View
       show_in_sidebar: false
     lovelace-scott:
       mode: yaml
