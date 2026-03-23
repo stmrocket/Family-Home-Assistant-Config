@@ -17,30 +17,10 @@ frontend:
 lovelace:
   mode: yaml
   dashboards:
-    lovelace-den:
+    lovelace-tablet:
       mode: yaml
       filename: lovelace-den.yaml
       title: Den Tablet View
-      show_in_sidebar: false
-    lovelace-craft:
-      mode: yaml
-      filename: lovelace-craft.yaml
-      title: Craft Tablet View
-      show_in_sidebar: false
-    lovelace-entry:
-      mode: yaml
-      filename: lovelace-entry.yaml
-      title: Entry Tablet View
-      show_in_sidebar: false
-    lovelace-kitchen:
-      mode: yaml
-      filename: lovelace-kitchen.yaml
-      title: Kitchen Tablet View
-      show_in_sidebar: false
-    lovelace-watch:
-      mode: yaml
-      filename: lovelace-watch.yaml
-      title: Watch Shop Tablet View
       show_in_sidebar: false
     lovelace-scott:
       mode: yaml

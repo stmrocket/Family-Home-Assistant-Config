@@ -1,4 +1,4 @@
-title: The Geek House
+title: Tablets
 
 # Preload Cards
 preload_cards:
@@ -12,4 +12,8 @@ preload_cards:
  
 background: center / cover no-repeat url("/local/lovelace/background_19.png") fixed
 views: 
+  - !include /config/lovelace/views/panels/craft.yaml
+  - !include /config/lovelace/views/panels/den.yaml
   - !include /config/lovelace/views/panels/entry.yaml
+  - !include /config/lovelace/views/panels/kitchen.yaml
+  - !include /config/lovelace/views/panels/watch.yaml
