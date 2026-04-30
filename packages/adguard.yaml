@@ -7,13 +7,11 @@ utility_meter:
     source: sensor.adguard_main_dns_queries_blocked_today
     cycle: daily
 
-sensor:
-  - platform: template
-    sensors:
-      adguard_dummy:
-        unique_id: 02b3c006-027a-4e7e-b14b-0c826c27e387
-        value_template: ""
-        friendly_name: ""    
+template:
+  - sensor:
+    - name: Adguard Dummy
+      unique_id: 02b3c006-027a-4e7e-b14b-0c826c27e387
+      state: ""
 
 mqtt:
   sensor:

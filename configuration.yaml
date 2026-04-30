@@ -86,22 +86,17 @@ lovelace:
       type: module
     - url: /hacsfiles/flex-horseshoe-card/flex-horseshoe-card.js
       type: module
+template:
+  - sensor:
+    - name: Blank
+      state: ""
 
-sensor:
-  #Template Sensors
-  - platform: template
-    sensors:
-      #Blank
-      blank:
-        value_template: ""
-        friendly_name: ""
+    - name: Webhook Wake
+      state: !secret webhook_wake
 
-      webhook_wake:
-        value_template: !secret webhook_wake
-
-      external_url:
-        unique_id: a0227421-19d4-43ba-b788-db5b8b78053b
-        value_template: !secret ext_url
+    - name: External URL
+      unique_id: a0227421-19d4-43ba-b788-db5b8b78053b
+      state: !secret ext_url
 
 #Input Booleans
 
