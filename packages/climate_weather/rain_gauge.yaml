@@ -1,259 +1,258 @@
-sensor:
-  - platform: template
-    sensors:
-      rain_minute:
-        unique_id: eec793d1-bca4-4b04-be5a-f09d760aab78
-        value_template: "{{ (states('input_number.rain_minute') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+template:
+  - sensor:
+    - name: Rain Minute
+      unique_id: eec793d1-bca4-4b04-be5a-f09d760aab78
+      state: "{{ (states('input_number.rain_minute') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_hour:
-        unique_id: e79363c4-ba6d-42e3-a612-880ded71e5e0
-        value_template: "{{ (states('input_number.rain_hour') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Hour
+      unique_id: e79363c4-ba6d-42e3-a612-880ded71e5e0
+      state: "{{ (states('input_number.rain_hour') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_day:
-        unique_id: e61f8421-0479-4885-a237-6863f6d4ffb9
-        value_template: "{{ (states('input_number.rain_day') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Day
+      unique_id: e61f8421-0479-4885-a237-6863f6d4ffb9
+      state: "{{ (states('input_number.rain_day') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_week:
-        unique_id: b637f6dc-37d9-4493-939a-44fa67ae80c5
-        value_template: "{{ (states('input_number.rain_week') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Week
+      unique_id: b637f6dc-37d9-4493-939a-44fa67ae80c5
+      state: "{{ (states('input_number.rain_week') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month:
-        unique_id: 29407190-6408-49f8-9dbe-18c07791c03f
-        value_template: "{{ (states('input_number.rain_month') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 
+      unique_id: 29407190-6408-49f8-9dbe-18c07791c03f
+      state: "{{ (states('input_number.rain_month') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_1:
-        unique_id: 8cd77f7b-588d-467f-a66d-1de010b3592d
-        value_template: "{{ (states('input_number.rain_month_1') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 1
+      unique_id: 8cd77f7b-588d-467f-a66d-1de010b3592d
+      state: "{{ (states('input_number.rain_month_1') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_2:
-        unique_id: ab292434-0815-41d2-921a-2f9939e8ac72
-        value_template: "{{ (states('input_number.rain_month_2') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 2
+      unique_id: ab292434-0815-41d2-921a-2f9939e8ac72
+      state: "{{ (states('input_number.rain_month_2') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_3:
-        unique_id: 38dd0931-9281-4714-945a-5a62641c3a01
-        value_template: "{{ (states('input_number.rain_month_3') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 3
+      unique_id: 38dd0931-9281-4714-945a-5a62641c3a01
+      state: "{{ (states('input_number.rain_month_3') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_4:
-        unique_id: c005b8f3-c3c3-479d-8335-d1544b943d8f
-        value_template: "{{ (states('input_number.rain_month_4') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 4
+      unique_id: c005b8f3-c3c3-479d-8335-d1544b943d8f
+      state: "{{ (states('input_number.rain_month_4') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_5:
-        unique_id: 38db3a36-1908-41de-8250-cd02e90803a7
-        value_template: "{{ (states('input_number.rain_month_5') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 5
+      unique_id: 38db3a36-1908-41de-8250-cd02e90803a7
+      state: "{{ (states('input_number.rain_month_5') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_6:
-        unique_id: 8f1aee17-2895-49d4-9ff4-20129426e903
-        value_template: "{{ (states('input_number.rain_month_6') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 6
+      unique_id: 8f1aee17-2895-49d4-9ff4-20129426e903
+      state: "{{ (states('input_number.rain_month_6') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_7:
-        unique_id: 02559903-7bc1-4150-9a3e-83bd3d41b95f
-        value_template: "{{ (states('input_number.rain_month_7') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 7
+      unique_id: 02559903-7bc1-4150-9a3e-83bd3d41b95f
+      state: "{{ (states('input_number.rain_month_7') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_8:
-        unique_id: 8a19ceec-5012-4b2d-bff2-db374c1b4297
-        value_template: "{{ (states('input_number.rain_month_8') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 8
+      unique_id: 8a19ceec-5012-4b2d-bff2-db374c1b4297
+      state: "{{ (states('input_number.rain_month_8') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_9:
-        unique_id: 572df076-c152-44a3-ac8b-468c9317481e
-        value_template: "{{ (states('input_number.rain_month_9') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 9
+      unique_id: 572df076-c152-44a3-ac8b-468c9317481e
+      state: "{{ (states('input_number.rain_month_9') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_10:
-        unique_id: 140da606-4a15-4819-b9ca-cd94b856cf51
-        value_template: "{{ (states('input_number.rain_month_10') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 10
+      unique_id: 140da606-4a15-4819-b9ca-cd94b856cf51
+      state: "{{ (states('input_number.rain_month_10') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_11:
-        unique_id: 2c1d08fa-cbe6-4d4f-8810-11e2c2fb4c3b
-        value_template: "{{ (states('input_number.rain_month_11') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 11
+      unique_id: 2c1d08fa-cbe6-4d4f-8810-11e2c2fb4c3b
+      state: "{{ (states('input_number.rain_month_11') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_month_12:
-        unique_id: bbce7c80-f8ea-4a38-834f-5cc97b459eb1
-        value_template: "{{ (states('input_number.rain_month_12') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Month 12
+      unique_id: bbce7c80-f8ea-4a38-834f-5cc97b459eb1
+      state: "{{ (states('input_number.rain_month_12') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_year:
-        unique_id: c05bc2c3-de4b-40c7-bb97-6b3e1f5c9349
-        value_template: "{{ (states('input_number.rain_year') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Year
+      unique_id: c05bc2c3-de4b-40c7-bb97-6b3e1f5c9349
+      state: "{{ (states('input_number.rain_year') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_total:
-        unique_id: 682df71e-a617-4a3e-b9b4-841474cd897a
-        value_template: "{{ (states('input_number.rain_total') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Total
+      unique_id: 682df71e-a617-4a3e-b9b4-841474cd897a
+      state: "{{ (states('input_number.rain_total') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_minute:
-        unique_id: 3cda9e5c-aecd-4ed9-9702-5acb45f215b9
-        value_template: "{{ (states('input_number.rain_last_minute') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Minute
+      unique_id: 3cda9e5c-aecd-4ed9-9702-5acb45f215b9
+      state: "{{ (states('input_number.rain_last_minute') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_hour:
-        unique_id: d9553ed0-01d5-49d3-835a-eabad1e2b834
-        value_template: "{{ (states('input_number.rain_last_hour') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Hour
+      unique_id: d9553ed0-01d5-49d3-835a-eabad1e2b834
+      state: "{{ (states('input_number.rain_last_hour') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_day:
-        unique_id: 6102ddd1-b9b8-42b4-bf5c-e90cee80b92c
-        value_template: "{{ (states('input_number.rain_last_day') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Day
+      unique_id: 6102ddd1-b9b8-42b4-bf5c-e90cee80b92c
+      state: "{{ (states('input_number.rain_last_day') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_week:
-        unique_id: 051b8e80-94bb-478c-82a1-4a0f89220a47
-        value_template: "{{ (states('input_number.rain_last_week') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Week
+      unique_id: 051b8e80-94bb-478c-82a1-4a0f89220a47
+      state: "{{ (states('input_number.rain_last_week') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month:
-        unique_id: e783ba2b-065a-4a95-822f-3076965652af
-        value_template: "{{ (states('input_number.rain_last_month') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 
+      unique_id: e783ba2b-065a-4a95-822f-3076965652af
+      state: "{{ (states('input_number.rain_last_month') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_1:
-        unique_id: fba7560d-9e27-45c1-bf41-608550ac26f5
-        value_template: "{{ (states('input_number.rain_last_month_1') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 1
+      unique_id: fba7560d-9e27-45c1-bf41-608550ac26f5
+      state: "{{ (states('input_number.rain_last_month_1') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_2:
-        unique_id: 1b0b0ac0-2f81-4a4c-8888-e889aabd74cb
-        value_template: "{{ (states('input_number.rain_last_month_2') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 2
+      unique_id: 1b0b0ac0-2f81-4a4c-8888-e889aabd74cb
+      state: "{{ (states('input_number.rain_last_month_2') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_3:
-        unique_id: 1e710a4e-e94e-44cc-b45a-61a76407edb3
-        value_template: "{{ (states('input_number.rain_last_month_3') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 3
+      unique_id: 1e710a4e-e94e-44cc-b45a-61a76407edb3
+      state: "{{ (states('input_number.rain_last_month_3') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_4:
-        unique_id: 7ed528db-4f9c-4f5d-b5e0-2afbafae2407
-        value_template: "{{ (states('input_number.rain_last_month_4') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 4
+      unique_id: 7ed528db-4f9c-4f5d-b5e0-2afbafae2407
+      state: "{{ (states('input_number.rain_last_month_4') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_5:
-        unique_id: eb2eb824-c28d-4ad4-a594-7685182dd5be
-        value_template: "{{ (states('input_number.rain_last_month_5') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 5
+      unique_id: eb2eb824-c28d-4ad4-a594-7685182dd5be
+      state: "{{ (states('input_number.rain_last_month_5') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_6:
-        unique_id: 8fb27a46-3ea7-4f58-b811-cf473d1a7cdf
-        value_template: "{{ (states('input_number.rain_last_month_6') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 6
+      unique_id: 8fb27a46-3ea7-4f58-b811-cf473d1a7cdf
+      state: "{{ (states('input_number.rain_last_month_6') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_7:
-        unique_id: 144f4db6-924e-4c85-8aa6-9529d7d8d4eb
-        value_template: "{{ (states('input_number.rain_last_month_7') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 7
+      unique_id: 144f4db6-924e-4c85-8aa6-9529d7d8d4eb
+      state: "{{ (states('input_number.rain_last_month_7') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_8:
-        unique_id: 0b480418-bf5f-4ae2-bffe-14a95b6ca744
-        value_template: "{{ (states('input_number.rain_last_month_8') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 8
+      unique_id: 0b480418-bf5f-4ae2-bffe-14a95b6ca744
+      state: "{{ (states('input_number.rain_last_month_8') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_9:
-        unique_id: 0d2b501d-9bf0-4aae-8e6c-0c04f0c05b81
-        value_template: "{{ (states('input_number.rain_last_month_9') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 9
+      unique_id: 0d2b501d-9bf0-4aae-8e6c-0c04f0c05b81
+      state: "{{ (states('input_number.rain_last_month_9') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_10:
-        unique_id: adc80071-ec3b-4c90-bcd1-ffbbc0d4e11e
-        value_template: "{{ (states('input_number.rain_last_month_10') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 10
+      unique_id: adc80071-ec3b-4c90-bcd1-ffbbc0d4e11e
+      state: "{{ (states('input_number.rain_last_month_10') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_11:
-        unique_id: 2fbccd55-0e12-45a7-bad7-14f354a6a78e
-        value_template: "{{ (states('input_number.rain_last_month_11') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 11
+      unique_id: 2fbccd55-0e12-45a7-bad7-14f354a6a78e
+      state: "{{ (states('input_number.rain_last_month_11') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_month_12:
-        unique_id: dbfa1427-753d-47ed-b497-615e501d5daa
-        value_template: "{{ (states('input_number.rain_last_month_12') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Month 12
+      unique_id: dbfa1427-753d-47ed-b497-615e501d5daa
+      state: "{{ (states('input_number.rain_last_month_12') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      rain_last_year:
-        unique_id: 80782faf-2098-4e30-992e-8f9ede7ae048
-        value_template: "{{ (states('input_number.rain_last_year') | float(none) / 25.4) | round(2, default=none) }}"
-        unit_of_measurement: "in"
+    - name: Rain Last Year
+      unique_id: 80782faf-2098-4e30-992e-8f9ede7ae048
+      state: "{{ (states('input_number.rain_last_year') | float(none) / 25.4) | round(2, default=none) }}"
+      unit_of_measurement: "in"
 
-      last_rain_date:
-        unique_id: 53fb7f35-1946-4e69-b5c4-eb94b0f9907c
-        value_template: "{{ states('input_text.last_rain')[:10] }}"
+    - name: Last Rain Date
+      unique_id: 53fb7f35-1946-4e69-b5c4-eb94b0f9907c
+      state: "{{ states('input_text.last_rain')[:10] }}"
 
-      rain_rate:
-        unique_id: dd620fcd-9c9e-4dd2-a602-2571a7a9bec9
-        value_template: >
-          {{ (states('input_number.rain_minute_00') | float(none) +
-             states('input_number.rain_minute_01') | float(none) +
-             states('input_number.rain_minute_02') | float(none) +
-             states('input_number.rain_minute_03') | float(none) +
-             states('input_number.rain_minute_04') | float(none) +
-             states('input_number.rain_minute_05') | float(none) +
-             states('input_number.rain_minute_06') | float(none) +
-             states('input_number.rain_minute_07') | float(none) +
-             states('input_number.rain_minute_08') | float(none) +
-             states('input_number.rain_minute_09') | float(none) +
-             states('input_number.rain_minute_10') | float(none) +
-             states('input_number.rain_minute_11') | float(none) +
-             states('input_number.rain_minute_12') | float(none) +
-             states('input_number.rain_minute_13') | float(none) +
-             states('input_number.rain_minute_14') | float(none) +
-             states('input_number.rain_minute_15') | float(none) +
-             states('input_number.rain_minute_16') | float(none) +
-             states('input_number.rain_minute_17') | float(none) +
-             states('input_number.rain_minute_18') | float(none) +
-             states('input_number.rain_minute_19') | float(none) +
-             states('input_number.rain_minute_20') | float(none) +
-             states('input_number.rain_minute_21') | float(none) +
-             states('input_number.rain_minute_22') | float(none) +
-             states('input_number.rain_minute_23') | float(none) +
-             states('input_number.rain_minute_24') | float(none) +
-             states('input_number.rain_minute_25') | float(none) +
-             states('input_number.rain_minute_26') | float(none) +
-             states('input_number.rain_minute_27') | float(none) +
-             states('input_number.rain_minute_28') | float(none) +
-             states('input_number.rain_minute_29') | float(none) +
-             states('input_number.rain_minute_30') | float(none) +
-             states('input_number.rain_minute_31') | float(none) +
-             states('input_number.rain_minute_32') | float(none) +
-             states('input_number.rain_minute_33') | float(none) +
-             states('input_number.rain_minute_34') | float(none) +
-             states('input_number.rain_minute_35') | float(none) +
-             states('input_number.rain_minute_36') | float(none) +
-             states('input_number.rain_minute_37') | float(none) +
-             states('input_number.rain_minute_38') | float(none) +
-             states('input_number.rain_minute_39') | float(none) +
-             states('input_number.rain_minute_40') | float(none) +
-             states('input_number.rain_minute_41') | float(none) +
-             states('input_number.rain_minute_42') | float(none) +
-             states('input_number.rain_minute_43') | float(none) +
-             states('input_number.rain_minute_44') | float(none) +
-             states('input_number.rain_minute_45') | float(none) +
-             states('input_number.rain_minute_46') | float(none) +
-             states('input_number.rain_minute_47') | float(none) +
-             states('input_number.rain_minute_48') | float(none) +
-             states('input_number.rain_minute_49') | float(none) +
-             states('input_number.rain_minute_50') | float(none) +
-             states('input_number.rain_minute_51') | float(none) +
-             states('input_number.rain_minute_52') | float(none) +
-             states('input_number.rain_minute_53') | float(none) +
-             states('input_number.rain_minute_54') | float(none) +
-             states('input_number.rain_minute_55') | float(none) +
-             states('input_number.rain_minute_56') | float(none) +
-             states('input_number.rain_minute_57') | float(none) +
-             states('input_number.rain_minute_58') | float(none) +
-             states('input_number.rain_minute_59') | float) | round(2, default=none) }}
-        unit_of_measurement: "in/hr"
+    - name: Rain Rate
+      unique_id: dd620fcd-9c9e-4dd2-a602-2571a7a9bec9
+      state: >
+        {{ (states('input_number.rain_minute_00') | float(none) +
+            states('input_number.rain_minute_01') | float(none) +
+            states('input_number.rain_minute_02') | float(none) +
+            states('input_number.rain_minute_03') | float(none) +
+            states('input_number.rain_minute_04') | float(none) +
+            states('input_number.rain_minute_05') | float(none) +
+            states('input_number.rain_minute_06') | float(none) +
+            states('input_number.rain_minute_07') | float(none) +
+            states('input_number.rain_minute_08') | float(none) +
+            states('input_number.rain_minute_09') | float(none) +
+            states('input_number.rain_minute_10') | float(none) +
+            states('input_number.rain_minute_11') | float(none) +
+            states('input_number.rain_minute_12') | float(none) +
+            states('input_number.rain_minute_13') | float(none) +
+            states('input_number.rain_minute_14') | float(none) +
+            states('input_number.rain_minute_15') | float(none) +
+            states('input_number.rain_minute_16') | float(none) +
+            states('input_number.rain_minute_17') | float(none) +
+            states('input_number.rain_minute_18') | float(none) +
+            states('input_number.rain_minute_19') | float(none) +
+            states('input_number.rain_minute_20') | float(none) +
+            states('input_number.rain_minute_21') | float(none) +
+            states('input_number.rain_minute_22') | float(none) +
+            states('input_number.rain_minute_23') | float(none) +
+            states('input_number.rain_minute_24') | float(none) +
+            states('input_number.rain_minute_25') | float(none) +
+            states('input_number.rain_minute_26') | float(none) +
+            states('input_number.rain_minute_27') | float(none) +
+            states('input_number.rain_minute_28') | float(none) +
+            states('input_number.rain_minute_29') | float(none) +
+            states('input_number.rain_minute_30') | float(none) +
+            states('input_number.rain_minute_31') | float(none) +
+            states('input_number.rain_minute_32') | float(none) +
+            states('input_number.rain_minute_33') | float(none) +
+            states('input_number.rain_minute_34') | float(none) +
+            states('input_number.rain_minute_35') | float(none) +
+            states('input_number.rain_minute_36') | float(none) +
+            states('input_number.rain_minute_37') | float(none) +
+            states('input_number.rain_minute_38') | float(none) +
+            states('input_number.rain_minute_39') | float(none) +
+            states('input_number.rain_minute_40') | float(none) +
+            states('input_number.rain_minute_41') | float(none) +
+            states('input_number.rain_minute_42') | float(none) +
+            states('input_number.rain_minute_43') | float(none) +
+            states('input_number.rain_minute_44') | float(none) +
+            states('input_number.rain_minute_45') | float(none) +
+            states('input_number.rain_minute_46') | float(none) +
+            states('input_number.rain_minute_47') | float(none) +
+            states('input_number.rain_minute_48') | float(none) +
+            states('input_number.rain_minute_49') | float(none) +
+            states('input_number.rain_minute_50') | float(none) +
+            states('input_number.rain_minute_51') | float(none) +
+            states('input_number.rain_minute_52') | float(none) +
+            states('input_number.rain_minute_53') | float(none) +
+            states('input_number.rain_minute_54') | float(none) +
+            states('input_number.rain_minute_55') | float(none) +
+            states('input_number.rain_minute_56') | float(none) +
+            states('input_number.rain_minute_57') | float(none) +
+            states('input_number.rain_minute_58') | float(none) +
+            states('input_number.rain_minute_59') | float) | round(2, default=none) }}
+      unit_of_measurement: "in/hr"
 
 input_number:
   last_rain_report:
