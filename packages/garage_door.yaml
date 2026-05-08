@@ -1,15 +1,15 @@
 emplate:
   - cover:
-    - name: garage_door:
-        unique_id: b2c4cd4a-3ac2-4d33-98c3-02b05394a01f
-        device_class: garage
-        state: "{{ not is_state('sensor.elkm1_garage_door', 'Normal') }}"
-        open_cover:
-          service: switch.turn_on
-          entity_id: switch.garage_door_opener
-        close_cover:
-          service: switch.turn_on
-          entity_id: switch.garage_door_opener
+    - name: Garage Door
+      unique_id: b2c4cd4a-3ac2-4d33-98c3-02b05394a01f
+      device_class: garage
+      state: "{{ not is_state('sensor.elkm1_garage_door', 'Normal') }}"
+      open_cover:
+        service: switch.turn_on
+        entity_id: switch.garage_door_opener
+      close_cover:
+        service: switch.turn_on
+        entity_id: switch.garage_door_opener
 
 automation:
   - alias: Trigger Garage Door Opener From Elk
