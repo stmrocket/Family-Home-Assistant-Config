@@ -1,3 +1,103 @@
+template:
+  - sensor:
+    - name: Wan In Mbps
+      unique_id: abdd9953-c3a7-4cea-ae70-6d7efbfd0ef4
+      state:  "{{ [((states('sensor.erl_wan_in_derivative')|float(none)*8)/1000000)|round(2, default=none),0]|max }}"
+      unit_of_measurement: 'Mbps'
+  
+    - name: WAN Out Mbps
+      unique_id: 8f2846c1-58e6-4338-970b-2e6c5d63d23f
+      state:  "{{ [((states('sensor.erl_wan_out_derivative')|float(none)*8)/1000000)|round(2, default=none),0]|max }}"
+      unit_of_measurement: 'Mbps'
+
+    - name: WAN Download GB
+      unique_id: f7a2753d-d9e7-4534-8740-5da643388422
+      state:  "{{ (states('sensor.erl_wan_in')|float(none)/1000000000)|round(2, default=none) }}"
+      unit_of_measurement: 'GB'
+    
+    - name: WAN Upload GB
+      unique_id: 372983a6-f46e-48f3-a957-c6e4bc0a9d90
+      state:  "{{ (states('sensor.erl_wan_out')|float(none)/1000000000)|round(2, default=none) }}"
+      unit_of_measurement: 'GB'
+
+    - name: WAN Ping
+      unique_id: 8aba07c0-1725-4ee4-a304-3d67e504f75d
+      state: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2, default=none) }}"
+      unit_of_measurement: "ms"
+
+    - name: HASS Uptime
+        unique_id: 297ab0a7-a58e-4c34-bfd3-cca5472e28b1
+        state: >-
+          {% set time = (as_timestamp(now()) - as_timestamp(states('sensor.time_online'))) / 60 | int %}
+            {% set minutes = ((time % 60) ) | int%}
+            {% set hours = ((time % 1440) / 60) | int %}
+            {% set days = (time / 1440) | int %}
+              {%- if time == 0 -%}
+                00:00:00
+              {%- else -%}
+                {%- if days == 0 -%}
+                  00
+                {%- endif -%}
+                {%- if days > 0 -%}        
+                  {%- if days < 10 -%}
+                    0{{ days }}
+                  {%- else -%}
+                    {{ days }}
+                  {%- endif -%}
+                {%- endif -%}
+                {%- if hours == 0 -%}
+                  :00
+                {%- endif -%}
+                {%- if hours > 0 -%}        
+                  {%- if hours < 10 -%}
+                    :0{{ hours }}
+                  {%- else -%}
+                    :{{ hours }}
+                  {%- endif -%}
+                {%- endif -%}
+                {%- if minutes == 0 -%}
+                  :00
+                {%- endif -%}
+                {%- if minutes > 0 -%}
+                  {%- if minutes < 10 -%}
+                    :0{{ minutes }}
+                  {%- else -%}
+                    :{{ minutes }}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endif -%}
+
+    - name: HASS Restart
+      unique_id: dbd47647-55d6-4e0e-8e3f-a0f3bc49ca8e
+      value_template: >-
+        {% set time = (as_timestamp(states('sensor.time_online'))) - (as_timestamp(states('sensor.ha_shutdown'))) | int %}
+          {% set seconds = ((time % 60) ) | int%}
+          {% set minutes = (time / 60) | int %}
+            {%- if time == 0 -%}
+              00:00
+            {%- else -%}
+              {%- if minutes == 0 -%}
+                00
+              {%- endif -%}
+              {%- if minutes > 0 -%}        
+                {%- if minutes < 10 -%}
+                  0{{ minutes }}
+                {%- else -%}
+                  {{ minutes }}
+                {%- endif -%}
+              {%- endif -%}
+              {%- if seconds == 0 -%}
+                :00
+              {%- endif -%}
+              {%- if seconds > 0 -%}
+                {%- if seconds < 10 -%}
+                  :0{{ seconds }}
+                {%- else -%}
+                  :{{ seconds }}
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+
 sensor:
 
   ####################################################
@@ -127,119 +227,6 @@ sensor:
     unit_time: s
     unit: B
     name: erl_wan_out_derivative 
-
-  #################################################################
-  #                                                               #
-  #                       Template Sensors                        #
-  #                                                               #
-  #################################################################
-
-  - platform: template
-    sensors:
-      wan_in_mbps:
-        unique_id: abdd9953-c3a7-4cea-ae70-6d7efbfd0ef4
-        value_template:  "{{ [((states('sensor.erl_wan_in_derivative')|float(none)*8)/1000000)|round(2, default=none),0]|max }}"
-        unit_of_measurement: 'Mbps'
-        friendly_name: WAN In
-    
-      wan_out_mbps:
-        unique_id: 8f2846c1-58e6-4338-970b-2e6c5d63d23f
-        value_template:  "{{ [((states('sensor.erl_wan_out_derivative')|float(none)*8)/1000000)|round(2, default=none),0]|max }}"
-        unit_of_measurement: 'Mbps'
-        friendly_name: WAN Out
-
-      wan_download_gb:
-        unique_id: f7a2753d-d9e7-4534-8740-5da643388422
-        value_template:  "{{ (states('sensor.erl_wan_in')|float(none)/1000000000)|round(2, default=none) }}"
-        unit_of_measurement: 'GB'
-        friendly_name: WAN Download
-    
-      wan_upload_gb:
-        unique_id: 372983a6-f46e-48f3-a957-c6e4bc0a9d90
-        value_template:  "{{ (states('sensor.erl_wan_out')|float(none)/1000000000)|round(2, default=none) }}"
-        unit_of_measurement: 'GB'
-        friendly_name: WAN Upload
-
-      wan_ping:
-        unique_id: 8aba07c0-1725-4ee4-a304-3d67e504f75d
-        friendly_name: "WAN Ping"
-        value_template: "{{ state_attr('binary_sensor.wan_ping', 'round_trip_time_avg') | round(2, default=none) }}"
-        unit_of_measurement: "ms"
-
-      hass_uptime:
-        unique_id: 297ab0a7-a58e-4c34-bfd3-cca5472e28b1
-        friendly_name: Home Assistant Uptime
-        value_template: >-
-          {% set time = (as_timestamp(now()) - as_timestamp(states('sensor.time_online'))) / 60 | int %}
-            {% set minutes = ((time % 60) ) | int%}
-            {% set hours = ((time % 1440) / 60) | int %}
-            {% set days = (time / 1440) | int %}
-              {%- if time == 0 -%}
-                00:00:00
-              {%- else -%}
-                {%- if days == 0 -%}
-                  00
-                {%- endif -%}
-                {%- if days > 0 -%}        
-                  {%- if days < 10 -%}
-                    0{{ days }}
-                  {%- else -%}
-                    {{ days }}
-                  {%- endif -%}
-                {%- endif -%}
-                {%- if hours == 0 -%}
-                  :00
-                {%- endif -%}
-                {%- if hours > 0 -%}        
-                  {%- if hours < 10 -%}
-                    :0{{ hours }}
-                  {%- else -%}
-                    :{{ hours }}
-                  {%- endif -%}
-                {%- endif -%}
-                {%- if minutes == 0 -%}
-                  :00
-                {%- endif -%}
-                {%- if minutes > 0 -%}
-                  {%- if minutes < 10 -%}
-                    :0{{ minutes }}
-                  {%- else -%}
-                    :{{ minutes }}
-                  {%- endif -%}
-                {%- endif -%}
-              {%- endif -%}
-
-      hass_restart:
-        unique_id: dbd47647-55d6-4e0e-8e3f-a0f3bc49ca8e
-        friendly_name: Home Assistant Restart Time
-        value_template: >-
-          {% set time = (as_timestamp(states('sensor.time_online'))) - (as_timestamp(states('sensor.ha_shutdown'))) | int %}
-            {% set seconds = ((time % 60) ) | int%}
-            {% set minutes = (time / 60) | int %}
-              {%- if time == 0 -%}
-                00:00
-              {%- else -%}
-                {%- if minutes == 0 -%}
-                  00
-                {%- endif -%}
-                {%- if minutes > 0 -%}        
-                  {%- if minutes < 10 -%}
-                    0{{ minutes }}
-                  {%- else -%}
-                    {{ minutes }}
-                  {%- endif -%}
-                {%- endif -%}
-                {%- if seconds == 0 -%}
-                  :00
-                {%- endif -%}
-                {%- if seconds > 0 -%}
-                  {%- if seconds < 10 -%}
-                    :0{{ seconds }}
-                  {%- else -%}
-                    :{{ seconds }}
-                  {%- endif -%}
-                {%- endif -%}
-              {%- endif -%}
 
 mqtt:
   sensor:

@@ -1,48 +1,42 @@
-switch:
-  - platform: template
-    switches:
-      irrigation_program_3_days:
-        unique_id: 2d97d512-ec38-41c2-9fec-eb2c8f775910
-        friendly_name: "Irrigation Schedule Every 3 Days Enabled"
-        value_template: "{{ is_state('switch.rm_every_3_days_enabled', 'on') }}"
-        turn_on:
-          service: script.rainmachine_program_1_on
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.rm_every_3_days_enabled
-
-      irrigation_program_2_days:
-        unique_id: 5499572b-2c0d-4a49-965d-2a1eab7efe83
-        friendly_name: "Irrigation Schedule Every 2 Days Enabled"
-        value_template: "{{ is_state('switch.rm_every_2_days_enabled', 'on') }}"
-        turn_on:
-          service: script.rainmachine_program_2_on
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.rm_every_2_days_enabled
-
-      irrigation_program_restriction:
-        unique_id: c456b85f-071b-4706-99cb-028808aa7d30
-        friendly_name: "Irrigation Schedule Watering Restriction"
-        value_template: "{{ is_state('switch.rm_twice_weekly_enabled', 'on') }}"
-        turn_on:
-          service: script.rainmachine_program_restriction_on
-        turn_off:
-          service: switch.turn_off
-          entity_id: switch.rm_twice_weekly_enabled
-
-      irrigation_run_program:
-        unique_id: b53d46d7-c4d6-41ec-b84e-72fc37812014
-        friendly_name: "Run Irrigation Program"
-        value_template: "{{ is_state('switch.rm_every_2_days','on') or is_state('switch.rm_every_3_days','on') or is_state('switch.rm_twice_weekly','on') }}"
-        turn_on:
-          service: script.rainmachine_start_program
-        turn_off:
-          service: rainmachine.stop_all
-          data:
-            device_id: 032305af67494d03b682235da4fa36d6
-
 template:
+  - switch:
+    - name: Irrigation Program 3 Days
+      unique_id: 2d97d512-ec38-41c2-9fec-eb2c8f775910
+      state: "{{ is_state('switch.rm_every_3_days_enabled', 'on') }}"
+      turn_on:
+        service: script.rainmachine_program_1_on
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.rm_every_3_days_enabled
+
+    - name: Irrigation Program 2 Days
+      unique_id: 5499572b-2c0d-4a49-965d-2a1eab7efe83
+      state: "{{ is_state('switch.rm_every_2_days_enabled', 'on') }}"
+      turn_on:
+        service: script.rainmachine_program_2_on
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.rm_every_2_days_enabled
+
+    - name: Irrigation Program Restriction
+      unique_id: c456b85f-071b-4706-99cb-028808aa7d30
+      state: "{{ is_state('switch.rm_twice_weekly_enabled', 'on') }}"
+      turn_on:
+        service: script.rainmachine_program_restriction_on
+      turn_off:
+        service: switch.turn_off
+        entity_id: switch.rm_twice_weekly_enabled
+
+    - name: Irrigation Run Program
+      unique_id: b53d46d7-c4d6-41ec-b84e-72fc37812014
+      state: "{{ is_state('switch.rm_every_2_days','on') or is_state('switch.rm_every_3_days','on') or is_state('switch.rm_twice_weekly','on') }}"
+      turn_on:
+        service: script.rainmachine_start_program
+      turn_off:
+        service: rainmachine.stop_all
+        data:
+          device_id: 032305af67494d03b682235da4fa36d6
+
   - binary_sensor:
     - name: RM Zone 1 Watering
       unique_id: 0f99a107-7e5c-42f6-91dd-77d9032bee00

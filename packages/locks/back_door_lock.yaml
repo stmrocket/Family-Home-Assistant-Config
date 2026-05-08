@@ -1,11 +1,14 @@
-binary_sensor:
-  - platform: template
-    sensors:
-      back_door_lock_battery_low:
-        value_template: "{{ states('sensor.back_door_lock_battery_level') | int(none) < 40 }}"
-        friendly_name: "Back Door Lock Battery Low"
-        delay_on:
-          minutes: 5
+template:
+  - sensor:
+    - name: Back Door Lock Status
+      unique_id: 362f3e49-3cc0-431c-ab58-6fd22361d2e3
+      state: "{{ states('input_text.back_door_lock_status') }}"
+        
+  - binary_sensor:
+    - name: Back Door Lock Battery Low
+      state: "{{ states('sensor.back_door_lock_battery_level') | int(none) < 40 }}"
+      delay_on:
+        minutes: 5
 
 alert:
   back_door_lock_battery_low:
@@ -23,14 +26,6 @@ alert:
 input_text:
   back_door_lock_status:
     name: Back Door Lock Status
-
-sensor:
-  - platform: template
-    sensors:
-      back_door_lock_status:
-        unique_id: 362f3e49-3cc0-431c-ab58-6fd22361d2e3
-        friendly_name: Back Door Lock Status
-        value_template: "{{ states('input_text.back_door_lock_status') }}"
 
 timer:
   back_door:

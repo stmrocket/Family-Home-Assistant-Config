@@ -56,6 +56,17 @@ template:
       unique_id: ca35a957-46fb-40a8-b95a-100caa287f18
       state: "{{ ((states('counter.litter_robot_cycle_count') | int(none) / states('sensor.litter_robot_average_cycle_capacity') | int(none)) * 100) | round(0, default=none) }}"
 
+  - switch:
+    - name: Litter Robot Power
+      unique_id: fe30cd02-cb59-4796-9153-38a5fba01174
+      state: "{{ not is_state('sensor.the_pooper_status_code', 'on') }}"
+      turn_on:
+        service: vacuum.turn_on
+        entity_id: vacuum.the_pooper_litter_box
+      turn_off:
+        service: vacuum.turn_off
+        entity_id: vacuum.the_pooper_litter_box
+
 input_number:
   litter_robot_cycle_count:
     name: Litter Robot Total Cycles
@@ -74,19 +85,6 @@ input_number:
 counter:
   litter_robot_cycle_count:
     step: 1
-
-switch:
-  - platform: template
-    switches:
-      litter_robot_power:
-        unique_id: fe30cd02-cb59-4796-9153-38a5fba01174
-        value_template: "{{ not is_state('sensor.the_pooper_status_code', 'on') }}"
-        turn_on:
-          service: vacuum.turn_on
-          entity_id: vacuum.the_pooper_litter_box
-        turn_off:
-          service: vacuum.turn_off
-          entity_id: vacuum.the_pooper_litter_box
 
 script:
   litter_robot_empty:

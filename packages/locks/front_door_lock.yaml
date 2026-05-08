@@ -1,11 +1,13 @@
-binary_sensor:
-  - platform: template
-    sensors:
-      front_door_lock_battery_low:
-        value_template: "{{ states('sensor.front_door_lock_battery_level') | int(none) < 40 }}"
-        friendly_name: "Front Door Lock Battery Low"
-        delay_on:
-          minutes: 5
+template:
+  - sensor:
+    - name: Front Door Lock Status
+      unique_id: b968e52d-88c6-4e08-9550-3d5bdd8c4e6a
+      state: "{{ states('input_text.front_door_lock_status') }}"
+  - binary_sensor:
+    - name: Front Door Lock Battery Low
+      state: "{{ states('sensor.front_door_lock_battery_level') | int(none) < 40 }}"
+      delay_on:
+        minutes: 5
 
 alert:
   front_door_lock_battery_low:
@@ -23,14 +25,6 @@ alert:
 input_text:
   front_door_lock_status:
     name: Front Door Lock Status
-
-sensor:
-  - platform: template
-    sensors:
-      front_door_lock_status:
-        unique_id: b968e52d-88c6-4e08-9550-3d5bdd8c4e6a
-        friendly_name: Front Door Lock Status
-        value_template: "{{ states('input_text.front_door_lock_status') }}"
 
 timer:
   front_door:
