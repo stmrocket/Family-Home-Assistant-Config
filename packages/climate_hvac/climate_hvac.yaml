@@ -82,7 +82,7 @@ automation:
       - service: climate.set_temperature
         data:
           entity_id: climate.thermostat
-          target_temp_high: 75
+          target_temp_high: 74
           target_temp_low: 62
       - service: input_boolean.turn_off
         entity_id: input_boolean.hvac_guest_mode
