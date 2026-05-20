@@ -61,10 +61,10 @@ template:
       unique_id: fe30cd02-cb59-4796-9153-38a5fba01174
       state: "{{ not is_state('sensor.the_pooper_status_code', 'off') }}"
       turn_on:
-        service: vacuum.turn_on
+        service: vacuum.start
         entity_id: vacuum.the_pooper_litter_box
       turn_off:
-        service: vacuum.turn_off
+        service: vacuum.stop
         entity_id: vacuum.the_pooper_litter_box
 
 input_number:
