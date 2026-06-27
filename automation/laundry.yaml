@@ -5,9 +5,8 @@
   id: c790a0d0-8a98-425c-afa8-15aea2994b89
   trigger:
     platform: state
-    entity_id: binary_sensor.dryer_dry_completed
-    from: 'off'
-    to: 'on'
+    entity_id: sensor.dryer_current_status
+    to: 'end'
   condition:
   - condition: or
     conditions:
@@ -27,8 +26,8 @@
   id: 2de2b07e-f754-4667-a620-de035f87cc61
   trigger:
     platform: state
-    entity_id: binary_sensor.washer_wash_completed
-    to: 'on'
+    entity_id: sensor.washer_current_status
+    to: 'end'
   condition:
   - condition: or
     conditions:
