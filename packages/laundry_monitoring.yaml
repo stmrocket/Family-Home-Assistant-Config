@@ -1,36 +1,107 @@
 template:
   - sensor:
-    - name: Washer Status Combined
-      unique_id: c0f73c39-684f-4645-b2e8-8fe5df9d8c72
+    - name: Washer Status Clean
+      unique_id: fdada180-8af5-491d-a421-05bb225eea78
       state: >-
-        {% if is_state('sensor.washer', 'off') -%}
+        {% if is_state('sensor.washer_current_status', 'power_off') -%}
           Off
-        {% elif is_state_attr('sensor.washer', 'run_state', '-') -%}
+        {% elif is_state('sensor.washer_current_status', 'initial') -%}
           Idle
-        {% elif is_state_attr('sensor.washer', 'remain_time', '0:00') or is_state_attr('sensor.washer', 'run_state', 'Finished') -%}
-          {{ (state_attr("sensor.washer", "run_state")) }}
-        {% elif is_state('sensor.washer', 'on') -%}
-          {{ (state_attr("sensor.washer", "run_state")) }} {{ (state_attr("sensor.washer", "remain_time")[:-3]) }}
+        {% elif is_state('sensor.washer_current_status', 'end') -%}
+          Done
+        {% elif is_state('sensor.washer_current_status', 'detecting') -%}
+          Detecting
+        {% elif is_state('sensor.washer_current_status', 'drying') -%}
+          Drying
+        {% elif is_state('sensor.washer_current_status', 'prewash') -%}
+          Prewash
+        {% elif is_state('sensor.washer_current_status', 'rinsing') -%}
+          Rinsing
+        {% elif is_state('sensor.washer_current_status', 'spinning') -%}
+          Spinning
+        {% elif is_state('sensor.washer_current_status', 'running') -%}
+          Washing
+        {% elif is_state('sensor.washer_current_status', 'pause') -%}
+          Paused
         {% else -%}
           Error
         {% endif -%}
-    - name: Dryer Status Combined
-      unique_id: b5aed9f1-d96c-4456-a4f5-4e9e471c5eda
+
+    - name: Washer Status Combined
+      unique_id: c0f73c39-684f-4645-b2e8-8fe5df9d8c72
       state: >-
-        {% if is_state('sensor.dryer', 'off') -%}
+        {%- if (as_timestamp(states('sensor.washer_remaining_time'),0) - as_timestamp(now(),0)) > 0 %}
+          {% set time = as_timestamp(states('sensor.washer_remaining_time'),0) - as_timestamp(now(),0) %}
+          {% set minutes = (time / 60) | int(none)%}
+            {%- if time < 60-%}
+              {{ states('sensor.washer_status_clean') }} 0m
+            {%- else -%}
+                {{ states('sensor.washer_status_clean') }} {{ minutes }}m
+            {%- endif -%}
+        {%- else %}
+          {{ states('sensor.washer_status_clean') }}
+        {%- endif -%}
+
+    - name: Dryer Status Clean
+      unique_id: 3d9f34c1-9d85-45b2-92d3-3de9fd6e6299
+      state: >-
+        {% if is_state('sensor.dryer_current_status', 'power_off') -%}
           Off
-        {% elif is_state_attr('sensor.dryer', 'run_state', '-') -%}
+        {% elif is_state('sensor.dryer_current_status', 'initial') -%}
           Idle
-        {% elif is_state_attr('sensor.dryer', 'remain_time', '0:00') or is_state_attr('sensor.dryer', 'run_state', 'Finished') -%}
-          {{ (state_attr("sensor.dryer", "run_state")) }}
-        {% elif is_state('sensor.dryer', 'on') -%}
-          {{ (state_attr("sensor.dryer", "run_state")) }} {{ (state_attr("sensor.dryer", "remain_time")[:-3]) }}
+        {% elif is_state('sensor.dryer_current_status', 'end') -%}
+          Done
+        {% elif is_state('sensor.dryer_current_status', 'cooling') -%}
+          Cooling
+        {% elif is_state('sensor.dryer_current_status', 'wrincle_care') -%}
+          Holding
+        {% elif is_state('sensor.dryer_current_status', 'running') -%}
+          Drying
+        {% elif is_state('sensor.dryer_current_status', 'pause') -%}
+          Paused
         {% else -%}
           Error
-        {% endif -%}    
+        {% endif -%}
+        
+    - name: Dryer Status Combined
+      unique_id: b5aed9f1-d96c-4456-a4f5-4e9e471c5eda
+      state: >-        
+        {%- if (as_timestamp(states('sensor.dryer_remaining_time'),0) - as_timestamp(now(),0)) > 0 %}
+          {% set time = as_timestamp(states('sensor.dryer_remaining_time'),0) - as_timestamp(now(),0) %}
+          {% set minutes = (time / 60) | int(none)%}
+            {%- if time < 60-%}
+              {{ states('sensor.dryer_status_clean') }} 0m
+            {%- else -%}
+                {{ states('sensor.dryer_status_clean') }} {{ minutes }}m
+            {%- endif -%}
+        {%- else %}
+          {{ states('sensor.dryer_status_clean') }}
+        {%- endif -%}
     - name: Washer Time Remaining
       unique_id: ea882627-a85c-4e98-a6cb-9e544522f02e
-      state: "{{ state_attr('sensor.washer', 'remain_time')[:-3] }}" 
+      state: >-
+        {%- if (as_timestamp(states('sensor.washer_remaining_time'),0) - as_timestamp(now(),0)) > 0 %}
+          {% set time = as_timestamp(states('sensor.washer_remaining_time'),0) - as_timestamp(now(),0) %}
+          {% set minutes = (time / 60) | int(none)%}
+            {%- if time < 60-%}
+              0m
+            {%- else -%}
+              {{ minutes }}m
+            {%- endif -%}
+        {%- else %}
+          Error
+        {%- endif -%}
     - name: Dryer Time Remaining
       unique_id: cab1b545-35ef-480d-823b-3d90d1b471af
-      state: "{{ state_attr('sensor.dryer', 'remain_time')[:-3] }}" 
+      state: >-
+        {%- if (as_timestamp(states('sensor.dryer_remaining_time'),0) - as_timestamp(now(),0)) > 0 %}
+          {% set time = as_timestamp(states('sensor.dryer_remaining_time'),0) - as_timestamp(now(),0) %}
+          {% set minutes = (time / 60) | int(none)%}
+            {%- if time < 60-%}
+              0m
+            {%- else -%}
+              {{ minutes }}m
+            {%- endif -%}
+        {%- else %}
+          Error
+        {%- endif -%}
